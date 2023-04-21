@@ -15,7 +15,7 @@ namespace Pureba
             //Thread hilo1 = new Thread(servicioContrato.ValidateStatus);
             //hilo1.Start();
 
-            //PIPIPIPI
+            //Hola amigos de youtube
 
             ///////////////////////////////////////////////////////<  DECLARACIONES  >/////////////////////////////////////////////////////////////////
 
