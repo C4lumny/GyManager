@@ -10,7 +10,9 @@ namespace Datos
 {
     public class RepositorioUsuarios
     {
-        protected string ruta = "Personas.txt";
+        string ruta1 = "Cliente.txt";
+        string ruta2 = "Supervisor.txt";
+
         public RepositorioUsuarios()
         {
         }
@@ -18,18 +20,20 @@ namespace Datos
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, true);
                 if (persona is Cliente) 
-                { 
+                {
+                    StreamWriter writer = new StreamWriter(ruta1, true);
                     Cliente cliente = (Cliente)persona;
-                    writer.WriteLine("C;" + cliente.ToString());
+                    writer.WriteLine(cliente.ToString());
+                    writer.Close();
                 }
                 else if(persona is Supervisor)
                 {
+                    StreamWriter writer = new StreamWriter(ruta2, true);
                     Supervisor supervisor = (Supervisor)persona;
-                    writer.WriteLine("S;" + supervisor.ToString());
+                    writer.WriteLine(supervisor.ToString());
+                    writer.Close();
                 }
-                writer.Close();
                 return true;
             }
             catch (Exception)
@@ -39,44 +43,38 @@ namespace Datos
         }
         public Persona Mapper(string linea)
         {
+            var aux = linea.Split(';');
             try
             {
-                var aux = linea.Split(';');
-                if (aux[0] == "C")
-                {
-                    Cliente cliente = new Cliente();
-                    cliente.id = aux[1];
-                    cliente.nombre = aux[2];
-                    cliente.genero = aux[3];
-                    cliente.telefono = aux[4];
-                    cliente.altura = double.Parse(aux[5]);
-                    cliente.peso = double.Parse(aux[6]);
-                    cliente.imc = double.Parse(aux[7]);
-                    cliente.fecha_nacimiento = DateTime.Parse(aux[8]);
-                    cliente.discapacidad = aux[9];
-                    cliente.fecha_ingreso = DateTime.Parse(aux[10]);
-                    cliente.estado = bool.Parse(aux[11]);
-                    Persona persona = cliente;
-                    return persona;
-                }
-                else if (aux[0] == "S")
-                {
-                    Supervisor superisor = new Supervisor();
-                    superisor.id = aux[1];
-                    superisor.nombre = aux[2];
-                    superisor.genero = aux[3];
-                    superisor.telefono = aux[4];
-                    superisor.altura = double.Parse(aux[5]);
-                    superisor.peso = double.Parse(aux[6]);
-                    superisor.fecha_nacimiento = DateTime.Parse(aux[7]);
-                    superisor.fecha_ingreso = DateTime.Parse(aux[8]);
-                    superisor.estado = bool.Parse(aux[9]);
-                    Persona persona = superisor;
-                    return persona;
-                }
+
+                Cliente cliente = new Cliente();
+                cliente.id = aux[0];
+                cliente.nombre = aux[1];
+                cliente.genero = aux[2];
+                cliente.telefono = aux[3];
+                cliente.altura = double.Parse(aux[4]);
+                cliente.peso = double.Parse(aux[5]);
+                cliente.imc = double.Parse(aux[6]);
+                cliente.fecha_nacimiento = DateTime.Parse(aux[7]);
+                cliente.discapacidad = aux[8];
+                cliente.fecha_ingreso = DateTime.Parse(aux[9]);
+                cliente.estado = bool.Parse(aux[10]);
+                return cliente;
             }
-            catch (Exception) { }
-            return null;
+            catch (Exception)
+            {
+                Supervisor superisor = new Supervisor();
+                superisor.id = aux[0];
+                superisor.nombre = aux[1];
+                superisor.genero = aux[2];
+                superisor.telefono = aux[3];
+                superisor.altura = double.Parse(aux[4]);
+                superisor.peso = double.Parse(aux[5]);
+                superisor.fecha_nacimiento = DateTime.Parse(aux[6]);
+                superisor.fecha_ingreso = DateTime.Parse(aux[7]);
+                superisor.estado = bool.Parse(aux[8]);
+                return superisor;
+            }
         }
         public bool Update(List<Persona> personas)
         {
@@ -108,7 +106,7 @@ namespace Datos
         {
             try
             {
-                StreamReader reader = new StreamReader(ruta);
+                StreamReader reader = new StreamReader(ruta1);
                 var list = new List<Persona>();
                 string linea;
                 while (!reader.EndOfStream)

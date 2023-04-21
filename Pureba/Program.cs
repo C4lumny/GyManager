@@ -55,7 +55,7 @@ namespace Pureba
             //servicioPlan.Save(plan_Semipersonalizado);
             //servicioPlan.Save(plan_Dirigido);
 
-            //servicioSupervisor.Save(Coach1);
+            servicioSupervisor.Save(Coach1);
             //servicioSupervisor.Save(Coach2);
 
             //servicioCliente.Save(cliente1);
@@ -122,27 +122,9 @@ namespace Pureba
                     Coach.fecha_ingreso = time.ToUniversalTime(); Coach.fecha_nacimiento = time.ToUniversalTime();
 
                     var msg = servicioSupervisor.Save(Coach);
-                    switch (msg)
-                    {
-                        case 0:
-                            Console.WriteLine("Se ha guardado correctamente. ");
-                            break;
-                        case 1:
-                            Console.WriteLine("ingrese una altura valida ");
-                            break;
-                        case 2:
-                            Console.WriteLine("ingrese un peso valido. ");
-                            break;
-                        case 3:
-                            Console.WriteLine("fecha de nacimiento invalida");
-                            break;
-                        case 4:
-                            Console.WriteLine("ID repetido ");
-                            break;
-                        default:
-                            Console.WriteLine("ERROR.Excepcion");
-                            break;
-                    }
+                   
+                            Console.WriteLine(msg.msg);
+          
                     Console.WriteLine("Desea continuar?"); op = int.Parse(Console.ReadLine());
                 } while (op == 1);
             }
@@ -182,27 +164,8 @@ namespace Pureba
                     cliente.discapacidad = "a";
                     cliente.fecha_ingreso = time.ToUniversalTime(); cliente.fecha_nacimiento = time.ToUniversalTime();
                     var msg = servicioCliente.Save(cliente);
-                    switch (msg)
-                    {
-                        case 0:
-                            Console.WriteLine("Se ha guardado correctamente. ");
-                            break;
-                        case 1:
-                            Console.WriteLine("ingrese una altura valida ");
-                            break;
-                        case 2:
-                            Console.WriteLine("ingrese un peso valido. ");
-                            break;
-                        case 3:
-                            Console.WriteLine("fecha de nacimiento invalida");
-                            break;
-                        case 4:
-                            Console.WriteLine("ID repetido ");
-                            break;
-                        default:
-                            Console.WriteLine("ERROR.Excepcion");
-                            break;
-                    }
+                    Console.WriteLine(msg.msg);
+
                     Console.WriteLine("Desea continuar?"); op = int.Parse(Console.ReadLine());
                 } while (op == 1);
             }
@@ -249,36 +212,8 @@ namespace Pureba
                         contrato.estado = true;
                         contrato.fecha_finalizacion = contrato.fecha_inicio.AddSeconds(20);
                         var msg = servicioContrato.Save(contrato);
-                        switch (msg)
-                        {
-                            case 0:
-                                Console.WriteLine("Se ha guardado correctamente. ");
-                                break;
-                            case 1:
-                                Console.WriteLine("No se ha encontrado al cliente. ");
-                                break;
-                            case 2:
-                                Console.WriteLine("No se ha encontrado al supervisor. ");
-                                break;
-                            case 3:
-                                Console.WriteLine("No se ha encontrado el plan.");
-                                break;
-                            case 4:
-                                Console.WriteLine("descuento fuera de rango. ");
-                                break;
-                            case 5:
-                                Console.WriteLine("Cliente menor de 18 años. ");
-                                break;
-                            case 6:
-                                Console.WriteLine("Cliente ya contratado. ");
-                                break;
-                            case 7:
-                                Console.WriteLine("ID repetida ");
-                                break;
-                            default:
-                                Console.WriteLine("ERROR.Excepcion");
-                                break;
-                        }
+                        Console.WriteLine(msg.msg);
+
                         Console.WriteLine("Desea continuar?"); op = int.Parse(Console.ReadLine());
                     } while (op == 1);
                 }
@@ -390,34 +325,8 @@ namespace Pureba
                         descuentopercentage = double.Parse(descuento.Replace("%", ""));
                     }
                     servicioContrato.ValidateStatus();
-                    int msg = servicioContrato.Renovate(id_contrato, dias, id_supervisor, id_plan, descuentopercentage);
-                    switch (msg)
-                    {
-                        case 0:
-                            Console.WriteLine("Se renovo el contrato");
-                            break;
-                        case 1:
-                            Console.WriteLine("No hay contratos en la lista.");
-                            break;
-                        case 2:
-                            Console.WriteLine("No se encontro el contrato");
-                            break;
-                        case 3:
-                            Console.WriteLine("No se encontro el coach");
-                            break;
-                        case 4:
-                            Console.WriteLine("No se encontro el plan");
-                            break;
-                        case 5:
-                            Console.WriteLine("el descuento se encuentra en un rango incorrecto");
-                            break;
-                        case 6:
-                            Console.WriteLine("Este contrato todavia esta vigente");
-                            break;
-                        default:
-                            Console.WriteLine("ERROR NO ESPECIFICADO");
-                            break;
-                    }
+                    var msg = servicioContrato.Renovate(id_contrato, dias, id_supervisor, id_plan, descuentopercentage);
+                    Console.WriteLine(msg.msg);
                     Console.WriteLine("Desea continuar?"); op = int.Parse(Console.ReadLine());
                 } while (op == 1);
             }

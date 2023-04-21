@@ -28,7 +28,7 @@ namespace GUI
                 Console.SetCursorPosition(35, 14); Console.Write("Escoja la opción de su preferencia: ");
                 try
                 {
-                    op = Int32.Parse(Console.ReadLine());
+                    op = int.Parse(Console.ReadLine());
                 }
                 catch (FormatException)
                 {
