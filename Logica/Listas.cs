@@ -37,7 +37,7 @@ namespace Logica
             if (list == null) { return null; }
             return list;
         }
-        public List<Contrato> GetListaContrato() // retorna la lista de contratos, al ser publica se puede utilizar en cualquier clase.
+        public List<Inscripcion> GetListaContrato() // retorna la lista de contratos, al ser publica se puede utilizar en cualquier clase.
         {
             var list = repositorioContratos.Load();
             if (list == null) { return null; }

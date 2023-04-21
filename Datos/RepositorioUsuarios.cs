@@ -86,21 +86,23 @@ namespace Datos
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta1, false);
                 foreach (var item in personas)
                 {
                     if (item is Cliente)
                     {
+                        StreamWriter writer = new StreamWriter(ruta1, false);
                         Cliente cliente = (Cliente)item;
-                        writer.WriteLine("C;" + cliente.ToString());
+                        writer.WriteLine(cliente.ToString());
+                        writer.Close();
                     }
                     else if (item is Supervisor)
                     {
+                        StreamWriter writer = new StreamWriter(ruta2, false);
                         Supervisor supervisor = (Supervisor)item;
-                        writer.WriteLine("S;" + supervisor.ToString());
+                        writer.WriteLine(supervisor.ToString());
+                        writer.Close();
                     }
                 }
-                writer.Close();
                 return true;
             }
             catch (Exception)
@@ -112,15 +114,22 @@ namespace Datos
         {
             try
             {
-                StreamReader reader = new StreamReader(ruta2);
+                StreamReader reader1 = new StreamReader(ruta1);
+                StreamReader reader2 = new StreamReader(ruta2);
                 var list = new List<Persona>();
                 string linea;
-                while (!reader.EndOfStream)
+                while (!reader1.EndOfStream)
                 {
-                    linea = reader.ReadLine();
+                    linea = reader1.ReadLine();
                     list.Add(Mapper(linea));
                 }
-                reader.Close();
+                while (!reader2.EndOfStream)
+                {
+                    linea = reader2.ReadLine();
+                    list.Add(Mapper(linea));
+                }
+                reader1.Close();
+                reader2.Close();
                 return list;
             }
             catch (Exception)

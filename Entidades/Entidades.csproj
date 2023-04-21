@@ -44,7 +44,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="Supervisor.cs" />
-    <Compile Include="Contrato.cs" />
+    <Compile Include="Inscripcion.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="PlanGimnasio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

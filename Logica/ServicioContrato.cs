@@ -19,11 +19,11 @@ namespace Logica
             servicioSupervisor = new ServicioSupervisor();
             servicioPlan = new ServicioPlan();
         }
-        public Response<Contrato> Delete(string id_contrato)
+        public Response<Inscripcion> Delete(string id_contrato)
         {
             if (GetLista() == null)
             {
-                return new Response<Contrato>(false, "Lista vacia", null, null); // Lista vacia.
+                return new Response<Inscripcion>(false, "Lista vacia", null, null); // Lista vacia.
             }
             else
             {
@@ -31,20 +31,20 @@ namespace Logica
                 int pos = list.FindIndex(item => item.Id == id_contrato); // Devuelve el indice (posicion) de un item de la lista que cumpla con la condicion 
                 if (pos < 0)
                 {
-                    return new Response<Contrato>(false, "No se encontro el id del contrato que desea eliminar", null, null); // No se encontro el id del item que desea eliminar.
+                    return new Response<Inscripcion>(false, "No se encontro el id del contrato que desea eliminar", null, null); // No se encontro el id del item que desea eliminar.
                 }
                 else
                 {
-                    Contrato contrato = ReturnFromList(id_contrato);
+                    Inscripcion contrato = ReturnFromList(id_contrato);
                     contrato.cliente.estado = false; // el estado del cliente pasa a no contratado.
                     contrato.supervisor.ListaCliente_Supervisor.Remove(contrato.cliente); // el supervisor asignado se le añade a su propia lista el cliente.
                     list.RemoveAt(pos);
                     ar.Update(list);
-                    return new Response<Contrato>(true, "Eliminado correctamente", null, null);  //Elimino correctamente.
+                    return new Response<Inscripcion>(true, "Eliminado correctamente", null, null);  //Elimino correctamente.
                 }
             }
         } 
-        public List<Contrato> GetBySearch(string search)
+        public List<Inscripcion> GetBySearch(string search)
         {
             if (GetLista() == null) 
             {
@@ -55,7 +55,7 @@ namespace Logica
                 return GetLista().FindAll(item => item.Id.StartsWith(search) || item.cliente.nombre.Contains(search) || item.cliente.id.StartsWith(search)); // Find devuelve un item que cumplan la condicion del predicado.
             }
         }
-        public List<Contrato> GetListaVigentes() 
+        public List<Inscripcion> GetListaVigentes() 
         {
             if (GetLista() == null)
             {
@@ -70,39 +70,39 @@ namespace Logica
                 return listaVigente; // retorna lista de contratos vigentes.
             }
         }
-        public List<Contrato> GetLista()
+        public List<Inscripcion> GetLista()
         {
             var lista = list.GetListaContrato(); ;
             if (lista == null) { return null; }
             return lista;  // retorna la lista de contratos, privada para esta clase.
         }
-        public Response<Contrato> Save(Contrato contrato) // guarda los contratos en una lista.
+        public Response<Inscripcion> Save(Inscripcion contrato) // guarda los contratos en una lista.
         {
             try
             {
                 if (contrato.cliente == null)
                 {
-                    return new Response<Contrato>(false, "El cliente no existe", null, null); // El cliente elegido no existe.
+                    return new Response<Inscripcion>(false, "El cliente no existe", null, null); // El cliente elegido no existe.
                 }
                 else if (contrato.supervisor == null)
                 {
-                    return new Response<Contrato>(false, "El supervisor no existe", null, null); // El supervisor elegido no existe.
+                    return new Response<Inscripcion>(false, "El supervisor no existe", null, null); // El supervisor elegido no existe.
                 }
                 else if (contrato.plan == null)
                 {
-                    return new Response<Contrato>(false, "El plan no existe", null, null); // El plan elegido no existe
+                    return new Response<Inscripcion>(false, "El plan no existe", null, null); // El plan elegido no existe
                 }
                 else if (contrato.descuento < 0 || contrato.descuento > 100)
                 {
-                    return new Response<Contrato>(false, "Descuento fuera de rango", null, null); ; // descuento fuera de rango.
+                    return new Response<Inscripcion>(false, "Descuento fuera de rango", null, null); ; // descuento fuera de rango.
                 }
                 else if (contrato.cliente.fecha_nacimiento.AddYears(18) > DateTime.Now)
                 {
-                    return new Response<Contrato>(false, "Edad menor a 18", null, null); // Si la edad del cliente es menor a 18.
+                    return new Response<Inscripcion>(false, "Edad menor a 18", null, null); // Si la edad del cliente es menor a 18.
                 }
                 else if (contrato.cliente.estado == true)
                 {
-                    return new Response<Contrato>(false, "Ya cuenta con un contrato", null, null); // Ya tiene un contrato
+                    return new Response<Inscripcion>(false, "Ya cuenta con un contrato", null, null); // Ya tiene un contrato
                 }
                 else if (list.GetListaContrato() == null)
                 {
@@ -110,11 +110,11 @@ namespace Logica
                     contrato.cliente.estado = true;
                     ar.Save(contrato);
                     /*contrato.supervisor.ListaCliente_Supervisor.Add(contrato.cliente);*/
-                    return new Response<Contrato>(true, "Guardado sin validar", null, null); // Si la lista esta vacia, guarda sin validar
+                    return new Response<Inscripcion>(true, "Guardado sin validar", null, null); // Si la lista esta vacia, guarda sin validar
                 }
                 else if (Exist(contrato.Id))
                 {
-                    return new Response<Contrato>(false, "ID repetido", null, null); //ID repetido.
+                    return new Response<Inscripcion>(false, "ID repetido", null, null); //ID repetido.
                 }
                 else
                 {
@@ -122,45 +122,45 @@ namespace Logica
                     contrato.cliente.estado = true;
                     ar.Save(contrato);
                     /*contrato.supervisor.ListaCliente_Supervisor.Add(contrato.cliente);*/
-                    return new Response<Contrato>(true, "Guardado", null, null); // Si la id ingresada no esta repetida, guarda en la lista
+                    return new Response<Inscripcion>(true, "Guardado", null, null); // Si la id ingresada no esta repetida, guarda en la lista
                 }
             }
             catch (Exception)
             {
-                return new Response<Contrato>(false, "Eliminado", null, null); //Te jodiste exception xd
+                return new Response<Inscripcion>(false, "Eliminado", null, null); //Te jodiste exception xd
             }
         }
-        public Response<Contrato> Update(Contrato contratoUpdate, string id_contrato) // reemplaza los datos de un contratoRenovado a otro.
+        public Response<Inscripcion> Update(Inscripcion contratoUpdate, string id_contrato) // reemplaza los datos de un contratoRenovado a otro.
         {
             try
             {
-                if (GetLista() == null) { return new Response<Contrato>(true, "Lista Vacia", null, null); } // Lista vacia
+                if (GetLista() == null) { return new Response<Inscripcion>(true, "Lista Vacia", null, null); } // Lista vacia
                 else
                 {
                     var contrato = ReturnFromList(id_contrato);
                     if (contrato == null)
                     {
-                        return new Response<Contrato>(false, "No se encontro ID", null, null); // No se encontro el id del contratoRenovado.
+                        return new Response<Inscripcion>(false, "No se encontro ID", null, null); // No se encontro el id del contratoRenovado.
                     }
                     else if (contratoUpdate.cliente == null)
                     {
-                        return new Response<Contrato>(false, "El cliente no existe", null, null); // El cliente no existe.
+                        return new Response<Inscripcion>(false, "El cliente no existe", null, null); // El cliente no existe.
                     }
                     else if (contratoUpdate.supervisor == null)
                     {
-                        return new Response<Contrato>(false, "El supervisor no existe", null, null); // El supervisor elegido no existe.
+                        return new Response<Inscripcion>(false, "El supervisor no existe", null, null); // El supervisor elegido no existe.
                     }
                     else if (contratoUpdate.plan == null)
                     {
-                        return new Response<Contrato>(false, "El plan no existe", null, null); // El plan elegido no existe
+                        return new Response<Inscripcion>(false, "El plan no existe", null, null); // El plan elegido no existe
                     }
                     else if (contratoUpdate.descuento < 0 || contratoUpdate.descuento > 100)
                     {
-                        return new Response<Contrato>(false, "Descuento invalido", null, null); // descuento fuera de rango.
+                        return new Response<Inscripcion>(false, "Descuento invalido", null, null); // descuento fuera de rango.
                     }
                     else if (Exist(contratoUpdate.Id))
                     {
-                        return new Response<Contrato>(false, "ID repetido", null, null); //ID repetido.
+                        return new Response<Inscripcion>(false, "ID repetido", null, null); //ID repetido.
                     }
                     else
                     {
@@ -180,13 +180,13 @@ namespace Logica
                         }
                         else { contrato.supervisor = contratoUpdate.supervisor; }
 
-                        return new Response<Contrato>(true, "Accion completada con exito", null, null); // reemplazo todo correctamente 
+                        return new Response<Inscripcion>(true, "Accion completada con exito", null, null); // reemplazo todo correctamente 
                     }
                 }
             }
             catch (Exception)
             {
-                return new Response<Contrato>(false, "Exception", null, null); // excepcion
+                return new Response<Inscripcion>(false, "Exception", null, null); // excepcion
             }
         }
         bool Exist(string dato)
@@ -197,16 +197,16 @@ namespace Logica
             }
             return false;
         }
-        public Contrato ReturnFromList(string id_Contrato) // retorna un item de la lista por medio de la id, retorna null si no encontro.
+        public Inscripcion ReturnFromList(string id_Contrato) // retorna un item de la lista por medio de la id, retorna null si no encontro.
         {
             return GetLista().FirstOrDefault(item => item.Id == id_Contrato);
         }
-        public Response<Contrato> Renovate(string id_contrato, int dias, string  id_supervisor, string id_plan, double descuento) // Renovacion del contratoRenovado.
+        public Response<Inscripcion> Renovate(string id_contrato, int dias, string  id_supervisor, string id_plan, double descuento) // Renovacion del contratoRenovado.
         {
             // recibe la id del contratoRenovado, los dias de ampliacion del contratoRenovado, (puede ser del plan o personalizado) recibe un supervisor un plan y un descuento. 
             try
             {
-                var contratoRenovado = new Contrato();
+                var contratoRenovado = new Inscripcion();
                 var contratoCaducado = ReturnFromList(id_contrato);
                 contratoRenovado.Id = contratoCaducado.Id;
                 contratoRenovado.cliente = contratoCaducado.cliente;
@@ -238,12 +238,12 @@ namespace Logica
                     contratoRenovado.fecha_finalizacion = contratoRenovado.fecha_inicio.AddDays(dias);
                     contratoRenovado.estado = true;
                     ar.Save(contratoRenovado);
-                    return new Response<Contrato>(true, "Contrato renovado", null, null); // Renovo el contratoRenovado.
+                    return new Response<Inscripcion>(true, "Contrato renovado", null, null); // Renovo el contratoRenovado.
                 }
             }
             catch (Exception)
             {
-                return new Response<Contrato>(false, "Exception", null, null); // Excepcion
+                return new Response<Inscripcion>(false, "Exception", null, null); // Excepcion
             }
         }
         public void ValidateStatus() // Valida el estado del contratoRenovado, utilizar antes de aplicar la renovacion y antes de consultar un contratoRenovado.
@@ -262,27 +262,27 @@ namespace Logica
                 ar.Update(lista);
             }
         }
-        Response<Contrato> isRenovationValid(Contrato contrato, Supervisor supervisor, PlanGimnasio plan, double descuento)
+        Response<Inscripcion> isRenovationValid(Inscripcion contrato, Supervisor supervisor, PlanGimnasio plan, double descuento)
         {
             if (GetLista() == null)
             {
-                return new Response<Contrato>(false, "Lista vacia", null, null); // Lista vacia
+                return new Response<Inscripcion>(false, "Lista vacia", null, null); // Lista vacia
             }
             else if (!Exist(contrato.Id))
             {
-                return new Response<Contrato>(false, "ID no encontrado", null, null); // Id no encontrado.
+                return new Response<Inscripcion>(false, "ID no encontrado", null, null); // Id no encontrado.
             }
             else if (supervisor == null)
             {
-                return new Response<Contrato>(false, "Supervisor no encontrado", null, null); // supervisor no encontrado.
+                return new Response<Inscripcion>(false, "Supervisor no encontrado", null, null); // supervisor no encontrado.
             }
             else if (plan == null)
             {
-                return new Response<Contrato>(false, "No se encontro el plan", null, null); // Plan no encontrado.
+                return new Response<Inscripcion>(false, "No se encontro el plan", null, null); // Plan no encontrado.
             }
             else if (descuento > 100 || descuento < 0)
             {
-                return new Response<Contrato>(false, "Descuento invalido", null, null); // descuento no puede ser menor a 0 o mayor que 100
+                return new Response<Inscripcion>(false, "Descuento invalido", null, null); // descuento no puede ser menor a 0 o mayor que 100
             }
             else 
             {
@@ -290,10 +290,10 @@ namespace Logica
                 {
                     if(item.Id == contrato.Id && item.estado == true)
                     {
-                        return new Response<Contrato>(false, "No es necesaria una renovacion", null, null); // El estado del contratoRenovado esta vigente, por ende no necesita renovacion.
+                        return new Response<Inscripcion>(false, "No es necesaria una renovacion", null, null); // El estado del contratoRenovado esta vigente, por ende no necesita renovacion.
                     }
                 }
-                return new Response<Contrato>(true, null, null, null); //??????
+                return new Response<Inscripcion>(true, null, null, null); //??????
             }
         }
         public double Ganancia() // ganancia

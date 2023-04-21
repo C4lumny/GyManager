@@ -14,7 +14,7 @@ namespace Datos
         public RepositorioContratos()
         {
         }
-        public bool Save(Contrato contrato)
+        public bool Save(Inscripcion contrato)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Datos
                 return false;
             }
         }
-        public Contrato Mapper(string linea)
+        public Inscripcion Mapper(string linea)
         {
             RepositorioUsuarios repUsuarios = new RepositorioUsuarios();
             RepositorioPlan repPlanes = new RepositorioPlan();
@@ -57,7 +57,7 @@ namespace Datos
                 string sup = "S;" + supervisorlinea.ToString().Substring(0, supervisorlinea.ToString().Length -1);
                 string plan = planlinea.ToString().Substring(0, planlinea.ToString().Length - 1);
                 string cliente = "C;" + clientelinea.ToString().Substring(0, clientelinea.ToString().Length - 1);
-                Contrato contrato = new Contrato();
+                Inscripcion contrato = new Inscripcion();
                 contrato.Id = aux[0];
                 contrato.fecha_inicio = DateTime.Parse(aux[1]);
                 contrato.fecha_finalizacion = DateTime.Parse(aux[2]);
@@ -72,7 +72,7 @@ namespace Datos
             catch (Exception) { }
             return null;
         }
-        public bool Update(List<Contrato> contratos)
+        public bool Update(List<Inscripcion> contratos)
         {
             try
             {
@@ -89,12 +89,12 @@ namespace Datos
             }
             return false;
         }
-        public List<Contrato> Load()
+        public List<Inscripcion> Load()
         {
             try
             {
                 StreamReader reader = new StreamReader(ruta);
-                var list = new List<Contrato>();
+                var list = new List<Inscripcion>();
                 string linea;
                 while (!reader.EndOfStream)
                 {

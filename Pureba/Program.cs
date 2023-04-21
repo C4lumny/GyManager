@@ -197,7 +197,7 @@ namespace Pureba
                     do
                     {
                         Console.Clear();
-                        var contrato = new Contrato();
+                        var contrato = new Inscripcion();
                         Console.Write("Digite la id del contrato: "); contrato.Id = Console.ReadLine();
                         Console.Write("Digite el id del cliente: "); string id_cliente = Console.ReadLine();
                         Console.Write("Digite el id del supervisor asignado: "); string id_supervisor = Console.ReadLine();
