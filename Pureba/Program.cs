@@ -58,7 +58,7 @@ namespace Pureba
             servicioSupervisor.Save(Coach1);
             //servicioSupervisor.Save(Coach2);
 
-            //servicioCliente.Save(cliente1);
+            servicioCliente.Save(cliente1);
             //servicioCliente.Save(cliente2);
 
 

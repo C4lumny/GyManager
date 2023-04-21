@@ -46,41 +46,47 @@ namespace Datos
             var aux = linea.Split(';');
             try
             {
-
-                Cliente cliente = new Cliente();
-                cliente.id = aux[0];
-                cliente.nombre = aux[1];
-                cliente.genero = aux[2];
-                cliente.telefono = aux[3];
-                cliente.altura = double.Parse(aux[4]);
-                cliente.peso = double.Parse(aux[5]);
-                cliente.imc = double.Parse(aux[6]);
-                cliente.fecha_nacimiento = DateTime.Parse(aux[7]);
-                cliente.discapacidad = aux[8];
-                cliente.fecha_ingreso = DateTime.Parse(aux[9]);
-                cliente.estado = bool.Parse(aux[10]);
-                return cliente;
+                if (aux.Length > 9)
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.id = aux[0];
+                    cliente.nombre = aux[1];
+                    cliente.genero = aux[2];
+                    cliente.telefono = aux[3];
+                    cliente.altura = double.Parse(aux[4]);
+                    cliente.peso = double.Parse(aux[5]);
+                    cliente.imc = double.Parse(aux[6]);
+                    cliente.fecha_nacimiento = DateTime.Parse(aux[7]);
+                    cliente.discapacidad = aux[8];
+                    cliente.fecha_ingreso = DateTime.Parse(aux[9]);
+                    cliente.estado = bool.Parse(aux[10]);
+                    return cliente;
+                }
+                else
+                {
+                    Supervisor superisor = new Supervisor();
+                    superisor.id = aux[0];
+                    superisor.nombre = aux[1];
+                    superisor.genero = aux[2];
+                    superisor.telefono = aux[3];
+                    superisor.altura = double.Parse(aux[4]);
+                    superisor.peso = double.Parse(aux[5]);
+                    superisor.fecha_nacimiento = DateTime.Parse(aux[6]);
+                    superisor.fecha_ingreso = DateTime.Parse(aux[7]);
+                    superisor.estado = bool.Parse(aux[8]);
+                    return superisor;
+                }
             }
             catch (Exception)
             {
-                Supervisor superisor = new Supervisor();
-                superisor.id = aux[0];
-                superisor.nombre = aux[1];
-                superisor.genero = aux[2];
-                superisor.telefono = aux[3];
-                superisor.altura = double.Parse(aux[4]);
-                superisor.peso = double.Parse(aux[5]);
-                superisor.fecha_nacimiento = DateTime.Parse(aux[6]);
-                superisor.fecha_ingreso = DateTime.Parse(aux[7]);
-                superisor.estado = bool.Parse(aux[8]);
-                return superisor;
+                return null;
             }
         }
         public bool Update(List<Persona> personas)
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, false);
+                StreamWriter writer = new StreamWriter(ruta1, false);
                 foreach (var item in personas)
                 {
                     if (item is Cliente)
@@ -106,7 +112,7 @@ namespace Datos
         {
             try
             {
-                StreamReader reader = new StreamReader(ruta1);
+                StreamReader reader = new StreamReader(ruta2);
                 var list = new List<Persona>();
                 string linea;
                 while (!reader.EndOfStream)
