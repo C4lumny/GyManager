@@ -21,10 +21,10 @@ namespace Pureba
 
 
             DateTime time = new DateTime();
-            ServicioContrato servicioContrato = new ServicioContrato(); 
-            ServicioSupervisor servicioSupervisor = new ServicioSupervisor();
-            ServicioCliente servicioCliente = new ServicioCliente();
-            ServicioPlan servicioPlan = new ServicioPlan();
+            CRUD_Inscripcion servicioContrato = new CRUD_Inscripcion(); 
+            CRUD_Supervisor servicioSupervisor = new CRUD_Supervisor();
+            CRUD_Cliente servicioCliente = new CRUD_Cliente();
+            CRUD_Plan servicioPlan = new CRUD_Plan();
 
             var plan_Semipersonalizado = new PlanGimnasio("5", "Semipersonalizado", 20000, "aaaaaa", 60);
             var plan_Dirigido = new PlanGimnasio("6", "Dirigido", 50000, "bbbbbbbb", 30);
@@ -32,10 +32,8 @@ namespace Pureba
             var Coach1 = new Supervisor("1", "Nathan", "Masculino", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
             var Coach2 = new Supervisor("2", "Diego", "Otro", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
 
-            var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, time.ToUniversalTime(), "sida xd", time.ToUniversalTime(), false);
-            cliente1.imc = servicioCliente.CalculateIMC(77, 1.7);
+            var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, time.ToUniversalTime(), "", time.ToUniversalTime(), false);
             var cliente2 = new Cliente("4", "Aisaac", "Masculino", "3023018355", 1.66, 78, time.ToUniversalTime(), "TDA", time.ToUniversalTime(), false);
-            cliente2.imc = servicioCliente.CalculateIMC(78, 1.66);
 
 
             //////////////////////////////////////////////////////>  FIN_DECLARACIONES  <//////////////////////////////////////////////////////////////
@@ -52,14 +50,14 @@ namespace Pureba
 
             Console.WriteLine("Presiona una tecla para continuar... \n");                                                             Console.ReadKey();
 
-            //servicioPlan.Save(plan_Semipersonalizado);
-            //servicioPlan.Save(plan_Dirigido);
+            servicioPlan.Save(plan_Semipersonalizado);
+            servicioPlan.Save(plan_Dirigido);
 
             servicioSupervisor.Save(Coach1);
-            //servicioSupervisor.Save(Coach2);
+            servicioSupervisor.Save(Coach2);
 
             servicioCliente.Save(cliente1);
-            //servicioCliente.Save(cliente2);
+            servicioCliente.Save(cliente2);
 
 
 
@@ -71,12 +69,13 @@ namespace Pureba
             //CrearCliente();                     Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey(); 
             ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
-            //CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
+            CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
+            ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
             ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
-            /*RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
+            RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
             ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
             ConsultarContratoHistorico();       Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
-            Consultar_ClientesDeSupervisor();   Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();*/
+            Consultar_ClientesDeSupervisor();   Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
 
             Console.WriteLine("\n//////////////////  __FIN_PROYECTO__  //////////////////");               Console.ReadKey();
@@ -159,7 +158,6 @@ namespace Pureba
                     Console.Write("Digite el Telefono del cliente: "); cliente.telefono = Console.ReadLine();
                     Console.Write("Digite la altura del cliente: "); cliente.altura = double.Parse(Console.ReadLine());
                     Console.Write("Digite el peso del cliente: "); cliente.peso = double.Parse(Console.ReadLine());
-                    cliente.imc = servicioCliente.CalculateIMC(cliente.peso, cliente.altura);
                     cliente.estado = false;
                     cliente.discapacidad = "a";
                     cliente.fecha_ingreso = time.ToUniversalTime(); cliente.fecha_nacimiento = time.ToUniversalTime();
@@ -181,8 +179,10 @@ namespace Pureba
                         Console.WriteLine("NOMBRE: " + item.nombre);
                         Console.WriteLine("GENERO: " + item.genero);
                         Console.WriteLine("ALTURA: " + item.altura);
+                        Console.WriteLine("PESO: " + item.peso);
                         Console.WriteLine("TELEFONO: " + item.telefono);
                         Console.WriteLine("IMC: " + item.imc);
+                        Console.WriteLine("CONTRATO: " + item.estado);
                         Console.WriteLine("-------------------------------------");
                     }
                 }

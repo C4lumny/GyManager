@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Supervisor : Persona // Clase Coach, hereda atributos de la clase Persona y posee una lista que muestra cada cliente relacionado a una instancia de esta clase.
+    public class Supervisor : Usuario // Clase Coach, hereda atributos de la clase Persona y posee una lista que muestra cada cliente relacionado a una instancia de esta clase.
     {
         public Supervisor() {}
         public List<Cliente> ListaCliente_Supervisor { get; set; }

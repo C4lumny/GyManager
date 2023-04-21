@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using Logica.Operaciones;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -7,17 +8,11 @@ using System.Linq;
 
 namespace Logica
 {
-    public class ServicioContrato
+    public class CRUD_Inscripcion: Operacion_Inscripciones, ICRUD<Inscripcion>
     {
-        RepositorioContratos ar = new RepositorioContratos();
-        ServicioSupervisor servicioSupervisor ;
-        ServicioPlan servicioPlan;
-        Listas list;
-        public ServicioContrato()
+        public CRUD_Inscripcion()
         { 
-            list = new Listas();
-            servicioSupervisor = new ServicioSupervisor();
-            servicioPlan = new ServicioPlan();
+            
         }
         public Response<Inscripcion> Delete(string id_contrato)
         {
@@ -55,31 +50,12 @@ namespace Logica
                 return GetLista().FindAll(item => item.Id.StartsWith(search) || item.cliente.nombre.Contains(search) || item.cliente.id.StartsWith(search)); // Find devuelve un item que cumplan la condicion del predicado.
             }
         }
-        public List<Inscripcion> GetListaVigentes() 
-        {
-            if (GetLista() == null)
-            {
-                return null; // Si esta vacia retorna null.
-            }
-            else
-            {
-                ValidateStatus();
-                var listaVigente = GetLista().FindAll(item => item.estado == true);  // FindAll devuelve una lista de contratos que cumplan la condicion del predicado, en este caso, retorna los contratos tal que su estado sea true.
-                listaVigente.Sort((p1, p2) => p1.fecha_inicio.CompareTo(p2.fecha_inicio));
-
-                return listaVigente; // retorna lista de contratos vigentes.
-            }
-        }
-        public List<Inscripcion> GetLista()
-        {
-            var lista = list.GetListaContrato(); ;
-            if (lista == null) { return null; }
-            return lista;  // retorna la lista de contratos, privada para esta clase.
-        }
         public Response<Inscripcion> Save(Inscripcion contrato) // guarda los contratos en una lista.
         {
             try
             {
+                var lista = GetLista();
+                Console.WriteLine(contrato.cliente.ToString());
                 if (contrato.cliente == null)
                 {
                     return new Response<Inscripcion>(false, "El cliente no existe", null, null); // El cliente elegido no existe.
@@ -104,13 +80,13 @@ namespace Logica
                 {
                     return new Response<Inscripcion>(false, "Ya cuenta con un contrato", null, null); // Ya tiene un contrato
                 }
-                else if (list.GetListaContrato() == null)
+                else if (lista == null)
                 {
                     contrato.precio = contrato.plan.precio * (100 - contrato.descuento) / 100;
                     contrato.cliente.estado = true;
                     ar.Save(contrato);
                     /*contrato.supervisor.ListaCliente_Supervisor.Add(contrato.cliente);*/
-                    return new Response<Inscripcion>(true, "Guardado sin validar", null, null); // Si la lista esta vacia, guarda sin validar
+                    return new Response<Inscripcion>(true, "Inscripcion realizada correctamente.", null, null); // Si la lista esta vacia, guarda sin validar
                 }
                 else if (Exist(contrato.Id))
                 {
@@ -122,7 +98,7 @@ namespace Logica
                     contrato.cliente.estado = true;
                     ar.Save(contrato);
                     /*contrato.supervisor.ListaCliente_Supervisor.Add(contrato.cliente);*/
-                    return new Response<Inscripcion>(true, "Guardado", null, null); // Si la id ingresada no esta repetida, guarda en la lista
+                    return new Response<Inscripcion>(true, "Inscripcion realizada correctamente.", null, null); // Si la id ingresada no esta repetida, guarda en la lista
                 }
             }
             catch (Exception)
@@ -134,7 +110,8 @@ namespace Logica
         {
             try
             {
-                if (GetLista() == null) { return new Response<Inscripcion>(true, "Lista Vacia", null, null); } // Lista vacia
+                var list = GetLista();
+                if (list == null) { return new Response<Inscripcion>(true, "Lista Vacia", null, null); } // Lista vacia
                 else
                 {
                     var contrato = ReturnFromList(id_contrato);
@@ -189,124 +166,6 @@ namespace Logica
                 return new Response<Inscripcion>(false, "Exception", null, null); // excepcion
             }
         }
-        bool Exist(string dato)
-        {
-            if (GetLista().FirstOrDefault(item => item.Id == dato) != null) // Valida si existe un item en la lista por medio de la id, retorna false si no encontro
-            {
-                return true;
-            }
-            return false;
-        }
-        public Inscripcion ReturnFromList(string id_Contrato) // retorna un item de la lista por medio de la id, retorna null si no encontro.
-        {
-            return GetLista().FirstOrDefault(item => item.Id == id_Contrato);
-        }
-        public Response<Inscripcion> Renovate(string id_contrato, int dias, string  id_supervisor, string id_plan, double descuento) // Renovacion del contratoRenovado.
-        {
-            // recibe la id del contratoRenovado, los dias de ampliacion del contratoRenovado, (puede ser del plan o personalizado) recibe un supervisor un plan y un descuento. 
-            try
-            {
-                var contratoRenovado = new Inscripcion();
-                var contratoCaducado = ReturnFromList(id_contrato);
-                contratoRenovado.Id = contratoCaducado.Id;
-                contratoRenovado.cliente = contratoCaducado.cliente;
-                ValidateStatus(); contratoRenovado.estado = contratoCaducado.estado;
-                var supervisor = servicioSupervisor.ReturnFromList(id_supervisor);
-                var plan = servicioPlan.ReturnFromList(id_plan);
-                var response = isRenovationValid(contratoRenovado, supervisor, plan, descuento);
-                 if (!response.success)
-                {
-                    return response;
-                }
-                else
-                {
-                    if (contratoCaducado.supervisor != supervisor)
-                    {
-                        int pos = contratoCaducado.supervisor.ListaCliente_Supervisor.FindIndex(item => item.id == contratoRenovado.cliente.id);
-                        contratoCaducado.supervisor.ListaCliente_Supervisor.RemoveAt(pos);
-                        contratoRenovado.supervisor = supervisor;
-                        supervisor.ListaCliente_Supervisor.Add(contratoRenovado.cliente);
-                    }
-                    else
-                    {
-                        contratoRenovado.supervisor = supervisor;
-                    }
-                    contratoRenovado.plan = plan;
-                    contratoRenovado.descuento = descuento;
-                    contratoRenovado.precio = plan.precio * (100 - descuento) / 100;
-                    contratoRenovado.fecha_inicio = DateTime.Now;
-                    contratoRenovado.fecha_finalizacion = contratoRenovado.fecha_inicio.AddDays(dias);
-                    contratoRenovado.estado = true;
-                    ar.Save(contratoRenovado);
-                    return new Response<Inscripcion>(true, "Contrato renovado", null, null); // Renovo el contratoRenovado.
-                }
-            }
-            catch (Exception)
-            {
-                return new Response<Inscripcion>(false, "Exception", null, null); // Excepcion
-            }
-        }
-        public void ValidateStatus() // Valida el estado del contratoRenovado, utilizar antes de aplicar la renovacion y antes de consultar un contratoRenovado.
-        {
-            var lista = GetLista();
-            if (lista != null)
-            {
-                foreach (var item in lista)
-                {
-                    Console.WriteLine(item.Id);
-                    if (DateTime.Now >= item.fecha_finalizacion)
-                    {
-                        item.estado = false;
-                    }
-                }
-                ar.Update(lista);
-            }
-        }
-        Response<Inscripcion> isRenovationValid(Inscripcion contrato, Supervisor supervisor, PlanGimnasio plan, double descuento)
-        {
-            if (GetLista() == null)
-            {
-                return new Response<Inscripcion>(false, "Lista vacia", null, null); // Lista vacia
-            }
-            else if (!Exist(contrato.Id))
-            {
-                return new Response<Inscripcion>(false, "ID no encontrado", null, null); // Id no encontrado.
-            }
-            else if (supervisor == null)
-            {
-                return new Response<Inscripcion>(false, "Supervisor no encontrado", null, null); // supervisor no encontrado.
-            }
-            else if (plan == null)
-            {
-                return new Response<Inscripcion>(false, "No se encontro el plan", null, null); // Plan no encontrado.
-            }
-            else if (descuento > 100 || descuento < 0)
-            {
-                return new Response<Inscripcion>(false, "Descuento invalido", null, null); // descuento no puede ser menor a 0 o mayor que 100
-            }
-            else 
-            {
-                foreach (var item in list.GetListaContrato())
-                {
-                    if(item.Id == contrato.Id && item.estado == true)
-                    {
-                        return new Response<Inscripcion>(false, "No es necesaria una renovacion", null, null); // El estado del contratoRenovado esta vigente, por ende no necesita renovacion.
-                    }
-                }
-                return new Response<Inscripcion>(true, null, null, null); //??????
-            }
-        }
-        public double Ganancia() // ganancia
-        {
-            double ganancia = 0;
-            if (GetLista() != null)
-            {
-                foreach (var item in GetLista())
-                {
-                    ganancia += item.precio;
-                }
-            }
-            return ganancia;
-        }
+       
     }
 }

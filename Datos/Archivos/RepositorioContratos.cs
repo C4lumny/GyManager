@@ -54,9 +54,9 @@ namespace Datos
                         supervisorlinea.Append(aux[i] + ";");
                     }
                 }
-                string sup = "S;" + supervisorlinea.ToString().Substring(0, supervisorlinea.ToString().Length -1);
+                string sup = supervisorlinea.ToString().Substring(0, supervisorlinea.ToString().Length -1);
                 string plan = planlinea.ToString().Substring(0, planlinea.ToString().Length - 1);
-                string cliente = "C;" + clientelinea.ToString().Substring(0, clientelinea.ToString().Length - 1);
+                string cliente = clientelinea.ToString().Substring(0, clientelinea.ToString().Length - 1);
                 Inscripcion contrato = new Inscripcion();
                 contrato.Id = aux[0];
                 contrato.fecha_inicio = DateTime.Parse(aux[1]);

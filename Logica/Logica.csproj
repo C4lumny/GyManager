@@ -41,13 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Listas.cs" />
-    <Compile Include="ServicioContrato.cs" />
-    <Compile Include="IServicioGimnasio.cs" />
-    <Compile Include="ServicioCliente.cs" />
+    <Compile Include="Listas\Listas.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Inscripcion.cs" />
+    <Compile Include="CRUD\Interfaz\ICRUD.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Cliente.cs" />
+    <Compile Include="Operaciones\Operacion_Inscripciones.cs" />
+    <Compile Include="Operaciones\Operacion_Planes.cs" />
+    <Compile Include="Operaciones\Operacion_Supervisor.cs" />
+    <Compile Include="Operaciones\Operacion_Clientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServicioSupervisor.cs" />
-    <Compile Include="ServicioPlan.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Supervisor.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Plan.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
@@ -59,5 +63,6 @@
       <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

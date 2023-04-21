@@ -70,7 +70,7 @@ namespace GUI
             {
                 Console.Clear();
                 Cliente clientes = new Cliente();
-                ServicioCliente servCliente = new ServicioCliente();
+                CRUD_Cliente servCliente = new CRUD_Cliente();
 
                 Console.SetCursorPosition(43, 5); Console.Write("---REGISTRAR NUEVO CLIENTE---");
                 try

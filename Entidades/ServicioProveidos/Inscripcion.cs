@@ -2,21 +2,26 @@
 
 namespace Entidades
 {
-    public class Contrato
+    public class Inscripcion
     {
-        public Contrato() { }
-        public Contrato(string id, DateTime fecha_inicio, double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor)
+        public Inscripcion() { }
+        public Inscripcion(string id, DateTime fecha_inicio, DateTime fecha_finalizacion, double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor, bool estado)
         {
             Id = id;
             this.fecha_inicio = fecha_inicio;
-            fecha_finalizacion = fecha_finalizacion;
+            this.fecha_finalizacion = fecha_finalizacion;
             this.precio = precio;
             this.descuento = descuento;
             this.cliente = cliente;
             this.plan = plan;
             this.supervisor = supervisor;
-            estado = estado;
+            this.estado = estado;
         }
+        public Inscripcion(Inscripcion inscripcion_caducada)
+        {
+            this.inscripcion_caducada = inscripcion_caducada;
+        }
+        public Inscripcion inscripcion_caducada  { get; set; }
         public string Id { get; set; }
         public DateTime fecha_inicio { get; set; }
         public DateTime fecha_finalizacion { get; set; }

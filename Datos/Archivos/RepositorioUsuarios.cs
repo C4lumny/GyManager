@@ -16,7 +16,7 @@ namespace Datos
         public RepositorioUsuarios()
         {
         }
-        public bool Save(Persona persona)
+        public bool Save(Usuario persona)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Datos
             }
             return false;
         }
-        public Persona Mapper(string linea)
+        public Usuario Mapper(string linea)
         {
             var aux = linea.Split(';');
             try
@@ -82,7 +82,7 @@ namespace Datos
                 return null;
             }
         }
-        public bool Update(List<Persona> personas)
+        public bool Update(List<Usuario> personas)
         {
             try
             {
@@ -110,13 +110,13 @@ namespace Datos
             }
             return false;
         }
-        public List<Persona> Load()
+        public List<Usuario> Load()
         {
             try
             {
                 StreamReader reader1 = new StreamReader(ruta1);
                 StreamReader reader2 = new StreamReader(ruta2);
-                var list = new List<Persona>();
+                var list = new List<Usuario>();
                 string linea;
                 while (!reader1.EndOfStream)
                 {

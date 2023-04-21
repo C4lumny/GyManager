@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using Logica.Operaciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class ServicioPlan  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los planes.
+    public class CRUD_Plan: Operacion_Planes, ICRUD<PlanGimnasio> // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los planes.
     {
-        Listas list;
-        RepositorioPlan ar = new RepositorioPlan();
-        public ServicioPlan() { list = new Listas(); }
+        
+        public CRUD_Plan() { }
         public Response<PlanGimnasio> Delete(string id_plan)
         {
             if (GetLista() == null)
@@ -38,13 +38,6 @@ namespace Logica
             {
                 return GetLista().FindAll(item => item.nombre.Contains(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
             }
-        }
-        public List<PlanGimnasio> GetLista()
-        {
-            var lista = list.GetListaPlan();
-            if (lista == null) { return null; }
-            return lista;
-            // retorna la lista de los planes de la clase Listas.
         }
         public Response<PlanGimnasio> Save(PlanGimnasio Plan)
         {
@@ -100,25 +93,6 @@ namespace Logica
                 return new Response<PlanGimnasio>(false, "EXCEPTION", null, null);
             }
         }
-        bool Exist(string id_plan)
-        {
-            if (GetLista().FirstOrDefault(item => item.id == id_plan) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
-            {
-                return true;
-            }
-            return false;
-        }
-        public PlanGimnasio ReturnFromList(string id_plan)
-        {
-            return GetLista().FirstOrDefault(item => item.id == id_plan); // devuelve el plan de la lista de planes que cumple la condicion del predicado, en este caso que la id_plan sea igual a la id de un plan en la lista.
-        }
-        public int ReturnPlanDays(string id_plan)
-        {
-            if (GetLista().FirstOrDefault(item => item.id == id_plan) != null)
-            {
-                return GetLista().FirstOrDefault(item => item.id == id_plan).dias;
-            }
-            return -1;
-        }
+        
     }
 }

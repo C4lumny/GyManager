@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using Logica.Operaciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class ServicioSupervisor  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
+    public class CRUD_Supervisor: Operacion_Supervisor, ICRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
     {
-        Listas list;
-        RepositorioUsuarios ar = new RepositorioUsuarios();
-        public ServicioSupervisor() { list = new Listas(); }
+       
+        public CRUD_Supervisor() { }
         public Response<Supervisor> Delete(string id_supervisor)
         {
             if (GetLista() == null)
@@ -38,14 +38,6 @@ namespace Logica
             {
                 return GetLista().FindAll(item => item.nombre.Contains(search) || item.telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
             }
-        }
-        public List<Supervisor> GetLista()
-        {
-            if (list.GetListaSupervisor() == null)
-            {
-                return null;
-            }
-            return list.GetListaSupervisor(); // retorna la lista de los supervisores de la clase Listas.
         }
         public Response<Supervisor> Save(Supervisor supervisor)
         {
@@ -75,7 +67,7 @@ namespace Logica
                     }
                     // guarda el item en la lista.
                 }
-                else if (!ValidateID(supervisor.id))
+                else if (Exist(supervisor.id))
                 {
                     return new Response<Supervisor>(false, "ID repetido", null, null); // id repetido
                 }
@@ -121,7 +113,7 @@ namespace Logica
                     {
                         return new Response<Supervisor>(false, "Edad invalida (Menor de 18)", null, null); // menor de 18 años.
                     }
-                    else if (!ValidateID(supervisorUpdate.id))
+                    else if (Exist(supervisorUpdate.id))
                     {
                         return new Response<Supervisor>(false, "ID repetido", null, null); //ID repetido al momento de actualizar.
                     }
@@ -147,36 +139,6 @@ namespace Logica
                 return new Response<Supervisor>(false, "EXCEPTION", null, null);
             }
         }
-        bool ValidateID(string id_supervisor)
-        {
-            if (GetLista().FirstOrDefault(item => item.id == id_supervisor) == null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
-            {
-                if (GetLista() == null) // tambien valida la id del cliente para saber si un cliente tiene la misma id de un supervisor.
-                {
-                    return true; // retorna true cuando la id es completamente valida.
-                }
-                else if (list.GetListaCliente().FirstOrDefault(item => item.id == id_supervisor) == null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false; // encontro en la lista de clientes una id repetida.
-                }
-            }
-            return false; // encontro una id repetida en los supervisores.
-        }
-        bool Exist(string id_supervisor)
-        {
-            if (GetLista().FirstOrDefault(item => item.id == id_supervisor) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
-            {
-                return true; // encontro una id existente.
-            }
-            return false; // no encontro.
-        }
-        public Supervisor ReturnFromList(string id_supervisor) 
-        {
-            return GetLista().FirstOrDefault(item => item.id == id_supervisor); // devuelve null si no encontro un item, devuelve el item de la lista de supervisores en el cado de que la condicion se cuampla.
-        }
+       
     }
 }
