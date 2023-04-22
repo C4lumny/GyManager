@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class RepositorioContratos
+    public class RepositorioInscripcion
     {
-        protected string ruta = "Contrato.txt";
-        public RepositorioContratos()
+        protected string ruta = "Inscripcion.txt";
+        public RepositorioInscripcion()
         {
         }
-        public bool Save(Inscripcion contrato)
+        public bool Save(Inscripcion inscripcion)
         {
             try
             {
                 StreamWriter writer = new StreamWriter(ruta, true);
-                writer.WriteLine(contrato.ToString());
+                writer.WriteLine(inscripcion.ToString());
                 writer.Close();
                 return true;
             }
@@ -39,17 +39,17 @@ namespace Datos
                 StringBuilder clientelinea = new StringBuilder();
                 StringBuilder planlinea = new StringBuilder();
                 StringBuilder supervisorlinea = new StringBuilder();
-                for (int i = 5; i < 30; i++)
+                for (int i = 5; i < 29; i++)
                 {
-                    if (i < 16)
+                    if (i < 15)
                     {
                         clientelinea.Append(aux[i] + ";");
                     }
-                    else if (i < 21 && i >= 16)
+                    else if (i < 20 && i >= 15)
                     {
                         planlinea.Append(aux[i] + ";");
                     }
-                    else if (i < 30 && i >= 21)
+                    else if (i < 29 && i >= 20)
                     {
                         supervisorlinea.Append(aux[i] + ";");
                     }
@@ -57,27 +57,27 @@ namespace Datos
                 string sup = supervisorlinea.ToString().Substring(0, supervisorlinea.ToString().Length -1);
                 string plan = planlinea.ToString().Substring(0, planlinea.ToString().Length - 1);
                 string cliente = clientelinea.ToString().Substring(0, clientelinea.ToString().Length - 1);
-                Inscripcion contrato = new Inscripcion();
-                contrato.Id = aux[0];
-                contrato.fecha_inicio = DateTime.Parse(aux[1]);
-                contrato.fecha_finalizacion = DateTime.Parse(aux[2]);
-                contrato.precio = double.Parse(aux[3]);
-                contrato.descuento = int.Parse(aux[4]);
-                contrato.cliente = repUsuarios.Mapper(cliente) as Cliente;
-                contrato.plan = repPlanes.Mapper(plan);
-                contrato.supervisor = repUsuarios.Mapper(sup) as Supervisor;
-                contrato.estado = bool.Parse(aux[30]);
-                return contrato;
+                Inscripcion inscripcion = new Inscripcion();
+                inscripcion.id = aux[0];
+                inscripcion.fecha_inicio = DateTime.Parse(aux[1]);
+                inscripcion.fecha_finalizacion = DateTime.Parse(aux[2]);
+                inscripcion.precio = double.Parse(aux[3]);
+                inscripcion.descuento = int.Parse(aux[4]);
+                inscripcion.cliente = repUsuarios.Mapper(cliente) as Cliente;
+                inscripcion.plan = repPlanes.Mapper(plan);
+                inscripcion.supervisor = repUsuarios.Mapper(sup) as Supervisor;
+                inscripcion.estado = bool.Parse(aux[29]);
+                return inscripcion;
             }
             catch (Exception) { }
             return null;
         }
-        public bool Update(List<Inscripcion> contratos)
+        public bool Update(List<Inscripcion> inscripciones)
         {
             try
             {
                 StreamWriter writer = new StreamWriter(ruta, false);
-                foreach (var item in contratos)
+                foreach (var item in inscripciones)
                 {
                     writer.WriteLine(item.ToString());
                 }

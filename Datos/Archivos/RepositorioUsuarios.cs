@@ -59,7 +59,6 @@ namespace Datos
                     cliente.fecha_nacimiento = DateTime.Parse(aux[7]);
                     cliente.discapacidad = aux[8];
                     cliente.fecha_ingreso = DateTime.Parse(aux[9]);
-                    cliente.estado = bool.Parse(aux[10]);
                     return cliente;
                 }
                 else

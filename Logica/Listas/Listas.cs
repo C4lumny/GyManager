@@ -13,7 +13,7 @@ namespace Logica
         // Declaracion estatica para tener la misma instancia de listas en distintas clase.
         RepositorioUsuarios repositorioUsuarios = new RepositorioUsuarios();
         RepositorioPlan repositorioPlanes = new RepositorioPlan();
-        RepositorioContratos repositorioContratos = new RepositorioContratos();
+        RepositorioInscripcion repositorioContratos = new RepositorioInscripcion();
         public Listas()
         {
         }

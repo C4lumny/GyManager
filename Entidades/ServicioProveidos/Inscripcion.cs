@@ -5,9 +5,9 @@ namespace Entidades
     public class Inscripcion
     {
         public Inscripcion() { }
-        public Inscripcion(string id, DateTime fecha_inicio, DateTime fecha_finalizacion, double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor, bool estado)
+        public Inscripcion(string id, DateTime fecha_inicio, DateTime fecha_finalizacion, double precio,  double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor, bool estado)
         {
-            Id = id;
+            this.id = id;
             this.fecha_inicio = fecha_inicio;
             this.fecha_finalizacion = fecha_finalizacion;
             this.precio = precio;
@@ -17,12 +17,19 @@ namespace Entidades
             this.supervisor = supervisor;
             this.estado = estado;
         }
-        public Inscripcion(Inscripcion inscripcion_caducada)
+        public Inscripcion(Inscripcion inscripcion)
         {
-            this.inscripcion_caducada = inscripcion_caducada;
+            id = inscripcion.id;
+            fecha_inicio = inscripcion.fecha_inicio;
+            fecha_finalizacion = inscripcion.fecha_finalizacion;
+            precio = inscripcion.precio;
+            descuento = inscripcion.descuento;
+            cliente = inscripcion.cliente;
+            plan = inscripcion.plan;
+            supervisor = inscripcion.supervisor;
+            estado = inscripcion.estado;
         }
-        public Inscripcion inscripcion_caducada  { get; set; }
-        public string Id { get; set; }
+        public string id { get; set; }
         public DateTime fecha_inicio { get; set; }
         public DateTime fecha_finalizacion { get; set; }
         public double precio { get; set; }
@@ -33,7 +40,7 @@ namespace Entidades
         public Supervisor supervisor { get; set;}
         public override string ToString()
         {
-            return $"{Id};{fecha_inicio.ToShortDateString()};{fecha_finalizacion.ToShortDateString()};{precio};{descuento};{cliente.ToString()};{plan.ToString()};{supervisor.ToString()};{estado}";
+            return $"{id};{fecha_inicio};{fecha_finalizacion};{precio};{descuento};{cliente.ToString()};{plan.ToString()};{supervisor.ToString()};{estado}";
         }
     }
 }

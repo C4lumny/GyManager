@@ -15,26 +15,30 @@ namespace Logica.Operaciones
         protected Operacion_Supervisor op_supervisor;
         protected Operacion_Planes op_plan;
         protected RepositorioUsuarios repositorioUsuarios;
-        protected RepositorioContratos ar;
+        protected RepositorioInscripcion ar;
         public Operacion_Inscripciones()
         {
             list = new Listas();
-            ar = new RepositorioContratos();
+            ar = new RepositorioInscripcion();
             repositorioUsuarios = new RepositorioUsuarios();
+            op_Clientes = new Operacion_Clientes();
+            op_supervisor = new Operacion_Supervisor();
+            op_plan = new Operacion_Planes();
         }
-        private Response<Inscripcion> isRenovationValid(Inscripcion contrato, Supervisor supervisor, PlanGimnasio plan, double descuento)
+        private Response<Inscripcion> isRenovationValid(Inscripcion inscripcion, Supervisor supervisor, PlanGimnasio plan, double descuento)
         {
+           
             if (GetLista() == null)
             {
                 return new Response<Inscripcion>(false, "Lista vacia", null, null); // Lista vacia
             }
-            else if (!Exist(contrato.Id))
+            else if (inscripcion == null)
             {
-                return new Response<Inscripcion>(false, "ID no encontrado", null, null); // Id no encontrado.
+                return new Response<Inscripcion>(false, "ID no encontrado", null, null); // id no encontrado.
             }
             else if (supervisor == null)
             {
-                return new Response<Inscripcion>(false, "Supervisor no encontrado", null, null); // supervisor no encontrado.
+                return new Response<Inscripcion>(false, "Supervisor no encontrado", null, null); // id_supervisor no encontrado.
             }
             else if (plan == null)
             {
@@ -48,17 +52,17 @@ namespace Logica.Operaciones
             {
                 foreach (var item in list.GetListaContrato())
                 {
-                    if (item.Id == contrato.Id && item.estado == true)
+                    if (item.id == inscripcion.id && item.estado == true)
                     {
-                        return new Response<Inscripcion>(false, "No es necesaria una renovacion", null, null); // El estado del inscripcion esta vigente, por ende no necesita renovacion.
+                        return new Response<Inscripcion>(false, "No es necesaria una renovacion", null, null); // El estado del id_inscripcion esta vigente, por ende no necesita renovacion.
                     }
                 }
-                return new Response<Inscripcion>(true, null, null, null); //??????
+                return new Response<Inscripcion>(true, null, null, inscripcion); 
             }
         }
-        protected bool Exist(string dato)
+        protected bool Exist(string id_inscripcion)
         {
-            if (GetLista().FirstOrDefault(item => item.Id == dato) != null) // Valida si existe un item en la lista por medio de la id, retorna false si no encontro
+            if (GetLista().FirstOrDefault(item => item.id == id_inscripcion) != null) // Valida si existe un item en la lista por medio de la id, retorna false si no encontro
             {
                 return true;
             }
@@ -86,23 +90,23 @@ namespace Logica.Operaciones
             {
                 ValidateStatus();
                 var listaVigente = GetLista().FindAll(item => item.estado == true);  // FindAll devuelve una lista de contratos que cumplan la condicion del predicado, en este caso, retorna los contratos tal que su estado sea true.
-                listaVigente.Sort((p1, p2) => p1.fecha_inicio.CompareTo(p2.fecha_inicio));
+                listaVigente.Sort((p1, p2) => p1.id.CompareTo(p2.id));
 
                 return listaVigente; // retorna lista de contratos vigentes.
             }
         }
-        public Inscripcion ReturnFromList(string id_Contrato) // retorna un item de la lista por medio de la id, retorna null si no encontro.
+        public Inscripcion ReturnFromList(string id_inscripcion) 
         {
-            return GetLista().FirstOrDefault(item => item.Id == id_Contrato);
+            return GetLista().FirstOrDefault(item => item.id == id_inscripcion);
         }
-        public Response<Inscripcion> Renovate(string id_inscripcion, int dias, string id_supervisor, string id_plan, double descuento) // Renovacion del inscripcion.
+        public Response<Inscripcion> Renovate(string id_inscripcion, int dias, string id_supervisor, string id_plan, double descuento) 
         {
-            // recibe la id del inscripcion, los dias de ampliacion del inscripcion, (puede ser del plan o personalizado) recibe un supervisor un plan y un descuento. 
             try
             {
-                var inscripcion = new Inscripcion(ReturnFromList(id_inscripcion));
-                var supervisor = op_supervisor.ReturnFromList(id_supervisor);
-                var plan = op_plan.ReturnFromList(id_plan);
+                Inscripcion inscripcion = ReturnFromList(id_inscripcion);
+                Supervisor supervisor = op_supervisor.ReturnFromList(id_supervisor);
+                PlanGimnasio plan = op_plan.ReturnFromList(id_plan);
+
                 var response = isRenovationValid(inscripcion, supervisor, plan, descuento);
                 if (!response.success)
                 {
@@ -110,16 +114,16 @@ namespace Logica.Operaciones
                 }
                 else
                 {
-                    //if (contratoCaducado.supervisor != supervisor)
+                    //if (contratoCaducado.id_supervisor != id_supervisor)
                     //{
-                    //    int pos = contratoCaducado.supervisor.ListaCliente_Supervisor.FindIndex(item => item.id == inscripcion.cliente.id);
-                    //    contratoCaducado.supervisor.ListaCliente_Supervisor.RemoveAt(pos);
-                    //    inscripcion.supervisor = supervisor;
-                    //    supervisor.ListaCliente_Supervisor.Add(inscripcion.cliente);
+                    //    int pos = contratoCaducado.id_supervisor.ListaCliente_Supervisor.FindIndex(item => item.id == id_inscripcion.cliente.id);
+                    //    contratoCaducado.id_supervisor.ListaCliente_Supervisor.RemoveAt(pos);
+                    //    id_inscripcion.id_supervisor = id_supervisor;
+                    //    id_supervisor.ListaCliente_Supervisor.Add(id_inscripcion.cliente);
                     //}
                     //else
                     //{
-                    //    inscripcion.supervisor = supervisor;
+                    //    id_inscripcion.id_supervisor = id_supervisor;
                     //}
                     inscripcion.supervisor = supervisor;
                     inscripcion.plan = plan;
@@ -129,7 +133,7 @@ namespace Logica.Operaciones
                     inscripcion.fecha_finalizacion = inscripcion.fecha_inicio.AddDays(dias);
                     inscripcion.estado = true;
                     ar.Save(inscripcion);
-                    return new Response<Inscripcion>(true, "Contrato renovado", null, null); // Renovo el inscripcion.
+                    return new Response<Inscripcion>(true, "Contrato renovado", null, null); // Renovo el id_inscripcion.
                 }
             }
             catch (Exception)
@@ -137,7 +141,7 @@ namespace Logica.Operaciones
                 return new Response<Inscripcion>(false, "Exception", null, null); // Excepcion
             }
         }
-        public void ValidateStatus() // Valida el estado del inscripcion, utilizar antes de aplicar la renovacion y antes de consultar un inscripcion.
+        public void ValidateStatus() 
         {
             var lista = GetLista();
             if (lista != null)
@@ -157,6 +161,14 @@ namespace Logica.Operaciones
             var lista = list.GetListaContrato(); ;
             if (lista == null) { return null; }
             return lista;  // retorna la lista de contratos, privada para esta clase.
+        }
+        protected bool ValidateCliente(string id)
+        {
+            if (GetLista().FirstOrDefault(item => item.cliente.id == id) == null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

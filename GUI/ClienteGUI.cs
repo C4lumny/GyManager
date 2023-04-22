@@ -103,9 +103,7 @@ namespace GUI
                     break;
                 }
 
-                clientes.estado = false;
                 clientes.fecha_ingreso = DateTime.Now;
-                clientes.imc = servCliente.CalculateIMC(clientes.peso, clientes.altura);
                 var validation = servCliente.Save(clientes);
                 ////switch (validation)
                 ////{
@@ -134,7 +132,7 @@ namespace GUI
             ////    {
             ////        Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
 
-            ////        Console.SetCursorPosition(13, i); Console.WriteLine("Id");
+            ////        Console.SetCursorPosition(13, i); Console.WriteLine("id");
             ////        Console.SetCursorPosition(25, i); Console.WriteLine("Nombre");
             ////        Console.SetCursorPosition(35, i); Console.WriteLine("Genero");
             ////        Console.SetCursorPosition(45, i); Console.WriteLine("Altura");

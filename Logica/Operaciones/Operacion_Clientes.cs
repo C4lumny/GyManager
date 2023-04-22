@@ -25,10 +25,7 @@ namespace Logica.Operaciones
             }
             return false; // no encontro.
         }
-        protected double CalculateIMC(double peso, double altura)
-        {
-            return peso / (altura * altura); // retorna el imc (peso/ altura´2)
-        }
+        
         public List<Cliente> GetLista()
         {
             if (list.GetListaCliente() == null)

@@ -9,7 +9,7 @@ namespace Entidades
     public class Usuario // Clase Personas, proporciona la mayoria de atributos a la clase Coach y a la clase Clientes de la capa de Entidades.
     {
         public Usuario() {}
-        public Usuario(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, DateTime fecha_ingreso, bool estado)
+        public Usuario(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, DateTime fecha_ingreso)
         {
             this.id = id;
             this.nombre = nombre;
@@ -19,7 +19,6 @@ namespace Entidades
             this.peso = peso;
             this.fecha_nacimiento = fecha_nacimiento;
             this.fecha_ingreso = fecha_ingreso;
-            this.estado = estado;
         }
         public String id { get; set; }
         public String nombre { get; set; }
@@ -29,6 +28,5 @@ namespace Entidades
         public double peso { get; set; }
         public DateTime fecha_nacimiento { get; set; }
         public DateTime fecha_ingreso { get; set; }
-        public bool estado { get; set; } 
     }
 }

@@ -32,8 +32,8 @@ namespace Pureba
             var Coach1 = new Supervisor("1", "Nathan", "Masculino", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
             var Coach2 = new Supervisor("2", "Diego", "Otro", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
 
-            var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, time.ToUniversalTime(), "", time.ToUniversalTime(), false);
-            var cliente2 = new Cliente("4", "Aisaac", "Masculino", "3023018355", 1.66, 78, time.ToUniversalTime(), "TDA", time.ToUniversalTime(), false);
+            var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, time.ToUniversalTime(), "", time.ToUniversalTime());
+            var cliente2 = new Cliente("4", "Aisaac", "Masculino", "3023018355", 1.66, 78, time.ToUniversalTime(), "TDA", time.ToUniversalTime());
 
 
             //////////////////////////////////////////////////////>  FIN_DECLARACIONES  <//////////////////////////////////////////////////////////////
@@ -70,7 +70,6 @@ namespace Pureba
             ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
             CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
-            ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
             ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
             RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
             ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
@@ -158,7 +157,6 @@ namespace Pureba
                     Console.Write("Digite el Telefono del cliente: "); cliente.telefono = Console.ReadLine();
                     Console.Write("Digite la altura del cliente: "); cliente.altura = double.Parse(Console.ReadLine());
                     Console.Write("Digite el peso del cliente: "); cliente.peso = double.Parse(Console.ReadLine());
-                    cliente.estado = false;
                     cliente.discapacidad = "a";
                     cliente.fecha_ingreso = time.ToUniversalTime(); cliente.fecha_nacimiento = time.ToUniversalTime();
                     var msg = servicioCliente.Save(cliente);
@@ -182,7 +180,6 @@ namespace Pureba
                         Console.WriteLine("PESO: " + item.peso);
                         Console.WriteLine("TELEFONO: " + item.telefono);
                         Console.WriteLine("IMC: " + item.imc);
-                        Console.WriteLine("CONTRATO: " + item.estado);
                         Console.WriteLine("-------------------------------------");
                     }
                 }
@@ -198,7 +195,7 @@ namespace Pureba
                     {
                         Console.Clear();
                         var contrato = new Inscripcion();
-                        Console.Write("Digite la id del contrato: "); contrato.Id = Console.ReadLine();
+                        Console.Write("Digite la id del contrato: "); contrato.id = Console.ReadLine();
                         Console.Write("Digite el id del cliente: "); string id_cliente = Console.ReadLine();
                         Console.Write("Digite el id del supervisor asignado: "); string id_supervisor = Console.ReadLine();
                         Console.Write("Digite el id del plan asignado: "); string id_plan = Console.ReadLine();
@@ -236,7 +233,7 @@ namespace Pureba
                             {
                                 servicioContrato.ValidateStatus();
                                 Console.WriteLine("CONTRATO: ");
-                                Console.WriteLine("ID: " + item.Id);
+                                Console.WriteLine("ID: " + item.id);
                                 Console.Write("FECHA INICIAL: " + item.fecha_inicio.ToShortDateString() + "  ");
                                 Console.WriteLine("HORA INICIAL: " + item.fecha_inicio.ToShortTimeString());
                                 Console.Write("FECHA DE FINALIZACION: " + item.fecha_finalizacion.ToShortDateString() + "  ");
@@ -273,7 +270,7 @@ namespace Pureba
                         foreach (var item in servicioContrato.GetListaVigentes())
                         {
                             Console.WriteLine("CONTRATO: ");
-                            Console.WriteLine("ID: " + item.Id);
+                            Console.WriteLine("ID: " + item.id);
                             Console.Write("FECHA INICIAL: " + item.fecha_inicio.ToShortDateString() + "  ");
                             Console.WriteLine("HORA INICIAL: " + item.fecha_inicio.ToShortTimeString());
                             Console.Write("FECHA DE FINALIZACION: " + item.fecha_finalizacion.ToShortDateString() + "  ");

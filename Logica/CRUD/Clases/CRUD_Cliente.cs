@@ -43,7 +43,6 @@ namespace Logica
         {
             try
             {
-                cliente.imc = CalculateIMC(cliente.peso, cliente.altura);
                 if (cliente.altura < 0)
                 {
                     return new Response<Cliente>(false, "La altura es menos a cero, No se ha podido registrar el cliente", null, null); // altura menor a 0
@@ -128,7 +127,6 @@ namespace Logica
                         cliente.fecha_nacimiento = clienteUpdate.fecha_nacimiento;
                         cliente.discapacidad = clienteUpdate.discapacidad;
                         cliente.fecha_ingreso = clienteUpdate.fecha_ingreso;
-                        cliente.estado = clienteUpdate.estado;
 
                         return new Response<Cliente>(true, "Se ha guardado correctamente", null, null); ; //Reemplazo correctamente.
 

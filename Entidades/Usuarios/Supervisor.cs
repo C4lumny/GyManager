@@ -10,9 +10,12 @@ namespace Entidades
     {
         public Supervisor() {}
         public List<Cliente> ListaCliente_Supervisor { get; set; }
-        public Supervisor(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, DateTime fecha_ingreso, bool estado) : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso, estado)
+        public bool estado { get; set; }
+
+        public Supervisor(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, DateTime fecha_ingreso, bool estado) : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
         {
             ListaCliente_Supervisor = new List<Cliente>();
+            this.estado = estado;
         }
         public override string ToString()
         {
