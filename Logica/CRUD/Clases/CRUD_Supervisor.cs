@@ -58,7 +58,7 @@ namespace Logica
                 }
                 else if (GetLista() == null)
                 {
-                    if (ar.Save(supervisor))
+                    if (ar_usuarios.Save(supervisor))
                     {
                         return new Response<Supervisor>(true, "Registrado correctamente", null, null);
                     }
@@ -74,7 +74,7 @@ namespace Logica
                 }
                 else
                 {
-                    if (ar.Save(supervisor))
+                    if (ar_usuarios.Save(supervisor))
                     {
                         return new Response<Supervisor>(true, "Guardado", null, null);
                     }
@@ -142,11 +142,9 @@ namespace Logica
         }
         public List<Supervisor> GetAll()
         {
-            if (list.GetListaSupervisor() == null)
-            {
-                return null;
-            }
-            return list.GetListaSupervisor(); // retorna la lista de los supervisores de la clase Listas.
+            var lista = GetLista();
+            if (lista == null) { return null; }
+            return lista; // retorna la lista de los supervisores de la clase Listas.
         }
     }
 }

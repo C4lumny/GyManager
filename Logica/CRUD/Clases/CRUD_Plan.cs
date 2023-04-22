@@ -46,7 +46,7 @@ namespace Logica
             {
                 if (GetLista() == null)
                 {
-                    ar.Save(Plan); return new Response<PlanGimnasio>(true, "Guardado", null, null); // guardo el plan
+                    ar_plan.Save(Plan); return new Response<PlanGimnasio>(true, "Guardado", null, null); // guardo el plan
                 }
                 else if (Exist(Plan.id))
                 {
@@ -54,7 +54,7 @@ namespace Logica
                 }
                 else
                 {
-                    ar.Save(Plan); ; return new Response<PlanGimnasio>(true, "Guardado", null, null); ; //guardo el plan.
+                    ar_plan.Save(Plan); ; return new Response<PlanGimnasio>(true, "Guardado", null, null); ; //guardo el plan.
                 }
             }
             catch (Exception)
@@ -96,8 +96,9 @@ namespace Logica
         }
         public List<PlanGimnasio> GetAll()
         {
-            if (list.GetListaPlan() == null) { return null; }
-            return list.GetListaPlan();
+            var lista = GetLista();
+            if (lista == null) { return null; }
+            return lista;
             // retorna la lista de los planes de la clase Listas.
         }
 

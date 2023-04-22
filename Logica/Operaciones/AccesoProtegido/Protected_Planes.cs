@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using Logica.Operaciones.AccesoProtegido;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,22 +9,21 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Planes
+    public class Protected_Planes: AbsGetListas<PlanGimnasio>
     {
-        protected Listas list;
-        protected RepositorioPlan ar;
-        public Protected_Planes()
+        protected RepositorioPlan ar_plan;
+        protected Protected_Planes()
         {
-            list = new Listas();
-            ar = new RepositorioPlan();
+            ar_plan = new RepositorioPlan();
         }
-        protected List<PlanGimnasio> GetLista()
+        protected override List<PlanGimnasio> GetLista()
         {
-            if (list.GetListaPlan() == null) { return null; }
-            return list.GetListaPlan();
+            var lista = ar_plan.Load();
+            if (lista == null) { return null; }
+            return lista;
             // retorna la lista de los planes de la clase Listas.
         }
-        protected bool Exist(string id_plan)
+        protected override bool Exist(string id_plan)
         {
             if (GetLista().FirstOrDefault(item => item.id == id_plan) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
             {

@@ -17,18 +17,6 @@ namespace Entidades
             this.supervisor = supervisor;
             this.estado = estado;
         }
-        public Inscripcion(Inscripcion inscripcion)
-        {
-            id = inscripcion.id;
-            fecha_inicio = inscripcion.fecha_inicio;
-            fecha_finalizacion = inscripcion.fecha_finalizacion;
-            precio = inscripcion.precio;
-            descuento = inscripcion.descuento;
-            cliente = inscripcion.cliente;
-            plan = inscripcion.plan;
-            supervisor = inscripcion.supervisor;
-            estado = inscripcion.estado;
-        }
         public string id { get; set; }
         public DateTime fecha_inicio { get; set; }
         public DateTime fecha_finalizacion { get; set; }

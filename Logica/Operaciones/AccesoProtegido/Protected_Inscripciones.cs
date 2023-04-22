@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using Logica.Operaciones.AccesoProtegido;
 using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
@@ -9,27 +10,23 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Inscripciones
+    public class Protected_Inscripciones : AbsGetListas<Inscripcion>
     {
-        protected Listas list;
         protected Public_Clientes op_Clientes;
         protected Public_Supervisores op_supervisor;
         protected Public_Planes op_plan;
-        protected RepositorioUsuarios repositorioUsuarios;
-        protected RepositorioInscripcion ar;
-        public Protected_Inscripciones()
+        protected RepositorioInscripcion ar_inscripcion;
+        protected Protected_Inscripciones()
         {
-            list = new Listas();
-            ar = new RepositorioInscripcion();
-            repositorioUsuarios = new RepositorioUsuarios();
+            ar_inscripcion = new RepositorioInscripcion();
             op_Clientes = new Public_Clientes();
             op_supervisor = new Public_Supervisores();
             op_plan = new Public_Planes();
         }
         protected Response<Inscripcion> isRenovationValid(Inscripcion inscripcion, Supervisor supervisor, PlanGimnasio plan, double descuento)
         {
-           
-            if (GetLista() == null)
+            var lista = GetLista();
+            if (lista == null)
             {
                 return new Response<Inscripcion>(false, "Lista vacia", null, null); // Lista vacia
             }
@@ -52,7 +49,7 @@ namespace Logica.Operaciones
             else
             {
                 ValidateStatus();
-                foreach (var item in list.GetListaContrato())
+                foreach (var item in lista)
                 {
                     if (item.id == inscripcion.id && item.estado == true)
                     {
@@ -62,7 +59,7 @@ namespace Logica.Operaciones
                 return new Response<Inscripcion>(true, null, null, inscripcion); 
             }
         }
-        protected bool Exist(string id_inscripcion)
+        protected override bool Exist(string id_inscripcion)
         {
             if (GetLista().FirstOrDefault(item => item.id == id_inscripcion) != null) // Valida si existe un item en la lista por medio de la id, retorna false si no encontro
             {
@@ -90,9 +87,9 @@ namespace Logica.Operaciones
             }
             return false;
         }
-        protected List<Inscripcion> GetLista()
+        protected override List<Inscripcion> GetLista()
         {
-            var lista = list.GetListaContrato(); ;
+            var lista = ar_inscripcion.Load();
             if (lista == null) { return null; }
             return lista;  // retorna la lista de contratos, privada para esta clase.
         }
@@ -108,7 +105,7 @@ namespace Logica.Operaciones
                         item.estado = false;
                     }
                 }
-                ar.Update(lista);
+                ar_inscripcion.Update(lista);
             }
         }
     }

@@ -21,7 +21,6 @@ namespace Pureba
 
 
             DateTime time = new DateTime();
-            Listas list = new Listas();
             CRUD_Inscripcion servicioContrato = new CRUD_Inscripcion(); 
             CRUD_Supervisor servicioSupervisor = new CRUD_Supervisor();
             CRUD_Cliente servicioCliente = new CRUD_Cliente();

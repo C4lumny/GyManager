@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Listas\Listas.cs" />
+    <Compile Include="CRUD\Interfaz\IListas.cs" />
+    <Compile Include="Operaciones\AccesoProtegido\AbsGetListas.cs" />
     <Compile Include="CRUD\Clases\CRUD_Inscripcion.cs" />
     <Compile Include="CRUD\Interfaz\ICRUD.cs" />
     <Compile Include="CRUD\Clases\CRUD_Cliente.cs" />
@@ -67,6 +68,9 @@
       <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CRUD\Interfaz\NewFolder1\" />
+    <Folder Include="Listas\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

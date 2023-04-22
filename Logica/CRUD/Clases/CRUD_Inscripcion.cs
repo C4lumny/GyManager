@@ -34,7 +34,7 @@ namespace Logica
                     Inscripcion contrato = ReturnFromList(id_inscripcion);
                     contrato.supervisor.ListaCliente_Supervisor.Remove(contrato.cliente); // el supervisor asignado se le añade a su propia lista el cliente.
                     list.RemoveAt(pos);
-                    ar.Update(list);
+                    ar_inscripcion.Update(list);
                     return new Response<Inscripcion>(true, "Eliminado correctamente", null, null);  //Elimino correctamente.
                 }
             }
@@ -79,7 +79,7 @@ namespace Logica
                 else if (lista == null)
                 {
                     inscripcion.precio = inscripcion.plan.precio * (100 - inscripcion.descuento) / 100;
-                    ar.Save(inscripcion);
+                    ar_inscripcion.Save(inscripcion);
                     /*inscripcion.supervisor.ListaCliente_Supervisor.Add(inscripcion.cliente);*/
                     return new Response<Inscripcion>(true, "Inscripcion realizada correctamente.", null, null);
                 }
@@ -94,7 +94,7 @@ namespace Logica
                 else
                 {
                     inscripcion.precio = inscripcion.plan.precio * (100 - inscripcion.descuento) / 100;
-                    ar.Save(inscripcion);
+                    ar_inscripcion.Save(inscripcion);
                     /*inscripcion.supervisor.ListaCliente_Supervisor.Add(inscripcion.cliente);*/
                     return new Response<Inscripcion>(true, "Inscripcion realizada correctamente.", null, null);
                 }
@@ -169,7 +169,7 @@ namespace Logica
         public List<Inscripcion> GetAll()
         {
             ValidateStatus();
-            var lista = list.GetListaContrato(); ;
+            var lista = GetLista(); 
             if (lista == null) { return null; }
             return lista;
         }
@@ -206,7 +206,7 @@ namespace Logica
                     inscripcion.fecha_inicio = DateTime.Now;
                     inscripcion.fecha_finalizacion = inscripcion.fecha_inicio.AddDays(dias);
                     inscripcion.estado = true;
-                    ar.Save(inscripcion);
+                    ar_inscripcion.Save(inscripcion);
                     return new Response<Inscripcion>(true, "Contrato renovado", null, null); // Renovo el id_inscripcion.
                 }
             }

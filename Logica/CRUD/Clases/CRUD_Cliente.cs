@@ -55,7 +55,7 @@ namespace Logica
                 }
                 else if (GetLista() == null)
                 {
-                    if (ar.Save(cliente))
+                    if (ar_usuario.Save(cliente))
                     {
                         return new Response<Cliente>(true, "Se ha guardado correctamente", null, null); ;
                     }
@@ -71,7 +71,7 @@ namespace Logica
                 }
                 else
                 {
-                    if (ar.Save(cliente))
+                    if (ar_usuario.Save(cliente))
                     {
                         return new Response<Cliente>(true, "Se ha guardado correctamente", null, null);
                     }
@@ -138,12 +138,9 @@ namespace Logica
         }
         public List<Cliente> GetAll()
         {
-            var lista = list.GetListaCliente();
-            if (lista == null)
-            {
-                return null;
-            }
-            return lista; 
+            var lista = GetLista();
+            if (lista == null) { return null; }
+            return lista;
         }
 
         //bool ValidateID(string id_cliente)

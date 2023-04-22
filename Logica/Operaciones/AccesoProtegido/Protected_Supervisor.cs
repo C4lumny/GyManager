@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using Logica.Operaciones.AccesoProtegido;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,14 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Supervisor
+    public class Protected_Supervisor: AbsGetListas<Supervisor>
     {
-        protected Listas list;
-        protected RepositorioUsuarios ar;
-        public Protected_Supervisor()
+        protected RepositorioUsuarios ar_usuarios;
+        protected Protected_Supervisor()
         {
-            list = new Listas();
-            ar = new RepositorioUsuarios();
+            ar_usuarios = new RepositorioUsuarios();
         }
-        protected bool Exist(string id_supervisor)
+        protected override bool Exist(string id_supervisor)
         {
             if (GetLista().FirstOrDefault(item => item.id == id_supervisor) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
             {
@@ -25,13 +24,14 @@ namespace Logica.Operaciones
             }
             return false; // no encontro.
         }
-        protected List<Supervisor> GetLista()
+        protected override List<Supervisor> GetLista()
         {
-            if (list.GetListaSupervisor() == null)
+            var lista = ar_usuarios.Load();
+            if (lista == null)
             {
                 return null;
             }
-            return list.GetListaSupervisor(); // retorna la lista de los supervisores de la clase Listas.
+            return lista.OfType<Supervisor>().ToList(); // retorna la lista de los supervisores de la clase Listas.
         }
     }
 }
