@@ -1,6 +1,7 @@
 ﻿using Datos;
 using Entidades;
 using Logica.Operaciones;
+using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class CRUD_Plan: Operacion_Planes, ICRUD<PlanGimnasio> // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los planes.
+    public class CRUD_Plan: Public_Planes, ICRUD<PlanGimnasio> // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los planes.
     {
         
         public CRUD_Plan() { }
@@ -93,6 +94,12 @@ namespace Logica
                 return new Response<PlanGimnasio>(false, "EXCEPTION", null, null);
             }
         }
-        
+        public List<PlanGimnasio> GetAll()
+        {
+            if (list.GetListaPlan() == null) { return null; }
+            return list.GetListaPlan();
+            // retorna la lista de los planes de la clase Listas.
+        }
+
     }
 }

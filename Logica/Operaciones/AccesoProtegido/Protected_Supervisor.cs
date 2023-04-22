@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Operacion_Supervisor
+    public class Protected_Supervisor
     {
         protected Listas list;
         protected RepositorioUsuarios ar;
-        public Operacion_Supervisor()
+        public Protected_Supervisor()
         {
             list = new Listas();
             ar = new RepositorioUsuarios();
@@ -25,11 +25,7 @@ namespace Logica.Operaciones
             }
             return false; // no encontro.
         }
-        public Supervisor ReturnFromList(string id_supervisor)
-        {
-            return GetLista().FirstOrDefault(item => item.id == id_supervisor); // devuelve null si no encontro un item, devuelve el item de la lista de supervisores en el cado de que la condicion se cuampla.
-        }
-        public List<Supervisor> GetLista()
+        protected List<Supervisor> GetLista()
         {
             if (list.GetListaSupervisor() == null)
             {

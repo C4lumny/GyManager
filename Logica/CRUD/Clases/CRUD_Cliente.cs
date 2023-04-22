@@ -4,14 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Logica.Operaciones;
-
+using Logica.Operaciones.AccesoPublico;
 
 namespace Logica
 {
-    public class CRUD_Cliente : Operacion_Clientes, ICRUD<Cliente> // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados al cliente.
+    public class CRUD_Cliente : Public_Clientes, ICRUD<Cliente> // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados al cliente.
     {
-
-
         public CRUD_Cliente() { }
         public Response<Cliente> Delete(string id_cliente)
         {
@@ -138,6 +136,15 @@ namespace Logica
                 return new Response<Cliente>(false, "Exception", null, null); ; // excepion
             }
         }
+        public List<Cliente> GetAll()
+        {
+            var lista = list.GetListaCliente();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista; 
+        }
 
         //bool ValidateID(string id_cliente)
         //{
@@ -151,6 +158,6 @@ namespace Logica
         //    }
         //    return false; // encontro en la lista de clientes una id repetida.
         //}
-       
+
     }
 }

@@ -9,5 +9,6 @@ namespace Logica
         List<T> GetBySearch(string id);
         Response<T> Save(T obj);
         Response<T> Update(T obj, string id);
+        List<T> GetAll();
     }
 }

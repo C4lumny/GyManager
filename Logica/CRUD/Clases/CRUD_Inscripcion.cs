@@ -1,6 +1,7 @@
 ﻿using Datos;
 using Entidades;
 using Logica.Operaciones;
+using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -8,7 +9,7 @@ using System.Linq;
 
 namespace Logica
 {
-    public class CRUD_Inscripcion: Operacion_Inscripciones, ICRUD<Inscripcion>
+    public class CRUD_Inscripcion: Public_Inscripciones, ICRUD<Inscripcion>
     {
         public CRUD_Inscripcion()
         { 
@@ -53,6 +54,7 @@ namespace Logica
         {
             try
             {
+                ValidateStatus();
                 var lista = GetLista();
                 if (inscripcion.cliente == null)
                 {
@@ -144,14 +146,16 @@ namespace Logica
                         inscripcion.cliente = inscripcionUpdate.cliente;
                         inscripcion.plan = inscripcionUpdate.plan;
 
-                        int pos = inscripcion.supervisor.ListaCliente_Supervisor.FindIndex(item => item.id == inscripcion.cliente.id);
-                        if (inscripcion.supervisor != inscripcionUpdate.supervisor)
-                        {
-                            inscripcion.supervisor.ListaCliente_Supervisor.RemoveAt(pos);
-                            inscripcion.supervisor = inscripcionUpdate.supervisor;
-                            inscripcion.supervisor.ListaCliente_Supervisor.Add(inscripcion.cliente);
-                        }
-                        else { inscripcion.supervisor = inscripcionUpdate.supervisor; }
+                        //int pos = inscripcion.supervisor.ListaCliente_Supervisor.FindIndex(item => item.id == inscripcion.cliente.id);
+                        //if (inscripcion.supervisor != inscripcionUpdate.supervisor)
+                        //{
+                        //    inscripcion.supervisor.ListaCliente_Supervisor.RemoveAt(pos);
+                        //    inscripcion.supervisor = inscripcionUpdate.supervisor;
+                        //    inscripcion.supervisor.ListaCliente_Supervisor.Add(inscripcion.cliente);
+                        //}
+                        //else { inscripcion.supervisor = inscripcionUpdate.supervisor; }
+                        inscripcion.supervisor = inscripcionUpdate.supervisor;
+                        ValidateStatus();
 
                         return new Response<Inscripcion>(true, "Accion completada con exito", null, null); // reemplazo todo correctamente 
                     }
@@ -160,6 +164,55 @@ namespace Logica
             catch (Exception)
             {
                 return new Response<Inscripcion>(false, "Exception", null, null); // excepcion
+            }
+        }
+        public List<Inscripcion> GetAll()
+        {
+            ValidateStatus();
+            var lista = list.GetListaContrato(); ;
+            if (lista == null) { return null; }
+            return lista;
+        }
+        public Response<Inscripcion> Renovate(string id_inscripcion, int dias, string id_supervisor, string id_plan, double descuento)
+        {
+            try
+            {
+                Inscripcion inscripcion = ReturnFromList(id_inscripcion);
+                Supervisor supervisor = op_supervisor.ReturnFromList(id_supervisor);
+                PlanGimnasio plan = op_plan.ReturnFromList(id_plan);
+
+                var response = isRenovationValid(inscripcion, supervisor, plan, descuento);
+                if (!response.success)
+                {
+                    return response;
+                }
+                else
+                {
+                    //if (contratoCaducado.id_supervisor != id_supervisor)
+                    //{
+                    //    int pos = contratoCaducado.id_supervisor.ListaCliente_Supervisor.FindIndex(item => item.id == id_inscripcion.cliente.id);
+                    //    contratoCaducado.id_supervisor.ListaCliente_Supervisor.RemoveAt(pos);
+                    //    id_inscripcion.id_supervisor = id_supervisor;
+                    //    id_supervisor.ListaCliente_Supervisor.Add(id_inscripcion.cliente);
+                    //}
+                    //else
+                    //{
+                    //    id_inscripcion.id_supervisor = id_supervisor;
+                    //}
+                    inscripcion.supervisor = supervisor;
+                    inscripcion.plan = plan;
+                    inscripcion.descuento = descuento;
+                    inscripcion.precio = plan.precio * (100 - descuento) / 100;
+                    inscripcion.fecha_inicio = DateTime.Now;
+                    inscripcion.fecha_finalizacion = inscripcion.fecha_inicio.AddDays(dias);
+                    inscripcion.estado = true;
+                    ar.Save(inscripcion);
+                    return new Response<Inscripcion>(true, "Contrato renovado", null, null); // Renovo el id_inscripcion.
+                }
+            }
+            catch (Exception)
+            {
+                return new Response<Inscripcion>(false, "Exception", null, null); // Excepcion
             }
         }
     }

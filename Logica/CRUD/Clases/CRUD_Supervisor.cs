@@ -1,6 +1,7 @@
 ﻿using Datos;
 using Entidades;
 using Logica.Operaciones;
+using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class CRUD_Supervisor: Operacion_Supervisor, ICRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
+    public class CRUD_Supervisor: Public_Supervisores, ICRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
     {
        
         public CRUD_Supervisor() { }
@@ -139,6 +140,13 @@ namespace Logica
                 return new Response<Supervisor>(false, "EXCEPTION", null, null);
             }
         }
-       
+        public List<Supervisor> GetAll()
+        {
+            if (list.GetListaSupervisor() == null)
+            {
+                return null;
+            }
+            return list.GetListaSupervisor(); // retorna la lista de los supervisores de la clase Listas.
+        }
     }
 }

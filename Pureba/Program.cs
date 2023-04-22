@@ -9,7 +9,7 @@ namespace Pureba
         static void Main(string[] args)
         {
 
-
+            
             // Iniciamos un hilo para ejecutar el método en bucle mientras se ejecuta el otro proceso de abajo
             // Permite validar en tiempo real si un contrato es vigente o esta caducado.
             //Thread hilo1 = new Thread(servicioContrato.ValidateStatus);
@@ -21,6 +21,7 @@ namespace Pureba
 
 
             DateTime time = new DateTime();
+            Listas list = new Listas();
             CRUD_Inscripcion servicioContrato = new CRUD_Inscripcion(); 
             CRUD_Supervisor servicioSupervisor = new CRUD_Supervisor();
             CRUD_Cliente servicioCliente = new CRUD_Cliente();
@@ -91,9 +92,9 @@ namespace Pureba
 
             void ConsultarPlan()
             {
-                if (servicioPlan.GetLista() != null)
+                if (servicioPlan.GetAll() != null)
                 {
-                    foreach (var item in servicioPlan.GetLista())
+                    foreach (var item in servicioPlan.GetAll())
                     {
                         Console.WriteLine("PLAN: ");
                         Console.WriteLine("ID: " + item.id);
@@ -129,9 +130,9 @@ namespace Pureba
 
             void ConsultarSupervisor()
             {
-                if (servicioSupervisor.GetLista() != null)
+                if (servicioSupervisor.GetAll() != null)
                 {
-                    foreach (var item in servicioSupervisor.GetLista())
+                    foreach (var item in servicioSupervisor.GetAll())
                     {
                         Console.WriteLine("SUPERVISOR: ");
                         Console.WriteLine("ID: " + item.id);
@@ -168,9 +169,9 @@ namespace Pureba
 
             void ConsultarCliente()
             {
-                if (servicioCliente.GetLista() != null)
+                if (servicioCliente.GetAll() != null)
                 {
-                    foreach (var item in servicioCliente.GetLista())
+                    foreach (var item in servicioCliente.GetAll())
                     {
                         Console.WriteLine("CLIENTE: ");
                         Console.WriteLine("ID: " + item.id);
@@ -227,11 +228,10 @@ namespace Pureba
                 {    
                     do
                     {
-                        if (servicioContrato.GetLista() != null)
+                        if (servicioContrato.GetAll() != null)
                         {
-                            foreach (var item in servicioContrato.GetLista())
+                            foreach (var item in servicioContrato.GetAll())
                             {
-                                servicioContrato.ValidateStatus();
                                 Console.WriteLine("CONTRATO: ");
                                 Console.WriteLine("ID: " + item.id);
                                 Console.Write("FECHA INICIAL: " + item.fecha_inicio.ToShortDateString() + "  ");
@@ -321,7 +321,6 @@ namespace Pureba
                         Console.WriteLine("digite el descuento "); descuento = Console.ReadLine().ToLower();
                         descuentopercentage = double.Parse(descuento.Replace("%", ""));
                     }
-                    servicioContrato.ValidateStatus();
                     var msg = servicioContrato.Renovate(id_contrato, dias, id_supervisor, id_plan, descuentopercentage);
                     Console.WriteLine(msg.msg);
                     Console.WriteLine("Desea continuar?"); op = int.Parse(Console.ReadLine());
