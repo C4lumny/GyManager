@@ -16,7 +16,7 @@ namespace Logica.Operaciones
         {
             ar_clientes = new RepositorioClientes();
         }
-        protected override List<Cliente> GetLista()
+        protected override List<Cliente> GetMainList()
         {
             var lista = ar_clientes.Load();
             if (lista == null)
@@ -27,7 +27,7 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_cliente)
         {
-            if (GetLista().FirstOrDefault(item => item.id == id_cliente) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
+            if (GetMainList().FirstOrDefault(item => item.id == id_cliente) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
             {
                 return true; // encontro una id existente.
             }

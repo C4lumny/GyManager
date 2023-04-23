@@ -16,30 +16,31 @@ namespace Logica
         public CRUD_Supervisor() { }
         public Response<Supervisor> Delete(string id_supervisor)
         {
-            if (GetLista() == null)
+
+            if (GetMainList() == null)
             {
                 return new Response<Supervisor>(false, "Lista vacia"); // lista vacia
             }
             else
             {
-                int pos = GetLista().FindIndex(item => item.id == id_supervisor); 
+                int pos = GetMainList().FindIndex(item => item.id == id_supervisor); 
 
                 if (pos < 0) { return new Response<Supervisor>(false, "No se pudo encontrar el supervisor."); } 
 
                 Supervisor supervisor = ReturnFromList(id_supervisor);
 
-                GetLista().RemoveAt(pos); return new Response<Supervisor>(true, "Eliminado correctamente.", null, supervisor); 
+                GetMainList().RemoveAt(pos); return new Response<Supervisor>(true, "Eliminado correctamente.", null, supervisor); 
             }
         }
         public List<Supervisor> GetBySearch(string search)
         {
-            if (GetLista() == null)
+            if (GetMainList() == null)
             {
                 return null;
             }
             else
             {
-                return GetLista().FindAll(item => item.nombre.Contains(search) || item.telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
+                return GetMainList().FindAll(item => item.nombre.Contains(search) || item.telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
             }
         }
         public Response<Supervisor> Save(Supervisor supervisor)
@@ -58,7 +59,7 @@ namespace Logica
                 {
                     return new Response<Supervisor>(false, "Menor de 18 años, ingrese correctamente los datos."); 
                 }
-                else if (GetLista() == null)
+                else if (GetMainList() == null)
                 {
                         return ar_supervisor.Save(supervisor);
                 }
@@ -69,7 +70,7 @@ namespace Logica
                 else
                 {
                     return ar_supervisor.Save(supervisor);
-                    //GetLista().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza objetos por fecha de ingreso (opcional)
+                    //GetMainList().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza objetos por fecha de ingreso (opcional)
                     //return 0; // guarda el item en la lista.
                 }
             }
@@ -82,7 +83,7 @@ namespace Logica
         {
             try
             {
-                if (GetLista() == null) { return new Response<Supervisor>(false, "No se encuentra registrado ningun supervisor", null, null); } 
+                if (GetMainList() == null) { return new Response<Supervisor>(false, "No se encuentra registrado ningun supervisor", null, null); } 
                 else
                 {
                     if (!Exist(id_supervisor))
@@ -129,7 +130,7 @@ namespace Logica
         }
         public List<Supervisor> GetAll()
         {
-            var lista = GetLista();
+            var lista = GetMainList();
             if (lista == null) { return null; }
             return lista; // retorna la lista de los supervisores de la clase Listas.
         }

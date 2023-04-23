@@ -16,7 +16,7 @@ namespace Logica.Operaciones
         {
             ar_plan = new RepositorioPlan();
         }
-        protected override List<PlanGimnasio> GetLista()
+        protected override List<PlanGimnasio> GetMainList()
         {
             var lista = ar_plan.Load();
             if (lista == null) { return null; }
@@ -25,7 +25,7 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_plan)
         {
-            if (GetLista().FirstOrDefault(item => item.id == id_plan) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
+            if (GetMainList().FirstOrDefault(item => item.id == id_plan) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
             {
                 return true;
             }

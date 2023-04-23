@@ -14,7 +14,7 @@ namespace Logica.Operaciones.AccesoPublico
         }
         public PlanGimnasio ReturnFromList(string id_plan)
         {
-            return GetLista().FirstOrDefault(item => item.id == id_plan); // devuelve el plan de la lista de planes que cumple la condicion del predicado, en este caso que la id_plan sea igual a la id de un plan en la lista.
+            return GetMainList().FirstOrDefault(item => item.id == id_plan); // devuelve el plan de la lista de planes que cumple la condicion del predicado, en este caso que la id_plan sea igual a la id de un plan en la lista.
         }
         public int ReturnPlanDays(string id_plan)
         {

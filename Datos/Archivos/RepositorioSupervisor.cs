@@ -13,22 +13,21 @@ namespace Datos.Archivos
         string ruta = "Supervisor.txt";
         public RepositorioSupervisor()
         {
-            
         }
 
         public List<Supervisor> Load()
         {
             try
             {
-                StreamReader reader2 = new StreamReader(ruta);
+                StreamReader reader = new StreamReader(ruta);
                 var list = new List<Supervisor>();
                 string linea;
-                while (!reader2.EndOfStream)
+                while (!reader.EndOfStream)
                 {
-                    linea = reader2.ReadLine();
+                    linea = reader.ReadLine();
                     list.Add(Mapper(linea));
                 }
-                reader2.Close();
+                reader.Close();
                 return list;
             }
             catch (Exception)
@@ -39,22 +38,21 @@ namespace Datos.Archivos
 
         public Supervisor Mapper(string linea)
         {
-            var aux = linea.Split(';');
+            
             try
             {
-
-                Supervisor superisor = new Supervisor();
-                superisor.id = aux[0];
-                superisor.nombre = aux[1];
-                superisor.genero = aux[2];
-                superisor.telefono = aux[3];
-                superisor.altura = double.Parse(aux[4]);
-                superisor.peso = double.Parse(aux[5]);
-                superisor.fecha_nacimiento = DateTime.Parse(aux[6]);
-                superisor.fecha_ingreso = DateTime.Parse(aux[7]);
-                superisor.estado = bool.Parse(aux[8]);
-                return superisor;
-
+                var aux = linea.Split(';');
+                Supervisor supervisor = new Supervisor();
+                supervisor.id = aux[0];
+                supervisor.nombre = aux[1];
+                supervisor.genero = aux[2];
+                supervisor.telefono = aux[3];
+                supervisor.altura = double.Parse(aux[4]);
+                supervisor.peso = double.Parse(aux[5]);
+                supervisor.fecha_nacimiento = DateTime.Parse(aux[6]);
+                supervisor.fecha_ingreso = DateTime.Parse(aux[7]);
+                supervisor.estado = bool.Parse(aux[8]);
+                return supervisor;
             }
             catch (Exception)
             {
@@ -66,9 +64,9 @@ namespace Datos.Archivos
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, true);
-                writer.WriteLine(supervisor.ToString());
-                writer.Close();
+                StreamWriter writer1 = new StreamWriter(ruta, true);
+                writer1.WriteLine(supervisor.ToString());
+                writer1.Close();
                 return new Response<Supervisor>(true, "Se ha guardado correctamente.", null, supervisor);
             }
             catch (Exception)
@@ -85,8 +83,8 @@ namespace Datos.Archivos
                 foreach (var item in list)
                 {
                     writer.WriteLine(item.ToString());
-                    writer.Close();
                 }
+                writer.Close();
                 return true;
             }
             catch (Exception)

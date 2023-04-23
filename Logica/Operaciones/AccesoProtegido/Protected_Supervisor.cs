@@ -19,13 +19,13 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_supervisor)
         {
-            if (GetLista().FirstOrDefault(item => item.id == id_supervisor) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
+            if (GetMainList().FirstOrDefault(item => item.id == id_supervisor) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
             {
                 return true; // encontro una id existente.
             }
             return false; // no encontro.
         }
-        protected override List<Supervisor> GetLista()
+        protected override List<Supervisor> GetMainList()
         {
             var lista = ar_supervisor.Load();
             if (lista == null)

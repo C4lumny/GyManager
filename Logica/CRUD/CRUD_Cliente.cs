@@ -13,7 +13,7 @@ namespace Logica
         public CRUD_Cliente() { }
         public Response<Cliente> Delete(string id_cliente)
         {
-            var list = GetLista();
+            var list = GetMainList();
             if (list == null)
             {
                 return new Response<Cliente>(false, "La lista esta vacia"); 
@@ -30,13 +30,13 @@ namespace Logica
         }
         public List<Cliente> GetBySearch(string search)
         {
-            if (GetLista() == null)
+            if (GetMainList() == null)
             {
                 return null;
             }
             else
             {
-                return GetLista().FindAll(item => item.nombre.Contains(search) || item.telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
+                return GetMainList().FindAll(item => item.nombre.Contains(search) || item.telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
             }
         }
         public Response<Cliente> Save(Cliente cliente)
@@ -55,7 +55,7 @@ namespace Logica
                 {
                     return new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente"); // fecha de nacimiento mayor a la fecha actual.
                 }
-                else if (GetLista() == null)
+                else if (GetMainList() == null)
                 {
                     return ar_clientes.Save(cliente);
                 }
@@ -66,7 +66,7 @@ namespace Logica
                 else
                 {
                     return ar_clientes.Save(cliente);
-                    //GetLista().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza clientes por fecha de ingreso (opcional)
+                    //GetMainList().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza clientes por fecha de ingreso (opcional)
                     //return 0; // guarda correctamente en la lista.
                 }
             }
@@ -79,7 +79,7 @@ namespace Logica
         {
             try
             {
-                var list = GetLista();
+                var list = GetMainList();
                 if (list == null) { return new Response<Cliente>(false, "Lista vacia"); } // Lista vacia
 
                 else
@@ -129,18 +129,18 @@ namespace Logica
         }
         public List<Cliente> GetAll()
         {
-            var lista = GetLista();
+            var lista = GetMainList();
             if (lista == null) { return null; }
             return lista;
         }
 
         //bool ValidateID(string id_cliente)
         //{
-        //    if (GetLista() == null) // valida si el id del cliente se encuentra en una lista de supervisores.
+        //    if (GetMainList() == null) // valida si el id del cliente se encuentra en una lista de supervisores.
         //    {
         //        return true;
         //    }
-        //    else if (GetLista().FirstOrDefault(item => item.id == id_cliente) == null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
+        //    else if (GetMainList().FirstOrDefault(item => item.id == id_cliente) == null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
         //    {
         //        return true;
         //    }

@@ -4,7 +4,7 @@ using System;
 
 namespace Pureba
 {
-    internal class Program
+    internal class Program 
     {
         static void Main(string[] args)
         {
@@ -69,11 +69,11 @@ namespace Pureba
             //CrearCliente();                     Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey(); 
             ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
-            CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
-            ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
-            RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
-            ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
-            ConsultarContratoHistorico();       Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
+            //CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
+            //ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
+            //RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
+            //ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
+            //ConsultarContratoHistorico();       Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
             Consultar_ClientesDeSupervisor();   Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
 
@@ -332,12 +332,12 @@ namespace Pureba
                 do
                 {
                     op = 0;
-                
+
                     Console.WriteLine("Digite la id del Supervirsor: "); string id_supervisor = Console.ReadLine();
                     var sup = servicioSupervisor.ReturnFromList(id_supervisor);
-                    if (sup.ListaClientes.Count != 0)
+                    if (op == 0)
                     {
-                        foreach (var item in sup.ListaClientes)
+                        foreach (var item in servicioContrato.List_Clientes(sup))
                         {
                             Console.WriteLine("SUPERVISOR ENCARGADO: " + sup.nombre);
                             Console.WriteLine("CLIENTE: ");
@@ -352,7 +352,7 @@ namespace Pureba
                     }
                     else
                     {
-                    Console.WriteLine("Vacio");
+                        Console.WriteLine("Vacio");
                     }
                     Console.WriteLine("Desea continuar?"); op = int.Parse(Console.ReadLine());
                 } while (op == 1);

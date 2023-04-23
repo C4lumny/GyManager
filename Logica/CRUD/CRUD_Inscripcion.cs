@@ -12,25 +12,24 @@ namespace Logica
     public class CRUD_Inscripcion: Public_Inscripciones, I_CRUD<Inscripcion>
     {
         public CRUD_Inscripcion()
-        { 
-            
+        {
+
         }
         public Response<Inscripcion> Delete(string id_inscripcion)
         {
-            if (GetLista() == null)
+            var list = GetMainList();
+            if (list == null)
             {
                 return new Response<Inscripcion>(false, "No se han encontrado inscripciones."); // Lista vacia.
             }
             else
             {
-                var list = GetLista();
                 int pos = list.FindIndex(item => item.id == id_inscripcion); 
                 if (pos < 0)
                 {
                     return new Response<Inscripcion>(false, "No se encontro el id del contrato que desea eliminar"); 
                 }
-                Inscripcion inscripcion = ReturnFromList(id_inscripcion);
-                inscripcion.supervisor.ListaClientes.Remove(inscripcion.cliente); 
+                Inscripcion inscripcion = list.Find(item => item.id == id_inscripcion);
                 list.RemoveAt(pos);
                 ar_inscripcion.Update(list);
                 return new Response<Inscripcion>(true, "Inscripcion eliminada correctamente", null, inscripcion);  
@@ -38,13 +37,13 @@ namespace Logica
         } 
         public List<Inscripcion> GetBySearch(string search)
         {
-            if (GetLista() == null) 
+            if (GetMainList() == null) 
             {
                 return null; // retorna null si esta vacia.
             }
             else
             {
-                return GetLista().FindAll(item => item.id.StartsWith(search) || item.cliente.nombre.Contains(search) || item.cliente.id.StartsWith(search)); // Find devuelve un item que cumplan la condicion del predicado.
+                return GetMainList().FindAll(item => item.id.StartsWith(search) || item.cliente.nombre.Contains(search) || item.cliente.id.StartsWith(search)); // Find devuelve un item que cumplan la condicion del predicado.
             }
         }
         public Response<Inscripcion> Save(Inscripcion inscripcion) 
@@ -52,7 +51,8 @@ namespace Logica
             try
             {
                 ValidateStatus();
-                var lista = GetLista();
+                ValidateSupvervisorStatus();
+                var lista = GetMainList();
                 if (inscripcion.cliente == null)
                 {
                     return new Response<Inscripcion>(false, "El cliente ingresado no existe");
@@ -60,6 +60,10 @@ namespace Logica
                 else if (inscripcion.supervisor == null)
                 {
                     return new Response<Inscripcion>(false, "El supervisor ingresado no existe");
+                }
+                else if (inscripcion.supervisor.estado == false)
+                {
+                    return new Response<Inscripcion>(false, "El supervisor ingresado ya posee demasiados clientes asignados.");
                 }
                 else if (inscripcion.plan == null)
                 {
@@ -91,7 +95,6 @@ namespace Logica
                 else
                 {
                     inscripcion.precio = inscripcion.plan.precio * (100 - inscripcion.descuento) / 100;
-                    /*inscripcion.supervisor.ListaClientes.Add(inscripcion.cliente);*/
                     return ar_inscripcion.Save(inscripcion);
                 }
             }
@@ -104,7 +107,7 @@ namespace Logica
         {
             try
             {
-                var list = GetLista();
+                var list = GetMainList();
                 if (list == null) { return new Response<Inscripcion>(true, "No se han encontrado inscripciones."); } 
                 else
                 {
@@ -150,7 +153,7 @@ namespace Logica
                         //    inscripcion.supervisor.ListaClientes.Add(inscripcion.cliente);
                         //}
                         //else { inscripcion.supervisor = inscripcionUpdate.supervisor; }
-                        inscripcion.supervisor = UpdateSupervisorList(inscripcion, inscripcionUpdate);
+                        inscripcion.supervisor = inscripcionUpdate.supervisor;
                         ValidateStatus();
                         if (ar_inscripcion.Update(list))
                         {
@@ -171,7 +174,7 @@ namespace Logica
         public List<Inscripcion> GetAll()
         {
             ValidateStatus();
-            var lista = GetLista(); 
+            var lista = GetMainList(); 
             if (lista == null) { return null; }
             return lista;
         }

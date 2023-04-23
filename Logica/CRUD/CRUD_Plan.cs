@@ -16,36 +16,36 @@ namespace Logica
         public CRUD_Plan() { }
         public Response<PlanGimnasio> Delete(string id_plan)
         {
-            if (GetLista() == null)
+            if (GetMainList() == null)
             {
                 return new Response<PlanGimnasio>(false, "Lista vacia"); // lista vacia.
             }
             else
             {
-                int pos = GetLista().FindIndex(item => item.id == id_plan); // Devuelve el indice (posicion) de la lista que cumpla con la condicion 
+                int pos = GetMainList().FindIndex(item => item.id == id_plan); // Devuelve el indice (posicion) de la lista que cumpla con la condicion 
 
                 if (pos < 0) { return new Response<PlanGimnasio>(false, "No se pudo encontrar el plan que desea eliminar"); } // No se encontro el id del item en la lista q desea eliminar.
                
                 PlanGimnasio plan = ReturnFromList(id_plan);
-                GetLista().RemoveAt(pos); return new Response<PlanGimnasio>(true, "Plan eliminado correctamente", null, plan); //Elimino correctamente.
+                GetMainList().RemoveAt(pos); return new Response<PlanGimnasio>(true, "Plan eliminado correctamente", null, plan); //Elimino correctamente.
             }
         }
         public List<PlanGimnasio> GetBySearch(string search)
         {
-            if (GetLista() == null)
+            if (GetMainList() == null)
             {
                 return null;
             }
             else
             {
-                return GetLista().FindAll(item => item.nombre.Contains(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
+                return GetMainList().FindAll(item => item.nombre.Contains(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
             }
         }
         public Response<PlanGimnasio> Save(PlanGimnasio Plan)
         {
             try
             {
-                if (GetLista() == null)
+                if (GetMainList() == null)
                 {
                     ar_plan.Save(Plan); return new Response<PlanGimnasio>(true, "Se ha registrado el plan correctamente."); // guardo el plan
                 }
@@ -67,7 +67,7 @@ namespace Logica
         {
             try
             {
-                if (GetLista() == null) { return new Response<PlanGimnasio>(false, "No se ha registrado ningun plan, por favor ingrese uno antes de continuar."); } // Lista vacia
+                if (GetMainList() == null) { return new Response<PlanGimnasio>(false, "No se ha registrado ningun plan, por favor ingrese uno antes de continuar."); } // Lista vacia
                 else
                 {
                     if (!Exist(id_plan))
@@ -97,7 +97,7 @@ namespace Logica
         }
         public List<PlanGimnasio> GetAll()
         {
-            var lista = GetLista();
+            var lista = GetMainList();
             if (lista == null) { return null; }
             return lista;
             // retorna la lista de los planes de la clase Listas.

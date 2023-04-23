@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Operaciones\AccesoProtegido\Abs_ProtectedClass.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Inscripcion.cs" />
-    <Compile Include="CRUD\Clases\I_CRUD.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Cliente.cs" />
+    <Compile Include="CRUD\CRUD_Inscripcion.cs" />
+    <Compile Include="CRUD\I_CRUD.cs" />
+    <Compile Include="CRUD\CRUD_Cliente.cs" />
     <Compile Include="Operaciones\AccesoProtegido\Protected_Inscripciones.cs" />
     <Compile Include="Operaciones\AccesoProtegido\Protected_Planes.cs" />
     <Compile Include="Operaciones\AccesoProtegido\Protected_Supervisor.cs" />
@@ -54,8 +54,8 @@
     <Compile Include="Operaciones\AccesoPublico\Public_Planes.cs" />
     <Compile Include="Operaciones\AccesoPublico\Public_Supervisores.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Supervisor.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Plan.cs" />
+    <Compile Include="CRUD\CRUD_Supervisor.cs" />
+    <Compile Include="CRUD\CRUD_Plan.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

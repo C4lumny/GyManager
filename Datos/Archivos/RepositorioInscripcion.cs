@@ -12,8 +12,10 @@ namespace Datos
     public class RepositorioInscripcion: I_Repositorio<Inscripcion>
     {
         protected string ruta = "Inscripcion.txt";
+
         public RepositorioInscripcion()
         {
+
         }
         public Response<Inscripcion> Save(Inscripcion inscripcion)
         {
