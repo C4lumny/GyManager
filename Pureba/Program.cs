@@ -335,9 +335,9 @@ namespace Pureba
                 
                     Console.WriteLine("Digite la id del Supervirsor: "); string id_supervisor = Console.ReadLine();
                     var sup = servicioSupervisor.ReturnFromList(id_supervisor);
-                    if (sup.ListaCliente_Supervisor.Count != 0)
+                    if (sup.ListaClientes.Count != 0)
                     {
-                        foreach (var item in sup.ListaCliente_Supervisor)
+                        foreach (var item in sup.ListaClientes)
                         {
                             Console.WriteLine("SUPERVISOR ENCARGADO: " + sup.nombre);
                             Console.WriteLine("CLIENTE: ");

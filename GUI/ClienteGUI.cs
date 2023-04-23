@@ -10,7 +10,6 @@ namespace GUI
 {
     public class ClienteGUI // En esta clase se modela la interfaz grafica relacionada al cliente por medio de metodos de la clase ServicioClientes. 
     {
-        Listas list = new Listas();
         //----------------------------------------------------------------------------------------------------------------------------------
         public void menu()
         {
@@ -105,6 +104,7 @@ namespace GUI
 
                 clientes.fecha_ingreso = DateTime.Now;
                 var validation = servCliente.Save(clientes);
+                Console.WriteLine(validation.msg);
                 ////switch (validation)
                 ////{
                 ////    case 0:

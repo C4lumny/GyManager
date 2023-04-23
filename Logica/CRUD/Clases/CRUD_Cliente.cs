@@ -8,22 +8,24 @@ using Logica.Operaciones.AccesoPublico;
 
 namespace Logica
 {
-    public class CRUD_Cliente : Public_Clientes, ICRUD<Cliente> // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados al cliente.
+    public class CRUD_Cliente : Public_Clientes, I_CRUD<Cliente> // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados al cliente.
     {
         public CRUD_Cliente() { }
         public Response<Cliente> Delete(string id_cliente)
         {
-            if (GetLista() == null)
+            var list = GetLista();
+            if (list == null)
             {
-                return new Response<Cliente>(false, "La lista esta vacia", null, null); // Lista vacia
+                return new Response<Cliente>(false, "La lista esta vacia"); 
             }
             else
             {
-                int pos = GetLista().FindIndex(item => item.id == id_cliente); // Devuelve el indice (posicion) de la lista que cumpla con la condicion.
-
-                if (pos < 0)  { return new Response<Cliente>(false, "No se ha encontrado el cliente que se desea eliminar.", null, null); } // No se encontro el id del objeto q desea eliminar.
-
-                GetLista().RemoveAt(pos); return new Response<Cliente>(true, "El cliente se ha eliminado correctamente", null, null); // Elimino correctamente.
+                int pos = list.FindIndex(item => item.id == id_cliente); 
+                if (pos < 0)  { return new Response<Cliente>(false, "No se ha encontrado el cliente que se desea eliminar."); }
+                Cliente cliente = ReturnFromList(id_cliente);
+                list.RemoveAt(pos);
+                ar_clientes.Update(list);
+                return new Response<Cliente>(true, "El cliente se ha eliminado correctamente", list, cliente);
             }
         }
         public List<Cliente> GetBySearch(string search)
@@ -43,79 +45,68 @@ namespace Logica
             {
                 if (cliente.altura < 0)
                 {
-                    return new Response<Cliente>(false, "La altura es menos a cero, No se ha podido registrar el cliente", null, null); // altura menor a 0
+                    return new Response<Cliente>(false, "La altura es invalida, No se ha podido registrar el cliente"); // altura menor a 0
                 }
                 else if (cliente.peso < 0)
                 {
-                    return new Response<Cliente>(false, "La altura es menos a cero, No se ha podido registrar el cliente", null, null); // peso menor a 0
+                    return new Response<Cliente>(false, "El peso es invalido, No se ha podido registrar el cliente"); // peso menor a 0
                 }
                 else if (cliente.fecha_nacimiento > DateTime.Now)
                 {
-                    return new Response<Cliente>(false, "La altura es menos a cero, No se ha podido registrar el cliente", null, null); // fecha de nacimiento mayor a la fecha actual.
+                    return new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente"); // fecha de nacimiento mayor a la fecha actual.
                 }
                 else if (GetLista() == null)
                 {
-                    if (ar_usuario.Save(cliente))
-                    {
-                        return new Response<Cliente>(true, "Se ha guardado correctamente", null, null); ;
-                    }
-                    else
-                    {
-                        return new Response<Cliente>(false, "La altura es menos a cero, No se ha podido registrar el cliente", null, null);
-                    }
-                    // guarda correctamente en la lista.
+                    return ar_clientes.Save(cliente);
                 }
                 else if (Exist(cliente.id))
                 {
-                    return new Response<Cliente>(false, "La altura es menos a cero, No se ha podido registrar el cliente", null, null); // id repetida.
+                    return new Response<Cliente>(false, "Ya tiene registrado un cliente con la misma ID"); // id repetida.
                 }
                 else
                 {
-                    if (ar_usuario.Save(cliente))
-                    {
-                        return new Response<Cliente>(true, "Se ha guardado correctamente", null, null);
-                    }
-                        return new Response<Cliente>(false, "La altura es menos a cero, No se ha podido registrar el cliente", null, null);
+                    return ar_clientes.Save(cliente);
                     //GetLista().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza clientes por fecha de ingreso (opcional)
                     //return 0; // guarda correctamente en la lista.
                 }
             }
             catch (Exception)
             {
-                return new Response<Cliente>(false, "Exception", null, null); ; // Te jodiste exception xd
+                return new Response<Cliente>(false, "Error!", null, null); 
             }
         }
         public Response<Cliente> Update(Cliente clienteUpdate, string id_cliente)
         {
             try
             {
-                if (GetLista() == null) { return new Response<Cliente>(false, "Lista vacia", null, null); } // Lista vacia
+                var list = GetLista();
+                if (list == null) { return new Response<Cliente>(false, "Lista vacia"); } // Lista vacia
 
                 else
                 {
                     if (!Exist(id_cliente))
                     {
-                        return new Response<Cliente>(false, "No se encontro el id del cliente a actualizar", null, null); // No se encontro el id del objeto a actualizar
+                        return new Response<Cliente>(false, "No se encontro el id del cliente a actualizar"); 
                     }
                     if (clienteUpdate.altura < 0)
                     {
-                        return new Response<Cliente>(false, "Altura invalida", null, null); // altura menor a 0
+                        return new Response<Cliente>(false, "Altura invalida"); 
                     }
                     else if (clienteUpdate.peso < 0)
                     {
-                        return new Response<Cliente>(false, "Peso invalido", null, null); // peso menor a 0
+                        return new Response<Cliente>(false, "Peso invalido");
                     }
                     else if (clienteUpdate.fecha_nacimiento > DateTime.Now)
                     {
-                        return new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual", null, null); // fecha de nacimiento mayor a la fecha actual.
+                        return new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual"); 
                     }
                     else if (Exist(clienteUpdate.id))
                     {
-                        return new Response<Cliente>(false, "ID repetido", null, null); ; //ID repetido.
+                        return new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado."); 
                     }
                     else
                     {
-                        var cliente = ReturnFromList(id_cliente);
+                        var cliente = list.Find(item => item.id == id_cliente);
                         cliente.id = clienteUpdate.id;
                         cliente.nombre = clienteUpdate.nombre;
                         cliente.genero = clienteUpdate.genero;
@@ -125,15 +116,15 @@ namespace Logica
                         cliente.fecha_nacimiento = clienteUpdate.fecha_nacimiento;
                         cliente.discapacidad = clienteUpdate.discapacidad;
                         cliente.fecha_ingreso = clienteUpdate.fecha_ingreso;
+                        ar_clientes.Update(list);
 
-                        return new Response<Cliente>(true, "Se ha guardado correctamente", null, null); ; //Reemplazo correctamente.
-
+                        return new Response<Cliente>(true, "Se ha actualizado el cliente.", list, cliente); 
                     }
                 }
             }
             catch (Exception)
             {
-                return new Response<Cliente>(false, "Exception", null, null); ; // excepion
+                return new Response<Cliente>(false, "Error!", null, null); ; // excepion
             }
         }
         public List<Cliente> GetAll()

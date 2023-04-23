@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using Datos.Archivos;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,29 +9,30 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class RepositorioInscripcion
+    public class RepositorioInscripcion: I_Repositorio<Inscripcion>
     {
         protected string ruta = "Inscripcion.txt";
         public RepositorioInscripcion()
         {
         }
-        public bool Save(Inscripcion inscripcion)
+        public Response<Inscripcion> Save(Inscripcion inscripcion)
         {
             try
             {
                 StreamWriter writer = new StreamWriter(ruta, true);
                 writer.WriteLine(inscripcion.ToString());
                 writer.Close();
-                return true;
+                return new Response<Inscripcion>(true, "Se ha guardado correctamente.", null, inscripcion);
             }
             catch (Exception)
             {
-                return false;
+                return new Response<Inscripcion>(true, "Error", null, inscripcion);
             }
         }
         public Inscripcion Mapper(string linea)
         {
-            RepositorioUsuarios repUsuarios = new RepositorioUsuarios();
+            RepositorioClientes repClientes = new RepositorioClientes();
+            RepositorioSupervisor repSupervisor = new RepositorioSupervisor();
             RepositorioPlan repPlanes = new RepositorioPlan();
             try
             {
@@ -63,9 +65,9 @@ namespace Datos
                 inscripcion.fecha_finalizacion = DateTime.Parse(aux[2]);
                 inscripcion.precio = double.Parse(aux[3]);
                 inscripcion.descuento = int.Parse(aux[4]);
-                inscripcion.cliente = repUsuarios.Mapper(cliente) as Cliente;
+                inscripcion.cliente = repClientes.Mapper(cliente);
                 inscripcion.plan = repPlanes.Mapper(plan);
-                inscripcion.supervisor = repUsuarios.Mapper(sup) as Supervisor;
+                inscripcion.supervisor = repSupervisor.Mapper(sup);
                 inscripcion.estado = bool.Parse(aux[29]);
                 return inscripcion;
             }

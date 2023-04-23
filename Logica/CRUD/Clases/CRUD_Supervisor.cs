@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class CRUD_Supervisor: Public_Supervisores, ICRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
+    public class CRUD_Supervisor: Public_Supervisores, I_CRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
     {
        
         public CRUD_Supervisor() { }
@@ -18,15 +18,17 @@ namespace Logica
         {
             if (GetLista() == null)
             {
-                return new Response<Supervisor>(false, "Lista vacia", null, null); // lista vacia
+                return new Response<Supervisor>(false, "Lista vacia"); // lista vacia
             }
             else
-            { 
-                int pos = GetLista().FindIndex(item => item.id == id_supervisor); // Devuelve el indice (posicion) de la lista que cumpla con la condicion 
+            {
+                int pos = GetLista().FindIndex(item => item.id == id_supervisor); 
 
-                if (pos < 0) { return new Response<Supervisor>(false, "No se pudo encontrar el supervisor.", null, null); } // No se encontro el id del objeto q desea eliminar.
-                
-                GetLista().RemoveAt(pos); return new Response<Supervisor>(true, "Eliminado correctamente.", null, null); //Elimino correctamente.
+                if (pos < 0) { return new Response<Supervisor>(false, "No se pudo encontrar el supervisor."); } 
+
+                Supervisor supervisor = ReturnFromList(id_supervisor);
+
+                GetLista().RemoveAt(pos); return new Response<Supervisor>(true, "Eliminado correctamente.", null, supervisor); 
             }
         }
         public List<Supervisor> GetBySearch(string search)
@@ -46,77 +48,62 @@ namespace Logica
             {
                 if (supervisor.altura < 0)
                 {
-                    return new Response<Supervisor>(false, "Altura invalida", null, null); // altura menor a 0
+                    return new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos."); 
                 }
                 else if (supervisor.peso < 0)
                 {
-                    return new Response<Supervisor>(false, "Peso invalido", null, null); // peso menor a 0
+                    return new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos."); 
                 }
                 else if (supervisor.fecha_nacimiento.AddYears(18) > DateTime.Now)
                 {
-                    return new Response<Supervisor>(false, "Menor de 18 años", null, null); // menor de 18 años.
+                    return new Response<Supervisor>(false, "Menor de 18 años, ingrese correctamente los datos."); 
                 }
                 else if (GetLista() == null)
                 {
-                    if (ar_usuarios.Save(supervisor))
-                    {
-                        return new Response<Supervisor>(true, "Registrado correctamente", null, null);
-                    }
-                    else
-                    {
-                        return new Response<Supervisor>(false, "EXCEPTION", null, null);
-                    }
-                    // guarda el item en la lista.
+                        return ar_supervisor.Save(supervisor);
                 }
                 else if (Exist(supervisor.id))
                 {
-                    return new Response<Supervisor>(false, "ID repetido", null, null); // id repetido
+                    return new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado");
                 }
                 else
                 {
-                    if (ar_usuarios.Save(supervisor))
-                    {
-                        return new Response<Supervisor>(true, "Guardado", null, null);
-                    }
-                    else
-                    {
-                        return new Response<Supervisor>(false, "EXCEPTION", null, null);
-                    }
+                    return ar_supervisor.Save(supervisor);
                     //GetLista().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza objetos por fecha de ingreso (opcional)
                     //return 0; // guarda el item en la lista.
                 }
             }
             catch (Exception)
             {
-                return new Response<Supervisor>(false, "EXCEPTION", null, null); //Te jodiste exception xd
+                return new Response<Supervisor>(false, "Error!", null, null);
             }
         }
         public Response<Supervisor> Update(Supervisor supervisorUpdate, string id_supervisor)
         {
             try
             {
-                if (GetLista() == null) { return new Response<Supervisor>(false, "Lista vacia", null, null); } // Lista vacia
+                if (GetLista() == null) { return new Response<Supervisor>(false, "No se encuentra registrado ningun supervisor", null, null); } 
                 else
                 {
                     if (!Exist(id_supervisor))
                     {
-                        return new Response<Supervisor>(false, "No se pudo encontrar", null, null); // No se encontro el id del objeto para actualizar.
+                        return new Response<Supervisor>(false, "No se encontro el supervisor", null, null); 
                     }
                     else if (supervisorUpdate.altura < 0)
                     {
-                        return new Response<Supervisor>(false, "Altura invalida", null, null); // altura menor a 0
+                        return new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos.", null, null); 
                     }
                     else if (supervisorUpdate.peso < 0)
                     {
-                        return new Response<Supervisor>(false, "Peso invalido", null, null); // peso menor a 0
+                        return new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos.", null, null); 
                     }
                     else if (supervisorUpdate.fecha_nacimiento.AddYears(18) > DateTime.Now)
                     {
-                        return new Response<Supervisor>(false, "Edad invalida (Menor de 18)", null, null); // menor de 18 años.
+                        return new Response<Supervisor>(false, "Edad invalida (Menor de 18)", null, null); 
                     }
                     else if (Exist(supervisorUpdate.id))
                     {
-                        return new Response<Supervisor>(false, "ID repetido", null, null); //ID repetido al momento de actualizar.
+                        return new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado", null, null); 
                     }
                     else
                     {
@@ -131,13 +118,13 @@ namespace Logica
                         supervisor.fecha_ingreso = supervisorUpdate.fecha_ingreso; 
                         supervisor.estado = supervisorUpdate.estado;
 
-                        return new Response<Supervisor>(true, "Reemplazado correctamente", null, null); //Reemplazo correctamente.
+                        return new Response<Supervisor>(true, "Actualizo correctamente los datos del supervisor.", null, supervisor);
                     }
                 }
             }
             catch (Exception)
             {
-                return new Response<Supervisor>(false, "EXCEPTION", null, null);
+                return new Response<Supervisor>(false, "Error!", null, null);
             }
         }
         public List<Supervisor> GetAll()

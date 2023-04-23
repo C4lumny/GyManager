@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones.AccesoProtegido
 {
-    public abstract class AbsGetListas<T>
+    public abstract class Abs_ProtectedClass<T>
     {
         protected abstract List<T> GetLista();
         protected abstract bool Exist(string id);

@@ -8,6 +8,14 @@ namespace Entidades
 {
     public class Response<T>
     {
+        public Response(bool success, string msg)
+        {
+            this.success = success;
+            this.msg = msg;
+            data = null;
+            value = default(T);
+        }
+
         public Response(bool success, string msg, List<T> data, T value)
         {
             this.success = success;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Planes: AbsGetListas<PlanGimnasio>
+    public class Protected_Planes: Abs_ProtectedClass<PlanGimnasio>
     {
         protected RepositorioPlan ar_plan;
         protected Protected_Planes()

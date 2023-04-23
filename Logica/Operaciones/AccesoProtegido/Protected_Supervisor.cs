@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Archivos;
 using Entidades;
 using Logica.Operaciones.AccesoProtegido;
 using System;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Supervisor: AbsGetListas<Supervisor>
+    public class Protected_Supervisor: Abs_ProtectedClass<Supervisor>
     {
-        protected RepositorioUsuarios ar_usuarios;
+        protected RepositorioSupervisor ar_supervisor;
         protected Protected_Supervisor()
         {
-            ar_usuarios = new RepositorioUsuarios();
+            ar_supervisor = new RepositorioSupervisor();
         }
         protected override bool Exist(string id_supervisor)
         {
@@ -26,7 +27,7 @@ namespace Logica.Operaciones
         }
         protected override List<Supervisor> GetLista()
         {
-            var lista = ar_usuarios.Load();
+            var lista = ar_supervisor.Load();
             if (lista == null)
             {
                 return null;

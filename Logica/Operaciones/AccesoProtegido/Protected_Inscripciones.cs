@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Inscripciones : AbsGetListas<Inscripcion>
+    public class Protected_Inscripciones : Abs_ProtectedClass<Inscripcion>
     {
         protected Public_Clientes op_Clientes;
         protected Public_Supervisores op_supervisor;
@@ -28,23 +28,23 @@ namespace Logica.Operaciones
             var lista = GetLista();
             if (lista == null)
             {
-                return new Response<Inscripcion>(false, "Lista vacia", null, null); // Lista vacia
+                return new Response<Inscripcion>(false, "No se han registrado inscripciones."); 
             }
             else if (inscripcion == null)
             {
-                return new Response<Inscripcion>(false, "ID no encontrado", null, null); // id no encontrado.
+                return new Response<Inscripcion>(false, "No se ha encontrado la inscripcion que desea renovar."); 
             }
             else if (supervisor == null)
             {
-                return new Response<Inscripcion>(false, "Supervisor no encontrado", null, null); // id_supervisor no encontrado.
+                return new Response<Inscripcion>(false, "No se encontro el supervisor ingresado"); 
             }
             else if (plan == null)
             {
-                return new Response<Inscripcion>(false, "No se encontro el plan", null, null); // Plan no encontrado.
+                return new Response<Inscripcion>(false, "No se encontro el plan ingresado"); 
             }
             else if (descuento > 100 || descuento < 0)
             {
-                return new Response<Inscripcion>(false, "Descuento invalido", null, null); // descuento no puede ser menor a 0 o mayor que 100
+                return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
             }
             else
             {
@@ -53,7 +53,7 @@ namespace Logica.Operaciones
                 {
                     if (item.id == inscripcion.id && item.estado == true)
                     {
-                        return new Response<Inscripcion>(false, "No es necesaria una renovacion", null, null); // El estado del id_inscripcion esta vigente, por ende no necesita renovacion.
+                        return new Response<Inscripcion>(false, "El cliente ya posee una inscripcion vigente.", null, null); 
                     }
                 }
                 return new Response<Inscripcion>(true, null, null, inscripcion); 
@@ -108,5 +108,22 @@ namespace Logica.Operaciones
                 ar_inscripcion.Update(lista);
             }
         }
+        protected Supervisor UpdateSupervisorList(Inscripcion inscripcion_inicial, Inscripcion inscripcion_final)
+        {
+            int pos = inscripcion_inicial.supervisor.ListaClientes.FindIndex(item => item.id == inscripcion_inicial.cliente.id);
+            if (inscripcion_inicial.supervisor != inscripcion_final.supervisor)
+            {
+                inscripcion_inicial.supervisor.ListaClientes.RemoveAt(pos);
+                inscripcion_inicial.supervisor = inscripcion_final.supervisor;
+                inscripcion_inicial.supervisor.ListaClientes.Add(inscripcion_inicial.cliente);
+                return inscripcion_inicial.supervisor;
+            }
+            else
+            {
+                inscripcion_inicial.supervisor = inscripcion_final.supervisor;
+                return inscripcion_inicial.supervisor;
+            }
+        }
+       
     }
 }

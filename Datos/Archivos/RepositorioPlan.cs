@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using Datos.Archivos;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,27 +9,29 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class RepositorioPlan
+    public class RepositorioPlan: I_Repositorio<PlanGimnasio>
     {
         protected string ruta = "Planes .txt";
-        public RepositorioPlan()
+        public  RepositorioPlan()
         {
         }
-        public bool Save(PlanGimnasio plan)
+
+        public Response<PlanGimnasio> Save(PlanGimnasio plan)
         {
             try
             {
                 StreamWriter writer = new StreamWriter(ruta, true);
                 writer.WriteLine(plan.ToString());
                 writer.Close();
-                return true;
+                return new Response<PlanGimnasio>(true, "Se ha guardado correctamente.", null, plan);
             }
             catch (Exception)
             {
-                return false;
+                return new Response<PlanGimnasio>(true, "Error!.", null, plan);
             }
         }
-        public PlanGimnasio Mapper(string linea)
+
+        public  PlanGimnasio Mapper(string linea)
         {
             try
             {
@@ -44,6 +47,7 @@ namespace Datos
             catch (Exception) { }
             return null;
         }
+
         public bool Update(List<PlanGimnasio> planes)
         {
             try
@@ -61,7 +65,8 @@ namespace Datos
             }
             return false;
         }
-        public List<PlanGimnasio> Load()
+
+        public  List<PlanGimnasio> Load()
         {
             try
             {

@@ -1,6 +1,5 @@
 ﻿using Datos;
 using Entidades;
-using Logica.CRUD.Interfaz;
 using Logica.Operaciones.AccesoProtegido;
 using System;
 using System.Collections.Generic;
@@ -10,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Clientes: AbsGetListas<Cliente>
+    public class Protected_Clientes: Abs_ProtectedClass<Cliente>
     {
-        protected RepositorioUsuarios ar_usuario;
+        protected RepositorioClientes ar_clientes;
         protected Protected_Clientes()
         {
-            ar_usuario = new RepositorioUsuarios();
+            ar_clientes = new RepositorioClientes();
         }
         protected override List<Cliente> GetLista()
         {
-            var lista = ar_usuario.Load();
+            var lista = ar_clientes.Load();
             if (lista == null)
             {
                 return null;
