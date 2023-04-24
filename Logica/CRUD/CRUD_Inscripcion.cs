@@ -193,17 +193,6 @@ namespace Logica
                 }
                 else
                 {
-                    //if (contratoCaducado.id_supervisor != id_supervisor)
-                    //{
-                    //    int pos = contratoCaducado.id_supervisor.ListaClientes.FindIndex(item => item.id == id_inscripcion.cliente.id);
-                    //    contratoCaducado.id_supervisor.ListaClientes.RemoveAt(pos);
-                    //    id_inscripcion.id_supervisor = id_supervisor;
-                    //    id_supervisor.ListaClientes.Add(id_inscripcion.cliente);
-                    //}
-                    //else
-                    //{
-                    //    id_inscripcion.id_supervisor = id_supervisor;
-                    //}
                     inscripcion.supervisor = supervisor;
                     inscripcion.plan = plan;
                     inscripcion.descuento = descuento;
