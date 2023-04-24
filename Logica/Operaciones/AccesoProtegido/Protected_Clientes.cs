@@ -33,5 +33,9 @@ namespace Logica.Operaciones
             }
             return false; // no encontro.
         }
+        protected double CalculateIMC(double peso, double altura)
+        {
+            return peso / (altura * altura);
+        }
     }
 }

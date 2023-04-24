@@ -217,7 +217,7 @@ namespace GUI
                     {
                         var response = servicioCliente.Delete(id_clienteU);
                         Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.value.nombre);
-                        Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir actualizando clientes?[S/N]: ");
+                        Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
                         op = char.Parse(Console.ReadLine().ToLower());
                     }
                 }

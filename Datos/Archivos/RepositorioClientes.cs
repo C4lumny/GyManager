@@ -80,18 +80,18 @@ namespace Datos
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, false);
                 if (list.Count == 0 && File.Exists(ruta))
                 {
                     File.Delete(ruta);
                 }
                 else
                 {
+                    StreamWriter writer = new StreamWriter(ruta, false);
                     foreach (var item in list)
                     {
                         writer.WriteLine(item.ToString());
-                        writer.Close();
                     }
+                    writer.Close();
                 }
                 return true;
             }

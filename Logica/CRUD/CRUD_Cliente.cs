@@ -16,12 +16,12 @@ namespace Logica
             var list = GetMainList();
             if (list == null)
             {
-                return new Response<Cliente>(false, "La lista esta vacia"); 
+                return new Response<Cliente>(false, "La lista esta vacia");
             }
             else
             {
-                int pos = list.FindIndex(item => item.id == id_cliente); 
-                if (pos < 0)  { return new Response<Cliente>(false, "No se ha encontrado el cliente que se desea eliminar."); }
+                int pos = list.FindIndex(item => item.id == id_cliente);
+                if (pos < 0) { return new Response<Cliente>(false, "No se ha encontrado el cliente que se desea eliminar."); }
                 Cliente cliente = ReturnFromList(id_cliente);
                 list.RemoveAt(pos);
                 ar_clientes.Update(list);
@@ -57,6 +57,7 @@ namespace Logica
                 }
                 else if (GetMainList() == null)
                 {
+                    cliente.imc = Math.Round(CalculateIMC(cliente.peso, cliente.altura), 2); 
                     return ar_clientes.Save(cliente);
                 }
                 else if (Exist(cliente.id))
@@ -65,6 +66,7 @@ namespace Logica
                 }
                 else
                 {
+                    cliente.imc = Math.Round(CalculateIMC(cliente.peso, cliente.altura), 2);
                     return ar_clientes.Save(cliente);
                     //GetMainList().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza clientes por fecha de ingreso (opcional)
                     //return 0; // guarda correctamente en la lista.
@@ -133,19 +135,5 @@ namespace Logica
             if (lista == null) { return null; }
             return lista;
         }
-
-        //bool ValidateID(string id_cliente)
-        //{
-        //    if (GetMainList() == null) // valida si el id del cliente se encuentra en una lista de supervisores.
-        //    {
-        //        return true;
-        //    }
-        //    else if (GetMainList().FirstOrDefault(item => item.id == id_cliente) == null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
-        //    {
-        //        return true;
-        //    }
-        //    return false; // encontro en la lista de clientes una id repetida.
-        //}
-
     }
 }

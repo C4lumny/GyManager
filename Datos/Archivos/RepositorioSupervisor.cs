@@ -79,12 +79,19 @@ namespace Datos.Archivos
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, false);
-                foreach (var item in list)
+                if (list.Count == 0 && File.Exists(ruta))
                 {
-                    writer.WriteLine(item.ToString());
+                    File.Delete(ruta);
                 }
-                writer.Close();
+                else
+                {
+                    StreamWriter writer = new StreamWriter(ruta, false);
+                    foreach (var item in list)
+                    {
+                        writer.WriteLine(item.ToString());
+                    }
+                    writer.Close();
+                }
                 return true;
             }
             catch (Exception)

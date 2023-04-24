@@ -76,16 +76,23 @@ namespace Datos
             catch (Exception) { }
             return null;
         }
-        public bool Update(List<Inscripcion> inscripciones)
+        public bool Update(List<Inscripcion> list)
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, false);
-                foreach (var item in inscripciones)
+                if (list.Count == 0 && File.Exists(ruta))
                 {
-                    writer.WriteLine(item.ToString());
+                    File.Delete(ruta);
                 }
-                writer.Close();
+                else
+                {
+                    StreamWriter writer = new StreamWriter(ruta, false);
+                    foreach (var item in list)
+                    {
+                        writer.WriteLine(item.ToString());
+                    }
+                    writer.Close();
+                }
                 return true;
             }
             catch (Exception)
