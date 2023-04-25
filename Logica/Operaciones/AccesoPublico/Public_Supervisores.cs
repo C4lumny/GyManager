@@ -14,9 +14,7 @@ namespace Logica.Operaciones.AccesoPublico
         }
         public Supervisor ReturnFromList(string id_supervisor)
         {
-            return GetMainList().FirstOrDefault(item => item.id == id_supervisor); // devuelve null si no encontro un item, devuelve el item de la lista de supervisores en el cado de que la condicion se cuampla.
+            return GetMainList().FirstOrDefault(item => item.id == id_supervisor); 
         }
-
-        
     }
 }

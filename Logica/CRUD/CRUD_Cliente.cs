@@ -57,7 +57,7 @@ namespace Logica
                 }
                 else if (GetMainList() == null)
                 {
-                    cliente.imc = Math.Round(CalculateIMC(cliente.peso, cliente.altura), 2); 
+                    cliente.imc = Math.Round(CalculateIMC(cliente), 2); 
                     return ar_clientes.Save(cliente);
                 }
                 else if (Exist(cliente.id))
@@ -66,7 +66,7 @@ namespace Logica
                 }
                 else
                 {
-                    cliente.imc = Math.Round(CalculateIMC(cliente.peso, cliente.altura), 2);
+                    cliente.imc = Math.Round(CalculateIMC(cliente), 2);
                     return ar_clientes.Save(cliente);
                     //GetMainList().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza clientes por fecha de ingreso (opcional)
                     //return 0; // guarda correctamente en la lista.

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRUD\CRUD_HorarioSupervisor.cs" />
     <Compile Include="Operaciones\AccesoProtegido\Abs_ProtectedClass.cs" />
     <Compile Include="CRUD\CRUD_Inscripcion.cs" />
     <Compile Include="CRUD\I_CRUD.cs" />

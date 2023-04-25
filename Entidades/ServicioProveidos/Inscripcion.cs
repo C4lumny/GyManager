@@ -4,7 +4,12 @@ namespace Entidades
 {
     public class Inscripcion
     {
-        public Inscripcion() { }
+        public Inscripcion() 
+        { 
+            cliente = new Cliente();
+            supervisor = new Supervisor();
+            plan = new PlanGimnasio();
+        }
         public Inscripcion(string id, DateTime fecha_inicio, DateTime fecha_finalizacion, double precio,  double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor, bool estado)
         {
             this.id = id;

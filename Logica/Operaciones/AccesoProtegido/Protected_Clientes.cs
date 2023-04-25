@@ -23,19 +23,19 @@ namespace Logica.Operaciones
             {
                 return null;
             }
-            return lista.OfType<Cliente>().ToList();  // retorna la lista de los clientes de la clase Listas.
+            return lista;  
         }
         protected override bool Exist(string id_cliente)
         {
-            if (GetMainList().FirstOrDefault(item => item.id == id_cliente) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
+            if (GetMainList().FirstOrDefault(item => item.id == id_cliente) != null) 
             {
-                return true; // encontro una id existente.
+                return true; 
             }
-            return false; // no encontro.
+            return false; 
         }
-        protected double CalculateIMC(double peso, double altura)
+        protected double CalculateIMC(Cliente cliente)
         {
-            return peso / (altura * altura);
+            return cliente.peso / (cliente.altura * cliente.altura);
         }
     }
 }

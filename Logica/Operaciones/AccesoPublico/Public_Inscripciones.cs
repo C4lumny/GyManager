@@ -10,7 +10,6 @@ namespace Logica.Operaciones.AccesoPublico
 {
     public class Public_Inscripciones : Protected_Inscripciones
     {
-
         public Public_Inscripciones()
         {
            
@@ -46,6 +45,5 @@ namespace Logica.Operaciones.AccesoPublico
             }
             return list;
         }
-        
     }
 }

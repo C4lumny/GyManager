@@ -203,29 +203,23 @@ namespace GUI
             char op = 'x';
             do
             {
-                try
+       
+                Console.Clear();
+                Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR CLIENTE---");
+                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteU = Console.ReadLine();
+                if (servicioCliente.ReturnFromList(id_clienteU) == null)
                 {
-                    Console.Clear();
-                    Console.SetCursorPosition(43, 5); Console.Write("---BORRAR CLIENTE---");
-                    Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteU = Console.ReadLine();
-                    if (servicioCliente.ReturnFromList(id_clienteU) == null)
-                    {
-                        Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        var response = servicioCliente.Delete(id_clienteU);
-                        Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.value.nombre);
-                        Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
-                        op = char.Parse(Console.ReadLine().ToLower());
-                    }
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
+                    Console.ReadKey();
                 }
-                catch (Exception)
+                else
                 {
-                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos");
-                    break;
+                    var response = servicioCliente.Delete(id_clienteU);
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.value.nombre);
+                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
+                    op = char.Parse(Console.ReadLine().ToLower());
                 }
+              
                 Console.ReadKey();
             } while (op == 's');
         }

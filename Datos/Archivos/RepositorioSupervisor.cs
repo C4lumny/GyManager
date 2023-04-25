@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,6 @@ namespace Datos.Archivos
         public RepositorioSupervisor()
         {
         }
-
         public List<Supervisor> Load()
         {
             try
@@ -38,7 +38,6 @@ namespace Datos.Archivos
 
         public Supervisor Mapper(string linea)
         {
-            
             try
             {
                 var aux = linea.Split(';');
@@ -52,6 +51,10 @@ namespace Datos.Archivos
                 supervisor.fecha_nacimiento = DateTime.Parse(aux[6]);
                 supervisor.fecha_ingreso = DateTime.Parse(aux[7]);
                 supervisor.estado = bool.Parse(aux[8]);
+                for (int i = 9; i < aux.Length-2; i += 3)
+                {
+                    supervisor.Horarios.Add(new Horario_Atencion(DateTime.Parse(aux[i]), DateTime.Parse(aux[i+1])));
+                }
                 return supervisor;
             }
             catch (Exception)

@@ -29,12 +29,13 @@ namespace Pureba
             var plan_Semipersonalizado = new PlanGimnasio("5", "Semipersonalizado", 20000, "aaaaaa", 60);
             var plan_Dirigido = new PlanGimnasio("6", "Dirigido", 50000, "bbbbbbbb", 30);
 
-            var Coach1 = new Supervisor("1", "Nathan", "Masculino", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
+            var Coach1 = new Supervisor("1", "Nathan", "Masculino", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(),true);
             var Coach2 = new Supervisor("2", "Diego", "Otro", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
+            Coach1.Horarios.Add(new Horario_Atencion(DateTime.Now, DateTime.Now.AddHours(3)));
+            Coach1.Horarios.Add(new Horario_Atencion(DateTime.Now, DateTime.Now.AddHours(6)));
 
-            var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, time.ToUniversalTime(), "", time.ToUniversalTime());
-            var cliente2 = new Cliente("4", "Aisaac", "Masculino", "3023018355", 1.66, 78, time.ToUniversalTime(), "TDA", time.ToUniversalTime());
-
+            var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, 23, time.ToUniversalTime(), "", time.ToUniversalTime());
+            var cliente2 = new Cliente("4", "Aisaac", "Masculino", "3023018355", 1.66, 78, 23, time.ToUniversalTime(), "TDA", time.ToUniversalTime());
 
             //////////////////////////////////////////////////////>  FIN_DECLARACIONES  <//////////////////////////////////////////////////////////////
 
@@ -138,6 +139,13 @@ namespace Pureba
                         Console.WriteLine("NOMBRE: " + item.nombre);
                         Console.WriteLine("GENERO: " + item.genero);
                         Console.WriteLine("ALTURA: " + item.altura);
+                        Console.WriteLine("HORIO DE ATENCION:");
+                        foreach (var horario in item.Horarios)
+                        {
+                            Console.WriteLine("HORA DE ATENCION: " + horario.Hora_Inicio.ToShortTimeString() + "  >>  " + horario.Hora_Salida.ToShortTimeString());
+                            Console.WriteLine("TURNO: " + horario.turno);
+
+                        }
                         Console.WriteLine("-------------------------------------");
                     }
                 }
