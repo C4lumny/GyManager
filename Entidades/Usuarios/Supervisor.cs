@@ -12,17 +12,15 @@ namespace Entidades
         {
             Horarios = new List<Turno_Atencion>();
         }
-        public bool estado { get; set; }
         public List<Turno_Atencion> Horarios { get; set; }
-        public Supervisor(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, DateTime fecha_ingreso, bool estado) : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
+        public Supervisor(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, DateTime fecha_ingreso) : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
         {
-            this.estado = estado;
             Horarios = new List<Turno_Atencion>();
         }
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"{id};{nombre};{genero};{telefono};{altura};{peso};{fecha_nacimiento};{fecha_ingreso};{estado}");
+            sb.Append($"{id};{nombre};{genero};{telefono};{altura};{peso};{fecha_nacimiento};{fecha_ingreso};");
             foreach (var item in Horarios)
             {
                 sb.Append(";" + item.ToString());

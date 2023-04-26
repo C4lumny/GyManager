@@ -118,8 +118,6 @@ namespace Logica
                         supervisor.peso = supervisorUpdate.peso;
                         supervisor.fecha_nacimiento = supervisorUpdate.fecha_nacimiento;
                         supervisor.fecha_ingreso = supervisorUpdate.fecha_ingreso; 
-                        supervisor.estado = supervisorUpdate.estado;
-
                         return new Response<Supervisor>(true, "Actualizo correctamente los datos del supervisor.", null, supervisor);
                     }
                 }

@@ -69,14 +69,14 @@ namespace Pureba
             //CrearCliente();                     Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey(); 
             ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
-            AñadirTurno();
-            EliminarTurno();
-            ConsultarSupervisor(); Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n"); Console.ReadKey();
+            //AñadirTurno();
+            //EliminarTurno();
+            //ConsultarSupervisor(); Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n"); Console.ReadKey();
             //CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
-            //eliminarCliente();
-            //ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
+            eliminarCliente();
+            ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
             //RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
-            //ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
+            ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
             //ConsultarContratoHistorico();       Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
             //Consultar_ClientesDeSupervisor();   Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
@@ -423,6 +423,7 @@ namespace Pureba
                 }
                 
             }
+
             void EliminarTurno()
             {
                 Console.Clear();

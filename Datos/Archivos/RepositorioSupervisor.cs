@@ -50,8 +50,7 @@ namespace Datos.Archivos
                 supervisor.peso = double.Parse(aux[5]);
                 supervisor.fecha_nacimiento = DateTime.Parse(aux[6]);
                 supervisor.fecha_ingreso = DateTime.Parse(aux[7]);
-                supervisor.estado = bool.Parse(aux[8]);
-                for (int i = 9; i < aux.Length-2; i += 3)
+                for (int i = 8; i < aux.Length-2; i += 3)
                 {
                     supervisor.Horarios.Add(new Turno_Atencion(DateTime.Parse(aux[i]), DateTime.Parse(aux[i+1])));
                 }

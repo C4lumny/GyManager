@@ -72,38 +72,5 @@ namespace Logica.Operaciones
                 ar_inscripcion.Update(lista);
             }
         }
-        protected void ValidateSupvervisorStatus()
-        {
-            var list = GetSupervisores();
-            foreach (var item in list)
-            {
-                if (Cont_Clientes(item) >= 10)
-                {
-                    item.estado = false;
-                }
-                else
-                {
-                    item.estado = true;
-                }
-            }
-            ar_supervisor.Update(list);
-        }
-        protected int Cont_Clientes(Supervisor supervisor)
-        {
-            int cont = 0;
-            var list = GetMainList();
-            if (list != null)
-            {
-                foreach (var item in GetMainList())
-                {
-                    if (item.supervisor == supervisor)
-                    {
-                        cont++;
-                    }
-                }
-            }
-            return cont;
-        }
-
     }
 }

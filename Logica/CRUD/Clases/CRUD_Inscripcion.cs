@@ -52,7 +52,6 @@ namespace Logica
             try
             {
                 ValidateStatus();
-                ValidateSupvervisorStatus();
                 var lista = GetMainList();
                 if (inscripcion.cliente == null)
                 {
@@ -61,10 +60,6 @@ namespace Logica
                 else if (inscripcion.supervisor == null)
                 {
                     return new Response<Inscripcion>(false, "El supervisor ingresado no existe");
-                }
-                else if (inscripcion.supervisor.estado == false)
-                {
-                    return new Response<Inscripcion>(false, "El supervisor ingresado ya posee demasiados clientes asignados.");
                 }
                 else if (inscripcion.plan == null)
                 {
