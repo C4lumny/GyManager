@@ -36,23 +36,25 @@ namespace Logica.Operaciones
         }
         public bool validarHora(Supervisor sup, DateTime Hora_Inicial, DateTime Hora_Salida)
         {
-            foreach (var item in sup.Horarios)
+            if (Hora_Inicial >= Hora_Salida)
             {
-                if (Hora_Inicial >= Hora_Salida)
-                {
-                    return false;
-                }
-                if (Hora_Inicial.TimeOfDay >= item.Hora_Inicio.TimeOfDay && item.Hora_Salida.TimeOfDay >= Hora_Inicial.TimeOfDay)
-                {
-                    return false;
-                }
-                if (Hora_Inicial.TimeOfDay <= item.Hora_Inicio.TimeOfDay && Hora_Salida.TimeOfDay >= item.Hora_Inicio.TimeOfDay)
-                {
-                    return false;
-                }
+                return false;
             }
-            return true;
+            else
+            {
+                foreach (var item in sup.Horarios)
+                {
+                    if (Hora_Inicial.TimeOfDay >= item.Hora_Inicio.TimeOfDay && item.Hora_Salida.TimeOfDay >= Hora_Inicial.TimeOfDay)
+                    {
+                        return false;
+                    }
+                    else if (Hora_Inicial.TimeOfDay <= item.Hora_Inicio.TimeOfDay && Hora_Salida.TimeOfDay >= item.Hora_Inicio.TimeOfDay)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
         }
-
     }
 }
