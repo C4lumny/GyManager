@@ -11,9 +11,10 @@ namespace Logica
 {
     public class CRUD_Inscripcion: Public_Inscripciones, I_CRUD<Inscripcion>
     {
+       
         public CRUD_Inscripcion()
         {
-
+           
         }
         public Response<Inscripcion> Delete(string id_inscripcion)
         {
@@ -132,7 +133,7 @@ namespace Logica
                     {
                         return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
                     }
-                    else if (Exist(inscripcionUpdate.id))
+                    else if (ReturnFromList(inscripcionUpdate.id) == null)
                     {
                         return new Response<Inscripcion>(false, "El ID ingresado ya esta registrado. Por favor ingrese otro"); 
                     }

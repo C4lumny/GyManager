@@ -41,22 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUD\CRUD_HorarioSupervisor.cs" />
-    <Compile Include="Operaciones\AccesoProtegido\Abs_ProtectedClass.cs" />
-    <Compile Include="CRUD\CRUD_Inscripcion.cs" />
-    <Compile Include="CRUD\I_CRUD.cs" />
-    <Compile Include="CRUD\CRUD_Cliente.cs" />
-    <Compile Include="Operaciones\AccesoProtegido\Protected_Inscripciones.cs" />
-    <Compile Include="Operaciones\AccesoProtegido\Protected_Planes.cs" />
-    <Compile Include="Operaciones\AccesoProtegido\Protected_Supervisor.cs" />
-    <Compile Include="Operaciones\AccesoProtegido\Protected_Clientes.cs" />
-    <Compile Include="Operaciones\AccesoPublico\Public_Clientes.cs" />
-    <Compile Include="Operaciones\AccesoPublico\Public_Inscripciones.cs" />
-    <Compile Include="Operaciones\AccesoPublico\Public_Planes.cs" />
-    <Compile Include="Operaciones\AccesoPublico\Public_Supervisores.cs" />
+    <Compile Include="Operaciones\Servicio_Supervisor\Public_Horarios.cs" />
+    <Compile Include="Operaciones\Clase_Abstracta\Abs_ProtectedClass.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Inscripcion.cs" />
+    <Compile Include="CRUD\Interfaz\I_CRUD.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Cliente.cs" />
+    <Compile Include="Operaciones\Servicio_Inscripcion\Protected_GetArchivo.cs" />
+    <Compile Include="Operaciones\Servicio_Inscripcion\Protected_Inscripciones.cs" />
+    <Compile Include="Operaciones\Servicio_PlanesGimnasio\Protected_Planes.cs" />
+    <Compile Include="Operaciones\Servicio_Supervisor\Protected_Supervisor.cs" />
+    <Compile Include="Operaciones\Servicio_Cliente\Protected_Clientes.cs" />
+    <Compile Include="Operaciones\Servicio_Cliente\Public_Clientes.cs" />
+    <Compile Include="Operaciones\Servicio_Inscripcion\Public_Inscripciones.cs" />
+    <Compile Include="Operaciones\Servicio_PlanesGimnasio\Public_Planes.cs" />
+    <Compile Include="Operaciones\Servicio_Supervisor\Public_Supervisores.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CRUD\CRUD_Supervisor.cs" />
-    <Compile Include="CRUD\CRUD_Plan.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Supervisor.cs" />
+    <Compile Include="CRUD\Clases\CRUD_Plan.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

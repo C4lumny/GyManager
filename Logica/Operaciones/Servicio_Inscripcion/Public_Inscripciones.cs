@@ -33,17 +33,26 @@ namespace Logica.Operaciones.AccesoPublico
         {
             return GetMainList().FirstOrDefault(item => item.id == id_inscripcion);
         }
-        public List<Cliente> List_Clientes(Supervisor supervisor)
+        public List<Cliente> ClientesPorSupuervisor(Supervisor supervisor)
         {
-            List<Cliente> list = new List<Cliente>();
-            foreach (var item in GetMainList())
+            var list = GetMainList();
+            if (list != null)
             {
-                if (item.supervisor.id == supervisor.id)
+                List<Cliente> list_cliente = new List<Cliente>();
+                foreach (var item in list)
                 {
-                    list.Add(item.cliente);
+                    if (item.supervisor.id == supervisor.id)
+                    {
+                        list_cliente.Add(item.cliente);
+                    }
                 }
+                return list_cliente;
             }
-            return list;
+            else
+            {
+                return null;
+            }    
         }
+        
     }
 }

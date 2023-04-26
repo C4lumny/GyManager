@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServicioProveidos\Horario_Atencion.cs" />
+    <Compile Include="ServicioProveidos\Turno_Atencion.cs" />
     <Compile Include="Usuarios\Cliente.cs" />
     <Compile Include="Response\Response.cs" />
     <Compile Include="Usuarios\Supervisor.cs" />

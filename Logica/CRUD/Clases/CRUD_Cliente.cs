@@ -24,8 +24,15 @@ namespace Logica
                 if (pos < 0) { return new Response<Cliente>(false, "No se ha encontrado el cliente que se desea eliminar."); }
                 Cliente cliente = ReturnFromList(id_cliente);
                 list.RemoveAt(pos);
-                ar_clientes.Update(list);
-                return new Response<Cliente>(true, "El cliente se ha eliminado correctamente", list, cliente);
+                if (ar_clientes.Update(list))
+                {
+                    return new Response<Cliente>(true, "El cliente se ha eliminado correctamente", list, cliente);
+                }
+                else
+                {
+                    return new Response<Cliente>(false, "No se ha podido eliminar el cliente.");
+                }
+
             }
         }
         public List<Cliente> GetBySearch(string search)

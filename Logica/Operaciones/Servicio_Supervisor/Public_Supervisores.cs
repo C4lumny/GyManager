@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Logica.CRUD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones.AccesoPublico
 {
-    public class Public_Supervisores: Protected_Supervisor
+    public class Public_Supervisores: Public_Horarios
     {
         public Public_Supervisores()
         {

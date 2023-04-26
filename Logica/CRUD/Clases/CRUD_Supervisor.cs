@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using Logica.CRUD;
 using Logica.Operaciones;
 using Logica.Operaciones.AccesoPublico;
 using System;

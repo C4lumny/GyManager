@@ -19,7 +19,7 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_supervisor)
         {
-            if (GetMainList().FirstOrDefault(item => item.id == id_supervisor) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
+            if (GetMainList().FirstOrDefault(item => item.id == id_supervisor) != null)
             {
                 return true; // encontro una id existente.
             }
@@ -34,5 +34,25 @@ namespace Logica.Operaciones
             }
             return lista.OfType<Supervisor>().ToList(); // retorna la lista de los supervisores de la clase Listas.
         }
+        public bool validarHora(Supervisor sup, DateTime Hora_Inicial, DateTime Hora_Salida)
+        {
+            foreach (var item in sup.Horarios)
+            {
+                if (Hora_Inicial >= Hora_Salida)
+                {
+                    return false;
+                }
+                if (Hora_Inicial.TimeOfDay >= item.Hora_Inicio.TimeOfDay && item.Hora_Salida.TimeOfDay >= Hora_Inicial.TimeOfDay)
+                {
+                    return false;
+                }
+                if (Hora_Inicial.TimeOfDay <= item.Hora_Inicio.TimeOfDay && Hora_Salida.TimeOfDay >= item.Hora_Inicio.TimeOfDay)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
     }
 }

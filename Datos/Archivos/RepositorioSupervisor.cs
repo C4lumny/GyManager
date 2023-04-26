@@ -53,7 +53,7 @@ namespace Datos.Archivos
                 supervisor.estado = bool.Parse(aux[8]);
                 for (int i = 9; i < aux.Length-2; i += 3)
                 {
-                    supervisor.Horarios.Add(new Horario_Atencion(DateTime.Parse(aux[i]), DateTime.Parse(aux[i+1])));
+                    supervisor.Horarios.Add(new Turno_Atencion(DateTime.Parse(aux[i]), DateTime.Parse(aux[i+1])));
                 }
                 return supervisor;
             }

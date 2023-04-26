@@ -11,22 +11,8 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Inscripciones : Abs_ProtectedClass<Inscripcion>
+    public class Protected_Inscripciones : Protected_GetArchivo
     {
-        protected Public_Clientes op_Clientes;
-        protected Public_Supervisores op_supervisor;
-        protected Public_Planes op_plan;
-        protected RepositorioInscripcion ar_inscripcion;
-        protected RepositorioSupervisor ar_sup;
-       
-        protected Protected_Inscripciones()
-        {
-            ar_inscripcion = new RepositorioInscripcion();
-            ar_sup = new RepositorioSupervisor();
-            op_Clientes = new Public_Clientes();
-            op_supervisor = new Public_Supervisores();
-            op_plan = new Public_Planes();
-        }
         protected Response<Inscripcion> isRenovationValid(Inscripcion inscripcion, Supervisor supervisor, PlanGimnasio plan, double descuento)
         {
             var lista = GetMainList();
@@ -63,18 +49,6 @@ namespace Logica.Operaciones
                 return new Response<Inscripcion>(true, null, null, inscripcion); 
             }
         }
-        protected double Ganancia() // ganancia
-        {
-            double ganancia = 0;
-            if (GetMainList() != null)
-            {
-                foreach (var item in GetMainList())
-                {
-                    ganancia += item.precio;
-                }
-            }
-            return ganancia;
-        }
         protected bool ValidateCliente(string id)
         {
             if (GetMainList().FirstOrDefault(item => item.cliente.id == id) == null)
@@ -98,23 +72,9 @@ namespace Logica.Operaciones
                 ar_inscripcion.Update(lista);
             }
         }
-        protected override bool Exist(string id_inscripcion)
-        {
-            if (GetMainList().FirstOrDefault(item => item.id == id_inscripcion) != null) // Valida si existe un item en la lista por medio de la id, retorna false si no encontro
-            {
-                return true;
-            }
-            return false;
-        }
-        protected override List<Inscripcion> GetMainList()
-        {
-            var lista = ar_inscripcion.Load();
-            if (lista == null) { return null; }
-            return lista;  // retorna la lista de contratos, privada para esta clase.
-        }
         protected void ValidateSupvervisorStatus()
         {
-            var list = ar_sup.Load();
+            var list = GetSupervisores();
             foreach (var item in list)
             {
                 if (Cont_Clientes(item) >= 10)
@@ -126,7 +86,7 @@ namespace Logica.Operaciones
                     item.estado = true;
                 }
             }
-            ar_sup.Update(list);
+            ar_supervisor.Update(list);
         }
         protected int Cont_Clientes(Supervisor supervisor)
         {

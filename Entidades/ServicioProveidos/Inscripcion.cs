@@ -33,7 +33,7 @@ namespace Entidades
         public Supervisor supervisor { get; set;}
         public override string ToString()
         {
-            return $"{id};{fecha_inicio};{fecha_finalizacion};{precio};{descuento};{cliente.ToString()};{plan.ToString()};{supervisor.ToString()};{estado}";
+            return $"{id};{fecha_inicio};{fecha_finalizacion};{precio};{descuento};{cliente.id};{plan.id};{supervisor.id};{estado}";
         }
     }
 }

@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Horario_Atencion
+    public class Turno_Atencion
     {
-        public string turno { get; set; }
+        public string Jornada { get; set; }
         public DateTime Hora_Inicio { get; set; }
         public DateTime Hora_Salida { get; set; }
-        public Horario_Atencion()
+        public Turno_Atencion()
         {
         }
-        public Horario_Atencion(DateTime hora_Inicio, DateTime hora_Salida)
+        public Turno_Atencion(DateTime hora_Inicio, DateTime hora_Salida)
         {
             Hora_Inicio = hora_Inicio;
             Hora_Salida = hora_Salida;
-            turno = CalculateTurno();
+            Jornada = CalculateTurno();
         }
         string CalculateTurno()
         {
@@ -37,7 +37,7 @@ namespace Entidades
         }
         public override string ToString()
         {
-            return $"{Hora_Inicio.ToShortTimeString()};{Hora_Salida.ToShortTimeString()};{turno}"; 
+            return $"{Hora_Inicio.ToShortTimeString()};{Hora_Salida.ToShortTimeString()};{Jornada}"; 
         }
     }
 }

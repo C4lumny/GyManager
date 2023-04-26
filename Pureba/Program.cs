@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using Logica;
 using System;
+using System.Globalization;
 
 namespace Pureba
 {
@@ -15,10 +16,8 @@ namespace Pureba
             //Thread hilo1 = new Thread(servicioContrato.ValidateStatus);
             //hilo1.Start();
 
-            //Hola amigos de youtube pipipipipipi
 
             ///////////////////////////////////////////////////////<  DECLARACIONES  >/////////////////////////////////////////////////////////////////
-
 
             DateTime time = new DateTime();
             CRUD_Inscripcion servicioContrato = new CRUD_Inscripcion(); 
@@ -31,8 +30,8 @@ namespace Pureba
 
             var Coach1 = new Supervisor("1", "Nathan", "Masculino", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(),true);
             var Coach2 = new Supervisor("2", "Diego", "Otro", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
-            Coach1.Horarios.Add(new Horario_Atencion(DateTime.Now, DateTime.Now.AddHours(3)));
-            Coach1.Horarios.Add(new Horario_Atencion(DateTime.Now, DateTime.Now.AddHours(6)));
+            Coach1.Horarios.Add(new Turno_Atencion(DateTime.Now, DateTime.Now.AddHours(3)));
+            Coach1.Horarios.Add(new Turno_Atencion(DateTime.Now, DateTime.Now.AddHours(6)));
 
             var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, 23, time.ToUniversalTime(), "", time.ToUniversalTime());
             var cliente2 = new Cliente("4", "Aisaac", "Masculino", "3023018355", 1.66, 78, 23, time.ToUniversalTime(), "TDA", time.ToUniversalTime());
@@ -70,12 +69,16 @@ namespace Pureba
             //CrearCliente();                     Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey(); 
             ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
+            AñadirTurno();
+            EliminarTurno();
+            ConsultarSupervisor(); Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n"); Console.ReadKey();
             //CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
+            //eliminarCliente();
             //ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
             //RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
             //ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
             //ConsultarContratoHistorico();       Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
-            Consultar_ClientesDeSupervisor();   Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
+            //Consultar_ClientesDeSupervisor();   Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
 
             Console.WriteLine("\n//////////////////  __FIN_PROYECTO__  //////////////////");               Console.ReadKey();
@@ -104,6 +107,41 @@ namespace Pureba
                     }
                 }
 
+            }
+
+            void eliminarCliente()
+            {
+                string id_clienteU;
+                char op = 'x';
+                do
+                {
+
+                    Console.Clear();
+                    Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR CLIENTE---");
+                    Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteU = Console.ReadLine();
+                    if (servicioCliente.ReturnFromList(id_clienteU) == null)
+                    {
+                        Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        var response = servicioCliente.Delete(id_clienteU);
+                        if (response.success)
+                        {
+                            Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.value.nombre);
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(35, 9); Console.WriteLine(response.msg);
+
+                        }
+                        Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
+                        op = char.Parse(Console.ReadLine().ToLower());
+                    }
+
+                    Console.ReadKey();
+                } while (op == 's');
             }
 
             void CrearSupervisor()
@@ -143,7 +181,7 @@ namespace Pureba
                         foreach (var horario in item.Horarios)
                         {
                             Console.WriteLine("HORA DE ATENCION: " + horario.Hora_Inicio.ToShortTimeString() + "  >>  " + horario.Hora_Salida.ToShortTimeString());
-                            Console.WriteLine("TURNO: " + horario.turno);
+                            Console.WriteLine("TURNO: " + horario.Jornada);
 
                         }
                         Console.WriteLine("-------------------------------------");
@@ -345,7 +383,7 @@ namespace Pureba
                     var sup = servicioSupervisor.ReturnFromList(id_supervisor);
                     if (op == 0)
                     {
-                        foreach (var item in servicioContrato.List_Clientes(sup))
+                        foreach (var item in servicioContrato.ClientesPorSupuervisor(sup))
                         {
                             Console.WriteLine("SUPERVISOR ENCARGADO: " + sup.nombre);
                             Console.WriteLine("CLIENTE: ");
@@ -366,9 +404,44 @@ namespace Pureba
                 } while (op == 1);
             }
 
+            void AñadirTurno()
+            {
+                Console.Clear();
+                string id_sup;
+                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del sup que desea agregar turno: "); id_sup = Console.ReadLine();
+                if (servicioSupervisor.ReturnFromList(id_sup) == null)
+                {
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("El sup que desea actualizar, no se encuentra en la base de datos");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Ingresa la hora inicial: "); DateTime horaInicial = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
+                    Console.WriteLine("Ingresa la hora de salida: "); DateTime horasalida = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
+
+                    servicioSupervisor.SaveTurno(id_sup, horaInicial, horasalida);
+                }
+                
+            }
+            void EliminarTurno()
+            {
+                Console.Clear();
+                string id_sup;
+                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del sup que desea eliminar turno: "); id_sup = Console.ReadLine();
+                if (servicioSupervisor.ReturnFromList(id_sup) == null)
+                {
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("El sup que desea actualizar, no se encuentra en la base de datos");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Ingresa la hora inicial o de salida del supervisor: "); DateTime horaInicial = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
+                    servicioSupervisor.DeleteTurno(id_sup, horaInicial);
+                }
+            }
+
 
             ///////////////////////////////////////////////////////////> FIN_FUNCIONES </////////////////////////////////////////////////////////////////
-
         }
     }
 }
