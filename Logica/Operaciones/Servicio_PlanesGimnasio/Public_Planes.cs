@@ -14,7 +14,15 @@ namespace Logica.Operaciones.AccesoPublico
         }
         public PlanGimnasio ReturnFromList(string id_plan)
         {
-            return GetMainList().FirstOrDefault(item => item.id == id_plan); 
+            try
+            {
+                return GetMainList().FirstOrDefault(item => item.id == id_plan);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
         public int ReturnPlanDays(string id_plan)
         {

@@ -11,11 +11,12 @@ namespace Entidades
         public string Jornada { get; set; }
         public DateTime Hora_Inicio { get; set; }
         public DateTime Hora_Salida { get; set; }
-        public Turno_Atencion()
+        public string dia { get; set; }
+        public string id_sup { get; set; }
+        public Turno_Atencion(string id_sup, string dia, DateTime hora_Inicio, DateTime hora_Salida)
         {
-        }
-        public Turno_Atencion(DateTime hora_Inicio, DateTime hora_Salida)
-        {
+            this.id_sup = id_sup;
+            this.dia = dia;
             Hora_Inicio = hora_Inicio;
             Hora_Salida = hora_Salida;
             Jornada = CalculateTurno();
@@ -37,7 +38,7 @@ namespace Entidades
         }
         public override string ToString()
         {
-            return $"{Hora_Inicio.ToShortTimeString()};{Hora_Salida.ToShortTimeString()};{Jornada}"; 
+            return $"{id_sup};{dia};{Hora_Inicio.ToShortTimeString()};{Hora_Salida.ToShortTimeString()}"; 
         }
     }
 }

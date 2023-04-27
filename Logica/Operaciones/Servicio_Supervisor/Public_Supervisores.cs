@@ -8,14 +8,23 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones.AccesoPublico
 {
-    public class Public_Supervisores: Public_Horarios
+    public class Public_Supervisores: Public_Turno_Supervisor
     {
         public Public_Supervisores()
         {
         }
         public Supervisor ReturnFromList(string id_supervisor)
         {
-            return GetMainList().FirstOrDefault(item => item.id == id_supervisor); 
+            try
+            {
+                return GetMainList().FirstOrDefault(item => item.id == id_supervisor);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
+
     }
 }

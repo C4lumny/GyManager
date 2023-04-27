@@ -1,9 +1,11 @@
 ﻿using Datos;
 using Datos.Archivos;
+using Datos.Archivos.Repositorio;
 using Entidades;
 using Logica.Operaciones.AccesoProtegido;
 using Logica.Operaciones.AccesoPublico;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +13,50 @@ using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Inscripciones : Protected_GetArchivo
+    public class Protected_Inscripciones : Abs_ProtectedClass<Inscripcion>
     {
+        protected RepositorioInscripcionHistorica ar_historial = new RepositorioInscripcionHistorica();
+        protected RepositorioInscripcion ar_inscripcion;
+        protected Public_Clientes op_Clientes;
+        protected Public_Supervisores op_supervisor;
+        protected Public_Planes op_plan;
+        public Protected_Inscripciones()
+        {
+            ar_inscripcion = new RepositorioInscripcion();
+            op_Clientes = new Public_Clientes();
+            op_supervisor = new Public_Supervisores();
+            op_plan = new Public_Planes();
+        }
+        protected override bool Exist(string id_inscripcion)
+        {
+            if (GetMainList().FirstOrDefault(item => item.id == id_inscripcion) != null) // Valida si existe un item en la lista por medio de la id, retorna false si no encontro
+            {
+                return true;
+            }
+            return false;
+        }
+        protected override List<Inscripcion> GetMainList()
+        {
+            ValidateStatus();
+            var lista = ar_inscripcion.Load();
+            if (lista == null)
+            {
+                return null;
+            }
+            else
+            {
+                var listaUpdate = new List<Inscripcion>(lista);
+                foreach (var item in lista)
+                {
+                    if (item.cliente == null || item.supervisor == null || item.plan == null)
+                    {
+                        listaUpdate.Remove(item);
+                    }
+                }
+                ar_inscripcion.Update(listaUpdate);
+                return listaUpdate;
+            }
+        }
         protected Response<Inscripcion> isRenovationValid(Inscripcion inscripcion, Supervisor supervisor, PlanGimnasio plan, double descuento)
         {
             var lista = GetMainList();
@@ -59,7 +103,7 @@ namespace Logica.Operaciones
         }
         protected void ValidateStatus()
         {
-            var lista = GetMainList();
+            var lista = ar_inscripcion.Load();
             if (lista != null)
             {
                 foreach (var item in lista)

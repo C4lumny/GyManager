@@ -35,5 +35,9 @@ namespace Entidades
         {
             return $"{id};{fecha_inicio};{fecha_finalizacion};{precio};{descuento};{cliente.id};{plan.id};{supervisor.id};{estado}";
         }
+        public string ToFullString()
+        {
+            return $"{id};{fecha_inicio};{fecha_finalizacion};{precio};{descuento};{estado};{cliente.ToString()};{plan.ToString()};{supervisor.ToFullString()}";
+        }
     }
 }

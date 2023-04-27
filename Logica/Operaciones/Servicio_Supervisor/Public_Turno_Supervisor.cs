@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using Datos.Archivos.Repositorio;
+using Entidades;
 using Logica.Operaciones;
 using Logica.Operaciones.AccesoPublico;
 using System;
@@ -9,20 +10,21 @@ using System.Threading.Tasks;
 
 namespace Logica.CRUD
 {
-    public class Public_Horarios : Protected_Supervisor
+    public class Public_Turno_Supervisor : Protected_Supervisor
     {
-        public Public_Horarios()
+        RepositorioTurnos ar_turno;
+        public Public_Turno_Supervisor()
         {
-            
+            ar_turno = new RepositorioTurnos();
         }
 
-        public bool DeleteTurno(string id_sup, DateTime hora)
+        public bool DeleteTurno(string id_sup, string dia, DateTime hora)
         {
             try
             {
                 var lista = GetMainList();
                 var sup = lista.FirstOrDefault(item => item.id == id_sup);
-                int pos = sup.Horarios.FindIndex(item => item.Hora_Inicio.TimeOfDay == hora.TimeOfDay || item.Hora_Salida.TimeOfDay == hora.TimeOfDay);
+                int pos = sup.Horarios.FindIndex(item => item.Hora_Inicio.TimeOfDay == hora.TimeOfDay || item.Hora_Salida.TimeOfDay == hora.TimeOfDay && item.dia == dia);
                 if (sup != null && pos >= 0)
                 {
                     sup.Horarios.RemoveAt(pos);
@@ -39,17 +41,16 @@ namespace Logica.CRUD
            
         }
 
-        public bool SaveTurno(string id_sup, DateTime Hora_Inicial, DateTime Hora_Salida)
+        public bool SaveTurno(string id_sup, string dia, DateTime Hora_Inicial, DateTime Hora_Salida)
         {
             try
             {
                 var lista = GetMainList();
                 var sup = lista.FirstOrDefault(item => item.id == id_sup);
-                if (sup != null && validarHora(sup, Hora_Inicial, Hora_Salida))
+                if (sup != null && validarHora(sup,dia, Hora_Inicial, Hora_Salida))
                 {
-                    var turno = new Turno_Atencion(Hora_Inicial, Hora_Salida);
-                    sup.Horarios.Add(turno);
-                    ar_supervisor.Update(lista);
+                    var turno = new Turno_Atencion(id_sup, dia, Hora_Inicial, Hora_Salida);
+                    ar_turno.Save(turno); 
                 }
                 return true;
             }
@@ -59,14 +60,14 @@ namespace Logica.CRUD
             }
         }
 
-        public bool UpdateTurno(string id_sup, DateTime Hora_Inicial, DateTime Hora_Salida)
+        public bool UpdateTurno(string id_sup, string dia, DateTime Hora_Inicial, DateTime Hora_Salida)
         {
             try
             {
                 var lista = GetMainList();
                 var sup = lista.FirstOrDefault(item => item.id == id_sup);
-                DeleteTurno(id_sup, Hora_Inicial);
-                SaveTurno(id_sup, Hora_Inicial, Hora_Salida);
+                DeleteTurno(id_sup, dia, Hora_Inicial);
+                SaveTurno(id_sup, dia, Hora_Inicial, Hora_Salida);
                 return true;
             }
             catch (Exception)

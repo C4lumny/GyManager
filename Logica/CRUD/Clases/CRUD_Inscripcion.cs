@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Archivos.Repositorio;
 using Entidades;
 using Logica.Operaciones;
 using Logica.Operaciones.AccesoPublico;
@@ -11,7 +12,6 @@ namespace Logica
 {
     public class CRUD_Inscripcion: Public_Inscripciones, I_CRUD<Inscripcion>
     {
-       
         public CRUD_Inscripcion()
         {
            
@@ -76,8 +76,7 @@ namespace Logica
                 else if (lista == null)
                 {
                     inscripcion.precio = inscripcion.plan.precio * (100 - inscripcion.descuento) / 100;
-
-                    /*inscripcion.supervisor.ListaClientes.Add(inscripcion.cliente);*/
+                    ar_historial.Save(inscripcion);
                     return ar_inscripcion.Save(inscripcion);
                 }
                 else if (!ValidateCliente(inscripcion.cliente.id))
@@ -91,6 +90,7 @@ namespace Logica
                 else
                 {
                     inscripcion.precio = inscripcion.plan.precio * (100 - inscripcion.descuento) / 100;
+                    ar_historial.Save(inscripcion);
                     return ar_inscripcion.Save(inscripcion);
                 }
             }
@@ -151,6 +151,7 @@ namespace Logica
                         //else { inscripcion.supervisor = inscripcionUpdate.supervisor; }
                         inscripcion.supervisor = inscripcionUpdate.supervisor;
                         ValidateStatus();
+                        ar_historial.Save(inscripcion);
                         if (ar_inscripcion.Update(list))
                         {
                             return new Response<Inscripcion>(true, "Se ha actualizado la inscripcion", list, inscripcion); 
@@ -196,6 +197,7 @@ namespace Logica
                     inscripcion.fecha_inicio = DateTime.Now;
                     inscripcion.fecha_finalizacion = inscripcion.fecha_inicio.AddDays(dias);
                     inscripcion.estado = true;
+                    ar_historial.Save(inscripcion);
                     ar_inscripcion.Save(inscripcion);
                     return new Response<Inscripcion>(true, "Contrato renovado correctamente."); 
                 }

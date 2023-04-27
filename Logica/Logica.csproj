@@ -41,12 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Operaciones\Servicio_Supervisor\Public_Horarios.cs" />
+    <Compile Include="Operaciones\Servicio_Supervisor\Public_Turno_Supervisor.cs" />
     <Compile Include="Operaciones\Clase_Abstracta\Abs_ProtectedClass.cs" />
     <Compile Include="CRUD\Clases\CRUD_Inscripcion.cs" />
     <Compile Include="CRUD\Interfaz\I_CRUD.cs" />
     <Compile Include="CRUD\Clases\CRUD_Cliente.cs" />
-    <Compile Include="Operaciones\Servicio_Inscripcion\Protected_GetArchivo.cs" />
     <Compile Include="Operaciones\Servicio_Inscripcion\Protected_Inscripciones.cs" />
     <Compile Include="Operaciones\Servicio_PlanesGimnasio\Protected_Planes.cs" />
     <Compile Include="Operaciones\Servicio_Supervisor\Protected_Supervisor.cs" />

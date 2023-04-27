@@ -32,9 +32,9 @@ namespace Logica.Operaciones
             {
                 return null;
             }
-            return lista.OfType<Supervisor>().ToList(); // retorna la lista de los supervisores de la clase Listas.
+            return lista; // retorna la lista de los supervisores de la clase Listas.
         }
-        public bool validarHora(Supervisor sup, DateTime Hora_Inicial, DateTime Hora_Salida)
+        public bool validarHora(Supervisor sup, string dia, DateTime Hora_Inicial, DateTime Hora_Salida)
         {
             if (Hora_Inicial >= Hora_Salida)
             {
@@ -44,13 +44,16 @@ namespace Logica.Operaciones
             {
                 foreach (var item in sup.Horarios)
                 {
-                    if (Hora_Inicial.TimeOfDay >= item.Hora_Inicio.TimeOfDay && item.Hora_Salida.TimeOfDay >= Hora_Inicial.TimeOfDay)
+                    if (dia.Replace(" ", "").ToLower() == item.dia.Replace(" ", "").ToLower())
                     {
-                        return false;
-                    }
-                    else if (Hora_Inicial.TimeOfDay <= item.Hora_Inicio.TimeOfDay && Hora_Salida.TimeOfDay >= item.Hora_Inicio.TimeOfDay)
-                    {
-                        return false;
+                        if (Hora_Inicial.TimeOfDay >= item.Hora_Inicio.TimeOfDay && item.Hora_Salida.TimeOfDay >= Hora_Inicial.TimeOfDay)
+                        {
+                            return false;
+                        }
+                        else if (Hora_Inicial.TimeOfDay <= item.Hora_Inicio.TimeOfDay && Hora_Salida.TimeOfDay >= item.Hora_Inicio.TimeOfDay)
+                        {
+                            return false;
+                        }
                     }
                 }
                 return true;

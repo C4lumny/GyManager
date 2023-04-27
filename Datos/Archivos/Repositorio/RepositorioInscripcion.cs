@@ -12,10 +12,15 @@ namespace Datos
     public class RepositorioInscripcion: I_Repositorio<Inscripcion>
     {
         protected string ruta = "Inscripcion.txt";
+        RepositorioClientes ar_cliente;
+        RepositorioSupervisor ar_Supervisor;
+        RepositorioPlan ar_plan;
 
         public RepositorioInscripcion()
         {
-
+            ar_cliente = new RepositorioClientes();
+            ar_Supervisor = new RepositorioSupervisor();
+            ar_plan = new RepositorioPlan();
         }
         public Response<Inscripcion> Save(Inscripcion inscripcion)
         {
@@ -33,9 +38,6 @@ namespace Datos
         }
         public Inscripcion Mapper(string linea)
         {
-            RepositorioClientes repClientes = new RepositorioClientes();
-            RepositorioSupervisor repSupervisor = new RepositorioSupervisor();
-            RepositorioPlan repPlanes = new RepositorioPlan();
             try
             {
                 var aux = linea.Split(';');
@@ -66,9 +68,18 @@ namespace Datos
                 inscripcion.fecha_finalizacion = DateTime.Parse(aux[2]);
                 inscripcion.precio = double.Parse(aux[3]);
                 inscripcion.descuento = int.Parse(aux[4]);
-                inscripcion.cliente.id = aux[5];
-                inscripcion.plan.id = aux[6];
-                inscripcion.supervisor.id = aux[7];
+                var lista_cliente = ar_cliente.Load();
+                var lista_plan = ar_plan.Load();
+                var lista_sup = ar_Supervisor.Load();
+                inscripcion.cliente = null;
+                inscripcion.supervisor = null;
+                inscripcion.plan = null;
+                if (lista_cliente != null && lista_sup != null && lista_plan != null)
+                {
+                    inscripcion.cliente = lista_cliente.FirstOrDefault(item => item.id == aux[5]);
+                    inscripcion.plan = lista_plan.FirstOrDefault(item => item.id == aux[6]);
+                    inscripcion.supervisor = lista_sup.FirstOrDefault(item => item.id == aux[7]);
+                }
                 inscripcion.estado = bool.Parse(aux[8]);
                 return inscripcion;
             }

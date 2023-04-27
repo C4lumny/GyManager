@@ -72,7 +72,6 @@ namespace Logica
                 {
                     return ar_supervisor.Save(supervisor);
                     //GetMainList().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza objetos por fecha de ingreso (opcional)
-                    //return 0; // guarda el item en la lista.
                 }
             }
             catch (Exception)

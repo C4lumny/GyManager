@@ -18,20 +18,28 @@ namespace Logica.Operaciones.AccesoPublico
         {
             if (GetMainList() == null)
             {
-                return null; // Si esta vacia retorna null.
+                return null; 
             }
             else
             {
                 ValidateStatus();
-                var listaVigente = GetMainList().FindAll(item => item.estado == true);  // FindAll devuelve una lista de contratos que cumplan la condicion del predicado, en este caso, retorna los contratos tal que su estado sea true.
+                var listaVigente = GetMainList().FindAll(item => item.estado == true); 
                 listaVigente.Sort((p1, p2) => p1.id.CompareTo(p2.id));
 
-                return listaVigente; // retorna lista de contratos vigentes.
+                return listaVigente;
             }
         }
         public Inscripcion ReturnFromList(string id_inscripcion)
         {
-            return GetMainList().FirstOrDefault(item => item.id == id_inscripcion);
+            try
+            {
+                return GetMainList().FirstOrDefault(item => item.id == id_inscripcion);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
         public List<Cliente> ClientesPorSupuervisor(Supervisor supervisor)
         {
@@ -53,6 +61,26 @@ namespace Logica.Operaciones.AccesoPublico
                 return null;
             }    
         }
-        
+        public List<Inscripcion> Historial()
+        {
+            
+            var lista = ar_historial.Load();
+            if (lista == null)
+            {
+                return null;
+            }
+            else
+            {
+                foreach (var item in lista)
+                {
+                    if (DateTime.Now >= item.fecha_finalizacion)
+                    {
+                        item.estado = false;
+                    }
+                }
+                ar_historial.Update(lista);
+                return lista;
+            }
+        }
     }
 }

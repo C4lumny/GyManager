@@ -28,10 +28,8 @@ namespace Pureba
             var plan_Semipersonalizado = new PlanGimnasio("5", "Semipersonalizado", 20000, "aaaaaa", 60);
             var plan_Dirigido = new PlanGimnasio("6", "Dirigido", 50000, "bbbbbbbb", 30);
 
-            var Coach1 = new Supervisor("1", "Nathan", "Masculino", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(),true);
-            var Coach2 = new Supervisor("2", "Diego", "Otro", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime(), true);
-            Coach1.Horarios.Add(new Turno_Atencion(DateTime.Now, DateTime.Now.AddHours(3)));
-            Coach1.Horarios.Add(new Turno_Atencion(DateTime.Now, DateTime.Now.AddHours(6)));
+            var Coach1 = new Supervisor("1", "Nathan", "Masculino", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime());
+            var Coach2 = new Supervisor("2", "Diego", "Otro", "3023018355", 1.55, 98, time.ToUniversalTime(), time.ToUniversalTime());
 
             var cliente1 = new Cliente("3", "Melo", "Mujer", "3023018355", 1.70, 77, 23, time.ToUniversalTime(), "", time.ToUniversalTime());
             var cliente2 = new Cliente("4", "Aisaac", "Masculino", "3023018355", 1.66, 78, 23, time.ToUniversalTime(), "TDA", time.ToUniversalTime());
@@ -72,8 +70,9 @@ namespace Pureba
             //AñadirTurno();
             //EliminarTurno();
             //ConsultarSupervisor(); Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n"); Console.ReadKey();
-            //CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
-            eliminarCliente();
+            CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
+            Historial();
+            //eliminarCliente();
             ConsultarContratoHistorico();       Console.WriteLine("\n/////////////  FIN_CONSTULA_HISTORICA  ////////////      \n");     Console.ReadKey();
             //RenovarContrato();                  Console.WriteLine("\n///////////////////  FIN_RENOVAR  ///////////////////    \n");     Console.ReadKey();
             ConsultarContratoVigente();         Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
@@ -416,10 +415,11 @@ namespace Pureba
                 }
                 else
                 {
+                    Console.WriteLine("Ingrese el dia de trabajo:"); string dia= Console.ReadLine();
                     Console.WriteLine("Ingresa la hora inicial: "); DateTime horaInicial = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
                     Console.WriteLine("Ingresa la hora de salida: "); DateTime horasalida = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
 
-                    servicioSupervisor.SaveTurno(id_sup, horaInicial, horasalida);
+                    servicioSupervisor.SaveTurno(id_sup, dia, horaInicial, horasalida);
                 }
                 
             }
@@ -436,8 +436,47 @@ namespace Pureba
                 }
                 else
                 {
+                    Console.WriteLine("Ingrese el dia de trabajo:"); string dia = Console.ReadLine();
                     Console.WriteLine("Ingresa la hora inicial o de salida del supervisor: "); DateTime horaInicial = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
-                    servicioSupervisor.DeleteTurno(id_sup, horaInicial);
+                    servicioSupervisor.DeleteTurno(id_sup, dia, horaInicial);
+                }
+            }
+            void Historial()
+            {
+                int op = 0;
+                try
+                {
+                    do
+                    {
+                        if (servicioContrato.Historial() != null)
+                        {
+                            foreach (var item in servicioContrato.Historial())
+                            {
+                                Console.WriteLine("CONTRATO: ");
+                                Console.WriteLine("ID: " + item.id);
+                                Console.Write("FECHA INICIAL: " + item.fecha_inicio.ToShortDateString() + "  ");
+                                Console.WriteLine("HORA INICIAL: " + item.fecha_inicio.ToShortTimeString());
+                                Console.Write("FECHA DE FINALIZACION: " + item.fecha_finalizacion.ToShortDateString() + "  ");
+                                Console.WriteLine("HORA DE FINALIZACION: " + item.fecha_finalizacion.ToShortTimeString());
+                                Console.WriteLine("ID CLIENTE: " + item.cliente.id);
+                                Console.WriteLine("NOMBRE CLIENTE: " + item.cliente.nombre);
+                                Console.WriteLine("ID SUPERVISOR: " + item.supervisor.id);
+                                Console.WriteLine("NOMBRE SUPERVISOR: " + item.supervisor.nombre);
+                                Console.WriteLine("ID PLAN: " + item.plan.id);
+                                Console.WriteLine("NOMBRE PLAN: " + item.plan.nombre);
+                                Console.WriteLine("PRECIO: " + item.precio);
+                                if (item.estado == true) { Console.WriteLine("ESTADO: VIGENTE"); }
+                                else { Console.WriteLine("ESTADO: CADUCADO"); }
+                                Console.WriteLine("-------------------------------------");
+                            }
+                            Console.WriteLine("Desea continuar?"); op = int.Parse(Console.ReadLine());
+                        }
+                        else { Console.WriteLine("vacio"); }
+                    } while (op == 1);
+                }
+                catch (Exception)
+                {
+                    op = 1;
                 }
             }
 

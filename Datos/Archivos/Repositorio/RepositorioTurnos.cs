@@ -1,26 +1,25 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datos.Archivos
+namespace Datos.Archivos.Repositorio
 {
-    public class RepositorioSupervisor : I_Repositorio<Supervisor>
+    public class RepositorioTurnos : I_Repositorio<Turno_Atencion>
     {
-        string ruta = "Supervisor.txt";
-        public RepositorioSupervisor()
+        string ruta = "Turnos.txt";
+        public RepositorioTurnos()
         {
         }
-        public List<Supervisor> Load()
+        public List<Turno_Atencion> Load()
         {
             try
             {
                 StreamReader reader = new StreamReader(ruta);
-                var list = new List<Supervisor>();
+                var list = new List<Turno_Atencion>();
                 string linea;
                 while (!reader.EndOfStream)
                 {
@@ -36,25 +35,13 @@ namespace Datos.Archivos
             }
         }
 
-        public Supervisor Mapper(string linea)
+        public Turno_Atencion Mapper(string linea)
         {
             try
             {
                 var aux = linea.Split(';');
-                Supervisor supervisor = new Supervisor();
-                supervisor.id = aux[0];
-                supervisor.nombre = aux[1];
-                supervisor.genero = aux[2];
-                supervisor.telefono = aux[3];
-                supervisor.altura = double.Parse(aux[4]);
-                supervisor.peso = double.Parse(aux[5]);
-                supervisor.fecha_nacimiento = DateTime.Parse(aux[6]);
-                supervisor.fecha_ingreso = DateTime.Parse(aux[7]);
-                for (int i = 8; i < aux.Length-2; i += 3)
-                {
-                    supervisor.Horarios.Add(new Turno_Atencion(DateTime.Parse(aux[i]), DateTime.Parse(aux[i+1])));
-                }
-                return supervisor;
+                Turno_Atencion turno = new Turno_Atencion(aux[0], aux[1], DateTime.Parse(aux[2]), (DateTime.Parse(aux[3])));
+                return turno;
             }
             catch (Exception)
             {
@@ -62,22 +49,22 @@ namespace Datos.Archivos
             }
         }
 
-        public Response<Supervisor> Save(Supervisor supervisor)
+        public Response<Turno_Atencion> Save(Turno_Atencion turno)
         {
             try
             {
                 StreamWriter writer1 = new StreamWriter(ruta, true);
-                writer1.WriteLine(supervisor.ToString());
+                writer1.WriteLine(turno.ToString());
                 writer1.Close();
-                return new Response<Supervisor>(true, "Se ha guardado correctamente.", null, supervisor);
+                return new Response<Turno_Atencion>(true, "Se ha guardado correctamente.", null, turno);
             }
             catch (Exception)
             {
             }
-            return new Response<Supervisor>(true, "Error!.", null, supervisor);
+            return new Response<Turno_Atencion>(true, "Error!.", null, turno);
         }
 
-        public bool Update(List<Supervisor> list)
+        public bool Update(List<Turno_Atencion> list)
         {
             try
             {
