@@ -29,7 +29,20 @@ namespace Logica
                 if (pos < 0) { return new Response<Supervisor>(false, "No se pudo encontrar el supervisor."); } 
 
                 Supervisor supervisor = ReturnFromList(id_supervisor);
-
+                var lista = ar_turno.Load();
+                if (supervisor.Horarios.Count > 0)
+                {
+                    foreach (var item in lista)
+                    {
+                        if (item.id_sup == id_supervisor)
+                        {
+                            lista.Remove(item);
+                        }
+                    }
+                }
+                
+                ar_turno.Update(lista);
+//                ar_supervisor.Update()
                 GetMainList().RemoveAt(pos); return new Response<Supervisor>(true, "Eliminado correctamente.", null, supervisor); 
             }
         }

@@ -12,7 +12,7 @@ namespace Logica.CRUD
 {
     public class Public_Turno_Supervisor : Protected_Supervisor
     {
-        RepositorioTurnos ar_turno;
+         protected RepositorioTurnos ar_turno;
         public Public_Turno_Supervisor()
         {
             ar_turno = new RepositorioTurnos();
@@ -22,13 +22,15 @@ namespace Logica.CRUD
         {
             try
             {
-                var lista = GetMainList();
-                var sup = lista.FirstOrDefault(item => item.id == id_sup);
-                int pos = sup.Horarios.FindIndex(item => item.Hora_Inicio.TimeOfDay == hora.TimeOfDay || item.Hora_Salida.TimeOfDay == hora.TimeOfDay && item.dia == dia);
-                if (sup != null && pos >= 0)
+                var lista = ar_turno.Load();
+                var sup = GetMainList().FirstOrDefault(item => item.id == id_sup);
+                int pos = lista.FindIndex(item => item.Hora_Inicio.TimeOfDay == hora.TimeOfDay || item.Hora_Salida.TimeOfDay == hora.TimeOfDay && item.dia == dia && item.id_sup == id_sup);
+                var turno = sup.Horarios.FirstOrDefault(item => item.Hora_Inicio.TimeOfDay == hora.TimeOfDay || item.Hora_Salida.TimeOfDay == hora.TimeOfDay && item.dia == dia);
+                if (sup != null && turno != null)
                 {
-                    sup.Horarios.RemoveAt(pos);
-                    ar_supervisor.Update(lista);
+                    sup.Horarios.Remove(turno);
+                    lista.RemoveAt(pos);
+                    ar_turno.Update(lista);
                     return true;
                 }
                 return false;
@@ -38,7 +40,7 @@ namespace Logica.CRUD
 
                 return false;
             }
-           
+
         }
 
         public bool SaveTurno(string id_sup, string dia, DateTime Hora_Inicial, DateTime Hora_Salida)
