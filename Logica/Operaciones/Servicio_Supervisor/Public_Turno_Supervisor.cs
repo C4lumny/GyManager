@@ -20,14 +20,9 @@ namespace Logica.CRUD
         {
             try
             {
-                var lista = ar_turno.Load();
-
-                lista.RemoveAt(lista.FindIndex((item) => (item.id_supervisor == turno.id_supervisor && item.dia == turno.dia && item.Hora_Inicio == turno.Hora_Inicio) || (item.id_supervisor == turno.id_supervisor && item.dia == turno.dia && item.Hora_Salida == turno.Hora_Salida)));
-                foreach (var item in lista)
-                {
-                    Console.WriteLine(item.ToString());
-                }
-                ar_turno.Update(lista);
+                var Turnos = Repositorio_Turnos.Load();
+                Turnos.RemoveAt(Turnos.FindIndex((item) => (item.Id_supervisor == turno.Id_supervisor && item.Dia == turno.Dia && item.Hora_Inicio == turno.Hora_Inicio) || (item.Id_supervisor == turno.Id_supervisor && item.Dia == turno.Dia && item.Hora_Salida == turno.Hora_Salida)));
+                Repositorio_Turnos.Update(Turnos);
                 return true;
             }
             catch (Exception)
@@ -42,9 +37,7 @@ namespace Logica.CRUD
         {
             try
             {
-
-                var lista = GetMainList();
-                if (validarHora(turno, ReturnSupervisorFromList(turno.id_supervisor))) { ar_turno.Save(turno); }
+                if (IsTurnoValid(turno, ReturnSupervisor(turno.Id_supervisor))) { Repositorio_Turnos.Save(turno); }
                 return true;
             }
             catch (Exception)
@@ -57,7 +50,7 @@ namespace Logica.CRUD
         {
             try
             {
-                var lista = GetMainList();
+                var Turnos = GetMainList();
                 DeleteTurno(old_turno);
                 SaveTurno(new_turno);
                 return true;

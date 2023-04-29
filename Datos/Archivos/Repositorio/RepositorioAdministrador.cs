@@ -24,10 +24,10 @@ namespace Datos.Archivos.Repositorio
             {
                 var list = new List<Administrador>();
                 string linea;
-                StreamReader sr = new StreamReader(ruta);
-                while (!sr.EndOfStream)
+                StreamReader reader = new StreamReader(ruta);
+                while (!reader.EndOfStream)
                 {
-                    linea = sr.ReadLine();
+                    linea = reader.ReadLine();
                     list.Add(Mapper(linea));
                 }
                 return list;
@@ -62,7 +62,7 @@ namespace Datos.Archivos.Repositorio
                 StreamWriter writer = new StreamWriter(ruta, true);
                 writer.WriteLine(admin.ToString());
                 writer.Close();
-                return new Response<Administrador>(true, "Se ha registrado correctamente.");
+                return new Response<Administrador>(true, "Se ha registrado correctamente.", null, admin);
             }
             catch (Exception)
             {
@@ -75,12 +75,19 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, true);
-                foreach (var admin in Administradores)
+                if (Administradores.Count == 0 && File.Exists(ruta))
                 {
-                    writer.WriteLine(admin.ToString());
+                    File.Delete(ruta);
                 }
-                writer.Close();
+                else
+                {
+                    StreamWriter writer = new StreamWriter(ruta, false);
+                    foreach (var item in Administradores)
+                    {
+                        writer.WriteLine(item.ToString());
+                    }
+                    writer.Close();
+                }
                 return true;
             }
             catch (Exception)

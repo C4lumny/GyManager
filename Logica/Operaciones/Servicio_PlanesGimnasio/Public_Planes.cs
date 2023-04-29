@@ -12,11 +12,11 @@ namespace Logica.Operaciones.AccesoPublico
         public Public_Planes()
         {      
         }
-        public PlanGimnasio ReturnFromList(string id_plan)
+        public PlanGimnasio ReturnPlan(string id_plan)
         {
             try
             {
-                return GetMainList().FirstOrDefault(item => item.id == id_plan);
+                return GetMainList().FirstOrDefault(item => item.Id == id_plan);
             }
             catch (Exception)
             {
@@ -28,7 +28,7 @@ namespace Logica.Operaciones.AccesoPublico
         {
             if (Exist(id_plan))
             {
-                return ReturnFromList(id_plan).dias;
+                return ReturnPlan(id_plan).Dias;
             }
             return -1;
         }

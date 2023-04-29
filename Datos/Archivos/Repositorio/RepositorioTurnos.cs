@@ -66,20 +66,20 @@ namespace Datos.Archivos.Repositorio
             return new Response<Turno_Atencion>(true, "Error!.", null, turno);
         }
 
-        public bool Update(List<Turno_Atencion> list)
+        public bool Update(List<Turno_Atencion> Turnos)
         {
             try
             {
-                if (list.Count == 0 && File.Exists(ruta))
+                if (Turnos.Count == 0 && File.Exists(ruta))
                 {
                     File.Delete(ruta);
                 }
                 else
                 {
                     StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var item in list)
+                    foreach (var turno in Turnos)
                     {
-                        writer.WriteLine(item.ToString());
+                        writer.WriteLine(turno.ToString());
                     }
                     writer.Close();
                 }

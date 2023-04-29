@@ -37,16 +37,16 @@ namespace Datos
             {
                 var aux = linea.Split(';');
                 Cliente cliente = new Cliente();
-                cliente.id = aux[0];
-                cliente.nombre = aux[1];
-                cliente.genero = aux[2];
-                cliente.telefono = aux[3];
-                cliente.altura = double.Parse(aux[4]);
-                cliente.peso = double.Parse(aux[5]);
-                cliente.imc = double.Parse(aux[6]);
-                cliente.fecha_nacimiento = DateTime.Parse(aux[7]);
-                cliente.discapacidad = aux[8];
-                cliente.fecha_ingreso = DateTime.Parse(aux[9]);
+                cliente.Id = aux[0];
+                cliente.Nombre = aux[1];
+                cliente.Genero = aux[2];
+                cliente.Telefono = aux[3];
+                cliente.Altura = double.Parse(aux[4]);
+                cliente.Peso = double.Parse(aux[5]);
+                cliente.Imc = double.Parse(aux[6]);
+                cliente.Fecha_nacimiento = DateTime.Parse(aux[7]);
+                cliente.Discapacidad = aux[8];
+                cliente.Fecha_ingreso = DateTime.Parse(aux[9]);
                 return cliente;
             }
             catch (Exception)
@@ -76,20 +76,20 @@ namespace Datos
             }
         }
 
-        public bool Update(List<Cliente> list)
+        public bool Update(List<Cliente> Clientes)
         {
             try
             {
-                if (list.Count == 0 && File.Exists(ruta))
+                if (Clientes.Count == 0 && File.Exists(ruta))
                 {
                     File.Delete(ruta);
                 }
                 else
                 {
                     StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var item in list)
+                    foreach (var cliente in Clientes)
                     {
-                        writer.WriteLine(item.ToString());
+                        writer.WriteLine(cliente.ToString());
                     }
                     writer.Close();
                 }

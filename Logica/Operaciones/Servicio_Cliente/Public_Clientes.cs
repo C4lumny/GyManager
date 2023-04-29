@@ -14,11 +14,11 @@ namespace Logica.Operaciones.AccesoPublico
         {
 
         }
-        public Cliente ReturnFromList(string id_cliente)
+        public Cliente ReturnCliente(string id_cliente)
         {
             try
             {
-                return GetMainList().FirstOrDefault(item => item.id == id_cliente); 
+                return GetMainList().FirstOrDefault(item => item.Id == id_cliente); 
             }
             catch (Exception)
             {

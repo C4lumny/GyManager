@@ -14,7 +14,7 @@ namespace Logica.Operaciones.AccesoPublico
         {
            
         }
-        public List<Inscripcion> GetListaVigentes()
+        public List<Inscripcion> GetInscripcionesVigentes()
         {
             if (GetMainList() == null)
             {
@@ -22,18 +22,16 @@ namespace Logica.Operaciones.AccesoPublico
             }
             else
             {
-                ValidateStatus();
-                var listaVigente = GetMainList().FindAll(item => item.estado == true); 
-                listaVigente.Sort((p1, p2) => p1.id.CompareTo(p2.id));
-
-                return listaVigente;
+                var Inscripcines_vigentes = GetMainList().FindAll(item => item.Estado == true); 
+                Inscripcines_vigentes.Sort((p1, p2) => p1.Id.CompareTo(p2.Id));
+                return Inscripcines_vigentes;
             }
         }
-        public Inscripcion ReturnFromList(string id_inscripcion)
+        public Inscripcion ReturnInscripcion(string id_inscripcion)
         {
             try
             {
-                return GetMainList().FirstOrDefault(item => item.id == id_inscripcion);
+                return GetMainList().FirstOrDefault(item => item.Id == id_inscripcion);
             }
             catch (Exception)
             {
@@ -41,45 +39,49 @@ namespace Logica.Operaciones.AccesoPublico
                 return null;
             }
         }
-        public List<Cliente> ClientesPorSupuervisor(Supervisor supervisor)
+        public List<Cliente> ClientesPorSupervisor(Supervisor supervisor) // ingresa un supervisor y retorna los clientes asociados por medio de la inscripcion.
         {
-            var list = GetMainList();
-            if (list != null)
+            var inscripciones = GetMainList();
+            if (inscripciones != null)
             {
-                List<Cliente> list_cliente = new List<Cliente>();
-                foreach (var item in list)
+                List<Cliente> Clientes = new List<Cliente>();
+                foreach (var item in inscripciones)
                 {
-                    if (item.supervisor.id == supervisor.id)
+                    if (item.supervisor.Id == supervisor.Id)
                     {
-                        list_cliente.Add(item.cliente);
+                        Clientes.Add(item.cliente);
                     }
                 }
-                return list_cliente;
+                if (Clientes.Count <= 0)
+                {
+                    return null;
+                }
+                return Clientes;
             }
             else
             {
                 return null;
             }    
         }
-        public List<Inscripcion> Historial()
+        public List<Inscripcion> Historial_Inscripciones()
         {
-            
-            var lista = ar_historial.Load();
-            if (lista == null)
+            var historial = Repositorio_Historial.Load();
+            if (historial == null)
             {
                 return null;
             }
             else
             {
-                foreach (var item in lista)
+                foreach (var item in historial)
                 {
-                    if (DateTime.Now >= item.fecha_finalizacion)
+                    if (DateTime.Now >= item.Fecha_finalizacion)
                     {
-                        item.estado = false;
+                        item.Estado = false;
                     }
                 }
-                ar_historial.Update(lista);
-                return lista;
+                Repositorio_Historial.Update(historial);
+                historial.Sort((x1, x2) => x1.Id.CompareTo(x2.Id));
+                return historial;
             }
         }
     }

@@ -14,24 +14,23 @@ namespace Logica.Operaciones.AccesoPublico
         public Public_Supervisores()
         {
         }
-        public Supervisor ReturnSupervisorFromList(string id_supervisor)
+        public Supervisor ReturnSupervisor(string id_supervisor)
         {
             try
             {
-                return GetMainList().FirstOrDefault(item => item.id == id_supervisor);
+                return GetMainList().FirstOrDefault(supervisor => supervisor.Id == id_supervisor);
             }
             catch (Exception)
             {
-
                 return null;
             }
         }
 
-        public Turno_Atencion ReturnTurnoFromList(string id_supervisor, string dia, DateTime hora)
+        public Turno_Atencion ReturnTurno(string id_supervisor, string dia, DateTime hora)
         {
             try
             {
-                return ar_turno.Load().FirstOrDefault((item) => (item.id_supervisor == id_supervisor && item.dia == dia && item.Hora_Inicio == hora) || (item.id_supervisor == id_supervisor && item.dia == dia && item.Hora_Salida == hora));
+                return Repositorio_Turnos.Load().FirstOrDefault((item) => (item.Id_supervisor == id_supervisor && item.Dia == dia && item.Hora_Inicio == hora) || (item.Id_supervisor == id_supervisor && item.Dia == dia && item.Hora_Salida == hora));
             }
             catch (Exception)
             {

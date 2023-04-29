@@ -7,7 +7,7 @@ namespace Logica
     {
         Response<T> Delete(string id);
         Response<T> Save(T obj);
-        Response<T> Update(T obj, string id);
+        Response<T> Update(T obj_update, string id);
         List<T> GetAll();
     }
 }

@@ -18,21 +18,21 @@ namespace Logica
         }
         public Response<Inscripcion> Delete(string id_inscripcion)
         {
-            var list = GetMainList();
-            if (list == null)
+            var Inscripciones = GetMainList();
+            if (Inscripciones == null)
             {
                 return new Response<Inscripcion>(false, "No se han encontrado inscripciones."); // Lista vacia.
             }
             else
             {
-                int pos = list.FindIndex(item => item.id == id_inscripcion); 
-                if (pos < 0)
+                int pos = Inscripciones.FindIndex(item => item.Id == id_inscripcion);
+                Inscripcion inscripcion = ReturnInscripcion(id_inscripcion);
+                if (inscripcion == null)
                 {
                     return new Response<Inscripcion>(false, "No se encontro el id del contrato que desea eliminar"); 
                 }
-                Inscripcion inscripcion = list.Find(item => item.id == id_inscripcion);
-                list.RemoveAt(pos);
-                ar_inscripcion.Update(list);
+                Inscripciones.RemoveAt(pos);
+                Repositorio_Inscripciones.Update(Inscripciones);
                 return new Response<Inscripcion>(true, "Inscripcion eliminada correctamente", null, inscripcion);  
             }
         } 
@@ -40,18 +40,17 @@ namespace Logica
         {
             if (GetMainList() == null) 
             {
-                return null; // retorna null si esta vacia.
+                return null; 
             }
             else
             {
-                return GetMainList().FindAll(item => item.id.StartsWith(search) || item.cliente.nombre.Contains(search) || item.cliente.id.StartsWith(search)); // Find devuelve un item que cumplan la condicion del predicado.
+                return GetMainList().FindAll(item => item.Id.StartsWith(search) || item.cliente.Nombre.Contains(search) || item.cliente.Id.StartsWith(search)); 
             }
         }
         public Response<Inscripcion> Save(Inscripcion inscripcion) 
         {
             try
             {
-                ValidateStatus();
                 var lista = GetMainList();
                 if (inscripcion.cliente == null)
                 {
@@ -65,33 +64,33 @@ namespace Logica
                 {
                     return new Response<Inscripcion>(false, "El plan ingresado no existe");
                 }
-                else if (inscripcion.descuento < 0 || inscripcion.descuento > 100)
+                else if (inscripcion.Descuento < 0 || inscripcion.Descuento > 100)
                 {
                     return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
                 }
-                else if (inscripcion.cliente.fecha_nacimiento.AddYears(18) > DateTime.Now)
+                else if (inscripcion.cliente.Fecha_nacimiento.AddYears(18) > DateTime.Now)
                 {
                     return new Response<Inscripcion>(false, "El cliente es menor de edad.");
                 }
                 else if (lista == null)
                 {
-                    inscripcion.precio = inscripcion.plan.precio * (100 - inscripcion.descuento) / 100;
-                    ar_historial.Save(inscripcion);
-                    return ar_inscripcion.Save(inscripcion);
+                    inscripcion.Precio = inscripcion.plan.Precio * (100 - inscripcion.Descuento) / 100;
+                    Repositorio_Historial.Save(inscripcion);
+                    return Repositorio_Inscripciones.Save(inscripcion);
                 }
-                else if (!ValidateCliente(inscripcion.cliente.id))
+                else if (!isClienteValid(inscripcion.cliente.Id))
                 {
                     return new Response<Inscripcion>(false, "El cliente ya esta inscrito");
                 }
-                else if (Exist(inscripcion.id))
+                else if (Exist(inscripcion.Id))
                 {
                     return new Response<Inscripcion>(false, "El ID de la inscripcion ya se encuentra registrado."); 
                 }
                 else
                 {
-                    inscripcion.precio = inscripcion.plan.precio * (100 - inscripcion.descuento) / 100;
-                    ar_historial.Save(inscripcion);
-                    return ar_inscripcion.Save(inscripcion);
+                    inscripcion.Precio = inscripcion.plan.Precio * (100 - inscripcion.Descuento) / 100;
+                    Repositorio_Historial.Save(inscripcion);
+                    return Repositorio_Inscripciones.Save(inscripcion);
                 }
             }
             catch (Exception)
@@ -99,7 +98,7 @@ namespace Logica
                 return new Response<Inscripcion>(false, "Error!");
             }
         }
-        public Response<Inscripcion> Update(Inscripcion inscripcionUpdate, string id_inscripcion) 
+        public Response<Inscripcion> Update(Inscripcion inscipcion_modificada, string id_inscripcion) 
         {
             try
             {
@@ -107,52 +106,42 @@ namespace Logica
                 if (list == null) { return new Response<Inscripcion>(true, "No se han encontrado inscripciones."); } 
                 else
                 {
-                    var inscripcion = ReturnFromList(id_inscripcion);
+                    var inscripcion = ReturnInscripcion(id_inscripcion);
                     if (inscripcion == null)
                     {
                         return new Response<Inscripcion>(false, "No se encontro la inscripcion que se desea actualizar."); 
                     }
-                    else if (inscripcionUpdate.cliente == null)
+                    else if (inscipcion_modificada.cliente == null)
                     {
                         return new Response<Inscripcion>(false, "El cliente ingresado no existe"); 
                     }
-                    else if (inscripcionUpdate.supervisor == null)
+                    else if (inscipcion_modificada.supervisor == null)
                     {
                         return new Response<Inscripcion>(false, "El supervisor ingresado no existe"); 
                     }
-                    else if (inscripcionUpdate.plan == null)
+                    else if (inscipcion_modificada.plan == null)
                     {
                         return new Response<Inscripcion>(false, "El plan ingresado no existe");
                     }
-                    else if (inscripcionUpdate.descuento < 0 || inscripcionUpdate.descuento > 100)
+                    else if (inscipcion_modificada.Descuento < 0 || inscipcion_modificada.Descuento > 100)
                     {
                         return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
                     }
-                    else if (ReturnFromList(inscripcionUpdate.id) == null)
+                    else if (ReturnInscripcion(inscipcion_modificada.Id) == null)
                     {
                         return new Response<Inscripcion>(false, "El ID ingresado ya esta registrado. Por favor ingrese otro"); 
                     }
                     else
                     {
-                        inscripcion.id = inscripcionUpdate.id;
-                        inscripcion.fecha_inicio = inscripcionUpdate.fecha_inicio;
-                        inscripcion.fecha_finalizacion = inscripcionUpdate.fecha_finalizacion;
-                        inscripcion.precio = inscripcionUpdate.precio;
-                        inscripcion.cliente = inscripcionUpdate.cliente;
-                        inscripcion.plan = inscripcionUpdate.plan;
-
-                        //int pos = inscripcion.supervisor.ListaClientes.FindIndex(item => item.id == inscripcion.cliente.id);
-                        //if (inscripcion.supervisor != inscripcionUpdate.supervisor)
-                        //{
-                        //    inscripcion.supervisor.ListaClientes.RemoveAt(pos);
-                        //    inscripcion.supervisor = inscripcionUpdate.supervisor;
-                        //    inscripcion.supervisor.ListaClientes.Add(inscripcion.cliente);
-                        //}
-                        //else { inscripcion.supervisor = inscripcionUpdate.supervisor; }
-                        inscripcion.supervisor = inscripcionUpdate.supervisor;
-                        ValidateStatus();
-                        ar_historial.Save(inscripcion);
-                        if (ar_inscripcion.Update(list))
+                        inscripcion.Id = inscipcion_modificada.Id;
+                        inscripcion.Fecha_inicio = inscipcion_modificada.Fecha_inicio;
+                        inscripcion.Fecha_finalizacion = inscipcion_modificada.Fecha_finalizacion;
+                        inscripcion.Precio = inscipcion_modificada.Precio;
+                        inscripcion.cliente = inscipcion_modificada.cliente;
+                        inscripcion.plan = inscipcion_modificada.plan;
+                        inscripcion.supervisor = inscipcion_modificada.supervisor;
+                        Repositorio_Historial.Save(inscripcion);
+                        if (Repositorio_Inscripciones.Update(list))
                         {
                             return new Response<Inscripcion>(true, "Se ha actualizado la inscripcion", list, inscripcion); 
                         }
@@ -170,21 +159,20 @@ namespace Logica
         }
         public List<Inscripcion> GetAll()
         {
-            ValidateStatus();
-            var lista = GetMainList(); 
-            if (lista == null) { return null; }
-            return lista;
+            var Inscripciones = GetMainList(); 
+            if (Inscripciones == null) { return null; }
+            return Inscripciones;
         }
         public Response<Inscripcion> Renovate(string id_inscripcion, int dias, string id_supervisor, string id_plan, double descuento)
         {
             try
             {
-                Inscripcion inscripcion = ReturnFromList(id_inscripcion);
-                Supervisor supervisor = op_supervisor.ReturnSupervisorFromList(id_supervisor);
-                PlanGimnasio plan = op_plan.ReturnFromList(id_plan);
+                Inscripcion inscripcion = ReturnInscripcion(id_inscripcion);
+                Supervisor supervisor = Op_supervisor.ReturnSupervisor(id_supervisor);
+                PlanGimnasio plan = Op_planes.ReturnPlan(id_plan);
 
                 var response = isRenovationValid(inscripcion, supervisor, plan, descuento);
-                if (!response.success)
+                if (!response.Success)
                 {
                     return response;
                 }
@@ -192,13 +180,13 @@ namespace Logica
                 {
                     inscripcion.supervisor = supervisor;
                     inscripcion.plan = plan;
-                    inscripcion.descuento = descuento;
-                    inscripcion.precio = plan.precio * (100 - descuento) / 100;
-                    inscripcion.fecha_inicio = DateTime.Now;
-                    inscripcion.fecha_finalizacion = inscripcion.fecha_inicio.AddDays(dias);
-                    inscripcion.estado = true;
-                    ar_historial.Save(inscripcion);
-                    ar_inscripcion.Save(inscripcion);
+                    inscripcion.Descuento = descuento;
+                    inscripcion.Precio = plan.Precio * (100 - descuento) / 100;
+                    inscripcion.Fecha_inicio = DateTime.Now;
+                    inscripcion.Fecha_finalizacion = inscripcion.Fecha_inicio.AddDays(dias);
+                    inscripcion.Estado = true;
+                    Repositorio_Historial.Save(inscripcion);
+                    Repositorio_Inscripciones.Save(inscripcion);
                     return new Response<Inscripcion>(true, "Contrato renovado correctamente."); 
                 }
             }

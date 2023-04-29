@@ -19,15 +19,15 @@ namespace Entidades
         }
         public override string ToString()
         {
-            return $"{id};{nombre};{genero};{telefono};{altura};{peso};{fecha_nacimiento};{fecha_ingreso}";
+            return $"{Id};{Nombre};{Genero};{Telefono};{Altura};{Peso};{Fecha_nacimiento};{Fecha_ingreso}";
         }
         public string ToFullString()
         {
             var sb = new StringBuilder();
-            sb.Append($"{id};{nombre};{genero};{telefono};{altura};{peso};{fecha_nacimiento};{fecha_ingreso}");
+            sb.Append($"{Id};{Nombre};{Genero};{Telefono};{Altura};{Peso};{Fecha_nacimiento};{Fecha_ingreso}");
             foreach (var item in Horarios)
             {
-                sb.Append($"{item.dia};{item.Hora_Inicio};{item.Hora_Salida}");
+                sb.Append($";{item.Dia};{item.Hora_Inicio};{item.Hora_Salida}");
             }
             return sb.ToString();
         }

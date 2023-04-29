@@ -37,31 +37,31 @@ namespace Datos
             {
                 var aux = linea.Split(';');
                 PlanGimnasio plan = new PlanGimnasio();
-                plan.id = aux[0];
-                plan.nombre = aux[1];
-                plan.precio = double.Parse(aux[2]);
-                plan.descripcion = aux[3];
-                plan.dias = int.Parse(aux[4]);
+                plan.Id = aux[0];
+                plan.Nombre = aux[1];
+                plan.Precio = double.Parse(aux[2]);
+                plan.Descripcion = aux[3];
+                plan.Dias = int.Parse(aux[4]);
                 return plan;
             }
             catch (Exception) { }
             return null;
         }
 
-        public bool Update(List<PlanGimnasio> list)
+        public bool Update(List<PlanGimnasio> Planes)
         {
             try
             {
-                if (list.Count == 0 && File.Exists(ruta))
+                if (Planes.Count == 0 && File.Exists(ruta))
                 {
                     File.Delete(ruta);
                 }
                 else
                 {
                     StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var item in list)
+                    foreach (var plan in Planes)
                     {
-                        writer.WriteLine(item.ToString());
+                        writer.WriteLine(plan.ToString());
                     }
                     writer.Close();
                 }

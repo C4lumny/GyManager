@@ -12,32 +12,33 @@ namespace Entidades
         }
         public Inscripcion(string id, DateTime fecha_inicio, DateTime fecha_finalizacion, double precio,  double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor, bool estado)
         {
-            this.id = id;
-            this.fecha_inicio = fecha_inicio;
-            this.fecha_finalizacion = fecha_finalizacion;
-            this.precio = precio;
-            this.descuento = descuento;
+
+            Id = id;
+            Fecha_inicio = fecha_inicio;
+            Fecha_finalizacion = fecha_finalizacion;
+            Precio = precio;
+            Descuento = descuento;
             this.cliente = cliente;
             this.plan = plan;
             this.supervisor = supervisor;
-            this.estado = estado;
+            Estado = estado;
         }
-        public string id { get; set; }
-        public DateTime fecha_inicio { get; set; }
-        public DateTime fecha_finalizacion { get; set; }
-        public double precio { get; set; }
-        public double descuento { get; set; }
-        public bool estado { get; set; }
+        public string Id { get; set; }
+        public DateTime Fecha_inicio { get; set; }
+        public DateTime Fecha_finalizacion { get; set; }
+        public double Precio { get; set; }
+        public double Descuento { get; set; }
+        public bool Estado { get; set; }
         public Cliente cliente { get; set; }
         public PlanGimnasio plan { get; set; }
         public Supervisor supervisor { get; set;}
         public override string ToString()
         {
-            return $"{id};{fecha_inicio};{fecha_finalizacion};{precio};{descuento};{cliente.id};{plan.id};{supervisor.id};{estado}";
+            return $"{Id};{Fecha_inicio};{Fecha_finalizacion};{Precio};{Descuento};{cliente.Id};{plan.Id};{supervisor.Id};{Estado}";
         }
         public string ToFullString()
         {
-            return $"{id};{fecha_inicio};{fecha_finalizacion};{precio};{descuento};{estado};{cliente.ToString()};{plan.ToString()};{supervisor.ToFullString()}";
+            return $"{Id};{Fecha_inicio};{Fecha_finalizacion};{Precio};{Descuento};{Estado};{cliente.ToString()};{plan.ToString()};{supervisor.ToFullString()}";
         }
     }
 }

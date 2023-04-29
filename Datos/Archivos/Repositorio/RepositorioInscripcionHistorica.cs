@@ -11,15 +11,17 @@ namespace Datos.Archivos.Repositorio
     public class RepositorioInscripcionHistorica
     {
         protected string ruta = "Inscripcion_Historial.txt";
-        RepositorioClientes ar_cliente;
-        RepositorioSupervisor ar_Supervisor;
-        RepositorioPlan ar_plan;
+        RepositorioClientes Repositorio_Clientes;
+        RepositorioSupervisor Repositorio_Supervisores;
+        RepositorioPlan Repositorio_Planes;
+        RepositorioTurnos Repositorio_Turnos;
 
         public RepositorioInscripcionHistorica()
         {
-            ar_cliente = new RepositorioClientes();
-            ar_Supervisor = new RepositorioSupervisor();
-            ar_plan = new RepositorioPlan();
+            Repositorio_Turnos = new RepositorioTurnos();
+            Repositorio_Clientes = new RepositorioClientes();
+            Repositorio_Supervisores = new RepositorioSupervisor();
+            Repositorio_Planes = new RepositorioPlan();
         }
         public Response<Inscripcion> Save(Inscripcion inscripcion)
         {
@@ -43,7 +45,7 @@ namespace Datos.Archivos.Repositorio
                 StringBuilder clientelinea = new StringBuilder();
                 StringBuilder planlinea = new StringBuilder();
                 StringBuilder supervisorlinea = new StringBuilder();
-                for (int i = 6; i < aux.Count(); i++)
+                for (int i = 6; i < 29; i++)
                 {
                     if (i < 16)
                     {
@@ -53,43 +55,47 @@ namespace Datos.Archivos.Repositorio
                     {
                         planlinea.Append(aux[i] + ";");
                     }
-                    else if (i >= 21)
+                    else if (i >= 21 && i < 29)
                     {
                         supervisorlinea.Append(aux[i] + ";");
-                    }
+                    }   
                 }
                 string sup = supervisorlinea.ToString().Substring(0, supervisorlinea.ToString().Length - 1);
                 string plan = planlinea.ToString().Substring(0, planlinea.ToString().Length - 1);
                 string cliente = clientelinea.ToString().Substring(0, clientelinea.ToString().Length - 1);
                 Inscripcion inscripcion = new Inscripcion();
-                inscripcion.id = aux[0];
-                inscripcion.fecha_inicio = DateTime.Parse(aux[1]);
-                inscripcion.fecha_finalizacion = DateTime.Parse(aux[2]);
-                inscripcion.precio = double.Parse(aux[3]);
-                inscripcion.descuento = int.Parse(aux[4]);
-                inscripcion.estado = bool.Parse(aux[5]);
-                inscripcion.cliente = ar_cliente.Mapper(cliente);
-                inscripcion.supervisor = ar_Supervisor.Mapper(sup);
-                inscripcion.plan = ar_plan.Mapper(plan);
+                inscripcion.Id = aux[0];
+                inscripcion.Fecha_inicio = DateTime.Parse(aux[1]);
+                inscripcion.Fecha_finalizacion = DateTime.Parse(aux[2]);
+                inscripcion.Precio = double.Parse(aux[3]);
+                inscripcion.Descuento = int.Parse(aux[4]);
+                inscripcion.Estado = bool.Parse(aux[5]);
+                inscripcion.cliente = Repositorio_Clientes.Mapper(cliente);
+                inscripcion.supervisor = Repositorio_Supervisores.Mapper(sup);
+                for (int i = 29; i < aux.Count()-2; i = i + 3)
+                {
+                    inscripcion.supervisor.Horarios.Add(new Turno_Atencion(aux[21], aux[i], DateTime.Parse(aux[i+1]), DateTime.Parse(aux[i + 2])));
+                }
+                inscripcion.plan = Repositorio_Planes.Mapper(plan);
                 return inscripcion;
             }
             catch (Exception) { }
             return null;
         }
-        public bool Update(List<Inscripcion> list)
+        public bool Update(List<Inscripcion> Inscripciones)
         {
             try
             {
-                if (list.Count == 0 && File.Exists(ruta))
+                if (Inscripciones.Count == 0 && File.Exists(ruta))
                 {
                     File.Delete(ruta);
                 }
                 else
                 {
                     StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var item in list)
+                    foreach (var inscripcion in Inscripciones)
                     {
-                        writer.WriteLine(item.ToFullString());
+                        writer.WriteLine(inscripcion.ToFullString());
                     }
                     writer.Close();
                 }

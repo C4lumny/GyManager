@@ -11,38 +11,35 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class CRUD_Supervisor: Public_Turno_Supervisor, I_CRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
+    public class CRUD_Supervisor: Public_Turno_Supervisor, I_CRUD<Supervisor> 
     {
        
         public CRUD_Supervisor() { }
         public Response<Supervisor> Delete(string id_supervisor)
         {
-
-            if (GetMainList() == null)
+            var Supervisores = GetMainList();
+            if (Supervisores == null)
             {
-                return new Response<Supervisor>(false, "Lista vacia"); // lista vacia
+                return new Response<Supervisor>(false, "Lista vacia"); 
             }
             else
             {
-                int pos = GetMainList().FindIndex(item => item.id == id_supervisor); 
-
+                int pos = Supervisores.FindIndex(item => item.Id == id_supervisor);
+                Supervisor supervisor = ReturnSupervisor(id_supervisor);
                 if (pos < 0) { return new Response<Supervisor>(false, "No se pudo encontrar el supervisor."); } 
-
-                Supervisor supervisor = ReturnSupervisorFromList(id_supervisor);
-                var lista = ar_turno.Load();
+                var lista = Repositorio_Turnos.Load();
                 if (supervisor.Horarios.Count > 0)
                 {
                     foreach (var item in lista)
                     {
-                        if (item.id_supervisor == id_supervisor)
+                        if (item.Id_supervisor == id_supervisor)
                         {
                             lista.Remove(item);
                         }
                     }
                 }
-                
-                ar_turno.Update(lista);
-//                ar_supervisor.Update()
+                Repositorio_Turnos.Update(lista);
+                Repositorio_Supervisores.Update(Supervisores);
                 GetMainList().RemoveAt(pos); return new Response<Supervisor>(true, "Eliminado correctamente.", null, supervisor); 
             }
         }
@@ -54,37 +51,36 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(item => item.nombre.Contains(search) || item.telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
+                return GetMainList().FindAll(item => item.Nombre.Contains(search) || item.Telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
             }
         }
         public Response<Supervisor> Save(Supervisor supervisor)
         {
             try
             {
-                if (supervisor.altura < 0)
+                if (supervisor.Altura < 0)
                 {
                     return new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos."); 
                 }
-                else if (supervisor.peso < 0)
+                else if (supervisor.Peso < 0)
                 {
                     return new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos."); 
                 }
-                else if (supervisor.fecha_nacimiento.AddYears(18) > DateTime.Now)
+                else if (supervisor.Fecha_nacimiento.AddYears(18) > DateTime.Now)
                 {
                     return new Response<Supervisor>(false, "Menor de 18 años, ingrese correctamente los datos."); 
                 }
                 else if (GetMainList() == null)
                 {
-                        return ar_supervisor.Save(supervisor);
+                        return Repositorio_Supervisores.Save(supervisor);
                 }
-                else if (Exist(supervisor.id))
+                else if (Exist(supervisor.Id))
                 {
                     return new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado");
                 }
                 else
                 {
-                    return ar_supervisor.Save(supervisor);
-                    //GetMainList().Sort((p1, p2) => p1.fecha_ingreso.CompareTo(p2.fecha_ingreso)); //Orgraniza objetos por fecha de ingreso (opcional)
+                    return Repositorio_Supervisores.Save(supervisor);
                 }
             }
             catch (Exception)
@@ -92,7 +88,7 @@ namespace Logica
                 return new Response<Supervisor>(false, "Error!", null, null);
             }
         }
-        public Response<Supervisor> Update(Supervisor supervisorUpdate, string id_supervisor)
+        public Response<Supervisor> Update(Supervisor supervosr_modificado, string id_supervisor)
         {
             try
             {
@@ -103,33 +99,33 @@ namespace Logica
                     {
                         return new Response<Supervisor>(false, "No se encontro el supervisor", null, null); 
                     }
-                    else if (supervisorUpdate.altura < 0)
+                    else if (supervosr_modificado.Altura < 0)
                     {
                         return new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos.", null, null); 
                     }
-                    else if (supervisorUpdate.peso < 0)
+                    else if (supervosr_modificado.Peso < 0)
                     {
                         return new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos.", null, null); 
                     }
-                    else if (supervisorUpdate.fecha_nacimiento.AddYears(18) > DateTime.Now)
+                    else if (supervosr_modificado.Fecha_nacimiento.AddYears(18) > DateTime.Now)
                     {
                         return new Response<Supervisor>(false, "Edad invalida (Menor de 18)", null, null); 
                     }
-                    else if (Exist(supervisorUpdate.id))
+                    else if (Exist(supervosr_modificado.Id))
                     {
                         return new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado", null, null); 
                     }
                     else
                     {
-                        var supervisor = ReturnSupervisorFromList(id_supervisor);
-                        supervisor.id = supervisorUpdate.id;
-                        supervisor.nombre = supervisorUpdate.nombre;
-                        supervisor.genero = supervisorUpdate.genero;
-                        supervisor.telefono = supervisorUpdate.telefono;
-                        supervisor.altura = supervisorUpdate.altura;
-                        supervisor.peso = supervisorUpdate.peso;
-                        supervisor.fecha_nacimiento = supervisorUpdate.fecha_nacimiento;
-                        supervisor.fecha_ingreso = supervisorUpdate.fecha_ingreso; 
+                        var supervisor = ReturnSupervisor(id_supervisor);
+                        supervisor.Id = supervosr_modificado.Id;
+                        supervisor.Nombre = supervosr_modificado.Nombre;
+                        supervisor.Genero = supervosr_modificado.Genero;
+                        supervisor.Telefono = supervosr_modificado.Telefono;
+                        supervisor.Altura = supervosr_modificado.Altura;
+                        supervisor.Peso = supervosr_modificado.Peso;
+                        supervisor.Fecha_nacimiento = supervosr_modificado.Fecha_nacimiento;
+                        supervisor.Fecha_ingreso = supervosr_modificado.Fecha_ingreso; 
                         return new Response<Supervisor>(true, "Actualizo correctamente los datos del supervisor.", null, supervisor);
                     }
                 }
@@ -141,9 +137,9 @@ namespace Logica
         }
         public List<Supervisor> GetAll()
         {
-            var lista = GetMainList();
-            if (lista == null) { return null; }
-            return lista; // retorna la lista de los supervisores de la clase Listas.
+            var Supervisores = GetMainList();
+            if (Supervisores == null) { return null; }
+            return Supervisores; // retorna la lista de los supervisores de la clase Listas.
         }
     }
 }

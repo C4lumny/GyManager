@@ -10,22 +10,22 @@ namespace Entidades
     {
         public Response(bool success, string msg)
         {
-            this.success = success;
-            this.msg = msg;
-            data = null;
-            value = default(T);
+            Success = success;
+            Msg = msg;
+            List = null;
+            Object = default(T);
         }
 
-        public Response(bool success, string msg, List<T> data, T value)
+        public Response(bool success, string msg, List<T> list, T @object)
         {
-            this.success = success;
-            this.msg = msg;
-            this.data = data;
-            this.value = value;
+            Success = success;
+            this.Msg = msg;
+            List = list;
+            Object = @object;
         }
-        public bool success { get; set; }
-        public string msg { get; set; }
-        public List<T> data { get; set; }
-        public T value { get; set; }
+        public bool Success { get; set; }
+        public string Msg { get; set; }
+        public List<T> List { get; set; }
+        public T Object { get; set; }
     }
 }

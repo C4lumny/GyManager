@@ -11,23 +11,23 @@ namespace Logica.Operaciones
 {
     public class Protected_Clientes: Abs_ProtectedClass<Cliente>
     {
-        protected RepositorioClientes ar_clientes;
+        protected RepositorioClientes Repositorio_Clientes;
         protected Protected_Clientes()
         {
-            ar_clientes = new RepositorioClientes();
+            Repositorio_Clientes = new RepositorioClientes();
         }
         protected override List<Cliente> GetMainList()
         {
-            var lista = ar_clientes.Load();
-            if (lista == null)
+            var Clientes = Repositorio_Clientes.Load();
+            if (Clientes == null)
             {
                 return null;
             }
-            return lista;  
+            return Clientes;  
         }
         protected override bool Exist(string id_cliente)
         {
-            if (GetMainList().FirstOrDefault(item => item.id == id_cliente) != null) 
+            if (GetMainList().FirstOrDefault(item => item.Id == id_cliente) != null) 
             {
                 return true; 
             }
@@ -35,7 +35,7 @@ namespace Logica.Operaciones
         }
         protected double CalculateIMC(Cliente cliente)
         {
-            return cliente.peso / (cliente.altura * cliente.altura);
+            return cliente.Peso / (cliente.Altura * cliente.Altura);
         }
     }
 }

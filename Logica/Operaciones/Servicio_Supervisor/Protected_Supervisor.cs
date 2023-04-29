@@ -13,16 +13,16 @@ namespace Logica.Operaciones
 {
     public class Protected_Supervisor: Abs_ProtectedClass<Supervisor>
     {
-        protected RepositorioSupervisor ar_supervisor;
-        protected RepositorioTurnos ar_turno;
+        protected RepositorioSupervisor Repositorio_Supervisores;
+        protected RepositorioTurnos Repositorio_Turnos;
         protected Protected_Supervisor()
         {
-            ar_turno = new RepositorioTurnos();
-            ar_supervisor = new RepositorioSupervisor();
+            Repositorio_Turnos = new RepositorioTurnos();
+            Repositorio_Supervisores = new RepositorioSupervisor();
         }
         protected override bool Exist(string id_supervisor)
         {
-            if (GetMainList().FirstOrDefault(item => item.id == id_supervisor) != null)
+            if (GetMainList().FirstOrDefault(supervisor => supervisor.Id == id_supervisor) != null)
             {
                 return true; 
             }
@@ -30,22 +30,22 @@ namespace Logica.Operaciones
         }
         protected override List<Supervisor> GetMainList()
         {
-            var listaSup = ar_supervisor.Load();
-            if (listaSup == null)
+            var Supervisores = Repositorio_Supervisores.Load();
+            if (Supervisores == null)
             {
                 return null;
             }
-            var listaTurno = ar_turno.Load();
-            if (listaTurno != null)
+            var Turnos = Repositorio_Turnos.Load();
+            if (Turnos != null)
             {
-                foreach (var supervisor in listaSup)
+                foreach (var supervisor in Supervisores)
                 {
-                    supervisor.Horarios = listaTurno.FindAll(turno => turno.id_supervisor == supervisor.id);
+                    supervisor.Horarios = Turnos.FindAll(turno => turno.Id_supervisor == supervisor.Id);
                 }
             }
-            return listaSup; 
+            return Supervisores; 
         }
-        protected bool validarHora(Turno_Atencion turno, Supervisor supervisor)
+        protected bool IsTurnoValid(Turno_Atencion turno, Supervisor supervisor)
         {
             if (turno.Hora_Inicio >= turno.Hora_Salida)
             {
@@ -55,7 +55,7 @@ namespace Logica.Operaciones
             {
                 foreach (var item in supervisor.Horarios)
                 {
-                    if (turno.dia.Replace(" ", "").ToLower() == item.dia.Replace(" ", "").ToLower())
+                    if (turno.Dia.Replace(" ", "").ToLower() == item.Dia.Replace(" ", "").ToLower())
                     {
                         if (turno.Hora_Inicio.TimeOfDay >= item.Hora_Inicio.TimeOfDay && item.Hora_Salida.TimeOfDay >= turno.Hora_Inicio.TimeOfDay)
                         {

@@ -15,21 +15,21 @@ namespace Logica.Operaciones
 {
     public class Protected_Inscripciones : Abs_ProtectedClass<Inscripcion>
     {
-        protected RepositorioInscripcionHistorica ar_historial = new RepositorioInscripcionHistorica();
-        protected RepositorioInscripcion ar_inscripcion;
-        protected Public_Clientes op_Clientes;
-        protected Public_Supervisores op_supervisor;
-        protected Public_Planes op_plan;
+        protected RepositorioInscripcionHistorica Repositorio_Historial = new RepositorioInscripcionHistorica();
+        protected RepositorioInscripcion Repositorio_Inscripciones;
+        protected Public_Clientes Op_clientes;
+        protected Public_Supervisores Op_supervisor;
+        protected Public_Planes Op_planes;
         public Protected_Inscripciones()
         {
-            ar_inscripcion = new RepositorioInscripcion();
-            op_Clientes = new Public_Clientes();
-            op_supervisor = new Public_Supervisores();
-            op_plan = new Public_Planes();
+            Repositorio_Inscripciones = new RepositorioInscripcion();
+            Op_clientes = new Public_Clientes();
+            Op_supervisor = new Public_Supervisores();
+            Op_planes = new Public_Planes();
         }
         protected override bool Exist(string id_inscripcion)
         {
-            if (GetMainList().FirstOrDefault(item => item.id == id_inscripcion) != null) // Valida si existe un item en la lista por medio de la id, retorna false si no encontro
+            if (GetMainList().FirstOrDefault(item => item.Id == id_inscripcion) != null) 
             {
                 return true;
             }
@@ -37,30 +37,33 @@ namespace Logica.Operaciones
         }
         protected override List<Inscripcion> GetMainList()
         {
-            ValidateStatus();
-            var lista = ar_inscripcion.Load();
-            if (lista == null)
+            var Inscripciones = Repositorio_Inscripciones.Load();
+            if (Inscripciones == null)
             {
                 return null;
             }
             else
             {
-                var listaUpdate = new List<Inscripcion>(lista);
-                foreach (var item in lista)
+                var Inscripciones_actualizadas = new List<Inscripcion>(Inscripciones);
+                foreach (var inscripcion in Inscripciones)
                 {
-                    if (item.cliente == null || item.supervisor == null || item.plan == null)
+                    if (inscripcion.cliente == null || inscripcion.supervisor == null || inscripcion.plan == null)
                     {
-                        listaUpdate.Remove(item);
+                        Inscripciones_actualizadas.Remove(inscripcion);
+                    }
+                    if (DateTime.Now >= inscripcion.Fecha_finalizacion)
+                    {
+                        inscripcion.Estado = false;
                     }
                 }
-                ar_inscripcion.Update(listaUpdate);
-                return listaUpdate;
+                Repositorio_Inscripciones.Update(Inscripciones_actualizadas);
+                return Inscripciones_actualizadas;
             }
         }
         protected Response<Inscripcion> isRenovationValid(Inscripcion inscripcion, Supervisor supervisor, PlanGimnasio plan, double descuento)
         {
-            var lista = GetMainList();
-            if (lista == null)
+            var Inscripciones = GetMainList();
+            if (Inscripciones == null)
             {
                 return new Response<Inscripcion>(false, "No se han registrado inscripciones."); 
             }
@@ -82,10 +85,9 @@ namespace Logica.Operaciones
             }
             else
             {
-                ValidateStatus();
-                foreach (var item in lista)
+                foreach (var item in Inscripciones)
                 {
-                    if (item.id == inscripcion.id && item.estado == true)
+                    if (item.Id == item.Id && item.Estado == true)
                     {
                         return new Response<Inscripcion>(false, "El cliente ya posee una inscripcion vigente.", null, null); 
                     }
@@ -93,28 +95,13 @@ namespace Logica.Operaciones
                 return new Response<Inscripcion>(true, null, null, inscripcion); 
             }
         }
-        protected bool ValidateCliente(string id)
+        protected bool isClienteValid(string id)
         {
-            if (GetMainList().FirstOrDefault(item => item.cliente.id == id) == null)
+            if (GetMainList().FirstOrDefault(item => item.cliente.Id == id) == null)
             {
                 return true;
             }
             return false;
-        }
-        protected void ValidateStatus()
-        {
-            var lista = ar_inscripcion.Load();
-            if (lista != null)
-            {
-                foreach (var item in lista)
-                {
-                    if (DateTime.Now >= item.fecha_finalizacion)
-                    {
-                        item.estado = false;
-                    }
-                }
-                ar_inscripcion.Update(lista);
-            }
         }
     }
 }

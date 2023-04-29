@@ -43,22 +43,14 @@ namespace Datos.Archivos
             {
                 var aux = linea.Split(';');
                 Supervisor supervisor = new Supervisor();
-                supervisor.id = aux[0];
-                supervisor.nombre = aux[1];
-                supervisor.genero = aux[2];
-                supervisor.telefono = aux[3];
-                supervisor.altura = double.Parse(aux[4]);
-                supervisor.peso = double.Parse(aux[5]);
-                supervisor.fecha_nacimiento = DateTime.Parse(aux[6]);
-                supervisor.fecha_ingreso = DateTime.Parse(aux[7]);
-                //var turnos = ar_turnos.Load();
-                //if (turnos != null)
-                //{
-                //    foreach (var item in turnos)
-                //    {
-                //        if (supervisor.id == item.id_sup) { supervisor.Horarios.Add(item); }
-                //    }
-                //}
+                supervisor.Id = aux[0];
+                supervisor.Nombre = aux[1];
+                supervisor.Genero = aux[2];
+                supervisor.Telefono = aux[3];
+                supervisor.Altura = double.Parse(aux[4]);
+                supervisor.Peso = double.Parse(aux[5]);
+                supervisor.Fecha_nacimiento = DateTime.Parse(aux[6]);
+                supervisor.Fecha_ingreso = DateTime.Parse(aux[7]);
                 return supervisor;
             }
             catch (Exception)
@@ -82,20 +74,20 @@ namespace Datos.Archivos
             return new Response<Supervisor>(true, "Error!.", null, supervisor);
         }
 
-        public bool Update(List<Supervisor> list)
+        public bool Update(List<Supervisor> Supervisores)
         {
             try
             {
-                if (list.Count == 0 && File.Exists(ruta))
+                if (Supervisores.Count == 0 && File.Exists(ruta))
                 {
                     File.Delete(ruta);
                 }
                 else
                 {
                     StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var item in list)
+                    foreach (var supervisor in Supervisores)
                     {
-                        writer.WriteLine(item.ToString());
+                        writer.WriteLine(supervisor.ToString());
                     }
                     writer.Close();
                 }

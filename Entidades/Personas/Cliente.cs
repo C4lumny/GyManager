@@ -2,21 +2,21 @@
 
 namespace Entidades
 {
-    public class Cliente : Personas // Clase Clientes, hereda los atributos de la clase Persona y posee una relacion de composicion entre Clientes-Coach y Cliente-Plan. 
+    public class Cliente : Personas 
     {
         public Cliente() 
         {
         }
         public Cliente(string id, string nombre, string genero, string telefono, double altura, double peso, double imc, DateTime fecha_nacimiento, string discapacidad, DateTime fecha_ingreso) : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
         {
-            this.imc = imc;
-            this.discapacidad = discapacidad;
+            this.Imc = imc;
+            this.Discapacidad = discapacidad;
         }
-        public string discapacidad { get; set; }
-        public double imc { get; set;} 
+        public string Discapacidad { get; set; }
+        public double Imc { get; set;} 
         public override string ToString()
         {
-            return $"{id};{nombre};{genero};{telefono};{altura};{peso};{imc};{fecha_nacimiento};{discapacidad};{fecha_ingreso}";
+            return $"{Id};{Nombre};{Genero};{Telefono};{Altura};{Peso};{Imc};{Fecha_nacimiento};{Discapacidad};{Fecha_ingreso}";
         }
         
     }

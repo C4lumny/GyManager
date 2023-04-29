@@ -70,30 +70,30 @@ namespace GUI
                 Console.SetCursorPosition(43, 5); Console.Write("---REGISTRAR NUEVO CLIENTE---");
                 try
                 {
-                    Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.id = Console.ReadLine();
-                    Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.nombre = Console.ReadLine();
-                    Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.telefono = Console.ReadLine();
-                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.genero = Console.ReadLine().ToUpper()[0].ToString();
-                    Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.peso = double.Parse(Console.ReadLine().Replace(".", ","));
-                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.altura = double.Parse(Console.ReadLine().Replace(".", ","));
+                    Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.Id = Console.ReadLine();
+                    Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.Nombre = Console.ReadLine();
+                    Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.Telefono = Console.ReadLine();
+                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                    Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
+                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                     Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
                     Console.SetCursorPosition(35, 18); Console.Write("Dia: "); int dia = int.Parse(Console.ReadLine());
                     Console.SetCursorPosition(45, 18); Console.Write("Mes: "); int mes = int.Parse(Console.ReadLine());
                     Console.SetCursorPosition(55, 18); Console.Write("Año: "); int anio = int.Parse(Console.ReadLine());
-                    clientes.fecha_nacimiento = new DateTime(anio, mes, dia);
+                    clientes.Fecha_nacimiento = new DateTime(anio, mes, dia);
                     Console.SetCursorPosition(35, 20); Console.Write("¿El cliente sufre de alguna discapacidad?[S/N]: ");
                     char disc = char.Parse(Console.ReadLine().ToLower());
                     if (disc == 's')
                     {
-                        Console.SetCursorPosition(35, 21); Console.Write("Ingrese la discapacidad del cliente: "); clientes.discapacidad = Console.ReadLine();
+                        Console.SetCursorPosition(35, 21); Console.Write("Ingrese la discapacidad del cliente: "); clientes.Discapacidad = Console.ReadLine();
                     }
                     else if (disc == 'n')
                     {
-                        clientes.discapacidad = " ";
+                        clientes.Discapacidad = " ";
                     }
-                    clientes.fecha_ingreso = DateTime.Now;
+                    clientes.Fecha_ingreso = DateTime.Now;
                     var response = servCliente.Save(clientes);
-                    Console.SetCursorPosition(35, 22); Console.WriteLine(response.msg);
+                    Console.SetCursorPosition(35, 22); Console.WriteLine(response.Msg);
 
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir agregando clientes?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
@@ -122,12 +122,12 @@ namespace GUI
 
                 foreach (var item in servicioCliente.GetAll())
                 {
-                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.id);
-                    Console.SetCursorPosition(25, i + 2); Console.WriteLine(item.nombre);
-                    Console.SetCursorPosition(38, i + 2); Console.WriteLine(item.genero);
-                    Console.SetCursorPosition(47, i + 2); Console.WriteLine(item.altura);
-                    Console.SetCursorPosition(55, i + 2); Console.WriteLine(item.telefono);
-                    Console.SetCursorPosition(70, i + 2); Console.WriteLine(item.imc);
+                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id);
+                    Console.SetCursorPosition(25, i + 2); Console.WriteLine(item.Nombre);
+                    Console.SetCursorPosition(38, i + 2); Console.WriteLine(item.Genero);
+                    Console.SetCursorPosition(47, i + 2); Console.WriteLine(item.Altura);
+                    Console.SetCursorPosition(55, i + 2); Console.WriteLine(item.Telefono);
+                    Console.SetCursorPosition(70, i + 2); Console.WriteLine(item.Imc);
                     i++;
                 }
             }
@@ -152,7 +152,7 @@ namespace GUI
                 {
                     Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR CLIENTE---");
                     Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea actualizar: "); id_clienteU = Console.ReadLine();
-                    if (servCliente.ReturnFromList(id_clienteU) == null) 
+                    if (servCliente.ReturnCliente(id_clienteU) == null) 
                     {
                         Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
                         Console.ReadKey();
@@ -161,30 +161,30 @@ namespace GUI
                     {
                         Console.Clear();
                         Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR CLIENTE---");
-                        Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.id = Console.ReadLine();
-                        Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.nombre = Console.ReadLine();
-                        Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.telefono = Console.ReadLine();
-                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.genero = Console.ReadLine().ToUpper()[0].ToString();
-                        Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.peso = double.Parse(Console.ReadLine().Replace(".", ","));
-                        Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.altura = double.Parse(Console.ReadLine().Replace(".", ","));
+                        Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.Id = Console.ReadLine();
+                        Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.Nombre = Console.ReadLine();
+                        Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.Telefono = Console.ReadLine();
+                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                        Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
+                        Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                         Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
                         Console.SetCursorPosition(35, 18); Console.Write("Dia: "); int dia = int.Parse(Console.ReadLine());
                         Console.SetCursorPosition(45, 18); Console.Write("Mes: "); int mes = int.Parse(Console.ReadLine());
                         Console.SetCursorPosition(55, 18); Console.Write("Año: "); int anio = int.Parse(Console.ReadLine());
-                        clientes.fecha_nacimiento = new DateTime(anio, mes, dia);
+                        clientes.Fecha_nacimiento = new DateTime(anio, mes, dia);
                         Console.SetCursorPosition(35, 20); Console.Write("¿El cliente sufre de alguna discapacidad?[S/N]: ");
                         char disc = char.Parse(Console.ReadLine().ToLower());
                         if (disc == 's')
                         {
-                            Console.SetCursorPosition(35, 21); Console.Write("Ingrese la discapacidad del cliente: "); clientes.discapacidad = Console.ReadLine();
+                            Console.SetCursorPosition(35, 21); Console.Write("Ingrese la discapacidad del cliente: "); clientes.Discapacidad = Console.ReadLine();
                         }
                         else if (disc == 'n')
                         {
-                            clientes.discapacidad = " ";
+                            clientes.Discapacidad = " ";
                         }
-                        clientes.fecha_ingreso = servCliente.ReturnFromList(id_clienteU).fecha_ingreso;
+                        clientes.Fecha_ingreso = servCliente.ReturnCliente(id_clienteU).Fecha_ingreso;
                         var response = servCliente.Update(clientes, id_clienteU);
-                        Console.SetCursorPosition(35, 22); Console.WriteLine(response.msg);
+                        Console.SetCursorPosition(35, 22); Console.WriteLine(response.Msg);
                         Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir actualizando clientes?[S/N]: ");
                         op = char.Parse(Console.ReadLine().ToLower());
                     }
@@ -207,7 +207,7 @@ namespace GUI
                 Console.Clear();
                 Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR CLIENTE---");
                 Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteU = Console.ReadLine();
-                if (servicioCliente.ReturnFromList(id_clienteU) == null)
+                if (servicioCliente.ReturnCliente(id_clienteU) == null)
                 {
                     Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
                     Console.ReadKey();
@@ -215,7 +215,7 @@ namespace GUI
                 else
                 {
                     var response = servicioCliente.Delete(id_clienteU);
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.value.nombre);
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.Object.Nombre);
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
                 }
