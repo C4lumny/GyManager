@@ -375,7 +375,7 @@ namespace Pureba
 
             void Consultar_ClientesDeSupervisor()
             {
-                int op = 0;
+                int op;
                 do
                 {
                     op = 0;
@@ -384,16 +384,16 @@ namespace Pureba
                     var sup = servicioSupervisor.ReturnSupervisor(id_supervisor);
                     if (op == 0)
                     {
-                        foreach (var item in servicioContrato.ClientesPorSupervisor(sup))
+                        foreach (var cliente in servicioContrato.ClientesPorSupervisor(sup))
                         {
                             Console.WriteLine("SUPERVISOR ENCARGADO: " + sup.Nombre);
                             Console.WriteLine("CLIENTE: ");
-                            Console.WriteLine("ID: " + item.Id);
-                            Console.WriteLine("NOMBRE: " + item.Nombre);
-                            Console.WriteLine("GENERO: " + item.Genero);
-                            Console.WriteLine("ALTURA: " + item.Altura);
-                            Console.WriteLine("TELEFONO: " + item.Telefono);
-                            Console.WriteLine("IMC: " + item.Imc);
+                            Console.WriteLine("ID: " + cliente.Id);
+                            Console.WriteLine("NOMBRE: " + cliente.Nombre);
+                            Console.WriteLine("GENERO: " + cliente.Genero);
+                            Console.WriteLine("ALTURA: " + cliente.Altura);
+                            Console.WriteLine("TELEFONO: " + cliente.Telefono);
+                            Console.WriteLine("IMC: " + cliente.Imc);
                             Console.WriteLine("-------------------------------------");
                         }
                     }
