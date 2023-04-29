@@ -68,8 +68,8 @@ namespace Pureba
             ConsultarCliente();                 Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n");     Console.ReadKey();
 
             //AñadirTurno();
-            //EliminarTurno();
-            //ConsultarSupervisor(); Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n"); Console.ReadKey();
+            EliminarTurno();
+            ConsultarSupervisor(); Console.WriteLine("\n///////////////////  FIN_CONSULTA  ///////////////////   \n"); Console.ReadKey();
             CrearContrato();                    Console.WriteLine("\n///////////////////  FIN_CREAR  ///////////////////      \n");     Console.ReadKey();
             Historial();
             //eliminarCliente();
@@ -245,7 +245,7 @@ namespace Pureba
                         Console.Write("Digite el id del supervisor asignado: "); string id_supervisor = Console.ReadLine();
                         Console.Write("Digite el id del plan asignado: "); string id_plan = Console.ReadLine();
                         contrato.cliente = servicioCliente.ReturnFromList(id_cliente);
-                        contrato.supervisor = servicioSupervisor.ReturnFromList(id_supervisor);
+                        contrato.supervisor = servicioSupervisor.ReturnSupervisorFromList(id_supervisor);
                         contrato.plan = servicioPlan.ReturnFromList(id_plan);
                         Console.Write("Digite el descuento (%): ");
                         string descuento = Console.ReadLine();
@@ -379,7 +379,7 @@ namespace Pureba
                     op = 0;
 
                     Console.WriteLine("Digite la id del Supervirsor: "); string id_supervisor = Console.ReadLine();
-                    var sup = servicioSupervisor.ReturnFromList(id_supervisor);
+                    var sup = servicioSupervisor.ReturnSupervisorFromList(id_supervisor);
                     if (op == 0)
                     {
                         foreach (var item in servicioContrato.ClientesPorSupuervisor(sup))
@@ -408,7 +408,7 @@ namespace Pureba
                 Console.Clear();
                 string id_sup;
                 Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del sup que desea agregar turno: "); id_sup = Console.ReadLine();
-                if (servicioSupervisor.ReturnFromList(id_sup) == null)
+                if (servicioSupervisor.ReturnSupervisorFromList(id_sup) == null)
                 {
                     Console.SetCursorPosition(35, 9); Console.WriteLine("El sup que desea actualizar, no se encuentra en la base de datos");
                     Console.ReadKey();
@@ -418,8 +418,8 @@ namespace Pureba
                     Console.WriteLine("Ingrese el dia de trabajo:"); string dia= Console.ReadLine();
                     Console.WriteLine("Ingresa la hora inicial: "); DateTime horaInicial = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
                     Console.WriteLine("Ingresa la hora de salida: "); DateTime horasalida = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
-
-                    servicioSupervisor.SaveTurno(id_sup, dia, horaInicial, horasalida);
+                    
+                    servicioSupervisor.SaveTurno(new Turno_Atencion(id_sup, dia, horaInicial, horasalida));
                 }
                 
             }
@@ -429,7 +429,7 @@ namespace Pureba
                 Console.Clear();
                 string id_sup;
                 Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del sup que desea eliminar turno: "); id_sup = Console.ReadLine();
-                if (servicioSupervisor.ReturnFromList(id_sup) == null)
+                if (servicioSupervisor.ReturnSupervisorFromList(id_sup) == null)
                 {
                     Console.SetCursorPosition(35, 9); Console.WriteLine("El sup que desea actualizar, no se encuentra en la base de datos");
                     Console.ReadKey();
@@ -438,7 +438,8 @@ namespace Pureba
                 {
                     Console.WriteLine("Ingrese el dia de trabajo:"); string dia = Console.ReadLine();
                     Console.WriteLine("Ingresa la hora inicial o de salida del supervisor: "); DateTime horaInicial = DateTime.ParseExact(Console.ReadLine(), "H:mm", CultureInfo.InvariantCulture);
-                    servicioSupervisor.DeleteTurno(id_sup, dia, horaInicial);
+                    
+                    servicioSupervisor.DeleteTurno(servicioSupervisor.ReturnTurnoFromList(id_sup, dia, horaInicial));
                 }
             }
             void Historial()

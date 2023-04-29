@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrador\Administrador.cs" />
     <Compile Include="ServicioProveidos\Turno_Atencion.cs" />
-    <Compile Include="Usuarios\Cliente.cs" />
+    <Compile Include="Personas\Cliente.cs" />
     <Compile Include="Response\Response.cs" />
-    <Compile Include="Usuarios\Supervisor.cs" />
+    <Compile Include="Personas\Supervisor.cs" />
     <Compile Include="ServicioProveidos\Inscripcion.cs" />
-    <Compile Include="Usuarios\Usuario.cs" />
+    <Compile Include="Personas\Personas.cs" />
     <Compile Include="ServicioProveidos\PlanGimnasio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

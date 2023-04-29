@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Supervisor : Usuario
+    public class Supervisor : Personas
     { 
         public Supervisor()
         {

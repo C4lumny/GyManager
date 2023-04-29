@@ -2,7 +2,7 @@
 
 namespace Entidades
 {
-    public class Cliente : Usuario // Clase Clientes, hereda los atributos de la clase Persona y posee una relacion de composicion entre Clientes-Coach y Cliente-Plan. 
+    public class Cliente : Personas // Clase Clientes, hereda los atributos de la clase Persona y posee una relacion de composicion entre Clientes-Coach y Cliente-Plan. 
     {
         public Cliente() 
         {

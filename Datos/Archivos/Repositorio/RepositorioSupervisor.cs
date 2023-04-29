@@ -12,11 +12,9 @@ namespace Datos.Archivos
 {
     public class RepositorioSupervisor : I_Repositorio<Supervisor>
     {
-        RepositorioTurnos ar_turnos;
         string ruta = "Supervisor.txt";
         public RepositorioSupervisor()
         {
-            ar_turnos = new RepositorioTurnos();
         }
         public List<Supervisor> Load()
         {
@@ -53,14 +51,14 @@ namespace Datos.Archivos
                 supervisor.peso = double.Parse(aux[5]);
                 supervisor.fecha_nacimiento = DateTime.Parse(aux[6]);
                 supervisor.fecha_ingreso = DateTime.Parse(aux[7]);
-                var turnos = ar_turnos.Load();
-                if (turnos != null)
-                {
-                    foreach (var item in turnos)
-                    {
-                        if (supervisor.id == item.id_sup) { supervisor.Horarios.Add(item); }
-                    }
-                }
+                //var turnos = ar_turnos.Load();
+                //if (turnos != null)
+                //{
+                //    foreach (var item in turnos)
+                //    {
+                //        if (supervisor.id == item.id_sup) { supervisor.Horarios.Add(item); }
+                //    }
+                //}
                 return supervisor;
             }
             catch (Exception)

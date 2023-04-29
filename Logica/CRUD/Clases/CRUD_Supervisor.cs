@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class CRUD_Supervisor: Public_Supervisores, I_CRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
+    public class CRUD_Supervisor: Public_Turno_Supervisor, I_CRUD<Supervisor>  // Proporciona metodos para cumplir los requerimientos minimos del programa relacionados a los coaches.
     {
        
         public CRUD_Supervisor() { }
@@ -28,13 +28,13 @@ namespace Logica
 
                 if (pos < 0) { return new Response<Supervisor>(false, "No se pudo encontrar el supervisor."); } 
 
-                Supervisor supervisor = ReturnFromList(id_supervisor);
+                Supervisor supervisor = ReturnSupervisorFromList(id_supervisor);
                 var lista = ar_turno.Load();
                 if (supervisor.Horarios.Count > 0)
                 {
                     foreach (var item in lista)
                     {
-                        if (item.id_sup == id_supervisor)
+                        if (item.id_supervisor == id_supervisor)
                         {
                             lista.Remove(item);
                         }
@@ -121,7 +121,7 @@ namespace Logica
                     }
                     else
                     {
-                        var supervisor = ReturnFromList(id_supervisor);
+                        var supervisor = ReturnSupervisorFromList(id_supervisor);
                         supervisor.id = supervisorUpdate.id;
                         supervisor.nombre = supervisorUpdate.nombre;
                         supervisor.genero = supervisorUpdate.genero;

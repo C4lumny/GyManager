@@ -45,6 +45,7 @@
     <Compile Include="Archivos\Repositorio\RepositorioInscripcionHistorica.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioSupervisor.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioTurnos.cs" />
+    <Compile Include="Archivos\Repositorio\RepositorioAdministrador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioInscripcion.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioPlan.cs" />

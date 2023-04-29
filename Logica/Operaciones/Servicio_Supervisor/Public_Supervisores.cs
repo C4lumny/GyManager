@@ -3,17 +3,18 @@ using Logica.CRUD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Logica.Operaciones.AccesoPublico
 {
-    public class Public_Supervisores: Public_Turno_Supervisor
+    public class Public_Supervisores: Protected_Supervisor
     {
         public Public_Supervisores()
         {
         }
-        public Supervisor ReturnFromList(string id_supervisor)
+        public Supervisor ReturnSupervisorFromList(string id_supervisor)
         {
             try
             {
@@ -26,5 +27,16 @@ namespace Logica.Operaciones.AccesoPublico
             }
         }
 
+        public Turno_Atencion ReturnTurnoFromList(string id_supervisor, string dia, DateTime hora)
+        {
+            try
+            {
+                return ar_turno.Load().FirstOrDefault((item) => (item.id_supervisor == id_supervisor && item.dia == dia && item.Hora_Inicio == hora) || (item.id_supervisor == id_supervisor && item.dia == dia && item.Hora_Salida == hora));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

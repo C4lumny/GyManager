@@ -10,6 +10,7 @@ namespace Datos.Archivos.Repositorio
 {
     public class RepositorioTurnos : I_Repositorio<Turno_Atencion>
     {
+
         string ruta = "Turnos.txt";
         public RepositorioTurnos()
         {
@@ -37,10 +38,11 @@ namespace Datos.Archivos.Repositorio
 
         public Turno_Atencion Mapper(string linea)
         {
+            
             try
             {
-                var aux = linea.Split(';');
-                Turno_Atencion turno = new Turno_Atencion(aux[0], aux[1], DateTime.Parse(aux[2]), (DateTime.Parse(aux[3])));
+                var aux = linea.Split(';');                
+                var turno = new Turno_Atencion(aux[0], aux[1], DateTime.Parse(aux[2]), DateTime.Parse(aux[3]));          
                 return turno;
             }
             catch (Exception)

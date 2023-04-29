@@ -180,7 +180,7 @@ namespace Logica
             try
             {
                 Inscripcion inscripcion = ReturnFromList(id_inscripcion);
-                Supervisor supervisor = op_supervisor.ReturnFromList(id_supervisor);
+                Supervisor supervisor = op_supervisor.ReturnSupervisorFromList(id_supervisor);
                 PlanGimnasio plan = op_plan.ReturnFromList(id_plan);
 
                 var response = isRenovationValid(inscripcion, supervisor, plan, descuento);
