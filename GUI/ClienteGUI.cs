@@ -74,8 +74,8 @@ namespace GUI
                     Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.Nombre = Console.ReadLine();
                     Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.Telefono = Console.ReadLine();
                     Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadLine().ToUpper()[0].ToString();
-                    Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
-                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
+                    Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente(Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
+                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente(metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                     Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
                     Console.SetCursorPosition(35, 18); Console.Write("Dia: "); int dia = int.Parse(Console.ReadLine());
                     Console.SetCursorPosition(45, 18); Console.Write("Mes: "); int mes = int.Parse(Console.ReadLine());

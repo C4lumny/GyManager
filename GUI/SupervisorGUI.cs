@@ -68,35 +68,26 @@ namespace GUI
             do
             {
                 Console.Clear();
-                Cliente clientes = new Cliente();
-                CRUD_Cliente servCliente = new CRUD_Cliente();
+                Supervisor supervisores = new Supervisor();
+                CRUD_Supervisor servSupervisor = new CRUD_Supervisor();
 
-                Console.SetCursorPosition(43, 5); Console.Write("---REGISTRAR NUEVO CLIENTE---");
+                Console.SetCursorPosition(43, 5); Console.Write("---REGISTRAR NUEVO SUPERVISOR---");
                 try
                 {
-                    Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.Id = Console.ReadLine();
-                    Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.Nombre = Console.ReadLine();
-                    Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.Telefono = Console.ReadLine();
-                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadLine().ToUpper()[0].ToString();
-                    Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
-                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
+                    Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del supervisor: "); supervisores.Id = Console.ReadLine();
+                    Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del supervisor: "); supervisores.Nombre = Console.ReadLine();
+                    Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del supervisor: "); supervisores.Telefono = Console.ReadLine();
+                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del supervisor(M o F): "); supervisores.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                    Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del supervisor(Kg): "); supervisores.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
+                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del supervisor(metros): "); supervisores.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                     Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
                     Console.SetCursorPosition(35, 18); Console.Write("Dia: "); int dia = int.Parse(Console.ReadLine());
                     Console.SetCursorPosition(45, 18); Console.Write("Mes: "); int mes = int.Parse(Console.ReadLine());
                     Console.SetCursorPosition(55, 18); Console.Write("Año: "); int anio = int.Parse(Console.ReadLine());
-                    clientes.Fecha_nacimiento = new DateTime(anio, mes, dia);
-                    Console.SetCursorPosition(35, 20); Console.Write("¿El cliente sufre de alguna discapacidad?[S/N]: ");
-                    char disc = char.Parse(Console.ReadLine().ToLower());
-                    if (disc == 's')
-                    {
-                        Console.SetCursorPosition(35, 21); Console.Write("Ingrese la discapacidad del cliente: "); clientes.Discapacidad = Console.ReadLine();
-                    }
-                    else if (disc == 'n')
-                    {
-                        clientes.Discapacidad = " ";
-                    }
-                    clientes.Fecha_ingreso = DateTime.Now;
-                    var response = servCliente.Save(clientes);
+                    supervisores.Fecha_nacimiento = new DateTime(anio, mes, dia);
+           
+                    supervisores.Fecha_ingreso = DateTime.Now;
+                    var response = servSupervisor.Save(supervisores);
                     Console.SetCursorPosition(35, 22); Console.WriteLine(response.Msg);
 
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir agregando clientes?[S/N]: ");
@@ -114,19 +105,19 @@ namespace GUI
         {
             Console.Clear();
             int i = 7;
-            Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
-            if (servicioCliente.GetAll() != null)
+            Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE SUPERVISORES---");
+            if (servicioSupervisor.GetAll() != null)
             {
-                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
-                foreach (var item in servicioCliente.GetAll())
+                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15));
+                foreach (var item in servicioSupervisor.GetAll())
                 {
-                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
+                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15));
                     i++;
                 }
             }
             else
             {
-                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
+                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado supervisores");
                 Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
             }
             Console.ReadKey();
@@ -134,51 +125,42 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         void actualizarSupervisor()
         {
-            string id_clienteU;
+            string id_supervisorU;
             char op = 'x';
             do
             {
                 Console.Clear();
-                Cliente clientes = new Cliente();
-                CRUD_Cliente servCliente = new CRUD_Cliente();
+                Supervisor supervisores = new Supervisor();
+                CRUD_Supervisor servicioSupervisor = new CRUD_Supervisor();
                 try
                 {
-                    Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR CLIENTE---");
-                    Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea actualizar: "); id_clienteU = Console.ReadLine();
-                    if (servCliente.ReturnCliente(id_clienteU) == null)
+                    Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR SUPERVISOR---");
+                    Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor que desea actualizar: "); id_supervisorU = Console.ReadLine();
+                    if (servicioSupervisor.ReturnSupervisor(id_supervisorU) == null)
                     {
-                        Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
+                        Console.SetCursorPosition(35, 9); Console.WriteLine("El supervisor que desea actualizar, no se encuentra en la base de datos");
                         Console.ReadKey();
                     }
                     else
                     {
                         Console.Clear();
-                        Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR CLIENTE---");
-                        Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.Id = Console.ReadLine();
-                        Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.Nombre = Console.ReadLine();
-                        Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.Telefono = Console.ReadLine();
-                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadLine().ToUpper()[0].ToString();
-                        Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
-                        Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
+                        Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR SUPERVISOR---");
+                        Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del supervisor: "); supervisores.Id = Console.ReadLine();
+                        Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del supervisor: "); supervisores.Nombre = Console.ReadLine();
+                        Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del supervisor: "); supervisores.Telefono = Console.ReadLine();
+                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del supervisor(M o F): "); supervisores.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                        Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del supervisor(Kg): "); supervisores.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
+                        Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del supervisor(metros): "); supervisores.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                         Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
                         Console.SetCursorPosition(35, 18); Console.Write("Dia: "); int dia = int.Parse(Console.ReadLine());
                         Console.SetCursorPosition(45, 18); Console.Write("Mes: "); int mes = int.Parse(Console.ReadLine());
                         Console.SetCursorPosition(55, 18); Console.Write("Año: "); int anio = int.Parse(Console.ReadLine());
-                        clientes.Fecha_nacimiento = new DateTime(anio, mes, dia);
-                        Console.SetCursorPosition(35, 20); Console.Write("¿El cliente sufre de alguna discapacidad?[S/N]: ");
-                        char disc = char.Parse(Console.ReadLine().ToLower());
-                        if (disc == 's')
-                        {
-                            Console.SetCursorPosition(35, 21); Console.Write("Ingrese la discapacidad del cliente: "); clientes.Discapacidad = Console.ReadLine();
-                        }
-                        else if (disc == 'n')
-                        {
-                            clientes.Discapacidad = " ";
-                        }
-                        clientes.Fecha_ingreso = servCliente.ReturnCliente(id_clienteU).Fecha_ingreso;
-                        var response = servCliente.Update(clientes, id_clienteU);
+                        supervisores.Fecha_nacimiento = new DateTime(anio, mes, dia);
+                        
+                        supervisores.Fecha_ingreso = servicioSupervisor.ReturnSupervisor(id_supervisorU).Fecha_ingreso;
+                        var response = servicioSupervisor.Update(supervisores, id_supervisorU);
                         Console.SetCursorPosition(35, 22); Console.WriteLine(response.Msg);
-                        Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir actualizando clientes?[S/N]: ");
+                        Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir actualizando supervisores?[S/N]: ");
                         op = char.Parse(Console.ReadLine().ToLower());
                     }
                 }
@@ -192,24 +174,24 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         void eliminarSupervisor()
         {
-            string id_clienteU;
+            string id_supervisorD;
             char op = 'x';
             do
             {
 
                 Console.Clear();
-                Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR CLIENTE---");
-                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteU = Console.ReadLine();
-                if (servicioCliente.ReturnCliente(id_clienteU) == null)
+                Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR SUPERVISOR---");
+                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor que desea eliminar: "); id_supervisorD = Console.ReadLine();
+                if (servicioSupervisor.ReturnSupervisor(id_supervisorD) == null)
                 {
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("El supervisor que desea actualizar, no se encuentra en la base de datos");
                     Console.ReadKey();
                 }
                 else
                 {
-                    var response = servicioCliente.Delete(id_clienteU);
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.Object.Nombre);
-                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
+                    var response = servicioSupervisor.Delete(id_supervisorD);
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el supervisor: " + response.Object.Nombre);
+                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando supervisores?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
                 }
             } while (op == 's');

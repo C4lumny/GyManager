@@ -37,8 +37,8 @@ namespace GUI
                         clienteMenu.menu();
                         break;
                     case 2:
-                        SupervisorGUI supervMenu = new SupervisorGUI();
-                        supervMenu.menu();
+                        SupervisorGUI supervisorMenu = new SupervisorGUI();
+                        supervisorMenu.menu();
                         break;
                     case 3:
 
