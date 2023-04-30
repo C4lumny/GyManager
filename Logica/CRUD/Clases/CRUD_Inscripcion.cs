@@ -1,20 +1,15 @@
-﻿using Datos;
-using Datos.Archivos.Repositorio;
-using Entidades;
-using Logica.Operaciones;
+﻿using Entidades;
 using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
 
 namespace Logica
 {
-    public class CRUD_Inscripcion: Public_Inscripciones, I_CRUD<Inscripcion>
+    public class CRUD_Inscripcion : Public_Inscripciones, I_CRUD<Inscripcion>
     {
         public CRUD_Inscripcion()
         {
-           
+
         }
         public Response<Inscripcion> Delete(string id_inscripcion)
         {
@@ -29,25 +24,25 @@ namespace Logica
                 Inscripcion inscripcion = ReturnInscripcion(id_inscripcion);
                 if (inscripcion == null)
                 {
-                    return new Response<Inscripcion>(false, "No se encontro el id del contrato que desea eliminar"); 
+                    return new Response<Inscripcion>(false, "No se encontro el id del contrato que desea eliminar");
                 }
                 Inscripciones.RemoveAt(pos);
                 Repositorio_Inscripciones.Update(Inscripciones);
-                return new Response<Inscripcion>(true, "Inscripcion eliminada correctamente", null, inscripcion);  
+                return new Response<Inscripcion>(true, "Inscripcion eliminada correctamente", null, inscripcion);
             }
-        } 
+        }
         public List<Inscripcion> GetBySearch(string search)
         {
-            if (GetMainList() == null) 
+            if (GetMainList() == null)
             {
-                return null; 
+                return null;
             }
             else
             {
-                return GetMainList().FindAll(item => item.Id.StartsWith(search) || item.cliente.Nombre.Contains(search) || item.cliente.Id.StartsWith(search)); 
+                return GetMainList().FindAll(item => item.Id.StartsWith(search) || item.cliente.Nombre.Contains(search) || item.cliente.Id.StartsWith(search));
             }
         }
-        public Response<Inscripcion> Save(Inscripcion inscripcion) 
+        public Response<Inscripcion> Save(Inscripcion inscripcion)
         {
             try
             {
@@ -66,7 +61,7 @@ namespace Logica
                 }
                 else if (inscripcion.Descuento < 0 || inscripcion.Descuento > 100)
                 {
-                    return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
+                    return new Response<Inscripcion>(false, "Descuento fuera de rango");
                 }
                 else if (inscripcion.cliente.Fecha_nacimiento.AddYears(18) > DateTime.Now)
                 {
@@ -84,7 +79,7 @@ namespace Logica
                 }
                 else if (Exist(inscripcion.Id))
                 {
-                    return new Response<Inscripcion>(false, "El ID de la inscripcion ya se encuentra registrado."); 
+                    return new Response<Inscripcion>(false, "El ID de la inscripcion ya se encuentra registrado.");
                 }
                 else
                 {
@@ -98,26 +93,26 @@ namespace Logica
                 return new Response<Inscripcion>(false, "Error!");
             }
         }
-        public Response<Inscripcion> Update(Inscripcion inscipcion_modificada, string id_inscripcion) 
+        public Response<Inscripcion> Update(Inscripcion inscipcion_modificada, string id_inscripcion)
         {
             try
             {
                 var list = GetMainList();
-                if (list == null) { return new Response<Inscripcion>(true, "No se han encontrado inscripciones."); } 
+                if (list == null) { return new Response<Inscripcion>(true, "No se han encontrado inscripciones."); }
                 else
                 {
                     var inscripcion = ReturnInscripcion(id_inscripcion);
                     if (inscripcion == null)
                     {
-                        return new Response<Inscripcion>(false, "No se encontro la inscripcion que se desea actualizar."); 
+                        return new Response<Inscripcion>(false, "No se encontro la inscripcion que se desea actualizar.");
                     }
                     else if (inscipcion_modificada.cliente == null)
                     {
-                        return new Response<Inscripcion>(false, "El cliente ingresado no existe"); 
+                        return new Response<Inscripcion>(false, "El cliente ingresado no existe");
                     }
                     else if (inscipcion_modificada.supervisor == null)
                     {
-                        return new Response<Inscripcion>(false, "El supervisor ingresado no existe"); 
+                        return new Response<Inscripcion>(false, "El supervisor ingresado no existe");
                     }
                     else if (inscipcion_modificada.plan == null)
                     {
@@ -125,11 +120,11 @@ namespace Logica
                     }
                     else if (inscipcion_modificada.Descuento < 0 || inscipcion_modificada.Descuento > 100)
                     {
-                        return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
+                        return new Response<Inscripcion>(false, "Descuento fuera de rango");
                     }
                     else if (ReturnInscripcion(inscipcion_modificada.Id) == null)
                     {
-                        return new Response<Inscripcion>(false, "El ID ingresado ya esta registrado. Por favor ingrese otro"); 
+                        return new Response<Inscripcion>(false, "El ID ingresado ya esta registrado. Por favor ingrese otro");
                     }
                     else
                     {
@@ -143,23 +138,23 @@ namespace Logica
                         Repositorio_Historial.Save(inscripcion);
                         if (Repositorio_Inscripciones.Update(list))
                         {
-                            return new Response<Inscripcion>(true, "Se ha actualizado la inscripcion", list, inscripcion); 
+                            return new Response<Inscripcion>(true, "Se ha actualizado la inscripcion", list, inscripcion);
                         }
                         else
                         {
-                            return new Response<Inscripcion>(false, "Error!"); 
+                            return new Response<Inscripcion>(false, "Error!");
                         }
                     }
                 }
             }
             catch (Exception)
             {
-                return new Response<Inscripcion>(false, "Error!"); 
+                return new Response<Inscripcion>(false, "Error!");
             }
         }
         public List<Inscripcion> GetAll()
         {
-            var Inscripciones = GetMainList(); 
+            var Inscripciones = GetMainList();
             if (Inscripciones == null) { return null; }
             return Inscripciones;
         }
@@ -187,12 +182,12 @@ namespace Logica
                     inscripcion.Estado = true;
                     Repositorio_Historial.Save(inscripcion);
                     Repositorio_Inscripciones.Save(inscripcion);
-                    return new Response<Inscripcion>(true, "Contrato renovado correctamente."); 
+                    return new Response<Inscripcion>(true, "Contrato renovado correctamente.");
                 }
             }
             catch (Exception)
             {
-                return new Response<Inscripcion>(false, "Error!"); 
+                return new Response<Inscripcion>(false, "Error!");
             }
         }
     }

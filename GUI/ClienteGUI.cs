@@ -188,22 +188,22 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         void eliminarCliente()
         {
-            string id_clienteU;
+            string id_clienteD;
             char op = 'x';
             do
             {
        
                 Console.Clear();
                 Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR CLIENTE---");
-                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteU = Console.ReadLine();
-                if (servicioCliente.ReturnCliente(id_clienteU) == null)
+                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteD = Console.ReadLine();
+                if (servicioCliente.ReturnCliente(id_clienteD) == null)
                 {
                     Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
                     Console.ReadKey();
                 }
                 else
                 {
-                    var response = servicioCliente.Delete(id_clienteU);
+                    var response = servicioCliente.Delete(id_clienteD);
                     Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.Object.Nombre);
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());

@@ -45,7 +45,8 @@ namespace GUI
                         planMenu.menu();
                         break;
                     case 4:
-
+                        InscripcionGUI inscripcionMenu = new InscripcionGUI();
+                        inscripcionMenu.menu();
                         break;
                     case 5:
                         //Finalizar programa
