@@ -71,26 +71,33 @@ namespace Logica
         {
             try
             {
-                if (GetMainList() == null) { return new Response<PlanGimnasio>(false, "No se ha registrado ningun plan, por favor ingrese uno antes de continuar."); } // Lista vacia
+                var Planes = GetMainList();
+                if (Planes == null) { return new Response<PlanGimnasio>(false, "No se ha registrado ningun plan, por favor ingrese uno antes de continuar."); } // Lista vacia
                 else
                 {
                     if (!Exist(id_plan))
                     {
                         return new Response<PlanGimnasio>(false, "No se encontro el Plan que desea actualizar"); // No se encontro el id del item para actualizar.
                     }
-                    else if (Exist(plan_modificado.Id))
+                    else if (Exist(plan_modificado.Id) && ReturnPlan(id_plan).Id != id_plan)
                     {
                         return new Response<PlanGimnasio>(false, "El ID al que desea actualizar corresponde a un ID ya registrado, por favor ingrese un nuevo ID"); //ID repetido al actualizar el plan.
                     }
                     else
                     {
-                        var plan = ReturnPlan(id_plan);
+                        var plan = Planes.Find(item => item.Id == id_plan);
                         plan.Id = plan_modificado.Id;
                         plan.Nombre = plan_modificado.Nombre;
                         plan.Precio = plan_modificado.Precio;
                         plan.Descripcion = plan_modificado.Descripcion;
-
-                        return new Response<PlanGimnasio>(true, "Actualizo correctamente el Plan", null, plan); ; //Reemplazo correctamente.
+                        if (Repositorio_Planes.Update(Planes))
+                        {
+                            return new Response<PlanGimnasio>(true, "Se ha actualizado el plan", Planes, plan);
+                        }
+                        else
+                        {
+                            return new Response<PlanGimnasio>(false, "Error!");
+                        }
                     }
                 }
             }

@@ -105,7 +105,7 @@ namespace Logica
                     {
                         return new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual"); 
                     }
-                    else if (Exist(Cliente_Modificado.Id))
+                    else if (Exist(Cliente_Modificado.Id) && ReturnCliente(Id_cliente).Id != Id_cliente)
                     {
                         return new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado."); 
                     }
@@ -121,9 +121,15 @@ namespace Logica
                         cliente.Fecha_nacimiento = Cliente_Modificado.Fecha_nacimiento;
                         cliente.Discapacidad = Cliente_Modificado.Discapacidad;
                         cliente.Fecha_ingreso = Cliente_Modificado.Fecha_ingreso;
-                        Repositorio_Clientes.Update(Clientes);
+                        if (Repositorio_Clientes.Update(Clientes))
+                        {
+                            return new Response<Cliente>(true, "Se ha actualizado el cliente.", Clientes, cliente);
+                        }
+                        else
+                        {
+                            return new Response<Cliente>(false, "Error!");
+                        }
 
-                        return new Response<Cliente>(true, "Se ha actualizado el cliente.", Clientes, cliente); 
                     }
                 }
             }
