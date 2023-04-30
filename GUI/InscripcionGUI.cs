@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GUI
 {
-    public class ContratoGUI
+    public class InscripcionGUI
     {
     }
 }

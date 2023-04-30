@@ -41,7 +41,8 @@ namespace GUI
                         supervisorMenu.menu();
                         break;
                     case 3:
-
+                        PlanGUI planMenu = new PlanGUI();
+                        planMenu.menu();
                         break;
                     case 4:
 

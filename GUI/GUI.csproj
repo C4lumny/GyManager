@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContratoGUI.cs" />
+    <Compile Include="InscripcionGUI.cs" />
     <Compile Include="SupervisorGUI.cs" />
     <Compile Include="ClienteGUI.cs" />
     <Compile Include="PlanGUI.cs" />
