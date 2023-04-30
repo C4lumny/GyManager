@@ -113,21 +113,10 @@ namespace GUI
             Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
             if (servicioCliente.GetAll() != null)
             {
-                Console.SetCursorPosition(13, i); Console.WriteLine("id");
-                Console.SetCursorPosition(25, i); Console.WriteLine("Nombre");
-                Console.SetCursorPosition(35, i); Console.WriteLine("Genero");
-                Console.SetCursorPosition(45, i); Console.WriteLine("Altura");
-                Console.SetCursorPosition(52, i); Console.WriteLine("Telefono");
-                Console.SetCursorPosition(65, i); Console.WriteLine("IMC");
-
+                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
                 foreach (var item in servicioCliente.GetAll())
                 {
-                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id);
-                    Console.SetCursorPosition(25, i + 2); Console.WriteLine(item.Nombre);
-                    Console.SetCursorPosition(38, i + 2); Console.WriteLine(item.Genero);
-                    Console.SetCursorPosition(47, i + 2); Console.WriteLine(item.Altura);
-                    Console.SetCursorPosition(55, i + 2); Console.WriteLine(item.Telefono);
-                    Console.SetCursorPosition(70, i + 2); Console.WriteLine(item.Imc);
+                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
                     i++;
                 }
             }
@@ -219,8 +208,6 @@ namespace GUI
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
                 }
-              
-                Console.ReadKey();
             } while (op == 's');
         }
     }

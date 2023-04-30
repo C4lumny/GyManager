@@ -15,7 +15,7 @@ namespace GUI
 
                 Console.SetCursorPosition(43, 5); Console.Write("---MENU PRINCIPAL GYM---");
                 Console.SetCursorPosition(35, 7); Console.Write("1. Administrar clientes");
-                Console.SetCursorPosition(35, 8); Console.Write("2. Administrar entrenadores");
+                Console.SetCursorPosition(35, 8); Console.Write("2. Administrar supervisores");
                 Console.SetCursorPosition(35, 9); Console.Write("3. Administrar planes");
                 Console.SetCursorPosition(35, 10); Console.Write("4. Administrar inscripciones");
                 Console.SetCursorPosition(35, 11); Console.Write("5. Salir");
@@ -37,7 +37,8 @@ namespace GUI
                         clienteMenu.menu();
                         break;
                     case 2:
-
+                        SupervisorGUI supervMenu = new SupervisorGUI();
+                        supervMenu.menu();
                         break;
                     case 3:
 
