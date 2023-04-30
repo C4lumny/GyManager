@@ -51,7 +51,7 @@ namespace Logica
         {
             try
             {
-                var lista = GetMainList();
+                var Inscripciones = GetMainList();
                 if (inscripcion.cliente == null)
                 {
                     return new Response<Inscripcion>(false, "El cliente ingresado no existe");
@@ -72,7 +72,7 @@ namespace Logica
                 {
                     return new Response<Inscripcion>(false, "El cliente es menor de edad.");
                 }
-                else if (lista == null)
+                else if (Inscripciones == null)
                 {
                     inscripcion.Precio = inscripcion.plan.Precio * (100 - inscripcion.Descuento) / 100;
                     Repositorio_Historial.Save(inscripcion);
@@ -102,8 +102,8 @@ namespace Logica
         {
             try
             {
-                var list = GetMainList();
-                if (list == null) { return new Response<Inscripcion>(true, "No se han encontrado inscripciones."); } 
+                var Inscripciones = GetMainList();
+                if (Inscripciones == null) { return new Response<Inscripcion>(true, "No se han encontrado inscripciones."); } 
                 else
                 {
                     var inscripcion = ReturnInscripcion(id_inscripcion);
@@ -127,7 +127,7 @@ namespace Logica
                     {
                         return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
                     }
-                    else if (ReturnInscripcion(inscipcion_modificada.Id) == null)
+                    else if (Exist(id_inscripcion) && ReturnInscripcion(inscipcion_modificada.Id).Id != id_inscripcion)
                     {
                         return new Response<Inscripcion>(false, "El ID ingresado ya esta registrado. Por favor ingrese otro"); 
                     }
@@ -141,9 +141,9 @@ namespace Logica
                         inscripcion.plan = inscipcion_modificada.plan;
                         inscripcion.supervisor = inscipcion_modificada.supervisor;
                         Repositorio_Historial.Save(inscripcion);
-                        if (Repositorio_Inscripciones.Update(list))
+                        if (Repositorio_Inscripciones.Update(Inscripciones))
                         {
-                            return new Response<Inscripcion>(true, "Se ha actualizado la inscripcion", list, inscripcion); 
+                            return new Response<Inscripcion>(true, "Se ha actualizado la inscripcion", Inscripciones, inscripcion); 
                         }
                         else
                         {
