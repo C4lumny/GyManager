@@ -75,11 +75,11 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         private void registrarInscripcion()
         {
-            char op = 'x';
+            ; char op = 'x';
             do
             {
                 Console.Clear();
-                
+
                 Console.SetCursorPosition(43, 5); Console.Write("---REGISTRAR NUEVA INSCRIPCION---");
                 try
                 {
@@ -91,7 +91,7 @@ namespace GUI
                         Console.ReadKey();
                         return;
                     }
-                    
+
 
                     Console.SetCursorPosition(35, 12); Console.Write("Ingrese el ID del supervisor asociado: "); String supervisorS = Console.ReadLine();
                     if (servicioSupervisor.ReturnSupervisor(supervisorS) == null)
@@ -100,9 +100,9 @@ namespace GUI
                         Console.ReadKey();
                         return;
                     }
-                    
 
-                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese el ID del supervisor asociado: "); String planS = Console.ReadLine();
+
+                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese el ID del plan asociado: "); String planS = Console.ReadLine();
                     if (servicioPlan.ReturnPlan(planS) == null)
                     {
                         Console.SetCursorPosition(35, 16); Console.WriteLine("El plan que desea asociar no se encuentra en la base de datos");
@@ -126,7 +126,7 @@ namespace GUI
                     var response = servicioInscripcion.Save(inscripciones);
                     Console.SetCursorPosition(35, 22); Console.WriteLine(response.Msg);
 
-                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir agregando planes?[S/N]: ");
+                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir agregando inscripciones?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
 
                 }
@@ -175,12 +175,111 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         private void actualizarInscripcion()
         {
+            Inscripcion inscripcionU = new Inscripcion();
+            CRUD_Inscripcion servicioInscripcion = new CRUD_Inscripcion();
+            char op = 'x';
+            do
+            {
+                Console.Clear();
 
+                Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR INSCRIPCION---");
+                try
+                {
+                    Console.SetCursorPosition(35, 9); Console.Write("Ingrese el ID de la inscripcion: "); string inscripcion_S = Console.ReadLine();
+                    if (servicioInscripcion.ReturnInscripcion(inscripcion_S) == null)
+                    {
+                        Console.SetCursorPosition(35, 12); Console.WriteLine("La inscripcion que desea ingresar no se encuentra en la base de datos");
+                        Console.ReadKey();
+                        return;
+                    }
+
+                    Console.Clear();
+                    Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR INSCRIPCION---");
+                    Console.SetCursorPosition(35, 9); Console.Write("Ingrese el ID de la inscripcion: "); inscripcionU.Id = Console.ReadLine();
+                    Console.SetCursorPosition(35, 10); Console.Write("Ingrese el ID del cliente asociado: "); string clienteS = Console.ReadLine();
+                    if (servicioCliente.ReturnCliente(clienteS) == null)
+                    {
+                        Console.SetCursorPosition(35, 12); Console.WriteLine("El cliente que desea asociar no se encuentra en la base de datos");
+                        Console.ReadKey();
+                        return;
+                    }
+
+
+                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el ID del supervisor asociado: "); string supervisorS = Console.ReadLine();
+                    if (servicioSupervisor.ReturnSupervisor(supervisorS) == null)
+                    {
+                        Console.SetCursorPosition(35, 14); Console.WriteLine("El supervisor que desea asociar no se encuentra en la base de datos");
+                        Console.ReadKey();
+                        return;
+                    }
+
+
+                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese el ID del plan asociado: "); string planS = Console.ReadLine();
+                    if (servicioPlan.ReturnPlan(planS) == null)
+                    {
+                        Console.SetCursorPosition(35, 16); Console.WriteLine("El plan que desea asociar no se encuentra en la base de datos");
+                        Console.ReadKey();
+                        return;
+                    }
+
+                    inscripcionU.cliente = servicioCliente.ReturnCliente(clienteS);
+                    inscripcionU.supervisor = servicioSupervisor.ReturnSupervisor(supervisorS);
+                    inscripcionU.plan = servicioPlan.ReturnPlan(planS);
+
+                    DateTime fecha_ingreso = DateTime.Today;
+                    DateTime fecha_finalizacion = fecha_ingreso.AddDays(inscripciones.plan.Dias);
+                    inscripcionU.Fecha_inicio = fecha_ingreso;
+                    inscripcionU.Fecha_finalizacion = fecha_finalizacion;
+                    inscripcionU.Estado = true;
+
+                    Console.SetCursorPosition(35, 16); Console.Write("Ingrese el descuento de la inscripcion(%): "); string descuento = Console.ReadLine();
+                    inscripcionU.Descuento = double.Parse(descuento.Replace("%", ""));
+
+                    var response = servicioInscripcion.Update(inscripcionU, inscripcion_S);
+                    Console.SetCursorPosition(35, 22); Console.WriteLine(response.Msg);
+
+                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir actualizando inscripciones?[S/N]: ");
+                    op = char.Parse(Console.ReadLine().ToLower());
+
+                }
+                catch (Exception)
+                {
+                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos");
+                    break;
+                }
+            } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
         private void eliminarInscripcion()
         {
+            char op = 'x';
+            do
+            {
+                Console.Clear();
 
+                Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR INSCRIPCION---");
+                try
+                {
+                    Console.SetCursorPosition(35, 9); Console.Write("Ingrese el ID de la inscripcion: "); string inscripcion_S = Console.ReadLine();
+                    if (servicioInscripcion.ReturnInscripcion(inscripcion_S) == null)
+                    {
+                        Console.SetCursorPosition(35, 12); Console.WriteLine("La inscripcion que desea ingresar no se encuentra en la base de datos");
+                        Console.ReadKey();
+                        return;
+                    }
+
+                    var response = servicioInscripcion.Delete(inscripcion_S);
+                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado la inscripcion: " + response.Object.Id);
+
+                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando inscripciones?[S/N]: ");
+                    op = char.Parse(Console.ReadLine().ToLower());
+                }
+                catch (Exception)
+                {
+                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos");
+                    break;
+                }
+            } while (op == 's');
         }
     }
 }

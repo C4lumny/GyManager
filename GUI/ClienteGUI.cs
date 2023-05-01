@@ -10,6 +10,7 @@ namespace GUI
     {
         CRUD_Cliente servicioCliente = new CRUD_Cliente();
         Cliente clientes = new Cliente();
+        
         //----------------------------------------------------------------------------------------------------------------------------------
         public void menu()
         {
@@ -44,10 +45,10 @@ namespace GUI
                         consultarCliente();
                         break;
                     case 3:
-                        actualizarCliente();
+                        actualizarCliente(); //Actualizar con consulta
                         break;
                     case 4:
-                        eliminarCliente();
+                        eliminarCliente(); //Eliminar con consulta
                         break;
                     case 5:
                         //Volver al menu
@@ -135,20 +136,22 @@ namespace GUI
         void actualizarCliente()
         {
             string id_clienteU;
+            Cliente clientes = new Cliente();
+            CRUD_Cliente servCliente = new CRUD_Cliente();
             char op = 'x';
             do
             {
-                Console.Clear();
-                Cliente clientes = new Cliente();
-                CRUD_Cliente servCliente = new CRUD_Cliente();
                 try
                 {
+                    pregunta();
+                    Console.Clear();
                     Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR CLIENTE---");
                     Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea actualizar: "); id_clienteU = Console.ReadLine();
                     if (servCliente.ReturnCliente(id_clienteU) == null) 
                     {
                         Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
                         Console.ReadKey();
+                        return;
                     }
                     else
                     {
@@ -192,11 +195,12 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         void eliminarCliente()
         {
+            
             string id_clienteD;
             char op = 'x';
             do
             {
-       
+                pregunta();
                 Console.Clear();
                 Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR CLIENTE---");
                 Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteD = Console.ReadLine();
@@ -212,7 +216,67 @@ namespace GUI
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
                 }
-            } while (op == 's');
+
+            } while (op == 's');    
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------
+        void consultarClientesInterno(bool cualMenuEs)//True si es actualizar, false si es eliminar
+        {
+            int i = 7;
+            Console.Clear();
+            Console.SetCursorPosition(10, 3); Console.WriteLine("Pulse <- para volver");
+            Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
+            if (servicioCliente.GetAll() != null)
+            {
+                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
+                foreach (var item in servicioCliente.GetAll().Take(15))
+                {
+                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
+                    i++;
+                }
+            }
+            else
+            {
+                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
+                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                Console.ReadKey();
+            }
+            ConsoleKeyInfo flecha = Console.ReadKey(true);
+            if (flecha.Key == ConsoleKey.LeftArrow)
+            {
+                if(cualMenuEs == true)
+                {
+                    actualizarCliente();
+                }
+                else
+                {
+                    eliminarCliente();
+                }
+            }
+            Console.ReadKey();
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------
+        void pregunta()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(10, 2); Console.WriteLine("Pulse -> para hacer una consulta interna si no conoce el ID");
+            Console.SetCursorPosition(10, 3); Console.WriteLine("De lo contrario, pulse cualquier tecla para continuar / Esc para salir");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.RightArrow)
+            {
+                consultarClientesInterno(true);
+            } //else if (key.Key == ConsoleKey.Escape)
+            //{
+            //    do
+            //    {
+            //        key = Console.ReadKey();
+            //        if (key.Key == ConsoleKey.Escape)
+            //        {
+            //            return;
+            //        }
+            //    } while (key.Key != ConsoleKey.Escape);
+            //}
+        
         }
     }
 }
