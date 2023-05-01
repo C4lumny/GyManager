@@ -109,100 +109,29 @@ namespace GUI
             } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        //void consultarCliente()
-        //{
-        //    int i = 7;
-        //    var clientes = servicioCliente.GetAll();
-        //    Console.Clear();
-        //    Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
-
-        //    if (servicioCliente.GetAll() != null)
-        //    {
-        //        Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
-        //        foreach (var item in servicioCliente.GetAll().Take(15))
-        //        {
-        //            Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
-        //            i++;
-        //        }
-        //        if(clientes.Count() >= 15)
-        //        {
-        //            Console.SetCursorPosition(10, 25); Console.WriteLine("Pulse ↓ para seguir visualizando clientes");
-        //            ConsoleKeyInfo keys = Console.ReadKey();
-        //            if (keys.Key == ConsoleKey.DownArrow)
-        //            {
-        //                Console.Clear();
-        //                Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
-        //                clientes = servicioCliente.GetAll().Skip(15).ToList(); // Obtener clientes restantes
-        //                i = 7;
-        //                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
-        //                foreach (var item in clientes)
-        //                {
-        //                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
-        //                    i++;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
-        //        Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
-        //    }
-        //    Console.ReadKey();
-        //}
-        //----------------------------------------------------------------------------------------------------------------------------------
         void consultarCliente()
         {
-            int inicio = 0;
-            ConsoleKeyInfo key;
-            do
+            int i = 7;
+            Console.Clear();
+            Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
+
+            if (servicioCliente.GetAll() != null)
             {
-                Console.Clear();
-                Console.SetCursorPosition(10, 3); Console.WriteLine("Pulse ESC para volver al menu");
-                Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
-
-                var clientes = servicioCliente.GetAll();
-                if (clientes != null)
+                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
+                foreach (var item in servicioCliente.GetAll().Take(15))
                 {
-                    Console.SetCursorPosition(10, 7); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
-                    for (int i = inicio; i < Math.Min(clientes.Count(), inicio + 15); i++)
-                    {
-                        var item = clientes.ElementAt(i);
-                        Console.SetCursorPosition(10, i - inicio + 9); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
-                    }
-
-                    if (clientes.Count() > inicio + 15)
-                    {
-                        Console.SetCursorPosition(10, 25); Console.WriteLine("Pulse ↓ para seguir visualizando clientes");
-                    }
-                    if (inicio > 0)
-                    {
-                        Console.SetCursorPosition(10, 4); Console.WriteLine("Pulse ↑ para ver la pagina anterior");
-                    }
-
-                    key = Console.ReadKey();
-                    if (key.Key == ConsoleKey.DownArrow && clientes.Count() > inicio + 15)
-                    {
-                        inicio += 15;
-                    }
-                    else if (key.Key == ConsoleKey.UpArrow && inicio > 0)
-                    {
-                        inicio -= 15;
-                    }
+                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
+                    i++;
                 }
-                else
-                {
-                    Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
-                    Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
-                    Console.ReadKey();
-                    break;
-                }
-            } while (key.Key != ConsoleKey.Escape);
+            }
+            else
+            {
+                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
+                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+            }
+            Console.ReadKey();
         }
-
-
-
-
+        //----------------------------------------------------------------------------------------------------------------------------------
         void actualizarCliente()
         {
             string id_clienteU;

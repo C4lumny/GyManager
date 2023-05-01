@@ -6,6 +6,8 @@ namespace GUI
     {
         static void Main(string[] args)  // Clase Main, desde esta clase seran dadas las instrucciones y orden a seguir para consecuentemente ejecutar el programa.
         {
+            Console.SetBufferSize(Console.WindowWidth, 1000);
+            Console.SetWindowPosition(0, 0);
             int op;
             do
             {

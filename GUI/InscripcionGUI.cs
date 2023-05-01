@@ -141,24 +141,36 @@ namespace GUI
         private void consultarInscripcion()
         {
             Console.Clear();
+            ConsoleKeyInfo keys;
             int i = 7;
+
+            Console.SetCursorPosition(10, 3); Console.WriteLine("Pulse ESC para volver al menu // Pulse → para visualizar la información completa");
             Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE INSCRIPCIONES---");
+
             if (servicioInscripcion.GetAll() != null)
             {
-                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE CLIENTE".PadRight(20) + "NOMBRE SUPERVISOR".PadRight(20) + "PLAN ASIGNADO".PadRight(20));
+                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "ID CLIENTE".PadRight(15) + "ID SUPERVISOR".PadRight(15) + "ID PLAN".PadRight(10) + "FECHA FIN");
                 foreach (var item in servicioInscripcion.GetAll())
                 {
-                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.cliente.Nombre.PadRight(20) + item.supervisor.Nombre.PadRight(20) + item.plan.Nombre.PadRight(5));
+                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.PadRight(15) + item.cliente.Id.PadRight(15) + item.supervisor.Id.PadRight(15) + item.plan.Id.PadRight(10) + item.Fecha_finalizacion.ToString("dd/MM/yyyy"));
                     i++;
                 }
+
             }
             else
             {
                 Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado planes");
-                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier ESC para volver al menu.");
                 Console.ReadKey();
             }
-            Console.ReadKey();
+            do
+            {
+                keys = Console.ReadKey(true);
+                if (keys.Key == ConsoleKey.Escape)
+                {
+                    return;
+                }
+            } while (keys.Key != ConsoleKey.Escape);
         }
         //----------------------------------------------------------------------------------------------------------------------------------
         private void actualizarInscripcion()
