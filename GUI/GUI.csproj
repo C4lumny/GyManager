@@ -43,12 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InscripcionGUI.cs" />
-    <Compile Include="SupervisorGUI.cs" />
-    <Compile Include="ClienteGUI.cs" />
-    <Compile Include="PlanGUI.cs" />
-    <Compile Include="PrincipalGUI.cs" />
+    <Compile Include="Menus\ClienteMENU.cs" />
+    <Compile Include="Menus\InscripcionMENU.cs" />
+    <Compile Include="Menus\PlanGimnasioMENU.cs" />
+    <Compile Include="Menus\SupervisorMENU.cs" />
+    <Compile Include="Opciones_Menu\InscripcionGUI.cs" />
+    <Compile Include="Opciones_Menu\SupervisorGUI.cs" />
+    <Compile Include="Opciones_Menu\ClienteGUI.cs" />
+    <Compile Include="Opciones_Menu\PlanGUI.cs" />
+    <Compile Include="Main\PrincipalGUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Opciones_Menu\Turno_AtencionGUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -62,6 +67,9 @@
       <Project>{d528aff7-93c0-47be-a367-ea73f79a0bf3}</Project>
       <Name>Logica</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

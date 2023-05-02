@@ -41,7 +41,7 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(item => item.Nombre.Contains(search)); 
+                return GetMainList().FindAll(plan => plan.Nombre.Contains(search) || plan.Id.StartsWith(search)); 
             }
         }
         public Response<PlanGimnasio> Save(PlanGimnasio plan)
@@ -77,7 +77,7 @@ namespace Logica
                 {
                     if (!Exist(id_plan))
                     {
-                        return new Response<PlanGimnasio>(false, "No se encontro el Plan que desea actualizar"); // No se encontro el id del item para actualizar.
+                        return new Response<PlanGimnasio>(false, "No se encontro el Plan que desea actualizar"); // No se encontro el id del plan para actualizar.
                     }
                     else if (Exist(plan_modificado.Id) && ReturnPlan(id_plan).Id != id_plan)
                     {

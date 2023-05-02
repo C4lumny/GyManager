@@ -9,67 +9,17 @@ namespace GUI
     public class ClienteGUI // En esta clase se modela la interfaz grafica relacionada al cliente por medio de metodos de la clase ServicioClientes. 
     {
         CRUD_Cliente servicioCliente = new CRUD_Cliente();
-        Cliente clientes = new Cliente();
+        Cliente clientes;
         
         //----------------------------------------------------------------------------------------------------------------------------------
-        public void menu()
-        {
-            int op;
-            do
-            {
-                Console.Clear();
-
-                Console.SetCursorPosition(43, 5); Console.Write("---ADMINISTRAR CLIENTES DEL GYM---");
-                Console.SetCursorPosition(35, 7); Console.Write("1. Registrar cliente");
-                Console.SetCursorPosition(35, 8); Console.Write("2. Consultar cliente");
-                Console.SetCursorPosition(35, 9); Console.Write("3. Actualizar cliente");
-                Console.SetCursorPosition(35, 10); Console.Write("4. Eliminar cliente");
-                Console.SetCursorPosition(35, 11); Console.Write("5. Salir");
-                Console.SetCursorPosition(35, 14); Console.Write("Escoja la opción de su preferencia: ");
-                try
-                {
-                    op = int.Parse(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    op = 0;
-                }
-
-
-                switch (op)
-                {
-                    case 1:
-                        registrarCliente();
-                        break;
-                    case 2:
-                        consultarCliente();
-                        break;
-                    case 3:
-                        actualizarCliente(); //Actualizar con consulta
-                        break;
-                    case 4:
-                        eliminarCliente(); //Eliminar con consulta
-                        break;
-                    case 5:
-                        //Volver al menu
-                        break;
-                    default:
-                        Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
-                        Console.ReadKey();
-                        break;
-
-                }
-            } while (op != 5);
-        }
         //----------------------------------------------------------------------------------------------------------------------------------
-        void registrarCliente()
+        protected void registrarCliente()
         {
             char op;
             do
             {
                 Console.Clear();
                 clientes = new Cliente();
-                CRUD_Cliente servCliente = new CRUD_Cliente();
 
                 Console.SetCursorPosition(43, 5); Console.Write("---REGISTRAR NUEVO CLIENTE---");
                 try
@@ -96,7 +46,7 @@ namespace GUI
                         clientes.Discapacidad = " ";
                     }
                     clientes.Fecha_ingreso = DateTime.Now;
-                    var response = servCliente.Save(clientes);
+                    var response = servicioCliente.Save(clientes);
                     Console.SetCursorPosition(35, 22); Console.WriteLine(response.Msg);
 
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir agregando clientes?[S/N]: ");
@@ -110,19 +60,15 @@ namespace GUI
             } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        void consultarCliente()
+        protected void Mostrar(List<Cliente> lista, int Pos_vertical)
         {
-            int i = 7;
-            Console.Clear();
-            Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
-
             if (servicioCliente.GetAll() != null)
             {
-                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
-                foreach (var item in servicioCliente.GetAll().Take(15))
+                Console.SetCursorPosition(19, Pos_vertical); Console.WriteLine("CC".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(10) + "TELEFONO".PadRight(15) + "IMC".PadRight(12) + "FECHA INGRESO:");
+                foreach (var item in lista.Take(15))
                 {
-                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
-                    i++;
+                    Console.SetCursorPosition(19, Pos_vertical + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(10) + item.Telefono.PadRight(15) + item.Imc.ToString().PadRight(12) + item.Fecha_ingreso.ToShortDateString());
+                    Pos_vertical++;
                 }
             }
             else
@@ -130,10 +76,22 @@ namespace GUI
                 Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
                 Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
             }
-            Console.ReadKey();
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        void actualizarCliente()
+        protected void consultarCliente(bool @static)
+        {
+            Console.Clear();
+            Console.SetCursorPosition(46, 5); Console.WriteLine("---LISTA DE CLIENTES---");
+            Mostrar(servicioCliente.GetAll(), 7);
+            
+            if (@static == true)
+            {
+                Console.ReadKey();
+            }
+
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------
+        protected void actualizarCliente()
         {
             string id_clienteU;
             Cliente clientes = new Cliente();
@@ -143,13 +101,14 @@ namespace GUI
             {
                 try
                 {
-                    pregunta();
                     Console.Clear();
-                    Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR CLIENTE---");
-                    Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea actualizar: "); id_clienteU = Console.ReadLine();
+                    Console.SetCursorPosition(43, 2); Console.Write("---ACTUALIZAR CLIENTE---");
+                    consultarCliente(false);
+                    Console.SetCursorPosition(35, 4); Console.Write("Ingrese el ID del cliente que desea actualizar: "); id_clienteU = Console.ReadLine();
+                    Console.Clear();
                     if (servCliente.ReturnCliente(id_clienteU) == null) 
                     {
-                        Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
+                        Console.SetCursorPosition(28, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
                         Console.ReadKey();
                         return;
                     }
@@ -193,20 +152,21 @@ namespace GUI
             } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        void eliminarCliente()
+        protected void eliminarCliente()
         {
             
             string id_clienteD;
             char op = 'x';
             do
             {
-                pregunta();
                 Console.Clear();
-                Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR CLIENTE---");
-                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteD = Console.ReadLine();
+                Console.SetCursorPosition(43, 2); Console.Write("---ELIMINAR CLIENTE---");
+                consultarCliente(false);
+                Console.SetCursorPosition(35, 4); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteD = Console.ReadLine();
+                Console.Clear();
                 if (servicioCliente.ReturnCliente(id_clienteD) == null)
                 {
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
+                    Console.SetCursorPosition(28, 9); Console.WriteLine("El cliente que desea eliminar, no se encuentra en la base de datos");
                     Console.ReadKey();
                 }
                 else
@@ -220,64 +180,35 @@ namespace GUI
             } while (op == 's');    
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        void consultarClientesInterno(bool cualMenuEs)//True si es actualizar, false si es eliminar
+        protected void ConsultaDinamica()
         {
-            int i = 7;
+            string search = "";
             Console.Clear();
-            Console.SetCursorPosition(10, 3); Console.WriteLine("Pulse <- para volver");
-            Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE CLIENTES---");
-            if (servicioCliente.GetAll() != null)
+            ConsoleKeyInfo key = new ConsoleKeyInfo();
+            do
             {
-                Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(6) + "ALTURA".PadRight(10) + "TELEFONO".PadRight(15) + "IMC");
-                foreach (var item in servicioCliente.GetAll().Take(15))
+                Console.Clear();
+                Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del cliente: " + search);
+                Console.SetCursorPosition(46, 6); Console.WriteLine("---LISTA DE CLIENTES---");
+                Mostrar(servicioCliente.GetBySearch(search), 8);
+                
+                key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Escape)
                 {
-                    Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(6) + item.Altura.ToString().PadRight(10) + item.Telefono.PadRight(15) + item.Imc);
-                    i++;
+                    break;
                 }
-            }
-            else
-            {
-                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
-                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
-                Console.ReadKey();
-            }
-            ConsoleKeyInfo flecha = Console.ReadKey(true);
-            if (flecha.Key == ConsoleKey.LeftArrow)
-            {
-                if(cualMenuEs == true)
+                else if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                 {
-                    actualizarCliente();
+                    search = search.Remove(search.Length - 1);
                 }
-                else
+                else if (Char.IsLetterOrDigit(key.KeyChar))
                 {
-                    eliminarCliente();
+                    search += key.KeyChar.ToString();
                 }
-            }
-            Console.ReadKey();
+
+            } while (true);
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        void pregunta()
-        {
-            Console.Clear();
-            Console.SetCursorPosition(10, 2); Console.WriteLine("Pulse -> para hacer una consulta interna si no conoce el ID");
-            Console.SetCursorPosition(10, 3); Console.WriteLine("De lo contrario, pulse cualquier tecla para continuar / Esc para salir");
-            ConsoleKeyInfo key = Console.ReadKey();
-            if (key.Key == ConsoleKey.RightArrow)
-            {
-                consultarClientesInterno(true);
-            } //else if (key.Key == ConsoleKey.Escape)
-            //{
-            //    do
-            //    {
-            //        key = Console.ReadKey();
-            //        if (key.Key == ConsoleKey.Escape)
-            //        {
-            //            return;
-            //        }
-            //    } while (key.Key != ConsoleKey.Escape);
-            //}
-        
-        }
     }
 }
 

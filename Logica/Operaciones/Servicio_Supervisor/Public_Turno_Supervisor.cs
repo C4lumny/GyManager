@@ -60,5 +60,15 @@ namespace Logica.CRUD
                 return false;
             }
         }
+
+        public List<Turno_Atencion> GetAllTurnos()
+        {
+            var Turnos = Repositorio_Turnos.Load();
+            if (Turnos == null)
+            {
+                return null;
+            }
+            return Turnos;
+        }
     }
 }

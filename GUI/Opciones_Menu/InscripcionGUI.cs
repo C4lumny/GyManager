@@ -1,6 +1,8 @@
 ﻿using Entidades;
 using Logica;
+using Logica.Operaciones.AccesoPublico;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -12,70 +14,19 @@ namespace GUI
     public class InscripcionGUI
     {
 
-        Inscripcion inscripciones = new Inscripcion();
-        PlanGimnasio planes = new PlanGimnasio();
-        Cliente clientes = new Cliente();
-        Supervisor supervisores = new Supervisor();
+        Inscripcion inscripciones;
+        protected CRUD_Inscripcion servicioInscripcion = new CRUD_Inscripcion();
 
-        CRUD_Cliente servicioCliente = new CRUD_Cliente();
-        CRUD_Supervisor servicioSupervisor = new CRUD_Supervisor();
-        CRUD_Inscripcion servicioInscripcion = new CRUD_Inscripcion();
-        CRUD_Plan servicioPlan = new CRUD_Plan();
+        Public_Clientes public_Cliente = new Public_Clientes();
+        Public_Supervisores public_Supuervisor = new Public_Supervisores();
+        Public_Planes public_Plan = new Public_Planes();
 
         //----------------------------------------------------------------------------------------------------------------------------------
-        public void menu()
-        {
-            int op;
-            do
-            {
-                Console.Clear();
 
-                Console.SetCursorPosition(43, 5); Console.Write("---ADMINISTRAR INSCRIPCIONES DEL GYM---");
-                Console.SetCursorPosition(35, 7); Console.Write("1. Registrar inscripcion");
-                Console.SetCursorPosition(35, 8); Console.Write("2. Consultar inscripciones");
-                Console.SetCursorPosition(35, 9); Console.Write("3. Actualizar inscripcion");
-                Console.SetCursorPosition(35, 10); Console.Write("4. Eliminar inscripcion");
-                Console.SetCursorPosition(35, 11); Console.Write("5. Salir");
-                Console.SetCursorPosition(35, 14); Console.Write("Escoja la opción de su preferencia: ");
-                try
-                {
-                    op = int.Parse(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    op = 0;
-                }
-
-
-                switch (op)
-                {
-                    case 1:
-                        registrarInscripcion();
-                        break;
-                    case 2:
-                        consultarInscripcion();
-                        break;
-                    case 3:
-                        actualizarInscripcion();
-                        break;
-                    case 4:
-                        eliminarInscripcion();
-                        break;
-                    case 5:
-                        //Volver al menu
-                        break;
-                    default:
-                        Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
-                        Console.ReadKey();
-                        break;
-
-                }
-            } while (op != 5);
-        }
         //----------------------------------------------------------------------------------------------------------------------------------
-        private void registrarInscripcion()
+        protected private void registrarInscripcion()
         {
-            ; char op = 'x';
+            char op = 'x';
             do
             {
                 Console.Clear();
@@ -83,9 +34,10 @@ namespace GUI
                 Console.SetCursorPosition(43, 5); Console.Write("---REGISTRAR NUEVA INSCRIPCION---");
                 try
                 {
+                    inscripciones = new Inscripcion();
                     Console.SetCursorPosition(35, 9); Console.Write("Ingrese el ID de la inscripcion: "); inscripciones.Id = Console.ReadLine();
-                    Console.SetCursorPosition(35, 10); Console.Write("Ingrese el ID del cliente asociado: "); String clienteS = Console.ReadLine();
-                    if (servicioCliente.ReturnCliente(clienteS) == null)
+                    Console.SetCursorPosition(35, 11); Console.Write("Ingrese el ID del cliente asociado: "); String clienteS = Console.ReadLine();
+                    if (public_Cliente.ReturnCliente(clienteS) == null)
                     {
                         Console.SetCursorPosition(35, 12); Console.WriteLine("El cliente que desea asociar no se encuentra en la base de datos");
                         Console.ReadKey();
@@ -93,8 +45,8 @@ namespace GUI
                     }
 
 
-                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el ID del supervisor asociado: "); String supervisorS = Console.ReadLine();
-                    if (servicioSupervisor.ReturnSupervisor(supervisorS) == null)
+                    Console.SetCursorPosition(35, 13); Console.Write("Ingrese el ID del supervisor asociado: "); String supervisorS = Console.ReadLine();
+                    if (public_Supuervisor.ReturnSupervisor(supervisorS) == null)
                     {
                         Console.SetCursorPosition(35, 14); Console.WriteLine("El supervisor que desea asociar no se encuentra en la base de datos");
                         Console.ReadKey();
@@ -102,17 +54,17 @@ namespace GUI
                     }
 
 
-                    Console.SetCursorPosition(35, 14); Console.Write("Ingrese el ID del plan asociado: "); String planS = Console.ReadLine();
-                    if (servicioPlan.ReturnPlan(planS) == null)
+                    Console.SetCursorPosition(35, 15); Console.Write("Ingrese el ID del plan asociado: "); String planS = Console.ReadLine();
+                    if (public_Plan.ReturnPlan(planS) == null)
                     {
                         Console.SetCursorPosition(35, 16); Console.WriteLine("El plan que desea asociar no se encuentra en la base de datos");
                         Console.ReadKey();
                         return;
                     }
 
-                    inscripciones.cliente = servicioCliente.ReturnCliente(clienteS);
-                    inscripciones.supervisor = servicioSupervisor.ReturnSupervisor(supervisorS);
-                    inscripciones.plan = servicioPlan.ReturnPlan(planS);
+                    inscripciones.cliente = public_Cliente.ReturnCliente(clienteS);
+                    inscripciones.supervisor = public_Supuervisor.ReturnSupervisor(supervisorS);
+                    inscripciones.plan = public_Plan.ReturnPlan(planS);
 
                     DateTime fecha_ingreso = DateTime.Today;
                     DateTime fecha_finalizacion = fecha_ingreso.AddDays(inscripciones.plan.Dias);
@@ -120,7 +72,7 @@ namespace GUI
                     inscripciones.Fecha_finalizacion = fecha_finalizacion;
                     inscripciones.Estado = true;
 
-                    Console.SetCursorPosition(35, 16); Console.Write("Ingrese el descuento de la inscripcion(%): "); string descuento = Console.ReadLine();
+                    Console.SetCursorPosition(35, 17); Console.Write("Ingrese el descuento de la inscripcion(%): "); string descuento = Console.ReadLine();
                     inscripciones.Descuento = double.Parse(descuento.Replace("%", ""));
 
                     var response = servicioInscripcion.Save(inscripciones);
@@ -138,19 +90,19 @@ namespace GUI
             } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        private void consultarInscripcion()
+        protected private void consultarInscripcion(List<Inscripcion> lista, string titulo)
         {
             Console.Clear();
             ConsoleKeyInfo keys;
             int i = 7;
 
             Console.SetCursorPosition(10, 3); Console.WriteLine("Pulse ESC para volver al menu // Pulse → para visualizar la información completa");
-            Console.SetCursorPosition(10, 5); Console.WriteLine("---LISTA DE INSCRIPCIONES---");
+            Console.SetCursorPosition(10, 5); Console.WriteLine(titulo);
 
             if (servicioInscripcion.GetAll() != null)
             {
                 Console.SetCursorPosition(10, i); Console.WriteLine("ID".PadRight(15) + "ID CLIENTE".PadRight(15) + "ID SUPERVISOR".PadRight(15) + "ID PLAN".PadRight(10) + "FECHA FIN");
-                foreach (var item in servicioInscripcion.GetAll())
+                foreach (var item in lista)
                 {
                     Console.SetCursorPosition(10, i + 2); Console.WriteLine(item.Id.PadRight(15) + item.cliente.Id.PadRight(15) + item.supervisor.Id.PadRight(15) + item.plan.Id.PadRight(10) + item.Fecha_finalizacion.ToString("dd/MM/yyyy"));
                     i++;
@@ -173,10 +125,9 @@ namespace GUI
             } while (keys.Key != ConsoleKey.Escape);
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        private void actualizarInscripcion()
+        protected private void actualizarInscripcion()
         {
             Inscripcion inscripcionU = new Inscripcion();
-            CRUD_Inscripcion servicioInscripcion = new CRUD_Inscripcion();
             char op = 'x';
             do
             {
@@ -197,7 +148,7 @@ namespace GUI
                     Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR INSCRIPCION---");
                     Console.SetCursorPosition(35, 9); Console.Write("Ingrese el ID de la inscripcion: "); inscripcionU.Id = Console.ReadLine();
                     Console.SetCursorPosition(35, 10); Console.Write("Ingrese el ID del cliente asociado: "); string clienteS = Console.ReadLine();
-                    if (servicioCliente.ReturnCliente(clienteS) == null)
+                    if (public_Cliente.ReturnCliente(clienteS) == null)
                     {
                         Console.SetCursorPosition(35, 12); Console.WriteLine("El cliente que desea asociar no se encuentra en la base de datos");
                         Console.ReadKey();
@@ -206,7 +157,7 @@ namespace GUI
 
 
                     Console.SetCursorPosition(35, 12); Console.Write("Ingrese el ID del supervisor asociado: "); string supervisorS = Console.ReadLine();
-                    if (servicioSupervisor.ReturnSupervisor(supervisorS) == null)
+                    if (public_Supuervisor.ReturnSupervisor(supervisorS) == null)
                     {
                         Console.SetCursorPosition(35, 14); Console.WriteLine("El supervisor que desea asociar no se encuentra en la base de datos");
                         Console.ReadKey();
@@ -215,16 +166,16 @@ namespace GUI
 
 
                     Console.SetCursorPosition(35, 14); Console.Write("Ingrese el ID del plan asociado: "); string planS = Console.ReadLine();
-                    if (servicioPlan.ReturnPlan(planS) == null)
+                    if (public_Plan.ReturnPlan(planS) == null)
                     {
                         Console.SetCursorPosition(35, 16); Console.WriteLine("El plan que desea asociar no se encuentra en la base de datos");
                         Console.ReadKey();
                         return;
                     }
 
-                    inscripcionU.cliente = servicioCliente.ReturnCliente(clienteS);
-                    inscripcionU.supervisor = servicioSupervisor.ReturnSupervisor(supervisorS);
-                    inscripcionU.plan = servicioPlan.ReturnPlan(planS);
+                    inscripcionU.cliente = public_Cliente.ReturnCliente(clienteS);
+                    inscripcionU.supervisor = public_Supuervisor.ReturnSupervisor(supervisorS);
+                    inscripcionU.plan = public_Plan.ReturnPlan(planS);
 
                     DateTime fecha_ingreso = DateTime.Today;
                     DateTime fecha_finalizacion = fecha_ingreso.AddDays(inscripciones.plan.Dias);
@@ -250,7 +201,7 @@ namespace GUI
             } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        private void eliminarInscripcion()
+        protected private void eliminarInscripcion()
         {
             char op = 'x';
             do
@@ -280,6 +231,49 @@ namespace GUI
                     break;
                 }
             } while (op == 's');
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------
+        protected private void ConsultaDinamica()
+        {
+            string search = "";
+            Console.Clear();
+            ConsoleKeyInfo key = new ConsoleKeyInfo();
+            do
+            {
+                int i = 6;
+                Console.Clear();
+                Console.SetCursorPosition(20, 3); Console.Write("Puede ingresar ID, Nombre del cliente o el Id del cliente para consultar: " + search);
+
+                if (servicioInscripcion.GetAll() != null)
+                {
+                    Console.SetCursorPosition(8, i); Console.WriteLine("ID".PadRight(12) + "NOMBRE CLIENTE".PadRight(20) + "ID SUPERVISOR".PadRight(18) + "NOMBRE PLAN".PadRight(18) + "FECHA INICIO".PadRight(18) + "FECHA FINALIZACION");
+                    foreach (var item in servicioInscripcion.GetBySearch(search))
+                    {
+                        Console.SetCursorPosition(8, i + 2); Console.WriteLine(item.Id.PadRight(12) + item.cliente.Nombre.PadRight(20) + item.supervisor.Id.PadRight(18) + item.plan.Nombre.PadRight(18) + item.Fecha_inicio.ToString("dd/MM/yyyy").PadRight(18) + item.Fecha_finalizacion.ToString("dd/MM/yyyy"));
+                        i++;
+                    }
+                }
+                else
+                {
+                    Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado planes");
+                    Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
+                }
+                key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.Escape)
+                {
+                    break;
+                }
+                else if (key.Key == ConsoleKey.Backspace && search.Length > 0)
+                {
+                    search = search.Remove(search.Length - 1);
+                }
+                else if (Char.IsLetterOrDigit(key.KeyChar))
+                {
+                    search += key.KeyChar.ToString();
+                }
+
+            } while (true);
         }
     }
 }

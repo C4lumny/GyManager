@@ -42,7 +42,7 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(cliente => cliente.Nombre.Contains(search) || cliente.Telefono.StartsWith(search));
+                return GetMainList().FindAll(cliente => cliente.Nombre.Contains(search) || cliente.Telefono.StartsWith(search) || cliente.Id.StartsWith(search));
             }
         }
         public Response<Cliente> Save(Cliente cliente)

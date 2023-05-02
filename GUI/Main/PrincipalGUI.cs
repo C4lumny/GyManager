@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.Menus;
+using System;
 
 namespace GUI
 {
@@ -6,6 +7,7 @@ namespace GUI
     {
         static void Main(string[] args)  // Clase Main, desde esta clase seran dadas las instrucciones y orden a seguir para consecuentemente ejecutar el programa.
         {
+
             Console.SetBufferSize(Console.WindowWidth, 1000);
             Console.SetWindowPosition(0, 0);
             int op;
@@ -35,20 +37,20 @@ namespace GUI
                 switch (op)
                 {
                     case 1:
-                        ClienteGUI clienteMenu = new ClienteGUI();
-                        clienteMenu.menu();
+                        ClienteMENU clienteMENU = new ClienteMENU();
+                        clienteMENU.menu();
                         break;
                     case 2:
-                        SupervisorGUI supervisorMenu = new SupervisorGUI();
-                        supervisorMenu.menu();
+                        SupervisorMENU supervisorMENU = new SupervisorMENU();
+                        supervisorMENU.menu();
                         break;
                     case 3:
-                        PlanGUI planMenu = new PlanGUI();
-                        planMenu.menu();
+                        PlanGimnasioMENU planGimnasioMENU = new PlanGimnasioMENU();
+                        planGimnasioMENU.menu();
                         break;
                     case 4:
-                        InscripcionGUI inscripcionMenu = new InscripcionGUI();
-                        inscripcionMenu.menu();
+                        InscripcionMENU inscripcionMENU = new InscripcionMENU();
+                        inscripcionMENU.menu();
                         break;
                     case 5:
                         //Finalizar programa

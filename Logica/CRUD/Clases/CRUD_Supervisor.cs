@@ -51,7 +51,7 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(item => item.Nombre.Contains(search) || item.Telefono.StartsWith(search)); // FindAll() devuelve una lista que cumplan la condicion del predicado.
+                return GetMainList().FindAll(item => item.Nombre.Contains(search) || item.Telefono.StartsWith(search) || item.Id.StartsWith(search)); 
             }
         }
         public Response<Supervisor> Save(Supervisor supervisor)
