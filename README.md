@@ -12,7 +12,7 @@ _Herramientas que aisaac cree que usamos_
 
 Claramente nuestros colaboradores:
 
-* [Space X] (https://www.spacex.com/) - Proveedor de nuestra tecnologia
+* [Space X](https://www.spacex.com/) - Proveedor de nuestra tecnologia
 * [Epic Games](https://www.epicgames.com/site/es-ES/home) - Aportacion de ideas (nada originales)
 * [Riot Games](https://www.riotgames.com/es) - lolsito para desestresarse
 * [Universidad popular del Cesar](https://www.unicesar.edu.co/index.php/es/) - La U mas insana de todo Colombia
