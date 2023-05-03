@@ -37,7 +37,6 @@ Claramente nuestros colaboradores:
 
 * Vas en 4to semestre y todavia no sabes declarar una variable.
 * La prox vez haz algo que no sean los response pedazo de flojo
--Nathan:
 * Tu declaración de variables es increible, lo unico bueno del codigo fue el codigo limpio
 * Paganos pelao, no hiciste nada en todo el repositorio, 50k a cada uno 🤑
 
