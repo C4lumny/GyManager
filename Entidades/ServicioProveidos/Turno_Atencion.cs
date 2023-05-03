@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entidades
 {
@@ -19,9 +15,9 @@ namespace Entidades
             this.Dia = dia;
             Hora_Inicio = hora_Inicio;
             Hora_Salida = hora_Salida;
-            Jornada = CalculateTurno();
+            Jornada = CalculateJornada();
         }
-        string CalculateTurno()
+        string CalculateJornada()
         {
             if (Hora_Inicio.TimeOfDay > new TimeSpan(11, 0, 0) && Hora_Inicio.TimeOfDay < new TimeSpan(19, 0, 0))
             {
@@ -38,7 +34,7 @@ namespace Entidades
         }
         public override string ToString()
         {
-            return $"{Id_supervisor};{Dia};{Hora_Inicio.ToShortTimeString()};{Hora_Salida.ToShortTimeString()}"; 
+            return $"{Id_supervisor};{Dia};{Hora_Inicio.ToShortTimeString()};{Hora_Salida.ToShortTimeString()}";
         }
     }
 }

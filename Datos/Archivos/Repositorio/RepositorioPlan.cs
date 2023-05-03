@@ -3,16 +3,13 @@ using Entidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class RepositorioPlan: I_Repositorio<PlanGimnasio>
+    public class RepositorioPlan : I_Repositorio<PlanGimnasio>
     {
         protected string ruta = "Planes .txt";
-        public  RepositorioPlan()
+        public RepositorioPlan()
         {
         }
 
@@ -31,7 +28,7 @@ namespace Datos
             }
         }
 
-        public  PlanGimnasio Mapper(string linea)
+        public PlanGimnasio Mapper(string linea)
         {
             try
             {
@@ -73,7 +70,7 @@ namespace Datos
             return false;
         }
 
-        public  List<PlanGimnasio> Load()
+        public List<PlanGimnasio> Load()
         {
             try
             {

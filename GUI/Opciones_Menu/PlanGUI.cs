@@ -8,7 +8,7 @@ namespace GUI
     public class PlanGUI // En esta clase se modela la interfaz grafica relacionada a los planes por medio de metodos de la clase ServicioPlanes. 
     {
         CRUD_Plan servicioPlan = new CRUD_Plan();
-        //----------------------------------------------------------------------------------------------------------------------------------
+
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void registrarPlan()
         {
@@ -168,9 +168,9 @@ namespace GUI
                 {
                     int i = 10;
                     Console.Clear();
-                    Console.SetCursorPosition(35, 6); Console.Write("Ingrese el id, nombre o telefono del cliente: " + search);
+                    Console.SetCursorPosition(38, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
                     Console.SetCursorPosition(46, 8); Console.WriteLine("---LISTA DE PLANES---");
-                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse derecha(->) para visualizar las descripciones.");
+                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse derecha(->) para visualizar las descripciones o ESC para salir.");
 
                     if (servicioPlan.GetAll() != null)
                     {
@@ -180,7 +180,7 @@ namespace GUI
                             Console.SetCursorPosition(32, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Precio.ToString().PadRight(10) + item.Dias.ToString().PadRight(5));
                             i++;
                         }
-                        key = Console.ReadKey();
+                        Console.SetCursorPosition(71, 6); key = Console.ReadKey();
                         if (key.Key == ConsoleKey.Escape)
                         {
                             break;
@@ -196,9 +196,10 @@ namespace GUI
                         else if (key.Key == ConsoleKey.RightArrow)
                         {
                             Derecha();
+                            break;
                         }
                     }
-                } while (key.Key != ConsoleKey.RightArrow && key.Key != ConsoleKey.Escape);
+                } while (key.Key != ConsoleKey.RightArrow || key.Key != ConsoleKey.Escape);
 
             }
             void Derecha()
@@ -207,8 +208,8 @@ namespace GUI
                 {
                     int j = 8;
                     Console.Clear();
-                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse la izquierda(<-) para volver a la lista de planes.");
-                    Console.SetCursorPosition(35, 6); Console.Write("Ingrese el id, nombre o telefono del cliente: " + search);
+                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse la izquierda(<-) para volver a la lista de planes o ESC para salir.");
+                    Console.SetCursorPosition(35, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
                     Console.SetCursorPosition(43, 8); Console.WriteLine("---DESCRIPCIONES DE PLANES---");
 
                     foreach (var item in servicioPlan.GetBySearch(search))
@@ -217,7 +218,7 @@ namespace GUI
                         j++;
                     }
 
-                    key = Console.ReadKey();
+                    Console.SetCursorPosition(71, 6); key = Console.ReadKey();
                     if (key.Key == ConsoleKey.Escape)
                     {
                         break;
@@ -233,8 +234,9 @@ namespace GUI
                     if (key.Key == ConsoleKey.LeftArrow)
                     {
                         Izquierda();
+                        break;
                     }
-                } while (key.Key != ConsoleKey.Escape && key.Key != ConsoleKey.Escape);
+                } while (key.Key != ConsoleKey.Escape || key.Key != ConsoleKey.Escape);
             }
 
             //Aplicacion;

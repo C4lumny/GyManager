@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GUI.Menus
 {
@@ -17,12 +13,12 @@ namespace GUI.Menus
 
                 Console.SetCursorPosition(43, 5); Console.Write("---ADMINISTRAR PLANES DEL GYM---");
                 Console.SetCursorPosition(35, 7); Console.Write("1. Registrar plan");
-                Console.SetCursorPosition(35, 8); Console.Write("2. Consultar planes");
+                Console.SetCursorPosition(35, 8); Console.Write("2. Consulta de planes por busqueda");
                 Console.SetCursorPosition(35, 9); Console.Write("3. Actualizar plan");
                 Console.SetCursorPosition(35, 10); Console.Write("4. Eliminar plan");
-                Console.SetCursorPosition(35, 11); Console.Write("5. Consulta por busqueda");
-                Console.SetCursorPosition(35, 12); Console.Write("6. Salir");
-                Console.SetCursorPosition(35, 14); Console.Write("Escoja la opción de su preferencia: ");
+                Console.SetCursorPosition(35, 11); Console.Write("5. Salir");
+
+                Console.SetCursorPosition(35, 13); Console.Write("Escoja la opción de su preferencia: ");
                 try
                 {
                     op = int.Parse(Console.ReadLine());
@@ -39,7 +35,7 @@ namespace GUI.Menus
                         registrarPlan();
                         break;
                     case 2:
-                        consultarPlan();
+                        ConsultaDinamica();
                         break;
                     case 3:
                         actualizarPlan();
@@ -48,18 +44,13 @@ namespace GUI.Menus
                         eliminarPlan();
                         break;
                     case 5:
-                        ConsultaDinamica();
-                        break;
-                    case 6:
-                        //Volver al menu
                         break;
                     default:
                         Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
                         Console.ReadKey();
                         break;
-
                 }
-            } while (op != 6);
+            } while (op != 5);
         }
 
     }

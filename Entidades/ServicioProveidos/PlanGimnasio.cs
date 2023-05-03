@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Entidades
+﻿namespace Entidades
 {
     public class PlanGimnasio
     {
-        public PlanGimnasio() {} // Clase PlanesGimnasio, clase independiete
+        public PlanGimnasio() { } // Clase PlanesGimnasio, clase independiete
         public PlanGimnasio(string id, string nombre, double precio, string descripcion, int dias)
         {
             Id = id;

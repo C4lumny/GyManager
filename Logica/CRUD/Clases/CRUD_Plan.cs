@@ -1,25 +1,20 @@
-﻿using Datos;
-using Entidades;
-using Logica.Operaciones;
+﻿using Entidades;
 using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class CRUD_Plan: Public_Planes, I_CRUD<PlanGimnasio> 
+    public class CRUD_Plan : Public_Planes, I_CRUD<PlanGimnasio>
     {
-        
+
         public CRUD_Plan() { }
         public Response<PlanGimnasio> Delete(string id_plan)
         {
             var Planes = GetMainList();
             if (Planes == null)
             {
-                return new Response<PlanGimnasio>(false, "No hay planes registrados actualmente."); 
+                return new Response<PlanGimnasio>(false, "No hay planes registrados actualmente.");
             }
             else
             {
@@ -30,7 +25,7 @@ namespace Logica
 
                 Planes.RemoveAt(pos);
                 Repositorio_Planes.Update(Planes);
-                return new Response<PlanGimnasio>(true, "Plan eliminado correctamente", null, plan); 
+                return new Response<PlanGimnasio>(true, "Plan eliminado correctamente", null, plan);
             }
         }
         public List<PlanGimnasio> GetBySearch(string search)
@@ -41,7 +36,7 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(plan => plan.Nombre.Contains(search) || plan.Id.StartsWith(search)); 
+                return GetMainList().FindAll(plan => plan.Nombre.Contains(search) || plan.Id.StartsWith(search));
             }
         }
         public Response<PlanGimnasio> Save(PlanGimnasio plan)
@@ -50,21 +45,21 @@ namespace Logica
             {
                 if (GetMainList() == null)
                 {
-                    Repositorio_Planes.Save(plan); return new Response<PlanGimnasio>(true, "Se ha registrado el plan correctamente."); 
+                    Repositorio_Planes.Save(plan); return new Response<PlanGimnasio>(true, "Se ha registrado el plan correctamente.");
                 }
                 else if (Exist(plan.Id))
                 {
-                    return new Response<PlanGimnasio>(false, "El plan ingresado ya se encuentra registrado, por favor ingrese un nuevo ID"); 
+                    return new Response<PlanGimnasio>(false, "El plan ingresado ya se encuentra registrado, por favor ingrese un nuevo ID");
                 }
                 else
                 {
                     Repositorio_Planes.Save(plan);
-                    return new Response<PlanGimnasio>(true, "Se ha registrado el plan correctamente.", null, plan); 
+                    return new Response<PlanGimnasio>(true, "Se ha registrado el plan correctamente.", null, plan);
                 }
             }
             catch (Exception)
             {
-                return new Response<PlanGimnasio>(false, "Error!", null, null); 
+                return new Response<PlanGimnasio>(false, "Error!", null, null);
             }
         }
         public Response<PlanGimnasio> Update(PlanGimnasio plan_modificado, string id_plan)
@@ -79,7 +74,7 @@ namespace Logica
                     {
                         return new Response<PlanGimnasio>(false, "No se encontro el Plan que desea actualizar"); // No se encontro el id del plan para actualizar.
                     }
-                    else if (Exist(plan_modificado.Id) && ReturnPlan(id_plan).Id != id_plan)
+                    else if (Exist(plan_modificado.Id) && plan_modificado.Id != id_plan)
                     {
                         return new Response<PlanGimnasio>(false, "El ID al que desea actualizar corresponde a un ID ya registrado, por favor ingrese un nuevo ID"); //ID repetido al actualizar el plan.
                     }

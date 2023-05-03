@@ -3,11 +3,10 @@ using System;
 
 namespace GUI
 {
-    internal class PrincipalGUI
+    public class PrincipalGUI
     {
-        static void Main(string[] args)  // Clase Main, desde esta clase seran dadas las instrucciones y orden a seguir para consecuentemente ejecutar el programa.
+        public void MenuPrincipal()
         {
-
             Console.SetBufferSize(Console.WindowWidth, 1000);
             Console.SetWindowPosition(0, 0);
             int op;
@@ -22,7 +21,7 @@ namespace GUI
                 Console.SetCursorPosition(35, 8); Console.Write("2. Administrar supervisores");
                 Console.SetCursorPosition(35, 9); Console.Write("3. Administrar planes");
                 Console.SetCursorPosition(35, 10); Console.Write("4. Administrar inscripciones");
-                Console.SetCursorPosition(35, 11); Console.Write("5. Salir");
+                Console.SetCursorPosition(35, 11); Console.Write("5. Cerrar Sesion");
                 Console.SetCursorPosition(35, 14); Console.Write("Escoja la opción de su preferencia: ");
                 try
                 {
@@ -32,8 +31,6 @@ namespace GUI
                 {
                     op = 0;
                 }
-
-
                 switch (op)
                 {
                     case 1:
@@ -53,13 +50,17 @@ namespace GUI
                         inscripcionMENU.menu();
                         break;
                     case 5:
-                        //Finalizar programa
+                        Console.Clear();
+                        Console.SetCursorPosition(35, 11); Console.Write("¿Esta seguro de cerrar sesion? [S/N] "); char cs = char.Parse(Console.ReadLine());
+                        if (cs != 's' && cs != 'S')
+                        {
+                            MenuPrincipal();
+                        }
                         break;
                     default:
                         Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
                         Console.ReadKey();
                         break;
-
                 }
             } while (op != 5);
         }

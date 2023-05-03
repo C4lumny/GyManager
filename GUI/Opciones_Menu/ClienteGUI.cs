@@ -10,8 +10,7 @@ namespace GUI
     {
         CRUD_Cliente servicioCliente = new CRUD_Cliente();
         Cliente clientes;
-        
-        //----------------------------------------------------------------------------------------------------------------------------------
+
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void registrarCliente()
         {
@@ -81,9 +80,9 @@ namespace GUI
         protected void consultarCliente(bool @static)
         {
             Console.Clear();
-            Console.SetCursorPosition(46, 5); Console.WriteLine("---LISTA DE CLIENTES---");
-            Mostrar(servicioCliente.GetAll(), 7);
-            
+            Console.SetCursorPosition(46, 6); Console.WriteLine("---LISTA DE CLIENTES---");
+            Mostrar(servicioCliente.GetAll(), 8);
+
             if (@static == true)
             {
                 Console.ReadKey();
@@ -106,7 +105,7 @@ namespace GUI
                     consultarCliente(false);
                     Console.SetCursorPosition(35, 4); Console.Write("Ingrese el ID del cliente que desea actualizar: "); id_clienteU = Console.ReadLine();
                     Console.Clear();
-                    if (servCliente.ReturnCliente(id_clienteU) == null) 
+                    if (servCliente.ReturnCliente(id_clienteU) == null)
                     {
                         Console.SetCursorPosition(28, 9); Console.WriteLine("El cliente que desea actualizar, no se encuentra en la base de datos");
                         Console.ReadKey();
@@ -154,7 +153,7 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void eliminarCliente()
         {
-            
+
             string id_clienteD;
             char op = 'x';
             do
@@ -177,7 +176,7 @@ namespace GUI
                     op = char.Parse(Console.ReadLine().ToLower());
                 }
 
-            } while (op == 's');    
+            } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void ConsultaDinamica()
@@ -191,8 +190,8 @@ namespace GUI
                 Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del cliente: " + search);
                 Console.SetCursorPosition(46, 6); Console.WriteLine("---LISTA DE CLIENTES---");
                 Mostrar(servicioCliente.GetBySearch(search), 8);
-                
-                key = Console.ReadKey();
+
+                Console.SetCursorPosition(81, 4); key = Console.ReadKey();
                 if (key.Key == ConsoleKey.Escape)
                 {
                     break;

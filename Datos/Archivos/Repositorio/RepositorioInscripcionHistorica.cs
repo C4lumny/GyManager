@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Datos.Archivos.Repositorio
 {
@@ -58,7 +57,7 @@ namespace Datos.Archivos.Repositorio
                     else if (i >= 21 && i < 29)
                     {
                         supervisorlinea.Append(aux[i] + ";");
-                    }   
+                    }
                 }
                 string sup = supervisorlinea.ToString().Substring(0, supervisorlinea.ToString().Length - 1);
                 string plan = planlinea.ToString().Substring(0, planlinea.ToString().Length - 1);
@@ -72,9 +71,9 @@ namespace Datos.Archivos.Repositorio
                 inscripcion.Estado = bool.Parse(aux[5]);
                 inscripcion.cliente = Repositorio_Clientes.Mapper(cliente);
                 inscripcion.supervisor = Repositorio_Supervisores.Mapper(sup);
-                for (int i = 29; i < aux.Count()-2; i = i + 3)
+                for (int i = 29; i < aux.Count() - 2; i = i + 3)
                 {
-                    inscripcion.supervisor.Horarios.Add(new Turno_Atencion(aux[21], aux[i], DateTime.Parse(aux[i+1]), DateTime.Parse(aux[i + 2])));
+                    inscripcion.supervisor.Horarios.Add(new Turno_Atencion(aux[21], aux[i], DateTime.Parse(aux[i + 1]), DateTime.Parse(aux[i + 2])));
                 }
                 inscripcion.plan = Repositorio_Planes.Mapper(plan);
                 return inscripcion;

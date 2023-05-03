@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GUI.Menus
 {
@@ -17,16 +13,14 @@ namespace GUI.Menus
 
                 Console.SetCursorPosition(43, 5); Console.Write("---ADMINISTRAR SUPERVISORES DEL GYM---");
                 Console.SetCursorPosition(35, 7); Console.Write("1. Registrar supervisor");
-                Console.SetCursorPosition(35, 8); Console.Write("2. Consultar supervisores");
+                Console.SetCursorPosition(35, 8); Console.Write("2. Consulta  de Supervisores por busqueda");
                 Console.SetCursorPosition(35, 9); Console.Write("3. Actualizar supervisor");
                 Console.SetCursorPosition(35, 10); Console.Write("4. Eliminar supervisor");
-                Console.SetCursorPosition(35, 11); Console.Write("5. Consultar turnos de supervisor");
-                Console.SetCursorPosition(35, 12); Console.Write("6. Gestionar turnos");
-                Console.SetCursorPosition(35, 13); Console.Write("7. Consultar Clientes asociados al supervisor");
-                Console.SetCursorPosition(35, 14); Console.Write("8. Consulta por busqueda");
-                Console.SetCursorPosition(35, 14); Console.Write("9. Salir");
+                Console.SetCursorPosition(35, 11); Console.Write("5. Gestionar turnos");
+                Console.SetCursorPosition(35, 12); Console.Write("6. Consultar Clientes del supervisor encargado");
+                Console.SetCursorPosition(35, 13); Console.Write("7. Salir");
 
-                Console.SetCursorPosition(35, 16); Console.Write("Escoja la opción de su preferencia: ");
+                Console.SetCursorPosition(35, 15); Console.Write("Escoja la opción de su preferencia: ");
                 try
                 {
                     op = int.Parse(Console.ReadLine());
@@ -41,7 +35,7 @@ namespace GUI.Menus
                         registrarSupervisor();
                         break;
                     case 2:
-                        consultarSupervisor();
+                        ConsultaDinamica();
                         break;
                     case 3:
                         actualizarSupervisor();
@@ -50,26 +44,19 @@ namespace GUI.Menus
                         eliminarSupervisor();
                         break;
                     case 5:
-                        ConsultarTurno();
-                        break;
-                    case 6:
                         menuTurno();
                         break;
-                    case 7:
+                    case 6:
                         ClientesDeSupervisor();
                         break;
-                    case 8:
-                        ConsultaDinamica();
-                        break;
-                    case 9:
-                        //volver al menu
+                    case 7:
                         break;
                     default:
                         Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
                         Console.ReadKey();
                         break;
                 }
-            } while (op != 9);
+            } while (op != 7);
         }
 
         protected void menuTurno()

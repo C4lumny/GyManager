@@ -3,19 +3,20 @@ using Entidades.Administrador;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Datos.Archivos.Repositorio
 {
-    public class RepositorioAdministrador: I_Repositorio<Administrador>
+    public class RepositorioAdministrador : I_Repositorio<Administrador>
     {
-        string ruta = "Administrador";
+        string ruta = "Administrador.txt";
         public RepositorioAdministrador()
         {
-            
+            if (!File.Exists(ruta))
+            {
+                StreamWriter writer = new StreamWriter(ruta, true);
+                writer.WriteLine("system;gymanager");
+                writer.Close();
+            }
         }
 
         public List<Administrador> Load()
@@ -30,29 +31,29 @@ namespace Datos.Archivos.Repositorio
                     linea = reader.ReadLine();
                     list.Add(Mapper(linea));
                 }
+                reader.Close();
                 return list;
             }
             catch (Exception)
             {
-
-                throw;
+                return null;
             }
         }
 
         public Administrador Mapper(string linea)
         {
             try
-            { 
+            {
                 var aux = linea.Split(';');
                 Administrador administrador = new Administrador();
-                administrador.NickName = aux[0];
+                administrador.UserName = aux[0];
                 administrador.Password = aux[1];
                 return administrador;
             }
             catch (Exception)
             {
                 return null;
-            } 
+            }
         }
 
         public Response<Administrador> Save(Administrador admin)
@@ -75,19 +76,12 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                if (Administradores.Count == 0 && File.Exists(ruta))
+                StreamWriter writer = new StreamWriter(ruta, false);
+                foreach (var item in Administradores)
                 {
-                    File.Delete(ruta);
+                    writer.WriteLine(item.ToString());
                 }
-                else
-                {
-                    StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var item in Administradores)
-                    {
-                        writer.WriteLine(item.ToString());
-                    }
-                    writer.Close();
-                }
+                writer.Close();
                 return true;
             }
             catch (Exception)

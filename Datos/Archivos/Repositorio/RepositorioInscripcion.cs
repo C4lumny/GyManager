@@ -4,12 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class RepositorioInscripcion: I_Repositorio<Inscripcion>
+    public class RepositorioInscripcion : I_Repositorio<Inscripcion>
     {
         protected string ruta = "Inscripcion.txt";
         RepositorioClientes Repositorio_Clientes;

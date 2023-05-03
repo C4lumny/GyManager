@@ -1,15 +1,10 @@
 ﻿using Entidades;
-using Logica.CRUD;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.Operaciones.AccesoPublico
 {
-    public class Public_Supervisores: Protected_Supervisor
+    public class Public_Supervisores : Protected_Supervisor
     {
         public Public_Supervisores()
         {
@@ -25,7 +20,6 @@ namespace Logica.Operaciones.AccesoPublico
                 return null;
             }
         }
-
         public Turno_Atencion ReturnTurno(string id_supervisor, string dia, DateTime hora)
         {
             try

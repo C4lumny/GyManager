@@ -1,10 +1,6 @@
-﻿using Datos;
-using Entidades;
+﻿using Entidades;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.Operaciones.AccesoPublico
 {
@@ -18,7 +14,7 @@ namespace Logica.Operaciones.AccesoPublico
         {
             try
             {
-                return GetMainList().FirstOrDefault(item => item.Id == id_cliente); 
+                return GetMainList().FirstOrDefault(item => item.Id == id_cliente);
             }
             catch (Exception)
             {

@@ -1,10 +1,7 @@
-﻿using Datos;
-using Entidades;
+﻿using Entidades;
+using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Logica.Operaciones;
-using Logica.Operaciones.AccesoPublico;
 
 namespace Logica
 {
@@ -55,20 +52,24 @@ namespace Logica
                 }
                 else if (cliente.Peso < 0)
                 {
-                    return new Response<Cliente>(false, "El peso es invalido, No se ha podido registrar el cliente"); 
+                    return new Response<Cliente>(false, "El peso es invalido, No se ha podido registrar el cliente");
+                }
+                else if (cliente.Genero != "M" && cliente.Genero != "F")
+                {
+                    return new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
                 }
                 else if (cliente.Fecha_nacimiento > DateTime.Now)
                 {
-                    return new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente"); 
+                    return new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente");
                 }
                 else if (GetMainList() == null)
                 {
-                    cliente.Imc = Math.Round(CalculateIMC(cliente), 2); 
+                    cliente.Imc = Math.Round(CalculateIMC(cliente), 2);
                     return Repositorio_Clientes.Save(cliente);
                 }
                 else if (Exist(cliente.Id))
                 {
-                    return new Response<Cliente>(false, "Ya tiene registrado un cliente con la misma ID"); 
+                    return new Response<Cliente>(false, "Ya tiene registrado un cliente con la misma ID");
                 }
                 else
                 {
@@ -78,7 +79,7 @@ namespace Logica
             }
             catch (Exception)
             {
-                return new Response<Cliente>(false, "Error!", null, null); 
+                return new Response<Cliente>(false, "Error!", null, null);
             }
         }
         public Response<Cliente> Update(Cliente Cliente_Modificado, string Id_cliente)
@@ -91,23 +92,27 @@ namespace Logica
                 {
                     if (!Exist(Id_cliente))
                     {
-                        return new Response<Cliente>(false, "No se encontro el id del cliente a actualizar"); 
+                        return new Response<Cliente>(false, "No se encontro el id del cliente a actualizar");
                     }
                     if (Cliente_Modificado.Altura < 0)
                     {
-                        return new Response<Cliente>(false, "Altura invalida"); 
+                        return new Response<Cliente>(false, "Altura invalida");
                     }
                     else if (Cliente_Modificado.Peso < 0)
                     {
                         return new Response<Cliente>(false, "Peso invalido");
                     }
+                    else if (Cliente_Modificado.Genero != "M" && Cliente_Modificado.Genero != "F")
+                    {
+                        return new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
+                    }
                     else if (Cliente_Modificado.Fecha_nacimiento > DateTime.Now)
                     {
-                        return new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual"); 
+                        return new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual");
                     }
-                    else if (Exist(Cliente_Modificado.Id) && ReturnCliente(Id_cliente).Id != Id_cliente)
+                    else if (Exist(Cliente_Modificado.Id) && Cliente_Modificado.Id != Id_cliente)
                     {
-                        return new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado."); 
+                        return new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado.");
                     }
                     else
                     {
@@ -135,7 +140,7 @@ namespace Logica
             }
             catch (Exception)
             {
-                return new Response<Cliente>(false, "Error!", null, null); 
+                return new Response<Cliente>(false, "Error!", null, null);
             }
         }
         public List<Cliente> GetAll()

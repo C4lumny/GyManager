@@ -1,12 +1,7 @@
-﻿using Datos.Archivos.Repositorio;
-using Entidades;
-using Logica.Operaciones;
+﻿using Entidades;
 using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.CRUD
 {
@@ -32,7 +27,6 @@ namespace Logica.CRUD
             }
 
         }
-
         public bool SaveTurno(Turno_Atencion turno)
         {
             try
@@ -45,7 +39,6 @@ namespace Logica.CRUD
                 return false;
             }
         }
-
         public bool UpdateTurno(Turno_Atencion old_turno, Turno_Atencion new_turno)
         {
             try
@@ -60,15 +53,24 @@ namespace Logica.CRUD
                 return false;
             }
         }
-
-        public List<Turno_Atencion> GetAllTurnos()
+        public List<Turno_Atencion> GetTurnoBySearch(string search)
         {
-            var Turnos = Repositorio_Turnos.Load();
-            if (Turnos == null)
+            var turnos = Repositorio_Turnos.Load();
+            if (turnos == null)
             {
                 return null;
             }
-            return Turnos;
+            else
+            {
+                try
+                {
+                    return turnos.FindAll(item => item.Dia.StartsWith(search.ToUpper()) || item.Hora_Salida.ToShortTimeString().Contains(search) || item.Hora_Inicio.ToShortTimeString().Contains(search) || item.Id_supervisor.StartsWith(search));
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
         }
     }
 }

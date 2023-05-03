@@ -1,15 +1,11 @@
 ﻿using Datos;
-using Datos.Archivos;
 using Datos.Archivos.Repositorio;
 using Entidades;
 using Logica.Operaciones.AccesoProtegido;
 using Logica.Operaciones.AccesoPublico;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
@@ -29,7 +25,7 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_inscripcion)
         {
-            if (GetMainList().FirstOrDefault(item => item.Id == id_inscripcion) != null) 
+            if (GetMainList().FirstOrDefault(item => item.Id == id_inscripcion) != null)
             {
                 return true;
             }
@@ -65,23 +61,27 @@ namespace Logica.Operaciones
             var Inscripciones = GetMainList();
             if (Inscripciones == null)
             {
-                return new Response<Inscripcion>(false, "No se han registrado inscripciones."); 
+                return new Response<Inscripcion>(false, "No se han registrado inscripciones.");
             }
             else if (inscripcion == null)
             {
-                return new Response<Inscripcion>(false, "No se ha encontrado la inscripcion que desea renovar."); 
+                return new Response<Inscripcion>(false, "No se ha encontrado la inscripcion que desea renovar.");
             }
             else if (supervisor == null)
             {
-                return new Response<Inscripcion>(false, "No se encontro el supervisor ingresado"); 
+                return new Response<Inscripcion>(false, "No se encontro el supervisor ingresado");
             }
             else if (plan == null)
             {
-                return new Response<Inscripcion>(false, "No se encontro el plan ingresado"); 
+                return new Response<Inscripcion>(false, "No se encontro el plan ingresado");
             }
             else if (descuento > 100 || descuento < 0)
             {
-                return new Response<Inscripcion>(false, "Descuento fuera de rango"); 
+                return new Response<Inscripcion>(false, "Descuento fuera de rango");
+            }
+            else if (inscripcion.Fecha_finalizacion <= DateTime.Now)
+            {
+                return new Response<Inscripcion>(false, "Hora de vencimiento invalida.");
             }
             else
             {
@@ -89,10 +89,10 @@ namespace Logica.Operaciones
                 {
                     if (item.Id == item.Id && item.Estado == true)
                     {
-                        return new Response<Inscripcion>(false, "El cliente ya posee una inscripcion vigente.", null, null); 
+                        return new Response<Inscripcion>(false, "El cliente ya posee una inscripcion vigente.", null, null);
                     }
                 }
-                return new Response<Inscripcion>(true, null, null, inscripcion); 
+                return new Response<Inscripcion>(true, null, null, inscripcion);
             }
         }
         protected bool isClienteValid(string id)

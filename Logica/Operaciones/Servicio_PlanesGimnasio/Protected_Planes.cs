@@ -1,15 +1,12 @@
 ﻿using Datos;
 using Entidades;
 using Logica.Operaciones.AccesoProtegido;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Planes: Abs_ProtectedClass<PlanGimnasio>
+    public class Protected_Planes : Abs_ProtectedClass<PlanGimnasio>
     {
         protected RepositorioPlan Repositorio_Planes;
         protected Protected_Planes()
@@ -30,6 +27,5 @@ namespace Logica.Operaciones
             }
             return false;
         }
-       
     }
 }

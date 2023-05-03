@@ -4,13 +4,13 @@ namespace Entidades
 {
     public class Inscripcion
     {
-        public Inscripcion() 
-        { 
+        public Inscripcion()
+        {
             cliente = new Cliente();
             supervisor = new Supervisor();
             plan = new PlanGimnasio();
         }
-        public Inscripcion(string id, DateTime fecha_inicio, DateTime fecha_finalizacion, double precio,  double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor, bool estado)
+        public Inscripcion(string id, DateTime fecha_inicio, DateTime fecha_finalizacion, double precio, double descuento, Cliente cliente, PlanGimnasio plan, Supervisor supervisor, bool estado)
         {
 
             Id = id;
@@ -31,7 +31,7 @@ namespace Entidades
         public bool Estado { get; set; }
         public Cliente cliente { get; set; }
         public PlanGimnasio plan { get; set; }
-        public Supervisor supervisor { get; set;}
+        public Supervisor supervisor { get; set; }
         public override string ToString()
         {
             return $"{Id};{Fecha_inicio};{Fecha_finalizacion};{Precio};{Descuento};{cliente.Id};{plan.Id};{supervisor.Id};{Estado}";
@@ -39,6 +39,17 @@ namespace Entidades
         public string ToFullString()
         {
             return $"{Id};{Fecha_inicio};{Fecha_finalizacion};{Precio};{Descuento};{Estado};{cliente.ToString()};{plan.ToString()};{supervisor.ToFullString()}";
+        }
+        public string EstadoToString()
+        {
+            if (Estado == true)
+            {
+                return "VIGENTE";
+            }
+            else
+            {
+                return "CADUCADO";
+            }
         }
     }
 }

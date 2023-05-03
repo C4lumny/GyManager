@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Login\LoginGUI.cs" />
+    <Compile Include="Login\LoginMenu.cs" />
+    <Compile Include="Main\Principal.cs" />
     <Compile Include="Menus\ClienteMENU.cs" />
     <Compile Include="Menus\InscripcionMENU.cs" />
     <Compile Include="Menus\PlanGimnasioMENU.cs" />
@@ -68,8 +71,6 @@
       <Name>Logica</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Login\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

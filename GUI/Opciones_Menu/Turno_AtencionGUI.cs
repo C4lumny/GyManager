@@ -1,10 +1,6 @@
 ﻿using Entidades;
 using Logica;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GUI
 {
@@ -13,9 +9,9 @@ namespace GUI
         protected CRUD_Supervisor servicioSupervisor = new CRUD_Supervisor();
         public Turno_AtencionGUI()
         {
-            
+
         }
-        //----------------------------------------------------------------------------------------------------------------------------------
+
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void registrarTurno()
         {
@@ -170,6 +166,7 @@ namespace GUI
             Console.SetCursorPosition(46, 5); Console.WriteLine("---LISTA DE TURNOS---");
             Mostrar(true);
         }
+        //----------------------------------------------------------------------------------------------------------------------------------
         void Mostrar(bool @static)
         {
             int i = 8;
@@ -188,7 +185,7 @@ namespace GUI
                             Console.SetCursorPosition(33, i); Console.WriteLine(turno.Dia.PadRight(19) + turno.Hora_Inicio.ToShortTimeString().PadRight(20) + turno.Hora_Salida.ToShortTimeString());
                             i++;
                         }
-                        i+=2;
+                        i += 2;
                     }
                 }
             }
@@ -202,5 +199,6 @@ namespace GUI
                 Console.ReadKey();
             }
         }
+        //----------------------------------------------------------------------------------------------------------------------------------
     }
 }

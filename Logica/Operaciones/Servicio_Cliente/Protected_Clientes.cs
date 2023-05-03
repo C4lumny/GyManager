@@ -1,15 +1,12 @@
 ﻿using Datos;
 using Entidades;
 using Logica.Operaciones.AccesoProtegido;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Clientes: Abs_ProtectedClass<Cliente>
+    public class Protected_Clientes : Abs_ProtectedClass<Cliente>
     {
         protected RepositorioClientes Repositorio_Clientes;
         protected Protected_Clientes()
@@ -23,15 +20,15 @@ namespace Logica.Operaciones
             {
                 return null;
             }
-            return Clientes;  
+            return Clientes;
         }
         protected override bool Exist(string id_cliente)
         {
-            if (GetMainList().FirstOrDefault(item => item.Id == id_cliente) != null) 
+            if (GetMainList().FirstOrDefault(item => item.Id == id_cliente) != null)
             {
-                return true; 
+                return true;
             }
-            return false; 
+            return false;
         }
         protected double CalculateIMC(Cliente cliente)
         {

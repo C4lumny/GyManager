@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Datos.Archivos.Repositorio
 {
@@ -38,11 +35,11 @@ namespace Datos.Archivos.Repositorio
 
         public Turno_Atencion Mapper(string linea)
         {
-            
+
             try
             {
-                var aux = linea.Split(';');                
-                var turno = new Turno_Atencion(aux[0], aux[1], DateTime.Parse(aux[2]), DateTime.Parse(aux[3]));          
+                var aux = linea.Split(';');
+                var turno = new Turno_Atencion(aux[0], aux[1], DateTime.Parse(aux[2]), DateTime.Parse(aux[3]));
                 return turno;
             }
             catch (Exception)

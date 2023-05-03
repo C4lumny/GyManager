@@ -1,17 +1,13 @@
-﻿using Datos;
-using Datos.Archivos;
+﻿using Datos.Archivos;
 using Datos.Archivos.Repositorio;
 using Entidades;
 using Logica.Operaciones.AccesoProtegido;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Supervisor: Abs_ProtectedClass<Supervisor>
+    public class Protected_Supervisor : Abs_ProtectedClass<Supervisor>
     {
         protected RepositorioSupervisor Repositorio_Supervisores;
         protected RepositorioTurnos Repositorio_Turnos;
@@ -24,9 +20,9 @@ namespace Logica.Operaciones
         {
             if (GetMainList().FirstOrDefault(supervisor => supervisor.Id == id_supervisor) != null)
             {
-                return true; 
+                return true;
             }
-            return false; 
+            return false;
         }
         protected override List<Supervisor> GetMainList()
         {
@@ -43,7 +39,7 @@ namespace Logica.Operaciones
                     supervisor.Horarios = Turnos.FindAll(turno => turno.Id_supervisor == supervisor.Id);
                 }
             }
-            return Supervisores; 
+            return Supervisores;
         }
         protected bool IsTurnoValid(Turno_Atencion turno, Supervisor supervisor)
         {

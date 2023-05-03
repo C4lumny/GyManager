@@ -1,10 +1,7 @@
-﻿using Datos;
-using Entidades;
+﻿using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logica.Operaciones.AccesoPublico
 {
@@ -12,17 +9,17 @@ namespace Logica.Operaciones.AccesoPublico
     {
         public Public_Inscripciones()
         {
-           
+
         }
         public List<Inscripcion> GetInscripcionesVigentes()
         {
             if (GetMainList() == null)
             {
-                return null; 
+                return null;
             }
             else
             {
-                var Inscripcines_vigentes = GetMainList().FindAll(item => item.Estado == true); 
+                var Inscripcines_vigentes = GetMainList().FindAll(item => item.Estado == true);
                 Inscripcines_vigentes.Sort((p1, p2) => p1.Id.CompareTo(p2.Id));
                 return Inscripcines_vigentes;
             }
@@ -61,7 +58,7 @@ namespace Logica.Operaciones.AccesoPublico
             else
             {
                 return null;
-            }    
+            }
         }
         public List<Inscripcion> Historial_Inscripciones()
         {

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using Datos.Archivos;
 using Entidades;
-using Datos.Archivos;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Datos
 {
-    public class RepositorioClientes: I_Repositorio<Cliente>
+    public class RepositorioClientes : I_Repositorio<Cliente>
     {
         string ruta = "Cliente.txt";
 
@@ -28,7 +25,7 @@ namespace Datos
             catch (Exception)
             {
             }
-            return new Response<Cliente>(false, "No se ha podido guardar el cliente.", null, cliente); 
+            return new Response<Cliente>(false, "No se ha podido guardar el cliente.", null, cliente);
         }
 
         public Cliente Mapper(string linea)
@@ -68,7 +65,7 @@ namespace Datos
                     list.Add(Mapper(linea));
                 }
                 reader1.Close();
-                return  list;
+                return list;
             }
             catch (Exception)
             {
