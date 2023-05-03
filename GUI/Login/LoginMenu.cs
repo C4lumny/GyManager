@@ -2,11 +2,10 @@
 
 namespace GUI.Login
 {
-    public class LoginMenu
+    public class LoginMenu : LoginGUI
     {
-        public void Menu()
+        public void Menu() 
         {
-            LoginGUI loginGUI = new LoginGUI();
             int op;
             do
             {
@@ -31,15 +30,14 @@ namespace GUI.Login
                 }
                 switch (op)
                 {
-
                     case 1:
-                        loginGUI.LogIn_Usuario();
+                        LogIn_Usuario();
                         break;
                     case 2:
-                        loginGUI.SignUp_Usuario();
+                        SignUp_Usuario();
                         break;
                     case 3:
-                        loginGUI.Delete_Usuario();
+                        Delete_Usuario();
                         break;
                     case 4:
                         break;
