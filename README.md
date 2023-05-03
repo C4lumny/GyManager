@@ -35,7 +35,6 @@ Claramente nuestros colaboradores:
 
 ## Comentarios de Hate hacia mis compañeros de forma anonima. 🤬
 
--Aisaac:
 * Vas en 4to semestre y todavia no sabes declarar una variable.
 * La prox vez haz algo que no sean los response pedazo de flojo
 -Nathan:
