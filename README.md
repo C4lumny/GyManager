@@ -4,14 +4,18 @@
 # GyManager
 
 _Palabras de aisaac_
+Un saludo para Jose (McLovin) el mas insano de la region.
 
 ## Construido con 🛠️
 
 _Herramientas que aisaac cree que usamos_ 
 
-* [Epic Games](https://www.epicgames.com/site/es-ES/home) - Sitio de juegos
-* [Riot Games](https://www.riotgames.com/es) - League of legends
-* [Universidad popular del Cesar](https://www.unicesar.edu.co/index.php/es/) - La U mas insana
+Claramente nuestros colaboradores:
+
+* [Space X] (https://www.spacex.com/) - Proveedor de nuestra tecnologia
+* [Epic Games](https://www.epicgames.com/site/es-ES/home) - Aportacion de ideas (nada originales)
+* [Riot Games](https://www.riotgames.com/es) - lolsito para desestresarse
+* [Universidad popular del Cesar](https://www.unicesar.edu.co/index.php/es/) - La U mas insana de todo Colombia
 
 ## Autores ✒️
 
@@ -27,4 +31,8 @@ _Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios
 * Porque diego se va a mandar las frias 🍺. 
 * IN SA NO 🤓.
 
+## Comentarios de Hate hacia mis compañeros de forma anonima. 🤬
 
+-Aisaac:
+* Vas en 4to semestre y todavia no sabes declarar una variable.
+* La prox vez haz algo que no sean los response pedazo de flojo
