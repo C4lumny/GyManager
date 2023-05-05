@@ -5,37 +5,16 @@ using System.IO;
 
 namespace Datos.Archivos.Repositorio
 {
-    public class RepositorioTurnos : I_Repositorio<Turno_Atencion>
+    public class RepositorioTurnos : Abs_Repositorio<Turno_Atencion>
     {
 
         string ruta = "Turnos.txt";
         public RepositorioTurnos()
         {
+            Ruta(ruta);
         }
-        public List<Turno_Atencion> Load()
+        public override Turno_Atencion Mapper(string linea)
         {
-            try
-            {
-                StreamReader reader = new StreamReader(ruta);
-                var list = new List<Turno_Atencion>();
-                string linea;
-                while (!reader.EndOfStream)
-                {
-                    linea = reader.ReadLine();
-                    list.Add(Mapper(linea));
-                }
-                reader.Close();
-                return list;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public Turno_Atencion Mapper(string linea)
-        {
-
             try
             {
                 var aux = linea.Split(';');
@@ -46,46 +25,6 @@ namespace Datos.Archivos.Repositorio
             {
                 return null;
             }
-        }
-
-        public Response<Turno_Atencion> Save(Turno_Atencion turno)
-        {
-            try
-            {
-                StreamWriter writer1 = new StreamWriter(ruta, true);
-                writer1.WriteLine(turno.ToString());
-                writer1.Close();
-                return new Response<Turno_Atencion>(true, "Se ha guardado correctamente.", null, turno);
-            }
-            catch (Exception)
-            {
-            }
-            return new Response<Turno_Atencion>(true, "Error!.", null, turno);
-        }
-
-        public bool Update(List<Turno_Atencion> Turnos)
-        {
-            try
-            {
-                if (Turnos.Count == 0 && File.Exists(ruta))
-                {
-                    File.Delete(ruta);
-                }
-                else
-                {
-                    StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var turno in Turnos)
-                    {
-                        writer.WriteLine(turno.ToString());
-                    }
-                    writer.Close();
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-            }
-            return false;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Logica
                 Clientes.RemoveAt(pos);
                 if (Repositorio_Clientes.Update(Clientes))
                 {
-                    return new Response<Cliente>(true, "El cliente se ha eliminado correctamente", Clientes, cliente);
+                    return new Response<Cliente>(true, "El cliente: " + cliente.Nombre +  ". Se ha eliminado correctamente", Clientes, cliente);
                 }
                 else
                 {

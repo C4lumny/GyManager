@@ -35,7 +35,7 @@ namespace Logica
                 }
                 Supervisores.RemoveAt(pos);
                 Repositorio_Supervisores.Update(Supervisores);
-                return new Response<Supervisor>(true, "Eliminado correctamente.", null, supervisor);
+                return new Response<Supervisor>(true, "El supervisor: " + supervisor.Nombre + ". Se ha eliminado correctamente", Supervisores, supervisor);
             }
         }
         public List<Supervisor> GetBySearch(string search)

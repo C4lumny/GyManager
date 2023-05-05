@@ -72,8 +72,9 @@ namespace GUI
             }
             else
             {
-                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado clientes");
-                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                Console.SetCursorPosition(10, 10); Console.WriteLine("No se han registrado clientes");
+                Console.SetCursorPosition(10, 12); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                return;
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------
@@ -167,11 +168,12 @@ namespace GUI
                 {
                     Console.SetCursorPosition(28, 9); Console.WriteLine("El cliente que desea eliminar, no se encuentra en la base de datos");
                     Console.ReadKey();
+                    
                 }
                 else
                 {
                     var response = servicioCliente.Delete(id_clienteD);
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el cliente: " + response.Object.Nombre);
+                    Console.SetCursorPosition(35, 9); Console.WriteLine(response.Msg);
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando clientes?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
                 }
