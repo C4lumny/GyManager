@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GUI.Login
 {
-    public class LoginGUI : Protected_Administrador
+    public class LoginGUI : Protected_Administrador 
     {
         public void SignUp_Usuario()
         {

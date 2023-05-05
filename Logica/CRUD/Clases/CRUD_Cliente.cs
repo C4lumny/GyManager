@@ -31,7 +31,7 @@ namespace Logica
                     return new Response<Cliente>(false, "No se ha podido eliminar el cliente.");
                 }
             }
-        }
+        } 
         public List<Cliente> GetBySearch(string search)
         {
             if (GetMainList() == null)

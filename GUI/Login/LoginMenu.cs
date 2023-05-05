@@ -2,7 +2,7 @@
 
 namespace GUI.Login
 {
-    public class LoginMenu : LoginGUI
+    public class LoginMenu : LoginGUI 
     {
         public void Menu() 
         {
