@@ -53,14 +53,16 @@ namespace GUI
                 }
                 catch (Exception)
                 {
-                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos");
+                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos"); Console.ReadKey();
                     break;
                 }
             } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        protected void Mostrar(List<Cliente> lista, int Pos_vertical)
+        protected bool Mostrar(List<Cliente> lista, int Pos_vertical)
         {
+            Console.Clear();
+            Console.SetCursorPosition(44, 6); Console.WriteLine("---CLIENTES REGISTRADOS---");
             if (servicioCliente.GetAll() != null)
             {
                 Console.SetCursorPosition(19, Pos_vertical); Console.WriteLine("CC".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(10) + "TELEFONO".PadRight(15) + "IMC".PadRight(12) + "FECHA INGRESO:");
@@ -69,21 +71,19 @@ namespace GUI
                     Console.SetCursorPosition(19, Pos_vertical + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Genero.PadRight(10) + item.Telefono.PadRight(15) + item.Imc.ToString().PadRight(12) + item.Fecha_ingreso.ToShortDateString());
                     Pos_vertical++;
                 }
+                return true;
             }
             else
             {
                 Console.SetCursorPosition(10, 10); Console.WriteLine("No se han registrado clientes");
                 Console.SetCursorPosition(10, 12); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
-                return;
+                return false;
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void consultarCliente(bool @static)
-        {
-            Console.Clear();
-            Console.SetCursorPosition(44, 6); Console.WriteLine("---CLIENTES REGISTRADOS---");
+        { 
             Mostrar(servicioCliente.GetAll(), 8);
-
             if (@static == true)
             {
                 Console.ReadKey();
@@ -103,7 +103,11 @@ namespace GUI
                 {
                     Console.Clear();
                     Console.SetCursorPosition(43, 2); Console.Write("---ACTUALIZAR CLIENTE---");
-                    consultarCliente(false);
+                    if (!Mostrar(servicioCliente.GetAll(), 8))
+                    {
+                        Console.ReadKey();
+                        return;
+                    }
                     Console.SetCursorPosition(35, 4); Console.Write("Ingrese el ID del cliente que desea actualizar: "); id_clienteU = Console.ReadLine();
                     Console.Clear();
                     if (servCliente.ReturnCliente(id_clienteU) == null)
@@ -161,7 +165,11 @@ namespace GUI
             {
                 Console.Clear();
                 Console.SetCursorPosition(43, 2); Console.Write("---ELIMINAR CLIENTE---");
-                consultarCliente(false);
+                if (!Mostrar(servicioCliente.GetAll(), 8))
+                {
+                    Console.ReadKey();
+                    return;
+                }
                 Console.SetCursorPosition(35, 4); Console.Write("Ingrese el ID del cliente que desea eliminar: "); id_clienteD = Console.ReadLine();
                 Console.Clear();
                 if (servicioCliente.ReturnCliente(id_clienteD) == null)
@@ -190,9 +198,13 @@ namespace GUI
             do
             {
                 Console.Clear();
+                if (!Mostrar(servicioCliente.GetAll(), 8))
+                {
+                    Console.ReadKey();
+                    return;
+                }
                 Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del cliente: " + search);
-                Console.SetCursorPosition(44, 6); Console.WriteLine("---CLIENTES REGISTRADOS---");
-                Mostrar(servicioCliente.GetBySearch(search), 8);
+                
 
                 Console.SetCursorPosition(cursor, 4); key = Console.ReadKey();
                 if (key.Key == ConsoleKey.Escape)

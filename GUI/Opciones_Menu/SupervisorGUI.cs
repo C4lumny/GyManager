@@ -44,7 +44,7 @@ namespace GUI
                 }
                 catch (Exception)
                 {
-                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos");
+                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos"); Console.ReadKey();
                     break;
                 }
             } while (op == 's');
@@ -61,7 +61,11 @@ namespace GUI
                 try
                 {
                     Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR SUPERVISOR---");
-                    Mostrar(servicioSupervisor.GetAll(), 9);
+                    if (!Mostrar(servicioSupervisor.GetAll(), 9))
+                    {
+                        Console.ReadKey();
+                        return;
+                    }
                     Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor que desea actualizar: "); id_supervisorU = Console.ReadLine();
                     Console.Clear();
                     if (servicioSupervisor.ReturnSupervisor(id_supervisorU) == null)
@@ -109,7 +113,11 @@ namespace GUI
 
                 Console.Clear();
                 Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR SUPERVISOR---");
-                Mostrar(servicioSupervisor.GetAll(), 9);
+                if (!Mostrar(servicioSupervisor.GetAll(), 9))
+                {
+                    Console.ReadKey();
+                    return;
+                }
                 Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor que desea eliminar: "); id_supervisorD = Console.ReadLine();
                 Console.Clear();
 
@@ -117,6 +125,7 @@ namespace GUI
                 {
                     Console.SetCursorPosition(35, 9); Console.WriteLine("El supervisor que desea eliminar no se encuentra en la base de datos");
                     Console.ReadKey();
+                    return;
                 }
                 else
                 {
@@ -161,7 +170,7 @@ namespace GUI
             Console.ReadKey();
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        protected void Mostrar(List<Supervisor> list, int pos)
+        protected bool Mostrar(List<Supervisor> list, int pos)
         {
             if (servicioSupervisor.GetAll() != null)
             {
@@ -172,13 +181,13 @@ namespace GUI
                     Console.WriteLine(supervisor.Id.ToString().PadRight(15) + supervisor.Nombre.PadRight(15) + supervisor.Genero.PadRight(9) + supervisor.Telefono.PadRight(10));
                     pos++;
                 }
-
+                return true;
             }
             else
             {
                 Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
                 Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
-                return;
+                return false;
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------
@@ -192,11 +201,27 @@ namespace GUI
             {
                 do
                 {
+                    int i = 8;
                     Console.Clear();
                     Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse derecha(->) para visualizar los HORARIOS o ESC para salir.");
-                    Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del supervisor: " + search);
                     Console.SetCursorPosition(44, 6); Console.WriteLine("---SUPERVISORES REGISTRADOS---");
-                    Mostrar(servicioSupervisor.GetBySearch(search), 8);
+                    if (servicioSupervisor.GetAll() != null)
+                    {
+                        Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del supervisor: " + search);
+                        Console.SetCursorPosition(30, i); Console.WriteLine("CC".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(9) + "TELEFONO".PadRight(15));
+                        foreach (var supervisor in servicioSupervisor.GetBySearch(search))
+                        {
+                            Console.SetCursorPosition(30, i + 2);
+                            Console.WriteLine(supervisor.Id.ToString().PadRight(15) + supervisor.Nombre.PadRight(15) + supervisor.Genero.PadRight(9) + supervisor.Telefono.PadRight(10));
+                            i++;
+                        }
+
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
+                        Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse ESC tecla para volver al menu.");
+                    }
                     Console.SetCursorPosition(cursor - 7, 4); key = Console.ReadKey();
                     if (key.Key == ConsoleKey.Escape)
                     {
@@ -227,10 +252,10 @@ namespace GUI
                     Console.Clear();
                     Console.SetCursorPosition(45, 6); Console.WriteLine("---HORARIOS DE ATENCION---");
                     Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse izquierda(<-) para visualizar los SUPERVISORES o ESC para salir.");
-                    Console.SetCursorPosition(32, 4); Console.Write("Ingrese el dia o la hora del turno o el id del supervisor: " + search);
                     int i = 9;
                     if (servicioSupervisor.GetAll() != null)
                     {
+                        Console.SetCursorPosition(32, 4); Console.Write("Ingrese el dia o la hora del turno o el id del supervisor: " + search);
                         Console.SetCursorPosition(28, i); Console.WriteLine("CC:".PadRight(19) + "DIA DE SEMANA:".PadRight(19) + "HORA DE ENTRADA:".PadRight(20) + "HORA DE SALIDA:");
                         var turnosSearch = servicioSupervisor.GetTurnoBySearch(search);
                         if (turnosSearch != null)

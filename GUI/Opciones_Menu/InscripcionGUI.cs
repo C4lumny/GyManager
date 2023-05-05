@@ -86,8 +86,9 @@ namespace GUI
                 do
                 {
                     Console.Clear();
-                    Console.SetCursorPosition(10, 4); Console.WriteLine(titulo);
+                    Console.SetCursorPosition(40, 4); Console.WriteLine(titulo);
                     int i = 6;
+                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse la derecha(->) para ver mas detalles de la inscripcion o ESC para salir.");
                     if (servicioInscripcion.GetAll() != null)
                     {
                         Console.SetCursorPosition(13, i); Console.WriteLine("ID".PadRight(12) + "ID CLIENTE".PadRight(15) + "ID SUPERVISOR".PadRight(18) + "ID PLAN".PadRight(13) + "FECHA INICIO".PadRight(18) + "FECHA FINALIZACION");
@@ -120,8 +121,9 @@ namespace GUI
                 do
                 {
                     Console.Clear();
-                    Console.SetCursorPosition(10, 4); Console.WriteLine(titulo);
+                    Console.SetCursorPosition(40, 4); Console.WriteLine(titulo);
                     int i = 6;
+                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse la izquierda(<-) para regresar o ESC para salir.");
                     if (servicioInscripcion.GetAll() != null)
                     {
                         Console.SetCursorPosition(9, i); Console.WriteLine("ID".PadRight(12) + "NOMBRE CLIENTE".PadRight(22) + "NOMBRE SUPERVISOR".PadRight(22) + "NOMBRE PLAN".PadRight(20) + "PRECIO".PadRight(13) + "ESTADO");
@@ -133,8 +135,8 @@ namespace GUI
                     }
                     else
                     {
-                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado inscripciones");
-                        Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
+                        Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado inscripciones");
+                        Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse ESC para volver al menu...");
                     }
                     key = Console.ReadKey();
 
@@ -168,6 +170,12 @@ namespace GUI
                 Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR INSCRIPCION---");
                 try
                 {
+                    if (servicioInscripcion.GetAll() == null)
+                    {
+                        Console.SetCursorPosition(10, 10); Console.WriteLine("No se han registrado inscripciones");
+                        Console.SetCursorPosition(10, 12); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                        return;
+                    }
                     Console.SetCursorPosition(35, 9); Console.Write("Ingrese el ID de la inscripcion que desea actualizar: "); string inscripcion_S = Console.ReadLine();
                     var inscripcion_old = servicioInscripcion.ReturnInscripcion(inscripcion_S);
                     if (inscripcion_old == null)
@@ -253,6 +261,12 @@ namespace GUI
                 Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR INSCRIPCION---");
                 try
                 {
+                    if (servicioInscripcion.GetAll() == null)
+                    {
+                        Console.SetCursorPosition(10, 10); Console.WriteLine("No se han registrado inscripciones");
+                        Console.SetCursorPosition(10, 12); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                        return;
+                    }
                     Console.SetCursorPosition(35, 9); Console.Write("Ingrese el ID de la inscripcion: "); string inscripcion_S = Console.ReadLine();
                     if (servicioInscripcion.ReturnInscripcion(inscripcion_S) == null)
                     {
@@ -289,10 +303,10 @@ namespace GUI
                 {
                     int i = 6;
                     Console.Clear();
-                    Console.SetCursorPosition(20, 3); Console.Write("Puede ingresar ID, Nombre del cliente o el Id del cliente para consultar: " + search);
-
+                    Console.SetCursorPosition(40, 4); Console.WriteLine("---CONSULTA DE INSCRIPCIONES---");
                     if (servicioInscripcion.GetAll() != null && servicioInscripcion.GetBySearch(search) != null)
                     {
+                        Console.SetCursorPosition(20, 3); Console.Write("Puede ingresar ID, Nombre del cliente o el Id del cliente para consultar: " + search);
                         Console.SetCursorPosition(13, i); Console.WriteLine("ID".PadRight(12) + "ID CLIENTE".PadRight(15) + "ID SUPERVISOR".PadRight(18) + "ID PLAN".PadRight(13) + "FECHA INICIO".PadRight(18) + "FECHA FINALIZACION");
 
                         foreach (var item in servicioInscripcion.GetBySearch(search))
@@ -303,8 +317,10 @@ namespace GUI
                     }
                     else
                     {
-                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado inscripciones");
-                        Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
+                        Console.Clear();
+                        Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado inscripciones");
+                        Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu...");
+                        Console.ReadKey(); return;
                     }
                     Console.SetCursorPosition(94, 3); key = Console.ReadKey();
 
@@ -335,9 +351,9 @@ namespace GUI
                 {
                     int i = 6;
                     Console.Clear();
-                    Console.SetCursorPosition(20, 3); Console.Write("Puede ingresar ID, Nombre del cliente o el Id del cliente para consultar: " + search);
-                    if (servicioInscripcion.GetAll() != null)
+                    if (servicioInscripcion.GetAll() != null && servicioInscripcion.GetBySearch(search) != null)
                     {
+                        Console.SetCursorPosition(20, 3); Console.Write("Puede ingresar ID, Nombre del cliente o el Id del cliente para consultar: " + search);
                         Console.SetCursorPosition(11, i); Console.WriteLine("ID".PadRight(12) + "NOMBRE CLIENTE".PadRight(19) + "NOMBRE SUPERVISOR".PadRight(22) + "NOMBRE PLAN".PadRight(20) + "PRECIO".PadRight(13) + "ESTADO");
                         foreach (var item in servicioInscripcion.GetBySearch(search))
                         {
@@ -348,7 +364,8 @@ namespace GUI
                     else
                     {
                         Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado inscripciones");
-                        Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
+                        Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu...");
+                        Console.ReadKey(); return;
                     }
 
                     Console.SetCursorPosition(cursor, 3); key = Console.ReadKey();
