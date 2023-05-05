@@ -262,7 +262,8 @@ namespace GUI
                     }
 
                     var response = servicioInscripcion.Delete(inscripcion_S);
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado la inscripcion: " + response.Object.Id);
+          
+                    Console.SetCursorPosition(35, 9); Console.WriteLine(response.Msg);
 
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando inscripciones?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());

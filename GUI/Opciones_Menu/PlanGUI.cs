@@ -82,9 +82,10 @@ namespace GUI
             }
             else
             {
-                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado planes");
-                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado planes");
+                Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
                 Console.ReadKey();
+                return;
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------
@@ -148,7 +149,7 @@ namespace GUI
                 else
                 {
                     var response = servicioPlan.Delete(id_planD);
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el plan: " + response.Object.Nombre);
+                    Console.SetCursorPosition(35, 9); Console.WriteLine(response.Msg);
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando planes?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
                 }

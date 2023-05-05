@@ -85,6 +85,10 @@ namespace Logica.Operaciones.Servicio_Administrador
             {
                 return new Response<Administrador>(false, "Por favor, ingrese correctamente el usuario y la contraseña.");
             }
+            else if (UserName.ToUpper().Replace(" ", "").Equals("SYSTEM"))
+            {
+                return new Response<Administrador>(false, "No puede eliminar el usuario SYSTEM.");
+            }
             else
             {
                 var admin = lista.Find(item => item.UserName == UserName);

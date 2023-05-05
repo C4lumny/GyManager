@@ -121,38 +121,11 @@ namespace GUI
                 else
                 {
                     var response = servicioSupervisor.Delete(id_supervisorD);
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("Se ha eliminado el supervisor: " + response.Object.Nombre);
+                    Console.SetCursorPosition(35, 9); Console.WriteLine(response.Msg);
                     Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando supervisores?[S/N]: ");
                     op = char.Parse(Console.ReadLine().ToLower());
                 }
             } while (op == 's');
-        }
-        //----------------------------------------------------------------------------------------------------------------------------------
-        protected void ConsultarTurno()
-        {
-            int i = 7;
-            string id_supervisorD;
-            Console.Clear();
-            Console.SetCursorPosition(39, 5); Console.Write("---CONSULTAR TURNO DE SUPERVISOR---");
-            Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor que desea consultar: "); id_supervisorD = Console.ReadLine();
-            var supervisor = servicioSupervisor.ReturnSupervisor(id_supervisorD);
-            if (supervisor == null)
-            {
-                Console.SetCursorPosition(28, 9); Console.WriteLine("El supervisor ingresado no se encuentra en la base de datos");
-                Console.ReadKey();
-                return;
-            }
-            Console.Clear();
-            Console.SetCursorPosition(40, 5); Console.Write("---TURNOS DE ATENCION DE: " + supervisor.Nombre + "---");
-            Console.SetCursorPosition(30, 7); Console.WriteLine("DIA DE SEMANA:".PadRight(19) + "HORA DE ENTRADA:".PadRight(20) + "HORA DE SALIDA:");
-
-            foreach (var turno in supervisor.Horarios)
-            {
-                Console.SetCursorPosition(30, i + 2); Console.WriteLine(turno.Dia.PadRight(19) + turno.Hora_Inicio.ToShortTimeString().PadRight(20) + turno.Hora_Salida.ToShortTimeString());
-                i++;
-            }
-            Console.SetCursorPosition(40, 2); Console.Write("Presiona Cualquier tecla para salir...");
-            Console.ReadKey();
         }
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void ClientesDeSupervisor()
@@ -203,8 +176,9 @@ namespace GUI
             }
             else
             {
-                Console.SetCursorPosition(30, 7); Console.WriteLine("No se han registrado supervisores");
-                Console.SetCursorPosition(27, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
+                Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                return;
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------
@@ -268,15 +242,16 @@ namespace GUI
                         else
                         {
                             Console.Clear();
-                            Console.SetCursorPosition(40, 6); Console.WriteLine("---LISTA DE TURNOS---");
+                            Console.SetCursorPosition(45, 6); Console.WriteLine("---LISTA DE TURNOS---");
                             Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse izquierda(<-) para visualizar los supervisores o ESC para salir.");
-                            Console.SetCursorPosition(38, 8); Console.WriteLine("No hay turnos asignados");
-                            Console.SetCursorPosition(36, 10); Console.WriteLine("Pulse ESC para volver al menu.");
+                            Console.SetCursorPosition(44, 8); Console.WriteLine("No hay turnos asignados");
+                            Console.SetCursorPosition(41, 10); Console.WriteLine("Pulse ESC para volver al menu.");
                         }
                     }
                     else
                     {
-                        Console.SetCursorPosition(35, 7); Console.WriteLine("No se han registrado supervisores");
+                        Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
+                        Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse ESC para volver al menu");
                     }
                     Console.SetCursorPosition(95, 4); key = Console.ReadKey();
 
