@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Datos.Archivos
 {
-    public abstract class Abs_Repositorio<T>
+    public abstract class Abs_Repositorio<T> 
     {
         string ruta;
         public void Ruta(string ruta)

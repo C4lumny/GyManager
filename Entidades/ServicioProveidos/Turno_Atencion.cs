@@ -4,7 +4,7 @@ namespace Entidades
 {
     public class Turno_Atencion
     {
-        public string Jornada { get; set; }
+        public string Jornada { get; set; } 
         public DateTime Hora_Inicio { get; set; }
         public DateTime Hora_Salida { get; set; }
         public string Dia { get; set; }

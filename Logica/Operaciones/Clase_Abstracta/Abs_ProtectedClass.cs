@@ -7,4 +7,4 @@ namespace Logica.Operaciones.AccesoProtegido
         protected abstract List<T> GetMainList();
         protected abstract bool Exist(string id);
     }
-}
+} 

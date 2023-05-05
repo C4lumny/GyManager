@@ -10,7 +10,7 @@ namespace Logica.Operaciones.AccesoPublico
         public Public_Inscripciones()
         {
 
-        }
+        } 
         public List<Inscripcion> GetInscripcionesVigentes()
         {
             if (GetMainList() == null)

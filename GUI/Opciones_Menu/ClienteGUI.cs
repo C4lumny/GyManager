@@ -26,7 +26,7 @@ namespace GUI
                     Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.Id = Console.ReadLine();
                     Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.Nombre = Console.ReadLine();
                     Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.Telefono = Console.ReadLine();
-                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadKey().KeyChar.ToString().ToUpper();
                     Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente(Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
                     Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente(metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                     Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
@@ -81,7 +81,7 @@ namespace GUI
         protected void consultarCliente(bool @static)
         {
             Console.Clear();
-            Console.SetCursorPosition(46, 6); Console.WriteLine("---LISTA DE CLIENTES---");
+            Console.SetCursorPosition(44, 6); Console.WriteLine("---CLIENTES REGISTRADOS---");
             Mostrar(servicioCliente.GetAll(), 8);
 
             if (@static == true)
@@ -119,7 +119,7 @@ namespace GUI
                         Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del cliente: "); clientes.Id = Console.ReadLine();
                         Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del cliente: "); clientes.Nombre = Console.ReadLine();
                         Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del cliente: "); clientes.Telefono = Console.ReadLine();
-                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del cliente(M o F): "); clientes.Genero = Console.ReadKey().KeyChar.ToString().ToUpper();
                         Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del cliente (Kg): "); clientes.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
                         Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del cliente (metros): "); clientes.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                         Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
@@ -183,6 +183,7 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void ConsultaDinamica()
         {
+            int cursor = 81;
             string search = "";
             Console.Clear();
             ConsoleKeyInfo key = new ConsoleKeyInfo();
@@ -190,10 +191,10 @@ namespace GUI
             {
                 Console.Clear();
                 Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del cliente: " + search);
-                Console.SetCursorPosition(46, 6); Console.WriteLine("---LISTA DE CLIENTES---");
+                Console.SetCursorPosition(44, 6); Console.WriteLine("---CLIENTES REGISTRADOS---");
                 Mostrar(servicioCliente.GetBySearch(search), 8);
 
-                Console.SetCursorPosition(81, 4); key = Console.ReadKey();
+                Console.SetCursorPosition(cursor, 4); key = Console.ReadKey();
                 if (key.Key == ConsoleKey.Escape)
                 {
                     break;
@@ -201,10 +202,12 @@ namespace GUI
                 else if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                 {
                     search = search.Remove(search.Length - 1);
+                    cursor--;
                 }
-                else if (Char.IsLetterOrDigit(key.KeyChar))
+                else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                 {
                     search += key.KeyChar.ToString();
+                    cursor++;
                 }
 
             } while (true);

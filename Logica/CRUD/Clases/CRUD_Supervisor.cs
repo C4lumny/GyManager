@@ -2,6 +2,7 @@
 using Logica.CRUD;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logica
 {
@@ -69,6 +70,10 @@ namespace Logica
                 {
                     return new Response<Supervisor>(false, "Menor de 18 años, ingrese correctamente los datos.");
                 }
+                else if (supervisor.Telefono.FirstOrDefault(@char => !char.IsDigit(@char)) != '\0')
+                {
+                    return new Response<Supervisor>(false, "Por favor ingrese correctamente el numero telefonico");
+                }
                 else if (GetMainList() == null)
                 {
                     return Repositorio_Supervisores.Save(supervisor);
@@ -110,6 +115,10 @@ namespace Logica
                     else if (supervisor_modificado.Genero != "M" && supervisor_modificado.Genero != "F")
                     {
                         return new Response<Supervisor>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
+                    }
+                    else if (supervisor_modificado.Telefono.FirstOrDefault(@char => !char.IsDigit(@char)) != '\0')
+                    {
+                        return new Response<Supervisor>(false, "Por favor ingrese correctamente el numero telefonico");
                     }
                     else if (supervisor_modificado.Fecha_nacimiento.AddYears(18) > DateTime.Now)
                     {

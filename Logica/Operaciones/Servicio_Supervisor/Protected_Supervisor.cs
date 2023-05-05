@@ -10,7 +10,7 @@ namespace Logica.Operaciones
     public class Protected_Supervisor : Abs_ProtectedClass<Supervisor>
     {
         protected RepositorioSupervisor Repositorio_Supervisores;
-        protected RepositorioTurnos Repositorio_Turnos;
+        protected RepositorioTurnos Repositorio_Turnos; 
         protected Protected_Supervisor()
         {
             Repositorio_Turnos = new RepositorioTurnos();

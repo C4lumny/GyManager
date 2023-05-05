@@ -10,7 +10,7 @@ namespace Logica.Operaciones
     {
         protected RepositorioPlan Repositorio_Planes;
         protected Protected_Planes()
-        {
+        { 
             Repositorio_Planes = new RepositorioPlan();
         }
         protected override List<PlanGimnasio> GetMainList()

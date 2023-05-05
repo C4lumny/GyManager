@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Logica.Operaciones.Servicio_Administrador
 {
-    public class Protected_Administrador : Abs_ProtectedClass<Administrador>
+    public class Protected_Administrador : Abs_ProtectedClass<Administrador> 
     {
         RepositorioAdministrador ar_admin;
         protected Protected_Administrador() { ar_admin = new RepositorioAdministrador(); }

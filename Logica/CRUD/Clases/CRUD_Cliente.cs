@@ -2,6 +2,7 @@
 using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logica
 {
@@ -39,7 +40,7 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(cliente => cliente.Nombre.Contains(search) || cliente.Telefono.StartsWith(search) || cliente.Id.StartsWith(search));
+                return GetMainList().FindAll(cliente => cliente.Nombre.ToUpper().Contains(search.ToUpper()) || cliente.Telefono.ToUpper().StartsWith(search.ToUpper()) || cliente.Id.ToUpper().StartsWith(search.ToUpper()));
             }
         }
         public Response<Cliente> Save(Cliente cliente)
@@ -62,6 +63,10 @@ namespace Logica
                 {
                     return new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente");
                 }
+                else if (cliente.Telefono.FirstOrDefault(@char => !char.IsDigit(@char)) != '\0')
+                {
+                    return new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico");
+                }
                 else if (GetMainList() == null)
                 {
                     cliente.Imc = Math.Round(CalculateIMC(cliente), 2);
@@ -82,7 +87,7 @@ namespace Logica
                 return new Response<Cliente>(false, "Error!", null, null);
             }
         }
-        public Response<Cliente> Update(Cliente Cliente_Modificado, string Id_cliente)
+        public Response<Cliente> Update(Cliente cliente_Modificado, string Id_cliente)
         {
             try
             {
@@ -94,38 +99,42 @@ namespace Logica
                     {
                         return new Response<Cliente>(false, "No se encontro el id del cliente a actualizar");
                     }
-                    if (Cliente_Modificado.Altura < 0)
+                    if (cliente_Modificado.Altura < 0)
                     {
                         return new Response<Cliente>(false, "Altura invalida");
                     }
-                    else if (Cliente_Modificado.Peso < 0)
+                    else if (cliente_Modificado.Peso < 0)
                     {
                         return new Response<Cliente>(false, "Peso invalido");
                     }
-                    else if (Cliente_Modificado.Genero != "M" && Cliente_Modificado.Genero != "F")
+                    else if (cliente_Modificado.Genero != "M" && cliente_Modificado.Genero != "F")
                     {
                         return new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
                     }
-                    else if (Cliente_Modificado.Fecha_nacimiento > DateTime.Now)
+                    else if (cliente_Modificado.Telefono.FirstOrDefault(@char => !char.IsDigit(@char)) != '\0')
+                    {
+                        return new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico");
+                    }
+                    else if (cliente_Modificado.Fecha_nacimiento > DateTime.Now)
                     {
                         return new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual");
                     }
-                    else if (Exist(Cliente_Modificado.Id) && Cliente_Modificado.Id != Id_cliente)
+                    else if (Exist(cliente_Modificado.Id) && cliente_Modificado.Id != Id_cliente)
                     {
                         return new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado.");
                     }
                     else
                     {
                         var cliente = Clientes.Find(item => item.Id == Id_cliente);
-                        cliente.Id = Cliente_Modificado.Id;
-                        cliente.Nombre = Cliente_Modificado.Nombre;
-                        cliente.Genero = Cliente_Modificado.Genero;
-                        cliente.Telefono = Cliente_Modificado.Telefono;
-                        cliente.Altura = Cliente_Modificado.Altura;
-                        cliente.Peso = Cliente_Modificado.Peso;
-                        cliente.Fecha_nacimiento = Cliente_Modificado.Fecha_nacimiento;
-                        cliente.Discapacidad = Cliente_Modificado.Discapacidad;
-                        cliente.Fecha_ingreso = Cliente_Modificado.Fecha_ingreso;
+                        cliente.Id = cliente_Modificado.Id;
+                        cliente.Nombre = cliente_Modificado.Nombre;
+                        cliente.Genero = cliente_Modificado.Genero;
+                        cliente.Telefono = cliente_Modificado.Telefono;
+                        cliente.Altura = cliente_Modificado.Altura;
+                        cliente.Peso = cliente_Modificado.Peso;
+                        cliente.Fecha_nacimiento = cliente_Modificado.Fecha_nacimiento;
+                        cliente.Discapacidad = cliente_Modificado.Discapacidad;
+                        cliente.Fecha_ingreso = cliente_Modificado.Fecha_ingreso;
                         if (Repositorio_Clientes.Update(Clientes))
                         {
                             return new Response<Cliente>(true, "Se ha actualizado el cliente.", Clientes, cliente);

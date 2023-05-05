@@ -9,7 +9,7 @@ namespace Datos.Archivos
     {
         string ruta = "Supervisor.txt";
         public RepositorioSupervisor()
-        {
+        { 
             Ruta(ruta);
         }
 

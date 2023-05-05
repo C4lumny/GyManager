@@ -4,7 +4,7 @@ using System;
 namespace GUI.Main
 {
     internal class Principal
-    {
+    { 
         static void Main(string[] args)
         {
             Console.SetBufferSize(Console.WindowWidth, 1000);

@@ -9,7 +9,7 @@ namespace Logica.Operaciones.AccesoPublico
         public Public_Planes()
         {
         }
-        public PlanGimnasio ReturnPlan(string id_plan)
+        public PlanGimnasio ReturnPlan(string id_plan) 
         {
             try
             {

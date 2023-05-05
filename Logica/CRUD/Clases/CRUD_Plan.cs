@@ -10,7 +10,7 @@ namespace Logica
 
         public CRUD_Plan() { }
         public Response<PlanGimnasio> Delete(string id_plan)
-        {
+        { 
             var Planes = GetMainList();
             if (Planes == null)
             {

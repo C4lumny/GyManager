@@ -9,7 +9,7 @@ namespace Logica.Operaciones.AccesoPublico
         public Public_Clientes()
         {
 
-        }
+        } 
         public Cliente ReturnCliente(string id_cliente)
         {
             try

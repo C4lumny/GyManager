@@ -4,7 +4,7 @@ namespace Entidades
 {
     public class Inscripcion
     {
-        public Inscripcion()
+        public Inscripcion() 
         {
             cliente = new Cliente();
             supervisor = new Supervisor();

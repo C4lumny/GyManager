@@ -10,7 +10,7 @@ using System.Linq;
 namespace Logica.Operaciones
 {
     public class Protected_Inscripciones : Abs_ProtectedClass<Inscripcion>
-    {
+    { 
         protected RepositorioInscripcionHistorica Repositorio_Historial = new RepositorioInscripcionHistorica();
         protected RepositorioInscripcion Repositorio_Inscripciones;
         protected Public_Clientes Op_clientes;

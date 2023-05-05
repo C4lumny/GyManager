@@ -99,7 +99,7 @@ namespace GUI
                     }
                     else
                     {
-                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado planes");
+                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado inscripciones");
                         Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
                     }
                     key = Console.ReadKey();
@@ -133,7 +133,7 @@ namespace GUI
                     }
                     else
                     {
-                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado planes");
+                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado inscripciones");
                         Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
                     }
                     key = Console.ReadKey();
@@ -278,6 +278,7 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         protected private void ConsultaDinamica()
         {
+            int cursor = 94;
             string search = "";
             Console.Clear();
             ConsoleKeyInfo key = new ConsoleKeyInfo();
@@ -302,7 +303,7 @@ namespace GUI
                     }
                     else
                     {
-                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado planes");
+                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado inscripciones");
                         Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
                     }
                     Console.SetCursorPosition(94, 3); key = Console.ReadKey();
@@ -314,10 +315,12 @@ namespace GUI
                     else if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                     {
                         search = search.Remove(search.Length - 1);
+                        cursor--;
                     }
-                    else if (Char.IsLetterOrDigit(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && key.Key == ConsoleKey.OemComma)
+                    else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                     {
                         search += key.KeyChar.ToString();
+                        cursor++;
                     }
                     else if (key.Key == ConsoleKey.RightArrow)
                     {
@@ -344,11 +347,11 @@ namespace GUI
                     }
                     else
                     {
-                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado planes");
+                        Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado inscripciones");
                         Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse ESC para volver al menu...");
                     }
 
-                    Console.SetCursorPosition(94, 3); key = Console.ReadKey();
+                    Console.SetCursorPosition(cursor, 3); key = Console.ReadKey();
                     if (key.Key == ConsoleKey.Escape)
                     {
                         break;
@@ -356,10 +359,12 @@ namespace GUI
                     else if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                     {
                         search = search.Remove(search.Length - 1);
+                        cursor--;
                     }
-                    else if (Char.IsLetterOrDigit(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && key.Key == ConsoleKey.OemComma)
+                    else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                     {
                         search += key.KeyChar.ToString();
+                        cursor++;
                     }
                     else if (key.Key == ConsoleKey.LeftArrow)
                     {

@@ -8,7 +8,7 @@ namespace Logica.CRUD
     public class Public_Turno_Supervisor : Public_Supervisores
     {
         public Public_Turno_Supervisor()
-        {
+        { 
         }
 
         public bool DeleteTurno(Turno_Atencion turno)

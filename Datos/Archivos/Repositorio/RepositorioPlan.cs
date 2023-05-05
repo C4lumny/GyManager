@@ -8,7 +8,7 @@ namespace Datos
 {
     public class RepositorioPlan : Abs_Repositorio<PlanGimnasio>
     {
-        protected string ruta = "Planes .txt";
+        protected string ruta = "Planes .txt"; 
         public RepositorioPlan()
         {
             Ruta(ruta);

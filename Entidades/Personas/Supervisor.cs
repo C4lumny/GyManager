@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entidades
 {
-    public class Supervisor : Personas
+    public class Supervisor : Personas 
     {
         public Supervisor()
         {

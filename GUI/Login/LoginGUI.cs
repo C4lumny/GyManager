@@ -9,7 +9,7 @@ namespace GUI.Login
         public void SignUp_Usuario()
         {
             Console.Clear();
-            Console.SetCursorPosition(38, 7); Console.Write("---INGRESE SUS DATOS DEL REGISTRO--- ");
+            Console.SetCursorPosition(38, 7); Console.Write("---REGISTRAR USUARIO--- ");
             Console.SetCursorPosition(20, 9); Console.Write("Para registrar un usuario primero debe iniciar sesion.");
             Console.SetCursorPosition(20, 11); Console.WriteLine("Presiona cualquier tecla..."); Console.ReadKey();
             Console.Clear();
@@ -98,7 +98,7 @@ namespace GUI.Login
                 Console.SetCursorPosition(51, 10); Console.Write(user);
                 Console.SetCursorPosition(54, 12); Console.Write(password); key = Console.ReadKey();
 
-                if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar))
+                if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                 {
                     password += "*";
                     RealPassword += key.KeyChar;

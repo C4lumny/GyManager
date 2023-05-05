@@ -8,7 +8,7 @@ namespace Logica
     public class CRUD_Inscripcion : Public_Inscripciones, I_CRUD<Inscripcion>
     {
         public CRUD_Inscripcion()
-        {
+        { 
 
         }
         public Response<Inscripcion> Delete(string id_inscripcion)

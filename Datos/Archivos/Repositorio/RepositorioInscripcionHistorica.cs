@@ -10,7 +10,7 @@ namespace Datos.Archivos.Repositorio
     public class RepositorioInscripcionHistorica : Abs_Repositorio<Inscripcion>
     {
         protected string ruta = "Inscripcion_Historial.txt";
-        RepositorioClientes Repositorio_Clientes;
+        RepositorioClientes Repositorio_Clientes; 
         RepositorioSupervisor Repositorio_Supervisores;
         RepositorioPlan Repositorio_Planes;
         public RepositorioInscripcionHistorica()

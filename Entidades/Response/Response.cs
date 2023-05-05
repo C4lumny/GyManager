@@ -4,7 +4,7 @@ namespace Entidades
 {
     public class Response<T>
     {
-        public Response(bool success, string msg)
+        public Response(bool success, string msg) 
         {
             Success = success;
             Msg = msg;

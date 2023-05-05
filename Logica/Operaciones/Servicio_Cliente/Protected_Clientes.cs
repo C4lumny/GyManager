@@ -10,7 +10,7 @@ namespace Logica.Operaciones
     {
         protected RepositorioClientes Repositorio_Clientes;
         protected Protected_Clientes()
-        {
+        { 
             Repositorio_Clientes = new RepositorioClientes();
         }
         protected override List<Cliente> GetMainList()

@@ -45,7 +45,7 @@ namespace GUI
         protected void consultarPlan()
         {
             Console.Clear();
-            Console.SetCursorPosition(25, 5); Console.WriteLine("---LISTA DE PLANES---");
+            Console.SetCursorPosition(20, 5); Console.WriteLine("---PLANES Y SUSCRIPCIONES DEL GYM---");
             Mostrar(servicioPlan.GetAll(), 7, 5);
         }
         //----------------------------------------------------------------------------------------------------------------------------------
@@ -158,6 +158,7 @@ namespace GUI
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void ConsultaDinamica()
         {
+            int cursor = 73;
             string search = "";
             ConsoleKeyInfo key = new ConsoleKeyInfo();
             Console.Clear();
@@ -169,8 +170,8 @@ namespace GUI
                 {
                     int i = 10;
                     Console.Clear();
-                    Console.SetCursorPosition(38, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
-                    Console.SetCursorPosition(46, 8); Console.WriteLine("---LISTA DE PLANES---");
+                    Console.SetCursorPosition(40, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
+                    Console.SetCursorPosition(41, 8); Console.WriteLine("---PLANES Y SUSCRIPCIONES DEL GYM---");
                     Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse derecha(->) para visualizar las descripciones o ESC para salir.");
 
                     if (servicioPlan.GetAll() != null)
@@ -181,7 +182,7 @@ namespace GUI
                             Console.SetCursorPosition(32, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Precio.ToString().PadRight(10) + item.Dias.ToString().PadRight(5));
                             i++;
                         }
-                        Console.SetCursorPosition(71, 6); key = Console.ReadKey();
+                        Console.SetCursorPosition(cursor, 6); key = Console.ReadKey();
                         if (key.Key == ConsoleKey.Escape)
                         {
                             break;
@@ -189,10 +190,12 @@ namespace GUI
                         if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                         {
                             search = search.Remove(search.Length - 1);
+                            cursor--;
                         }
-                        else if (Char.IsLetterOrDigit(key.KeyChar))
+                        else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                         {
                             search += key.KeyChar.ToString();
+                            cursor++;
                         }
                         else if (key.Key == ConsoleKey.RightArrow)
                         {
@@ -210,7 +213,7 @@ namespace GUI
                     int j = 8;
                     Console.Clear();
                     Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse la izquierda(<-) para volver a la lista de planes o ESC para salir.");
-                    Console.SetCursorPosition(35, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
+                    Console.SetCursorPosition(40, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
                     Console.SetCursorPosition(43, 8); Console.WriteLine("---DESCRIPCIONES DE PLANES---");
 
                     foreach (var item in servicioPlan.GetBySearch(search))
@@ -219,7 +222,7 @@ namespace GUI
                         j++;
                     }
 
-                    Console.SetCursorPosition(71, 6); key = Console.ReadKey();
+                    Console.SetCursorPosition(cursor, 6); key = Console.ReadKey();
                     if (key.Key == ConsoleKey.Escape)
                     {
                         break;
@@ -227,10 +230,12 @@ namespace GUI
                     if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                     {
                         search = search.Remove(search.Length - 1);
+                        cursor--;
                     }
-                    else if (Char.IsLetterOrDigit(key.KeyChar))
+                    else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                     {
                         search += key.KeyChar.ToString();
+                        cursor++;
                     }
                     if (key.Key == ConsoleKey.LeftArrow)
                     {

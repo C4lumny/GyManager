@@ -10,7 +10,7 @@ namespace Datos
     public class RepositorioInscripcion : Abs_Repositorio<Inscripcion>
     {
         protected string ruta = "Inscripcion.txt";
-        RepositorioClientes Repositorio_Clientes;
+        RepositorioClientes Repositorio_Clientes; 
         RepositorioSupervisor Repositorio_Supervisor;
         RepositorioPlan Repositorio_Planes;
 

@@ -10,7 +10,7 @@ namespace Datos
     {
         string ruta = "Cliente.txt";
         public RepositorioClientes()
-        {
+        { 
             Ruta(ruta);
         }
         public override Cliente Mapper(string linea)

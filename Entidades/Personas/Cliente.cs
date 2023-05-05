@@ -4,7 +4,7 @@ namespace Entidades
 {
     public class Cliente : Personas
     {
-        public Cliente()
+        public Cliente() 
         {
         }
         public Cliente(string id, string nombre, string genero, string telefono, double altura, double peso, double imc, DateTime fecha_nacimiento, string discapacidad, DateTime fecha_ingreso) : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
