@@ -7,22 +7,20 @@ using System.Text;
 
 namespace Datos.Archivos.Repositorio
 {
-    public class RepositorioInscripcionHistorica
+    public class RepositorioInscripcionHistorica : Abs_Repositorio<Inscripcion>
     {
         protected string ruta = "Inscripcion_Historial.txt";
         RepositorioClientes Repositorio_Clientes;
         RepositorioSupervisor Repositorio_Supervisores;
         RepositorioPlan Repositorio_Planes;
-        RepositorioTurnos Repositorio_Turnos;
-
         public RepositorioInscripcionHistorica()
         {
-            Repositorio_Turnos = new RepositorioTurnos();
+            Ruta(ruta);
             Repositorio_Clientes = new RepositorioClientes();
             Repositorio_Supervisores = new RepositorioSupervisor();
             Repositorio_Planes = new RepositorioPlan();
         }
-        public Response<Inscripcion> Save(Inscripcion inscripcion)
+        new public Response<Inscripcion> Save(Inscripcion inscripcion)
         {
             try
             {
@@ -36,7 +34,7 @@ namespace Datos.Archivos.Repositorio
                 return new Response<Inscripcion>(true, "Error", null, inscripcion);
             }
         }
-        public Inscripcion Mapper(string linea)
+        public override Inscripcion Mapper(string linea)
         {
             try
             {
@@ -81,49 +79,6 @@ namespace Datos.Archivos.Repositorio
             catch (Exception) { }
             return null;
         }
-        public bool Update(List<Inscripcion> Inscripciones)
-        {
-            try
-            {
-                if (Inscripciones.Count == 0 && File.Exists(ruta))
-                {
-                    File.Delete(ruta);
-                }
-                else
-                {
-                    StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var inscripcion in Inscripciones)
-                    {
-                        writer.WriteLine(inscripcion.ToFullString());
-                    }
-                    writer.Close();
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-            }
-            return false;
-        }
-        public List<Inscripcion> Load()
-        {
-            try
-            {
-                StreamReader reader = new StreamReader(ruta);
-                var list = new List<Inscripcion>();
-                string linea;
-                while (!reader.EndOfStream)
-                {
-                    linea = reader.ReadLine();
-                    list.Add(Mapper(linea));
-                }
-                reader.Close();
-                return list;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
+
     }
 }

@@ -19,6 +19,10 @@ namespace GUI.Login
                 Console.SetCursorPosition(39, 8); Console.Write("2. Registrar");
                 Console.SetCursorPosition(39, 9); Console.Write("3. Eliminar usuario");
                 Console.SetCursorPosition(39, 10); Console.Write("4. Salir");
+                Console.SetCursorPosition(35, 25); Console.Write("Nota: Utilizar Usuario SYSTEM para ingresar.");
+                Console.SetCursorPosition(35, 26); Console.Write("Usuario: SYSTEM // Contraseña: gymanager");
+
+
 
                 Console.SetCursorPosition(39, 12); Console.Write("Escoja la opción de su preferencia: ");
                 try

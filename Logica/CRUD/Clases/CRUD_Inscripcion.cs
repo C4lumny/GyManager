@@ -16,7 +16,7 @@ namespace Logica
             var Inscripciones = GetMainList();
             if (Inscripciones == null)
             {
-                return new Response<Inscripcion>(false, "No se han encontrado inscripciones."); // Lista vacia.
+                return new Response<Inscripcion>(false, "No se han encontrado inscripciones.");
             }
             else
             {
@@ -28,7 +28,7 @@ namespace Logica
                 }
                 Inscripciones.RemoveAt(pos);
                 Repositorio_Inscripciones.Update(Inscripciones);
-                return new Response<Inscripcion>(true, "Inscripcion eliminada correctamente", null, inscripcion);
+                return new Response<Inscripcion>(true, "La inscripcion: " + inscripcion.Id + ". Se ha eliminado correctamente", Inscripciones, inscripcion);
             }
         }
         public List<Inscripcion> GetBySearch(string search)

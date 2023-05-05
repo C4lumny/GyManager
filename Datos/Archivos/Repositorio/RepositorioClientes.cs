@@ -6,29 +6,14 @@ using System.IO;
 
 namespace Datos
 {
-    public class RepositorioClientes : I_Repositorio<Cliente>
+    public class RepositorioClientes : Abs_Repositorio<Cliente>
     {
         string ruta = "Cliente.txt";
-
         public RepositorioClientes()
         {
+            Ruta(ruta);
         }
-        public Response<Cliente> Save(Cliente cliente)
-        {
-            try
-            {
-                StreamWriter writer = new StreamWriter(ruta, true);
-                writer.WriteLine(cliente.ToString());
-                writer.Close();
-                return new Response<Cliente>(true, "Se ha guardado correctamente.", null, cliente);
-            }
-            catch (Exception)
-            {
-            }
-            return new Response<Cliente>(false, "No se ha podido guardar el cliente.", null, cliente);
-        }
-
-        public Cliente Mapper(string linea)
+        public override Cliente Mapper(string linea)
         {
             try
             {
@@ -52,50 +37,5 @@ namespace Datos
             }
         }
 
-        public List<Cliente> Load()
-        {
-            try
-            {
-                StreamReader reader1 = new StreamReader(ruta);
-                var list = new List<Cliente>();
-                string linea;
-                while (!reader1.EndOfStream)
-                {
-                    linea = reader1.ReadLine();
-                    list.Add(Mapper(linea));
-                }
-                reader1.Close();
-                return list;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public bool Update(List<Cliente> Clientes)
-        {
-            try
-            {
-                if (Clientes.Count == 0 && File.Exists(ruta))
-                {
-                    File.Delete(ruta);
-                }
-                else
-                {
-                    StreamWriter writer = new StreamWriter(ruta, false);
-                    foreach (var cliente in Clientes)
-                    {
-                        writer.WriteLine(cliente.ToString());
-                    }
-                    writer.Close();
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-            }
-            return false;
-        }
     }
 }

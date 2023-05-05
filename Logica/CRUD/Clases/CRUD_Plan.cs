@@ -25,7 +25,7 @@ namespace Logica
 
                 Planes.RemoveAt(pos);
                 Repositorio_Planes.Update(Planes);
-                return new Response<PlanGimnasio>(true, "Plan eliminado correctamente", null, plan);
+                return new Response<PlanGimnasio>(true, "El plan: " + plan.Nombre + ". Se ha eliminado correctamente", Planes, plan);
             }
         }
         public List<PlanGimnasio> GetBySearch(string search)

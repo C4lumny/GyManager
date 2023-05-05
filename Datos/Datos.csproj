@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Archivos\Interfaz\I_Repositorio.cs" />
+    <Compile Include="Archivos\Clase Abstracta\Abs_Repositorio.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioInscripcionHistorica.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioSupervisor.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioTurnos.cs" />
@@ -57,5 +57,6 @@
       <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

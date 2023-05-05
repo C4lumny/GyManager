@@ -191,8 +191,9 @@ namespace GUI
             }
             else
             {
-                Console.SetCursorPosition(10, 7); Console.WriteLine("No se han registrado supervisores");
-                Console.SetCursorPosition(10, 8); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
+                Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
+                return;
             }
             if (@static == true)
             {
