@@ -11,17 +11,6 @@ La mayoría de los estadios sociales no tienen aplicaciones que puedan facilitar
 noticias del usuario, por lo que decidimos ejecutar este programa para resolver
 problemas y brindar a los usuarios una mejor experiencia.
 
-## Construido con 🛠️
-
-_Herramientas que aisaac cree que usamos_ 
-
-Claramente nuestros colaboradores:
-
-* [Space X](https://www.spacex.com/) - Proveedor de nuestra tecnologia
-* [Epic Games](https://www.epicgames.com/site/es-ES/home) - Aportacion de ideas (nada originales)
-* [Riot Games](https://www.riotgames.com/es) - lolsito para desestresarse
-* [Universidad popular del Cesar](https://www.unicesar.edu.co/index.php/es/) - La U mas insana de todo Colombia
-
 ## Autores ✒️
 
 * **Isaac Jacome** - *Encargado de la logica* - [Aisaac123](https://github.com/Aisaac123)
@@ -32,11 +21,4 @@ Claramente nuestros colaboradores:
 
 * Agradecido porque Isaac supo usar github
 * Agradecido porque este proyecto nos va a sacar adelante
-
-## Comentarios de Hate hacia mis compañeros de forma anonima. 🤬
-
-* Vas en 4to semestre y todavia no sabes declarar una variable.
-* La prox vez haz algo que no sean los response pedazo de flojo
-* Tu declaración de variables es increible, lo unico bueno del codigo fue el codigo limpio
-* Paganos pelao, no hiciste nada en todo el repositorio, 50k a cada uno 🤑
 
