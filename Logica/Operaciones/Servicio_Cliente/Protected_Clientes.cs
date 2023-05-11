@@ -24,11 +24,11 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_cliente)
         {
-            if (GetMainList().FirstOrDefault(item => item.Id == id_cliente) != null)
+            if (GetMainList() != null)
             {
-                return true;
+                return GetMainList().Any(item => item.Id == id_cliente);
             }
-            return false;
+            else { return false; }
         }
         protected double CalculateIMC(Cliente cliente)
         {

@@ -46,7 +46,7 @@ namespace GUI.Login
                     case 4:
                         break;
                     default:
-                        Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
+                        Console.SetCursorPosition(35, 19); Console.Write("Ingrese una opción valida");
                         Console.ReadKey();
                         break;
                 }

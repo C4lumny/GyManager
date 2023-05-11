@@ -198,7 +198,7 @@ namespace GUI
             do
             {
                 Console.Clear();
-                if (!Mostrar(servicioCliente.GetAll(), 8))
+                if (!Mostrar(servicioCliente.GetBySearch(search), 8))
                 {
                     Console.ReadKey();
                     return;

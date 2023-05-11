@@ -18,11 +18,11 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_supervisor)
         {
-            if (GetMainList().FirstOrDefault(supervisor => supervisor.Id == id_supervisor) != null)
+            if (GetMainList() != null)
             {
-                return true;
+                return GetMainList().Any(item => item.Id == id_supervisor);
             }
-            return false;
+            else { return false; }
         }
         protected override List<Supervisor> GetMainList()
         {

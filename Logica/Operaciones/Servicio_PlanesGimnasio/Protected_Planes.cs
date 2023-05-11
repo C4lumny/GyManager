@@ -21,11 +21,11 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_plan)
         {
-            if (GetMainList().FirstOrDefault(item => item.Id == id_plan) != null) // valida si el objeto esta en retepitdo (el metodo FirstOrDeafult() devuelve el valor predeterminado si no lo encuentra, en el caso de objetos es null.
+            if (GetMainList() != null)
             {
-                return true;
+                return GetMainList().Any(item => item.Id == id_plan);
             }
-            return false;
+            else { return false; }
         }
     }
 }

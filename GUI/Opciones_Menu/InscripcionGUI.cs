@@ -301,9 +301,9 @@ namespace GUI
             {
                 do
                 {
-                    int i = 6;
+                    int i = 7;
                     Console.Clear();
-                    Console.SetCursorPosition(40, 4); Console.WriteLine("---CONSULTA DE INSCRIPCIONES---");
+                    Console.SetCursorPosition(40, 5); Console.WriteLine("---CONSULTA DE INSCRIPCIONES---");
                     if (servicioInscripcion.GetAll() != null && servicioInscripcion.GetBySearch(search) != null)
                     {
                         Console.SetCursorPosition(20, 3); Console.Write("Puede ingresar ID, Nombre del cliente o el Id del cliente para consultar: " + search);
@@ -322,7 +322,7 @@ namespace GUI
                         Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu...");
                         Console.ReadKey(); return;
                     }
-                    Console.SetCursorPosition(94, 3); key = Console.ReadKey();
+                    Console.SetCursorPosition(cursor, 3); key = Console.ReadKey();
 
                     if (key.Key == ConsoleKey.Escape)
                     {
@@ -349,8 +349,9 @@ namespace GUI
             {
                 do
                 {
-                    int i = 6;
+                    int i = 7;
                     Console.Clear();
+                    Console.SetCursorPosition(40, 5); Console.WriteLine("---CONSULTA DE INSCRIPCIONES---");
                     if (servicioInscripcion.GetAll() != null && servicioInscripcion.GetBySearch(search) != null)
                     {
                         Console.SetCursorPosition(20, 3); Console.Write("Puede ingresar ID, Nombre del cliente o el Id del cliente para consultar: " + search);
@@ -391,7 +392,7 @@ namespace GUI
                 } while (key.Key != ConsoleKey.LeftArrow || key.Key != ConsoleKey.Escape);
             }
             izquierda();
-            if (key.Key != ConsoleKey.Escape)
+            if (key.Key != ConsoleKey.Escape && servicioInscripcion.GetAll() != null)
             {
                 Derecha();
             }

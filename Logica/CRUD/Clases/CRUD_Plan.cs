@@ -36,7 +36,7 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(plan => plan.Nombre.Contains(search) || plan.Id.StartsWith(search));
+                return GetMainList().FindAll(plan => plan.Nombre.ToUpper().Contains(search.ToUpper()) || plan.Id.ToUpper().StartsWith(search.ToUpper()));
             }
         }
         public Response<PlanGimnasio> Save(PlanGimnasio plan)
