@@ -12,9 +12,10 @@ namespace Datos.Archivos
     public abstract class Abs_Repositorio<T> 
     {
         string ruta;
-        public void Ruta(string ruta)
+        public string Ruta(string ruta)
         {
             this.ruta = ruta;
+            return ruta;
         }
         public Response<T> Save(T dato)
         {
@@ -27,7 +28,6 @@ namespace Datos.Archivos
             }
             catch (Exception)
             {
-
                 return new Response<T>(false, "Error!!");
             }
         }

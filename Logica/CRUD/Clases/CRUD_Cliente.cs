@@ -52,11 +52,11 @@ namespace Logica
                 {
                     { () => cliente.Altura < 0, () => new Response<Cliente>(false, "La altura es invalida, No se ha podido registrar el cliente") },
                     { () => cliente.Peso < 0, () => new Response<Cliente>(false, "El peso es invalido, No se ha podido registrar el cliente") },
-                    { () => cliente.Telefono.FirstOrDefault(@char => !char.IsDigit(@char)) != '\0', () => new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico") },
+                    { () => cliente.Telefono.Any(@char => !char.IsDigit(@char)), () => new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico") },
                     { () => cliente.Genero != "M" && cliente.Genero != "F", () => new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no") },
                     { () => cliente.Fecha_nacimiento > DateTime.Now, () => new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente") },
                     { () => Exist(cliente.Id), () => new Response<Cliente>(false, "Ya tiene registrado un cliente con la misma ID") },
-                    { () => true, () => Repositorio_Clientes.Save(cliente) }
+                    { () => true, () => Repositorio_Clientes.Insert(cliente) }
                 };
                 return cases.First(entry => entry.Key()).Value();
             }
@@ -76,12 +76,11 @@ namespace Logica
                     { () => !Exist(Id_cliente), () => new Response<Cliente>(false, "No se encontro el id del cliente a actualizar") },
                     { () => cliente_Modificado.Altura < 0, () => new Response<Cliente>(false, "Altura invalida") },
                     { () => cliente_Modificado.Peso < 0, () => new Response<Cliente>(false, "Peso invalido") },
-                    { () => cliente_Modificado.Telefono.FirstOrDefault(@char => !char.IsDigit(@char)) != '\0', () => new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico") },
+                    { () => cliente_Modificado.Telefono.Any(@char => !char.IsDigit(@char)), () => new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico") },
                     { () => cliente_Modificado.Genero != "M" && cliente_Modificado.Genero != "F", () => new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no") },
                     { () => cliente_Modificado.Fecha_nacimiento > DateTime.Now, () => new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual") },
                     { () => Exist(cliente_Modificado.Id) && cliente_Modificado.Id != Id_cliente, () => new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado.") },
-                    { () => true,  () =>
-                    {
+                    { () => true,  () => {
                         var cliente = Clientes.Find(item => item.Id == Id_cliente);
                         cliente.Id = cliente_Modificado.Id;
                         cliente.Nombre = cliente_Modificado.Nombre;
@@ -93,9 +92,7 @@ namespace Logica
                         cliente.Discapacidad = cliente_Modificado.Discapacidad;
                         cliente.Fecha_ingreso = cliente_Modificado.Fecha_ingreso;
                         if (Repositorio_Clientes.Update(Clientes)) { return new Response<Cliente>(true, "Se ha actualizado el cliente.", Clientes, cliente); }
-                        else { return new Response<Cliente>(false, "Error!"); }
-                    }
-                    }
+                        else { return new Response<Cliente>(false, "Error!"); } }  }
                 };
                 return cases.First(entry => entry.Key()).Value();
             }

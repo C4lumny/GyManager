@@ -32,12 +32,13 @@ namespace Datos
                 inscripcion.Fecha_finalizacion = DateTime.Parse(aux[2]);
                 inscripcion.Precio = double.Parse(aux[3]);
                 inscripcion.Descuento = int.Parse(aux[4]);
-                var lista_cliente = Repositorio_Clientes.Load();
-                var lista_plan = Repositorio_Planes.Load();
-                var lista_sup = Repositorio_Supervisor.Load();
+               
                 inscripcion.cliente = null;
                 inscripcion.supervisor = null;
                 inscripcion.plan = null;
+                var lista_cliente = Repositorio_Clientes.Load();
+                var lista_plan = Repositorio_Planes.Load();
+                var lista_sup = Repositorio_Supervisor.Load();
                 if (lista_cliente != null && lista_sup != null && lista_plan != null)
                 {
                     inscripcion.cliente = lista_cliente.FirstOrDefault(item => item.Id == aux[5]);

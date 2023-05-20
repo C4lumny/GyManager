@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GUI
 {
-    public class ClienteGUI // En esta clase se modela la interfaz grafica relacionada al cliente por medio de metodos de la clase ServicioClientes. 
+    public class ClienteGUI 
     {
         CRUD_Cliente servicioCliente = new CRUD_Cliente();
         Cliente clientes;
