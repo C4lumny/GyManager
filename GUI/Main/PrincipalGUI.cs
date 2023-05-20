@@ -4,7 +4,7 @@ using System;
 namespace GUI
 {
     public class PrincipalGUI
-    {
+    { 
         public void MenuPrincipal()
         {
             Console.SetBufferSize(Console.WindowWidth, 1000);

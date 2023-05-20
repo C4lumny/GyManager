@@ -12,15 +12,15 @@ namespace GUI.Menus
                 Console.Clear();
 
                 Console.SetCursorPosition(43, 5); Console.Write("---ADMINISTRAR SUPERVISORES DEL GYM---");
-                Console.SetCursorPosition(35, 7); Console.Write("1. Registrar supervisor");
-                Console.SetCursorPosition(35, 8); Console.Write("2. Consulta  de Supervisores por busqueda");
-                Console.SetCursorPosition(35, 9); Console.Write("3. Actualizar supervisor");
-                Console.SetCursorPosition(35, 10); Console.Write("4. Eliminar supervisor");
-                Console.SetCursorPosition(35, 11); Console.Write("5. Gestionar turnos");
-                Console.SetCursorPosition(35, 12); Console.Write("6. Consultar Clientes del supervisor encargado");
-                Console.SetCursorPosition(35, 13); Console.Write("7. Salir");
+                Console.SetCursorPosition(39, 7); Console.Write("1. Registrar supervisor");
+                Console.SetCursorPosition(39, 8); Console.Write("2. Consulta de supervisores por busqueda");
+                Console.SetCursorPosition(39, 9); Console.Write("3. Actualizar supervisor");
+                Console.SetCursorPosition(39, 10); Console.Write("4. Eliminar supervisor");
+                Console.SetCursorPosition(39, 11); Console.Write("5. Gestionar horarios de atencion");
+                Console.SetCursorPosition(39, 12); Console.Write("6. Consultar clientes asociados al supervisor");
+                Console.SetCursorPosition(39, 13); Console.Write("7. Salir");
 
-                Console.SetCursorPosition(35, 15); Console.Write("Escoja la opción de su preferencia: ");
+                Console.SetCursorPosition(39, 15); Console.Write("Escoja la opción de su preferencia: ");
                 try
                 {
                     op = int.Parse(Console.ReadLine());
@@ -52,7 +52,7 @@ namespace GUI.Menus
                     case 7:
                         break;
                     default:
-                        Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
+                        Console.SetCursorPosition(39, 25); Console.Write("Ingrese una opción valida");
                         Console.ReadKey();
                         break;
                 }
@@ -67,12 +67,12 @@ namespace GUI.Menus
                 Console.Clear();
 
                 Console.SetCursorPosition(43, 5); Console.Write("---ADMINISTRAR TURNOS DE ATENCION---");
-                Console.SetCursorPosition(35, 7); Console.Write("1. Registrar turno de atencion del supervisor");
-                Console.SetCursorPosition(35, 8); Console.Write("2. Actualizar turno del supervisor");
-                Console.SetCursorPosition(35, 9); Console.Write("3. Consultar todos los turnos de atencion");
-                Console.SetCursorPosition(35, 10); Console.Write("4. Eliminar turno de atencion de supervisor");
-                Console.SetCursorPosition(35, 11); Console.Write("5. Salir");
-                Console.SetCursorPosition(35, 13); Console.Write("Escoja la opción de su preferencia: ");
+                Console.SetCursorPosition(39, 7); Console.Write("1. Registrar turno de atencion del supervisor");
+                Console.SetCursorPosition(39, 8); Console.Write("2. Actualizar turno del supervisor");
+                Console.SetCursorPosition(39, 9); Console.Write("3. Consultar todos los turnos de atencion");
+                Console.SetCursorPosition(39, 10); Console.Write("4. Eliminar turno de atencion de supervisor");
+                Console.SetCursorPosition(39, 11); Console.Write("5. Salir");
+                Console.SetCursorPosition(39, 13); Console.Write("Escoja la opción de su preferencia: ");
                 try
                 {
                     op = int.Parse(Console.ReadLine());

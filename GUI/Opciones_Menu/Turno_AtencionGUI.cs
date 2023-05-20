@@ -4,7 +4,7 @@ using System;
 
 namespace GUI
 {
-    public class Turno_AtencionGUI
+    public class Turno_AtencionGUI 
     {
         protected CRUD_Supervisor servicioSupervisor = new CRUD_Supervisor();
         public Turno_AtencionGUI()

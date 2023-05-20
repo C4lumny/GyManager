@@ -2,6 +2,7 @@
 using Logica.Operaciones.AccesoPublico;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logica
 {
@@ -30,7 +31,7 @@ namespace Logica
                     return new Response<Cliente>(false, "No se ha podido eliminar el cliente.");
                 }
             }
-        }
+        } 
         public List<Cliente> GetBySearch(string search)
         {
             if (GetMainList() == null)
@@ -39,104 +40,61 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(cliente => cliente.Nombre.Contains(search) || cliente.Telefono.StartsWith(search) || cliente.Id.StartsWith(search));
+                return GetMainList().FindAll(cliente => cliente.Nombre.ToUpper().Contains(search.ToUpper()) || cliente.Telefono.ToUpper().StartsWith(search.ToUpper()) || cliente.Id.ToUpper().StartsWith(search.ToUpper()));
             }
         }
         public Response<Cliente> Save(Cliente cliente)
         {
+            cliente.Imc = Math.Round(CalculateIMC(cliente), 2);
             try
             {
-                if (cliente.Altura < 0)
+                Dictionary<Func<bool>, Func<Response<Cliente>>> cases = new Dictionary<Func<bool>, Func<Response<Cliente>>>
                 {
-                    return new Response<Cliente>(false, "La altura es invalida, No se ha podido registrar el cliente");
-                }
-                else if (cliente.Peso < 0)
-                {
-                    return new Response<Cliente>(false, "El peso es invalido, No se ha podido registrar el cliente");
-                }
-                else if (cliente.Genero != "M" && cliente.Genero != "F")
-                {
-                    return new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
-                }
-                else if (cliente.Fecha_nacimiento > DateTime.Now)
-                {
-                    return new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente");
-                }
-                else if (GetMainList() == null)
-                {
-                    cliente.Imc = Math.Round(CalculateIMC(cliente), 2);
-                    return Repositorio_Clientes.Save(cliente);
-                }
-                else if (Exist(cliente.Id))
-                {
-                    return new Response<Cliente>(false, "Ya tiene registrado un cliente con la misma ID");
-                }
-                else
-                {
-                    cliente.Imc = Math.Round(CalculateIMC(cliente), 2);
-                    return Repositorio_Clientes.Save(cliente);
-                }
+                    { () => cliente.Altura < 0, () => new Response<Cliente>(false, "La altura es invalida, No se ha podido registrar el cliente") },
+                    { () => cliente.Peso < 0, () => new Response<Cliente>(false, "El peso es invalido, No se ha podido registrar el cliente") },
+                    { () => cliente.Telefono.Any(@char => !char.IsDigit(@char)), () => new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico") },
+                    { () => cliente.Genero != "M" && cliente.Genero != "F", () => new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no") },
+                    { () => cliente.Fecha_nacimiento > DateTime.Now, () => new Response<Cliente>(false, "Fecha de nacimiento invalida, No se ha podido registrar el cliente") },
+                    { () => Exist(cliente.Id), () => new Response<Cliente>(false, "Ya tiene registrado un cliente con la misma ID") },
+                    { () => true, () => Repositorio_Clientes.Insert(cliente) }
+                };
+                return cases.First(entry => entry.Key()).Value();
             }
             catch (Exception)
             {
                 return new Response<Cliente>(false, "Error!", null, null);
             }
         }
-        public Response<Cliente> Update(Cliente Cliente_Modificado, string Id_cliente)
+        public Response<Cliente> Update(Cliente cliente_Modificado, string Id_cliente)
         {
             try
             {
                 var Clientes = GetMainList();
-                if (Clientes == null) { return new Response<Cliente>(false, "Lista vacia"); } // Lista vacia
-                else
+                Dictionary<Func<bool>, Func<Response<Cliente>>> cases = new Dictionary<Func<bool>, Func<Response<Cliente>>>
                 {
-                    if (!Exist(Id_cliente))
-                    {
-                        return new Response<Cliente>(false, "No se encontro el id del cliente a actualizar");
-                    }
-                    if (Cliente_Modificado.Altura < 0)
-                    {
-                        return new Response<Cliente>(false, "Altura invalida");
-                    }
-                    else if (Cliente_Modificado.Peso < 0)
-                    {
-                        return new Response<Cliente>(false, "Peso invalido");
-                    }
-                    else if (Cliente_Modificado.Genero != "M" && Cliente_Modificado.Genero != "F")
-                    {
-                        return new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
-                    }
-                    else if (Cliente_Modificado.Fecha_nacimiento > DateTime.Now)
-                    {
-                        return new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual");
-                    }
-                    else if (Exist(Cliente_Modificado.Id) && Cliente_Modificado.Id != Id_cliente)
-                    {
-                        return new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado.");
-                    }
-                    else
-                    {
+                    { () => Clientes == null, () => new Response<Cliente>(false, "Lista vacia") },
+                    { () => !Exist(Id_cliente), () => new Response<Cliente>(false, "No se encontro el id del cliente a actualizar") },
+                    { () => cliente_Modificado.Altura < 0, () => new Response<Cliente>(false, "Altura invalida") },
+                    { () => cliente_Modificado.Peso < 0, () => new Response<Cliente>(false, "Peso invalido") },
+                    { () => cliente_Modificado.Telefono.Any(@char => !char.IsDigit(@char)), () => new Response<Cliente>(false, "Por favor ingrese correctamente el numero telefonico") },
+                    { () => cliente_Modificado.Genero != "M" && cliente_Modificado.Genero != "F", () => new Response<Cliente>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no") },
+                    { () => cliente_Modificado.Fecha_nacimiento > DateTime.Now, () => new Response<Cliente>(false, "Fecha de nacimiento mayor a la fecha actual") },
+                    { () => Exist(cliente_Modificado.Id) && cliente_Modificado.Id != Id_cliente, () => new Response<Cliente>(false, "El ID del cliente que desea actualizar ya se encuentra registrado.") },
+                    { () => true,  () => {
                         var cliente = Clientes.Find(item => item.Id == Id_cliente);
-                        cliente.Id = Cliente_Modificado.Id;
-                        cliente.Nombre = Cliente_Modificado.Nombre;
-                        cliente.Genero = Cliente_Modificado.Genero;
-                        cliente.Telefono = Cliente_Modificado.Telefono;
-                        cliente.Altura = Cliente_Modificado.Altura;
-                        cliente.Peso = Cliente_Modificado.Peso;
-                        cliente.Fecha_nacimiento = Cliente_Modificado.Fecha_nacimiento;
-                        cliente.Discapacidad = Cliente_Modificado.Discapacidad;
-                        cliente.Fecha_ingreso = Cliente_Modificado.Fecha_ingreso;
-                        if (Repositorio_Clientes.Update(Clientes))
-                        {
-                            return new Response<Cliente>(true, "Se ha actualizado el cliente.", Clientes, cliente);
-                        }
-                        else
-                        {
-                            return new Response<Cliente>(false, "Error!");
-                        }
-
-                    }
-                }
+                        cliente.Id = cliente_Modificado.Id;
+                        cliente.Nombre = cliente_Modificado.Nombre;
+                        cliente.Genero = cliente_Modificado.Genero;
+                        cliente.Telefono = cliente_Modificado.Telefono;
+                        cliente.Altura = cliente_Modificado.Altura;
+                        cliente.Peso = cliente_Modificado.Peso;
+                        cliente.Fecha_nacimiento = cliente_Modificado.Fecha_nacimiento;
+                        cliente.Discapacidad = cliente_Modificado.Discapacidad;
+                        cliente.Fecha_ingreso = cliente_Modificado.Fecha_ingreso;
+                        if (Repositorio_Clientes.Update(Clientes)) { return new Response<Cliente>(true, "Se ha actualizado el cliente.", Clientes, cliente); }
+                        else { return new Response<Cliente>(false, "Error!"); } }  }
+                };
+                return cases.First(entry => entry.Key()).Value();
             }
             catch (Exception)
             {

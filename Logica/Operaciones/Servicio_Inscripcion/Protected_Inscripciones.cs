@@ -10,7 +10,7 @@ using System.Linq;
 namespace Logica.Operaciones
 {
     public class Protected_Inscripciones : Abs_ProtectedClass<Inscripcion>
-    {
+    { 
         protected RepositorioInscripcionHistorica Repositorio_Historial = new RepositorioInscripcionHistorica();
         protected RepositorioInscripcion Repositorio_Inscripciones;
         protected Public_Clientes Op_clientes;
@@ -25,11 +25,11 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_inscripcion)
         {
-            if (GetMainList().FirstOrDefault(item => item.Id == id_inscripcion) != null)
+            if (GetMainList() != null)
             {
-                return true;
+                return GetMainList().Any(item => item.Id == id_inscripcion);
             }
-            return false;
+            else { return false; }
         }
         protected override List<Inscripcion> GetMainList()
         {

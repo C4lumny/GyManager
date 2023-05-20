@@ -10,7 +10,7 @@ namespace Datos.Archivos.Repositorio
 
         string ruta = "Turnos.txt";
         public RepositorioTurnos()
-        {
+        { 
             Ruta(ruta);
         }
         public override Turno_Atencion Mapper(string linea)

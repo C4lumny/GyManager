@@ -9,7 +9,7 @@ namespace Logica.Operaciones.AccesoPublico
         public Public_Supervisores()
         {
         }
-        public Supervisor ReturnSupervisor(string id_supervisor)
+        public Supervisor ReturnSupervisor(string id_supervisor) 
         {
             try
             {

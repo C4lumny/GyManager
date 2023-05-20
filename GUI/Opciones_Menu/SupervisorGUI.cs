@@ -26,7 +26,7 @@ namespace GUI
                     Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del supervisor: "); supervisores.Id = Console.ReadLine();
                     Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del supervisor: "); supervisores.Nombre = Console.ReadLine();
                     Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del supervisor: "); supervisores.Telefono = Console.ReadLine();
-                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del supervisor(M o F): "); supervisores.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                    Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del supervisor(M o F): "); supervisores.Genero = Console.ReadKey().KeyChar.ToString().ToUpper();
                     Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del supervisor(Kg): "); supervisores.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
                     Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del supervisor(metros): "); supervisores.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                     Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
@@ -44,7 +44,7 @@ namespace GUI
                 }
                 catch (Exception)
                 {
-                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos");
+                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos"); Console.ReadKey();
                     break;
                 }
             } while (op == 's');
@@ -61,7 +61,11 @@ namespace GUI
                 try
                 {
                     Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR SUPERVISOR---");
-                    Mostrar(servicioSupervisor.GetAll(), 9);
+                    if (!Mostrar(servicioSupervisor.GetAll(), 9))
+                    {
+                        Console.ReadKey();
+                        return;
+                    }
                     Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor que desea actualizar: "); id_supervisorU = Console.ReadLine();
                     Console.Clear();
                     if (servicioSupervisor.ReturnSupervisor(id_supervisorU) == null)
@@ -76,7 +80,7 @@ namespace GUI
                         Console.SetCursorPosition(35, 9); Console.Write("Ingrese la identificación del supervisor: "); supervisores.Id = Console.ReadLine();
                         Console.SetCursorPosition(35, 10); Console.Write("Ingrese el nombre del supervisor: "); supervisores.Nombre = Console.ReadLine();
                         Console.SetCursorPosition(35, 11); Console.Write("Ingrese el telefono del supervisor: "); supervisores.Telefono = Console.ReadLine();
-                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del supervisor(M o F): "); supervisores.Genero = Console.ReadLine().ToUpper()[0].ToString();
+                        Console.SetCursorPosition(35, 12); Console.Write("Ingrese el sexo del supervisor(M o F): "); supervisores.Genero = Console.ReadKey().KeyChar.ToString().ToUpper();
                         Console.SetCursorPosition(35, 13); Console.Write("Ingrese el peso del supervisor(Kg): "); supervisores.Peso = double.Parse(Console.ReadLine().Replace(".", ","));
                         Console.SetCursorPosition(35, 14); Console.Write("Ingrese la altura del supervisor(metros): "); supervisores.Altura = double.Parse(Console.ReadLine().Replace(".", ","));
                         Console.SetCursorPosition(43, 16); Console.Write("Fecha de nacimiento");
@@ -109,7 +113,11 @@ namespace GUI
 
                 Console.Clear();
                 Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR SUPERVISOR---");
-                Mostrar(servicioSupervisor.GetAll(), 9);
+                if (!Mostrar(servicioSupervisor.GetAll(), 9))
+                {
+                    Console.ReadKey();
+                    return;
+                }
                 Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor que desea eliminar: "); id_supervisorD = Console.ReadLine();
                 Console.Clear();
 
@@ -117,6 +125,7 @@ namespace GUI
                 {
                     Console.SetCursorPosition(35, 9); Console.WriteLine("El supervisor que desea eliminar no se encuentra en la base de datos");
                     Console.ReadKey();
+                    return;
                 }
                 else
                 {
@@ -133,7 +142,7 @@ namespace GUI
             int i = 7;
             string id_supervisorD;
             Console.Clear();
-            Console.SetCursorPosition(41, 5); Console.Write("---LISTA DE CLIENTES DEL SUPERVISOR---");
+            Console.SetCursorPosition(41, 5); Console.Write("---CLIENTES ASOCIADOS AL SUPERVISOR---");
             Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del supervisor: "); id_supervisorD = Console.ReadLine();
             var supervisor = servicioSupervisor.ReturnSupervisor(id_supervisorD);
             if (supervisor == null)
@@ -143,7 +152,7 @@ namespace GUI
                 return;
             }
             Console.Clear();
-            Console.SetCursorPosition(41, 5); Console.WriteLine("---LISTA DE CLIENTES DEL SUPERVISOR:---");
+            Console.SetCursorPosition(37, 5); Console.WriteLine("---CLIENTES ASOCIADOS AL SUPERVISOR:" + supervisor.Nombre + "---");
             if (Public_Inscripciones.ClientesPorSupervisor(supervisor) != null)
             {
                 Console.SetCursorPosition(19, i); Console.WriteLine("CC".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(10) + "TELEFONO".PadRight(15) + "IMC".PadRight(12) + "FECHA INGRESO:");
@@ -161,7 +170,7 @@ namespace GUI
             Console.ReadKey();
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        protected void Mostrar(List<Supervisor> list, int pos)
+        protected bool Mostrar(List<Supervisor> list, int pos)
         {
             if (servicioSupervisor.GetAll() != null)
             {
@@ -172,18 +181,19 @@ namespace GUI
                     Console.WriteLine(supervisor.Id.ToString().PadRight(15) + supervisor.Nombre.PadRight(15) + supervisor.Genero.PadRight(9) + supervisor.Telefono.PadRight(10));
                     pos++;
                 }
-
+                return true;
             }
             else
             {
                 Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
                 Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
-                return;
+                return false;
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void ConsultaDinamica()
         {
+            int cursor = 91;
             string search = "";
             Console.Clear();
             ConsoleKeyInfo key = new ConsoleKeyInfo();
@@ -191,12 +201,28 @@ namespace GUI
             {
                 do
                 {
+                    int i = 8;
                     Console.Clear();
-                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse derecha(->) para visualizar los turnos o ESC para salir.");
-                    Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del supervisor: " + search);
-                    Console.SetCursorPosition(46, 6); Console.WriteLine("---LISTA DE SUPERVISORES---");
-                    Mostrar(servicioSupervisor.GetBySearch(search), 8);
-                    Console.SetCursorPosition(84, 4); key = Console.ReadKey();
+                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse derecha(->) para visualizar los HORARIOS o ESC para salir.");
+                    Console.SetCursorPosition(44, 6); Console.WriteLine("---SUPERVISORES REGISTRADOS---");
+                    if (servicioSupervisor.GetAll() != null)
+                    {
+                        Console.SetCursorPosition(35, 4); Console.Write("Ingrese el id, nombre o telefono del supervisor: " + search);
+                        Console.SetCursorPosition(30, i); Console.WriteLine("CC".PadRight(15) + "NOMBRE".PadRight(15) + "SEXO".PadRight(9) + "TELEFONO".PadRight(15));
+                        foreach (var supervisor in servicioSupervisor.GetBySearch(search))
+                        {
+                            Console.SetCursorPosition(30, i + 2);
+                            Console.WriteLine(supervisor.Id.ToString().PadRight(15) + supervisor.Nombre.PadRight(15) + supervisor.Genero.PadRight(9) + supervisor.Telefono.PadRight(10));
+                            i++;
+                        }
+
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
+                        Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse ESC tecla para volver al menu.");
+                    }
+                    Console.SetCursorPosition(cursor - 7, 4); key = Console.ReadKey();
                     if (key.Key == ConsoleKey.Escape)
                     {
                         break;
@@ -204,10 +230,12 @@ namespace GUI
                     if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                     {
                         search = search.Remove(search.Length - 1);
+                        cursor--;
                     }
-                    else if (Char.IsLetterOrDigit(key.KeyChar))
+                    else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                     {
                         search += key.KeyChar.ToString();
+                        cursor++;
                     }
                     else if (key.Key == ConsoleKey.RightArrow)
                     {
@@ -222,13 +250,13 @@ namespace GUI
                 do
                 {
                     Console.Clear();
-                    Console.SetCursorPosition(40, 6); Console.WriteLine("---LISTA DE TURNOS---");
-                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse izquierda(<-) para visualizar los supervisores o ESC para salir.");
-                    Console.SetCursorPosition(26, 4); Console.Write("Ingrese el dia o la hora del turno o el id del supervisor: " + search);
+                    Console.SetCursorPosition(45, 6); Console.WriteLine("---HORARIOS DE ATENCION---");
+                    Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse izquierda(<-) para visualizar los SUPERVISORES o ESC para salir.");
                     int i = 9;
                     if (servicioSupervisor.GetAll() != null)
                     {
-                        Console.SetCursorPosition(20, i); Console.WriteLine("SUPERVISOR CC:".PadRight(19) + "DIA DE SEMANA:".PadRight(19) + "HORA DE ENTRADA:".PadRight(20) + "HORA DE SALIDA:");
+                        Console.SetCursorPosition(32, 4); Console.Write("Ingrese el dia o la hora del turno o el id del supervisor: " + search);
+                        Console.SetCursorPosition(28, i); Console.WriteLine("CC:".PadRight(19) + "DIA DE SEMANA:".PadRight(19) + "HORA DE ENTRADA:".PadRight(20) + "HORA DE SALIDA:");
                         var turnosSearch = servicioSupervisor.GetTurnoBySearch(search);
                         if (turnosSearch != null)
                         {
@@ -242,7 +270,7 @@ namespace GUI
                         else
                         {
                             Console.Clear();
-                            Console.SetCursorPosition(45, 6); Console.WriteLine("---LISTA DE TURNOS---");
+                            Console.SetCursorPosition(44, 6); Console.WriteLine("---HORARIOS DE ATENCION---");
                             Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse izquierda(<-) para visualizar los supervisores o ESC para salir.");
                             Console.SetCursorPosition(44, 8); Console.WriteLine("No hay turnos asignados");
                             Console.SetCursorPosition(41, 10); Console.WriteLine("Pulse ESC para volver al menu.");
@@ -253,7 +281,7 @@ namespace GUI
                         Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado supervisores");
                         Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse ESC para volver al menu");
                     }
-                    Console.SetCursorPosition(95, 4); key = Console.ReadKey();
+                    Console.SetCursorPosition(cursor, 4); key = Console.ReadKey();
 
                     if (key.Key == ConsoleKey.Escape)
                     {
@@ -262,10 +290,12 @@ namespace GUI
                     else if (key.Key == ConsoleKey.Backspace && search.Length > 0)
                     {
                         search = search.Remove(search.Length - 1);
+                        cursor--;
                     }
-                    else if (Char.IsLetterOrDigit(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && key.Key == ConsoleKey.OemPeriod)
+                    else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
                     {
                         search += key.KeyChar.ToString();
+                        cursor++;
                     }
                     else if (key.Key == ConsoleKey.LeftArrow)
                     {

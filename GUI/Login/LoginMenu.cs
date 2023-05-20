@@ -2,7 +2,7 @@
 
 namespace GUI.Login
 {
-    public class LoginMenu : LoginGUI
+    public class LoginMenu : LoginGUI 
     {
         public void Menu() 
         {
@@ -14,8 +14,8 @@ namespace GUI.Login
                 Console.ForegroundColor = ConsoleColor.Cyan;
 
                 Console.SetCursorPosition(43, 5); Console.Write("---BIENVENIDO A GYMANAGER---");
-                Console.SetCursorPosition(39, 7); Console.Write("1. Ingresar");
-                Console.SetCursorPosition(39, 8); Console.Write("2. Registrar");
+                Console.SetCursorPosition(39, 7); Console.Write("1. Iniciar sesion");
+                Console.SetCursorPosition(39, 8); Console.Write("2. Registrar usuario");
                 Console.SetCursorPosition(39, 9); Console.Write("3. Eliminar usuario");
                 Console.SetCursorPosition(39, 10); Console.Write("4. Salir");
                 Console.SetCursorPosition(35, 25); Console.Write("Nota: Utilizar Usuario SYSTEM para ingresar.");
@@ -46,7 +46,7 @@ namespace GUI.Login
                     case 4:
                         break;
                     default:
-                        Console.SetCursorPosition(35, 25); Console.Write("Ingrese una opción valida");
+                        Console.SetCursorPosition(35, 19); Console.Write("Ingrese una opción valida");
                         Console.ReadKey();
                         break;
                 }

@@ -45,12 +45,13 @@ namespace GUI
         protected void consultarPlan()
         {
             Console.Clear();
-            Console.SetCursorPosition(25, 5); Console.WriteLine("---LISTA DE PLANES---");
+            Console.SetCursorPosition(20, 5); Console.WriteLine("---PLANES Y SUSCRIPCIONES DEL GYM---");
             Mostrar(servicioPlan.GetAll(), 7, 5);
         }
         //----------------------------------------------------------------------------------------------------------------------------------
-        protected void Mostrar(List<PlanGimnasio> lista, int Pos_vertical1, int Pos_Vertical2)
+        protected bool Mostrar(List<PlanGimnasio> lista, int Pos_vertical1, int Pos_Vertical2)
         {
+            ConsoleKeyInfo backKey = new ConsoleKeyInfo();
             if (servicioPlan.GetAll() != null)
             {
                 Console.SetCursorPosition(25, Pos_vertical1); Console.WriteLine("ID".PadRight(15) + "NOMBRE".PadRight(15) + "PRECIO".PadRight(10) + "DIAS".PadRight(15));
@@ -73,19 +74,24 @@ namespace GUI
                         Pos_Vertical2++;
                     }
                     Console.SetCursorPosition(20, 3); Console.WriteLine("Pulse la izquierda(<-) para volver a la lista de planes.");
-                    ConsoleKeyInfo backKey = Console.ReadKey();
+                    backKey = Console.ReadKey();
                     if (backKey.Key == ConsoleKey.LeftArrow)
                     {
                         consultarPlan();
                     }
                 }
+                else if (key.Key == ConsoleKey.Escape || backKey.Key == ConsoleKey.Escape)
+                {
+                    return false;
+                }
+                return true;
             }
             else
             {
                 Console.SetCursorPosition(10, 9); Console.WriteLine("No se han registrado planes");
                 Console.SetCursorPosition(10, 11); Console.WriteLine("Pulse cualquier tecla para volver al menu.");
                 Console.ReadKey();
-                return;
+                return false;
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------
@@ -100,7 +106,10 @@ namespace GUI
                 try
                 {
                     Console.SetCursorPosition(43, 5); Console.Write("---ACTUALIZAR PLAN---");
-                    Mostrar(servicioPlan.GetAll(), 7, 5); Console.Clear();
+                    if (!Mostrar(servicioPlan.GetAll(), 7, 5) ){
+                        return;
+                    }
+                    Console.Clear();
                     Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del plan que desea actualizar: "); id_planU = Console.ReadLine();
                     if (servicioPlan.ReturnPlan(id_planU) == null)
                     {
@@ -137,27 +146,41 @@ namespace GUI
             char op = 'x';
             do
             {
-                Console.Clear();
-                Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR PLAN---");
-                Mostrar(servicioPlan.GetAll(), 7, 5); Console.Clear();
-                Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del plan que desea eliminar: "); id_planD = Console.ReadLine();
-                if (servicioPlan.ReturnPlan(id_planD) == null)
+                try
                 {
-                    Console.SetCursorPosition(35, 9); Console.WriteLine("El plan que desea actualizar, no se encuentra en la base de datos");
-                    Console.ReadKey();
+                    Console.Clear();
+                    Console.SetCursorPosition(43, 5); Console.Write("---ELIMINAR PLAN---");
+                    if (!Mostrar(servicioPlan.GetAll(), 7, 5))
+                    {
+                        return;
+                    }
+                    Console.Clear();
+                    Console.SetCursorPosition(35, 7); Console.Write("Ingrese el ID del plan que desea eliminar: "); id_planD = Console.ReadLine();
+                    if (servicioPlan.ReturnPlan(id_planD) == null)
+                    {
+                        Console.SetCursorPosition(35, 9); Console.WriteLine("El plan que desea actualizar, no se encuentra en la base de datos");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        var response = servicioPlan.Delete(id_planD);
+                        Console.SetCursorPosition(35, 9); Console.WriteLine(response.Msg);
+                        Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando planes?[S/N]: ");
+                        op = char.Parse(Console.ReadLine().ToLower());
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    var response = servicioPlan.Delete(id_planD);
-                    Console.SetCursorPosition(35, 9); Console.WriteLine(response.Msg);
-                    Console.SetCursorPosition(35, 24); Console.Write("¿Desea seguir eliminando planes?[S/N]: ");
-                    op = char.Parse(Console.ReadLine().ToLower());
+                    Console.SetCursorPosition(35, 25); Console.Write("Error, por favor rectifique los datos");
+                    break;
                 }
+
             } while (op == 's');
         }
         //----------------------------------------------------------------------------------------------------------------------------------
         protected void ConsultaDinamica()
         {
+            int cursor = 73;
             string search = "";
             ConsoleKeyInfo key = new ConsoleKeyInfo();
             Console.Clear();
@@ -169,8 +192,8 @@ namespace GUI
                 {
                     int i = 10;
                     Console.Clear();
-                    Console.SetCursorPosition(38, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
-                    Console.SetCursorPosition(46, 8); Console.WriteLine("---LISTA DE PLANES---");
+                    Console.SetCursorPosition(40, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
+                    Console.SetCursorPosition(41, 8); Console.WriteLine("---PLANES Y SUSCRIPCIONES DEL GYM---");
                     Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse derecha(->) para visualizar las descripciones o ESC para salir.");
 
                     if (servicioPlan.GetAll() != null)
@@ -181,24 +204,33 @@ namespace GUI
                             Console.SetCursorPosition(32, i + 2); Console.WriteLine(item.Id.ToString().PadRight(15) + item.Nombre.PadRight(15) + item.Precio.ToString().PadRight(10) + item.Dias.ToString().PadRight(5));
                             i++;
                         }
-                        Console.SetCursorPosition(71, 6); key = Console.ReadKey();
-                        if (key.Key == ConsoleKey.Escape)
+                        Console.SetCursorPosition(cursor, 6); key = Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(10, 10); Console.WriteLine("No se han registrado planes");
+                        Console.SetCursorPosition(10, 12); Console.WriteLine("Pulse ESC tecla para volver al menu.");
+                        key = Console.ReadKey();
+                        return;
+                    }
+                    if (key.Key == ConsoleKey.Escape)
                         {
                             break;
                         }
-                        if (key.Key == ConsoleKey.Backspace && search.Length > 0)
-                        {
-                            search = search.Remove(search.Length - 1);
-                        }
-                        else if (Char.IsLetterOrDigit(key.KeyChar))
-                        {
-                            search += key.KeyChar.ToString();
-                        }
-                        else if (key.Key == ConsoleKey.RightArrow)
-                        {
-                            Derecha();
-                            break;
-                        }
+                    if (key.Key == ConsoleKey.Backspace && search.Length > 0)
+                    {
+                        search = search.Remove(search.Length - 1);
+                        cursor--;
+                    }
+                    else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
+                    {
+                        search += key.KeyChar.ToString();
+                        cursor++;
+                    }
+                    else if (key.Key == ConsoleKey.RightArrow)
+                    {
+                        Derecha();
+                        break;
                     }
                 } while (key.Key != ConsoleKey.RightArrow || key.Key != ConsoleKey.Escape);
 
@@ -210,39 +242,49 @@ namespace GUI
                     int j = 8;
                     Console.Clear();
                     Console.SetCursorPosition(4, 1); Console.WriteLine("Pulse la izquierda(<-) para volver a la lista de planes o ESC para salir.");
-                    Console.SetCursorPosition(35, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
+                    Console.SetCursorPosition(40, 6); Console.Write("Ingrese el id o nombre del plan: " + search);
                     Console.SetCursorPosition(43, 8); Console.WriteLine("---DESCRIPCIONES DE PLANES---");
-
-                    foreach (var item in servicioPlan.GetBySearch(search))
+                    if (servicioPlan.GetAll() != null)
                     {
-                        Console.SetCursorPosition(20, j + 2); Console.WriteLine($"{item.Nombre}: {item.Descripcion}");
-                        j++;
+                        foreach (var item in servicioPlan.GetBySearch(search))
+                        {
+                            Console.SetCursorPosition(20, j + 2); Console.WriteLine($"{item.Nombre}: {item.Descripcion}");
+                            j++;
+                        }
+                        Console.SetCursorPosition(cursor, 6); key = Console.ReadKey();
                     }
-
-                    Console.SetCursorPosition(71, 6); key = Console.ReadKey();
+                    else
+                    {
+                        Console.SetCursorPosition(10, 10); Console.WriteLine("No se han registrado planes");
+                        Console.SetCursorPosition(10, 12); Console.WriteLine("Pulse ESC tecla para volver al menu.");
+                        key = Console.ReadKey();
+                        return;
+                    }
                     if (key.Key == ConsoleKey.Escape)
-                    {
-                        break;
-                    }
-                    if (key.Key == ConsoleKey.Backspace && search.Length > 0)
-                    {
-                        search = search.Remove(search.Length - 1);
-                    }
-                    else if (Char.IsLetterOrDigit(key.KeyChar))
-                    {
-                        search += key.KeyChar.ToString();
-                    }
-                    if (key.Key == ConsoleKey.LeftArrow)
-                    {
-                        Izquierda();
-                        break;
-                    }
+                        {
+                            break;
+                        }
+                        if (key.Key == ConsoleKey.Backspace && search.Length > 0)
+                        {
+                            search = search.Remove(search.Length - 1);
+                            cursor--;
+                        }
+                        else if (char.IsLetterOrDigit(key.KeyChar) || char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsSymbol(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsPunctuation(key.KeyChar) || (key.Modifiers & ConsoleModifiers.Shift) != 0 && char.IsLetterOrDigit(key.KeyChar))
+                        {
+                            search += key.KeyChar.ToString();
+                            cursor++;
+                        }
+                        if (key.Key == ConsoleKey.LeftArrow)
+                        {
+                            Izquierda();
+                            break;
+                        }
                 } while (key.Key != ConsoleKey.Escape || key.Key != ConsoleKey.Escape);
             }
 
             //Aplicacion;
             Izquierda();
-            if (key.Key != ConsoleKey.Escape)
+            if (key.Key != ConsoleKey.Escape && servicioPlan.GetAll() != null)
             {
                 Derecha();
             }

@@ -9,7 +9,7 @@ namespace Datos.Archivos.Repositorio
     public class RepositorioAdministrador : Abs_Repositorio<Administrador>
     {
         string ruta = "Administrador.txt";
-        public RepositorioAdministrador()
+        public RepositorioAdministrador() 
         {
             Ruta(ruta);
             if (!File.Exists(ruta))

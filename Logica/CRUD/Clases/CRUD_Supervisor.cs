@@ -2,6 +2,7 @@
 using Logica.CRUD;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logica
 {
@@ -46,41 +47,24 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(item => item.Nombre.Contains(search) || item.Telefono.StartsWith(search) || item.Id.StartsWith(search));
+                return GetMainList().FindAll(item => item.Nombre.ToUpper().Contains(search.ToUpper()) || item.Telefono.ToUpper().StartsWith(search.ToUpper()) || item.Id.ToUpper().StartsWith(search.ToUpper()));
             }
         }
         public Response<Supervisor> Save(Supervisor supervisor)
         {
             try
             {
-                if (supervisor.Altura < 0)
+                var cases = new Dictionary<Func<bool>, Func<Response<Supervisor>>>
                 {
-                    return new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos.");
-                }
-                else if (supervisor.Peso < 0)
-                {
-                    return new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos.");
-                }
-                else if (supervisor.Genero != "M" && supervisor.Genero != "F")
-                {
-                    return new Response<Supervisor>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
-                }
-                else if (supervisor.Fecha_nacimiento.AddYears(18) > DateTime.Now)
-                {
-                    return new Response<Supervisor>(false, "Menor de 18 años, ingrese correctamente los datos.");
-                }
-                else if (GetMainList() == null)
-                {
-                    return Repositorio_Supervisores.Save(supervisor);
-                }
-                else if (Exist(supervisor.Id))
-                {
-                    return new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado");
-                }
-                else
-                {
-                    return Repositorio_Supervisores.Save(supervisor);
-                }
+                    { ()=> supervisor.Altura < 0, ()=> new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos.") },
+                    { ()=> supervisor.Peso < 0,()=>  new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos.") },
+                    { ()=> supervisor.Genero != "M" && supervisor.Genero != "F",()=>  new Response<Supervisor>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no") },
+                    { ()=> supervisor.Fecha_nacimiento.AddYears(18) > DateTime.Now,()=>  new Response<Supervisor>(false, "Menor de 18 años, ingrese correctamente los datos.") },
+                    { ()=> supervisor.Telefono.Any(@char => !char.IsDigit(@char)),()=>  new Response<Supervisor>(false, "Por favor ingrese correctamente el numero telefonico") },
+                    { ()=> Exist(supervisor.Id),()=>  new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado") },
+                    { ()=> true, ()=>  Repositorio_Supervisores.Save(supervisor) }
+                };
+                return cases.First(pair => pair.Key()).Value();
             }
             catch (Exception)
             {
@@ -92,35 +76,16 @@ namespace Logica
             try
             {
                 var Supervisores = GetMainList();
-                if (Supervisores == null) { return new Response<Supervisor>(false, "No se encuentra registrado ningun supervisor", null, null); }
-                else
+                var cases = new Dictionary<Func<bool>, Func<Response<Supervisor>>>
                 {
-                    if (!Exist(id_supervisor))
-                    {
-                        return new Response<Supervisor>(false, "No se encontro el supervisor", null, null);
-                    }
-                    else if (supervisor_modificado.Altura < 0)
-                    {
-                        return new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos.", null, null);
-                    }
-                    else if (supervisor_modificado.Peso < 0)
-                    {
-                        return new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos.", null, null);
-                    }
-                    else if (supervisor_modificado.Genero != "M" && supervisor_modificado.Genero != "F")
-                    {
-                        return new Response<Supervisor>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no");
-                    }
-                    else if (supervisor_modificado.Fecha_nacimiento.AddYears(18) > DateTime.Now)
-                    {
-                        return new Response<Supervisor>(false, "Edad invalida (Menor de 18)", null, null);
-                    }
-                    else if (Exist(supervisor_modificado.Id) && supervisor_modificado.Id != id_supervisor)
-                    {
-                        return new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado", null, null);
-                    }
-                    else
-                    {
+                    { ()=> !Exist(id_supervisor), ()=> new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos.") },
+                    { ()=> supervisor_modificado.Altura < 0, ()=> new Response<Supervisor>(false, "Altura invalida, ingrese correctamente los datos.") },
+                    { ()=> supervisor_modificado.Peso < 0,()=>  new Response<Supervisor>(false, "Peso invalido, ingrese correctamente los datos.") },
+                    { ()=> supervisor_modificado.Genero != "M" && supervisor_modificado.Genero != "F",()=>  new Response<Supervisor>(false, "Por favor ingrese un genero valido. Solo hay dos generos quieras o no") },
+                    { ()=> supervisor_modificado.Fecha_nacimiento.AddYears(18) > DateTime.Now, ()=>  new Response<Supervisor>(false, "Menor de 18 años, ingrese correctamente los datos.") },
+                    { ()=> supervisor_modificado.Telefono.Any(@char => !char.IsDigit(@char)), ()=>  new Response<Supervisor>(false, "Por favor ingrese correctamente el numero telefonico") },
+                    { ()=> Exist(supervisor_modificado.Id) && supervisor_modificado.Id != id_supervisor, ()=>  new Response<Supervisor>(false, "El ID del supervisor ya se encuentra registrado") },
+                    { ()=> true, () => {
                         var supervisor = Supervisores.Find(item => item.Id == id_supervisor);
                         supervisor.Id = supervisor_modificado.Id;
                         supervisor.Nombre = supervisor_modificado.Nombre;
@@ -139,7 +104,9 @@ namespace Logica
                             return new Response<Supervisor>(false, "Error!");
                         }
                     }
-                }
+                    }
+                };
+                return cases.First(pair => pair.Key()).Value();
             }
             catch (Exception)
             {

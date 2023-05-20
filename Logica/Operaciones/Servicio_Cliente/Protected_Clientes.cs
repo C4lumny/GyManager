@@ -10,7 +10,7 @@ namespace Logica.Operaciones
     {
         protected RepositorioClientes Repositorio_Clientes;
         protected Protected_Clientes()
-        {
+        { 
             Repositorio_Clientes = new RepositorioClientes();
         }
         protected override List<Cliente> GetMainList()
@@ -24,11 +24,11 @@ namespace Logica.Operaciones
         }
         protected override bool Exist(string id_cliente)
         {
-            if (GetMainList().FirstOrDefault(item => item.Id == id_cliente) != null)
+            if (GetMainList() != null)
             {
-                return true;
+                return GetMainList().Any(item => item.Id == id_cliente);
             }
-            return false;
+            else { return false; }
         }
         protected double CalculateIMC(Cliente cliente)
         {

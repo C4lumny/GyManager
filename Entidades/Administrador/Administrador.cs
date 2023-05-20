@@ -4,7 +4,7 @@
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public Administrador() { }
+        public Administrador() { } 
 
         public Administrador(string nickName, string password)
         {
