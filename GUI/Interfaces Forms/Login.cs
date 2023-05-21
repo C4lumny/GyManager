@@ -12,30 +12,10 @@ namespace GUI.pruba
 {
     public partial class Login : Form
     {
-        public class Program
-        {
-            [STAThread]
-            public static void Main()
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Login());
-            }
-        }
-
         public Login()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void txtUsername_Enter(object sender, EventArgs e)
@@ -43,7 +23,7 @@ namespace GUI.pruba
             if(txtUsername.Text == "USUARIO")
             {
                 txtUsername.Text = "";
-                txtUsername.ForeColor = Color.LightGray;
+                txtUsername.ForeColor = Color.Black;
             }
             {
 
@@ -64,7 +44,7 @@ namespace GUI.pruba
             if(txtPassword.Text == "CONTRASEÑA")
             {
                 txtPassword.Text = "";
-                txtPassword.ForeColor = Color.LightGray;
+                txtPassword.ForeColor = Color.Black;
                 txtPassword.UseSystemPasswordChar = true;
             } 
         }
@@ -88,5 +68,36 @@ namespace GUI.pruba
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void btnAcceder_Click(object sender, EventArgs e)
+        {
+            MenuIGA menu = new MenuIGA();
+            menu.Show();
+            this.Hide();
+        }
+
+        private bool isDragging = false;
+        private Point lastMousePosition;
+        private void panel4_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDragging = true;
+            lastMousePosition = e.Location;
+        }
+
+        private void panel4_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                int deltaX = e.X - lastMousePosition.X;
+                int deltaY = e.Y - lastMousePosition.Y;
+                this.Location = new Point(this.Left + deltaX, this.Top + deltaY);
+            }
+        }
+
+        private void panel4_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
+        }
+
     }
 }
