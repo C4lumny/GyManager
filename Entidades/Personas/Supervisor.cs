@@ -4,30 +4,21 @@ using System.Text;
 
 namespace Entidades
 {
-    public class Supervisor : Personas 
+    public class Supervisores : Personas
     {
-        public Supervisor()
+        public Supervisores() { }
+
+        public Supervisores(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, string correo, DateTime fecha_ingreso)
+            : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
         {
-            Horarios = new List<Turno_Atencion>();
+            Correo = correo;
         }
-        public List<Turno_Atencion> Horarios { get; set; }
-        public Supervisor(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, DateTime fecha_ingreso) : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
-        {
-            Horarios = new List<Turno_Atencion>();
-        }
+
+        public string Correo { get; set; }
+
         public override string ToString()
         {
-            return $"{Id};{Nombre};{Genero};{Telefono};{Altura};{Peso};{Fecha_nacimiento};{Fecha_ingreso}";
-        }
-        public string ToFullString()
-        {
-            var sb = new StringBuilder();
-            sb.Append($"{Id};{Nombre};{Genero};{Telefono};{Altura};{Peso};{Fecha_nacimiento};{Fecha_ingreso}");
-            foreach (var item in Horarios)
-            {
-                sb.Append($";{item.Dia};{item.Hora_Inicio};{item.Hora_Salida}");
-            }
-            return sb.ToString();
+            return $"{Id};{Nombre};{Genero};{Telefono};{Altura};{Peso};{Fecha_nacimiento};{Correo};{Fecha_ingreso}";
         }
     }
 }
