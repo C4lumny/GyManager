@@ -93,24 +93,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Operaciones\Servicio_Pagos\Protected_Pagos.cs" />
-    <Compile Include="Servicio_Administrador\Protected_Administrador.cs" />
-    <Compile Include="Operaciones\Servicio_Supervisor\Public_Turno_Supervisor.cs" />
-    <Compile Include="Operaciones\Clase_Abstracta\Abs_ProtectedClass.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Inscripcion.cs" />
-    <Compile Include="CRUD\Interfaz\I_CRUD.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Cliente.cs" />
-    <Compile Include="Operaciones\Servicio_Inscripcion\Protected_Inscripciones.cs" />
-    <Compile Include="Operaciones\Servicio_PlanesGimnasio\Protected_Planes.cs" />
-    <Compile Include="Operaciones\Servicio_Supervisor\Protected_Supervisor.cs" />
-    <Compile Include="Operaciones\Servicio_Cliente\Protected_Clientes.cs" />
-    <Compile Include="Operaciones\Servicio_Cliente\Public_Clientes.cs" />
-    <Compile Include="Operaciones\Servicio_Inscripcion\Public_Inscripciones.cs" />
-    <Compile Include="Operaciones\Servicio_PlanesGimnasio\Public_Planes.cs" />
-    <Compile Include="Operaciones\Servicio_Supervisor\Public_Supervisores.cs" />
+    <Compile Include="Clases\ServicioAdministrador.cs" />
+    <Compile Include="Clases\ServicioClientes.cs" />
+    <Compile Include="Clases\ServicioDatosBiomedicos.cs" />
+    <Compile Include="Clases\ServicioDiscapacidad.cs" />
+    <Compile Include="Clases\ServicioFacturas.cs" />
+    <Compile Include="Clases\ICRUD.cs" />
+    <Compile Include="Clases\ServicioInscripcion.cs" />
+    <Compile Include="Clases\ServicioPago.cs" />
+    <Compile Include="Clases\ServicioPlanGimnasio.cs" />
+    <Compile Include="Clases\Supervisores.cs" />
+    <Compile Include="Clases\ServicioTurnoAtencion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Supervisor.cs" />
-    <Compile Include="CRUD\Clases\CRUD_Plan.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
