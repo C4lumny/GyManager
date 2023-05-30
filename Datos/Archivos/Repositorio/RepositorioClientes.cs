@@ -12,7 +12,6 @@ namespace Datos
     public class RepositorioClientes
     {
         Coneccion conexion = new Coneccion();
-        string ruta = "Cliente.txt";
         public RepositorioClientes()
         { 
         }
@@ -51,7 +50,9 @@ namespace Datos
                 command.Parameters.Add("i_telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
                 command.Parameters.Add("i_fecha_nacimiento", OracleDbType.Date).Value = cliente.Fecha_nacimiento; // Asigna la fecha de nacimiento adecuada
 
-                command.ExecuteNonQuery();
+                    conexion.Open();
+                    command.ExecuteNonQuery();
+                    conexion.Close();
             }
             return new Response<Clientess>(true, "Se ha registrado correctamente.", null, cliente);
             }
@@ -66,14 +67,71 @@ namespace Datos
             List<Clientess> clientes = new List<Clientess>();
             var comando = conexion._conexion.CreateCommand();
             comando.CommandText = "select * from Personas";
-            Open();
-            SqlDataReader lector = comando.ExecuteReader();
+            conexion.Open();
+            OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
                 clientes.Add(Mapper(lector));
             }
-            Close();
-            return personas;
+            conexion.Close();
+            return clientes;
+        }
+
+        public string Delete(string id_cliente)
+        {
+            try
+            {
+                using (OracleCommand command = conexion._conexion.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PKG_CLIENTES.p_eliminarcliente";
+
+                    // Configura los parámetros del procedimiento almacenado
+                    command.Parameters.Add("d_id", OracleDbType.Varchar2).Value = id_cliente;
+
+                    conexion.Open();
+                    command.ExecuteNonQuery();
+                    conexion.Close();
+
+                }
+                return "Se ha eliminado el cliente";
+            }
+            catch (Exception)
+            {
+                return "No se ha realizado la actualizacion";
+            }
+        }
+        public string Update(Clientess cliente, string old_id, DateTime fecha_ingreso)
+        {
+            try
+            {
+                using (OracleCommand command = conexion._conexion.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PKG_CLIENTES.p_actualizarcliente";
+
+                    // Configura los parámetros del procedimiento almacenado
+                    command.Parameters.Add("old_id", OracleDbType.Varchar2).Value = old_id;
+                    command.Parameters.Add("u_id", OracleDbType.Varchar2).Value = cliente.Id;
+                    command.Parameters.Add("u_nombres", OracleDbType.Varchar2).Value = cliente.Nombre;
+                    command.Parameters.Add("u_apellidos", OracleDbType.Varchar2).Value = cliente.Apellido;
+                    command.Parameters.Add("u_genero", OracleDbType.Varchar2).Value = cliente.Genero;
+                    command.Parameters.Add("u_telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
+                    command.Parameters.Add("u_fecha_nacimiento", OracleDbType.Date).Value = cliente.Fecha_nacimiento;
+                    command.Parameters.Add("u_fecha_ingreso", OracleDbType.Date).Value = fecha_ingreso;
+
+                    conexion.Open();
+                    command.ExecuteNonQuery();
+                    conexion.Close();
+
+                }
+                return "Se ha actualizado el cliente";
+            }
+            catch (Exception)
+            {
+                return "No se ha realizado la actualizacion";
+            }
         }
     }
+
 }

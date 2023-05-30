@@ -115,12 +115,12 @@ namespace Datos
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_INSCRIPCIONES.p_actualizarinscripcion";
 
-                    command.Parameters.Add("old_id", OracleDbType.Varchar2).Value = oldId;
-                    command.Parameters.Add("u_fecha_inicio", OracleDbType.Date).Value = fechaInicio;
-                    command.Parameters.Add("u_descuento", OracleDbType.Int32).Value = descuento;
-                    command.Parameters.Add("u_cliente_id", OracleDbType.Varchar2).Value = clienteId;
-                    command.Parameters.Add("u_supervisor_id", OracleDbType.Varchar2).Value = supervisorId;
-                    command.Parameters.Add("u_plan_id", OracleDbType.Int32).Value = planId;
+                    command.Parameters.Add("old_id", OracleDbType.Varchar2).Value = old_id;
+                    command.Parameters.Add("u_fecha_inicio", OracleDbType.Date).Value = inscripcion.FechaInicio;
+                    command.Parameters.Add("u_descuento", OracleDbType.Int32).Value = inscripcion.Descuento;
+                    command.Parameters.Add("u_cliente_id", OracleDbType.Varchar2).Value = inscripcion.ClienteId;
+                    command.Parameters.Add("u_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.SupervisorId;
+                    command.Parameters.Add("u_plan_id", OracleDbType.Int32).Value = inscripcion.PlanId;
 
                     // Ejecutar el procedimiento almacenado
                     command.ExecuteNonQuery();

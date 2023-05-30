@@ -11,37 +11,11 @@ namespace Logica
         public CRUD_Cliente() { }
         public Response<Clientess> Delete(string Id_cliente)
         {
-            var Clientes = GetMainList();
-            if (Clientes == null)
-            {
-                return new Response<Clientess>(false, "La lista esta vacia");
-            }
-            else
-            {
-                int pos = Clientes.FindIndex(item => item.Id == Id_cliente);
-                Clientess cliente = ReturnCliente(Id_cliente);
-                if (cliente == null) { return new Response<Clientess>(false, "No se ha encontrado el cliente que se desea eliminar."); }
-                Clientes.RemoveAt(pos);
-                if (Repositorio_Clientes.Update(Clientes))
-                {
-                    return new Response<Clientess>(true, "El cliente: " + cliente.Nombre +  ". Se ha eliminado correctamente", Clientes, cliente);
-                }
-                else
-                {
-                    return new Response<Clientess>(false, "No se ha podido eliminar el cliente.");
-                }
-            }
+           
         } 
         public List<Clientess> GetBySearch(string search)
         {
-            if (GetMainList() == null)
-            {
-                return null;
-            }
-            else
-            {
-                return GetMainList().FindAll(cliente => cliente.Nombre.ToUpper().Contains(search.ToUpper()) || cliente.Telefono.ToUpper().StartsWith(search.ToUpper()) || cliente.Id.ToUpper().StartsWith(search.ToUpper()));
-            }
+            
         }
         public Response<Clientess> Save(Clientess cliente)
         {
