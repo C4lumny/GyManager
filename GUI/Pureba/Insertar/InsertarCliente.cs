@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Entidades.Informacion_Persona;
+using Logica.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace GUI.Pureba.Insertar
             // Crear un objeto Cliente
             Clientess cliente = new Clientess();
             DatosBiomedicos datos = new DatosBiomedicos();
-
+            ServicioClientes serv = new ServicioClientes();
             // Llenar el objeto Cliente con los valores de los TextBox
             cliente.Id = txtCedula.Text;
             cliente.Nombre = txtNombre.Text;
@@ -38,7 +39,7 @@ namespace GUI.Pureba.Insertar
             datos.FrecuenciaCardiaca = int.Parse(txtFrecuencia.Text);
             datos.PresionArterial = int.Parse(txtPresion.Text);
 
-
+            serv.Crear(cliente);
         }
     }
 }

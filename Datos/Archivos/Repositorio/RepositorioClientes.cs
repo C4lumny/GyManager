@@ -41,7 +41,7 @@ namespace Datos
             using (OracleCommand command = conexion._conexion.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "PKG_CLIENTES.p_insertarcliente";
+                command.CommandText = "PKG_CLIENTE.p_insertarcliente";
 
                 command.Parameters.Add("i_id", OracleDbType.Varchar2).Value = cliente.Id;
                 command.Parameters.Add("i_nombres", OracleDbType.Varchar2).Value = cliente.Nombre;
@@ -84,7 +84,7 @@ namespace Datos
                 using (OracleCommand command = conexion._conexion.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PKG_CLIENTES.p_eliminarcliente";
+                    command.CommandText = "PKG_CLIENTE.p_eliminarcliente";
 
                     // Configura los parámetros del procedimiento almacenado
                     command.Parameters.Add("d_id", OracleDbType.Varchar2).Value = id_cliente;
@@ -108,7 +108,7 @@ namespace Datos
                 using (OracleCommand command = conexion._conexion.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PKG_CLIENTES.p_actualizarcliente";
+                    command.CommandText = "PKG_CLIENTE.p_actualizarcliente";
 
                     // Configura los parámetros del procedimiento almacenado
                     command.Parameters.Add("old_id", OracleDbType.Varchar2).Value = old_id;
