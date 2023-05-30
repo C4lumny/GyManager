@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Clientes : Abs_ProtectedClass<Cliente>
+    public class Protected_Clientes : Abs_ProtectedClass<Clientess>
     {
         protected RepositorioClientes Repositorio_Clientes;
         protected Protected_Clientes()
         { 
             Repositorio_Clientes = new RepositorioClientes();
         }
-        protected override List<Cliente> GetMainList()
+        protected override List<Clientess> GetMainList()
         {
             var Clientes = Repositorio_Clientes.Load();
             if (Clientes == null)
@@ -30,7 +30,7 @@ namespace Logica.Operaciones
             }
             else { return false; }
         }
-        protected double CalculateIMC(Cliente cliente)
+        protected double CalculateIMC(Clientess cliente)
         {
             return cliente.Peso / (cliente.Altura * cliente.Altura);
         }

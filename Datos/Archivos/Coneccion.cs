@@ -15,7 +15,7 @@ namespace Datos.Archivos
         public OracleConnection _conexion;
         public Coneccion()
         {
-            _conexion = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)));User Id=C##AisaacGYM;Password=isaacdavid1234;");
+            _conexion = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)));User Id=Aisaac;Password=isaacdavid1234;");
         }
         public void Open()
         {
@@ -24,6 +24,7 @@ namespace Datos.Archivos
         public void Close()
         {
             _conexion.Close();
-        }
+        }
+
     }
 }

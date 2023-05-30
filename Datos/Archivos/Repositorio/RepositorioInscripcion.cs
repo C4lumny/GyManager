@@ -1,56 +1,138 @@
 ﻿using Datos.Archivos;
 using Entidades;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
+using System.Numerics;
+using System.Security.Cryptography;
 
 namespace Datos
 {
-    public class RepositorioInscripcion : Abs_Repositorio<Inscripcion>
+    public class RepositorioInscripcion
     {
-        protected string ruta = "Inscripcion.txt";
-        RepositorioClientes Repositorio_Clientes; 
-        RepositorioSupervisor Repositorio_Supervisor;
-        RepositorioPlan Repositorio_Planes;
-
+        Coneccion conexion = new Coneccion();
         public RepositorioInscripcion()
         {
-            Ruta(ruta);
-            Repositorio_Clientes = new RepositorioClientes();
-            Repositorio_Supervisor = new RepositorioSupervisor();
-            Repositorio_Planes = new RepositorioPlan();
         }
-        public override Inscripcion Mapper(string linea)
+        public Inscripcion Mapper(OracleDataReader dataReader)
         {
             try
             {
-                var aux = linea.Split(';');
+                if (!dataReader.HasRows) { return null; }
                 Inscripcion inscripcion = new Inscripcion();
-                inscripcion.Id = aux[0];
-                inscripcion.Fecha_inicio = DateTime.Parse(aux[1]);
-                inscripcion.Fecha_finalizacion = DateTime.Parse(aux[2]);
-                inscripcion.Precio = double.Parse(aux[3]);
-                inscripcion.Descuento = int.Parse(aux[4]);
-               
-                inscripcion.cliente = null;
-                inscripcion.supervisor = null;
-                inscripcion.plan = null;
-                var lista_cliente = Repositorio_Clientes.Load();
-                var lista_plan = Repositorio_Planes.Load();
-                var lista_sup = Repositorio_Supervisor.Load();
-                if (lista_cliente != null && lista_sup != null && lista_plan != null)
-                {
-                    inscripcion.cliente = lista_cliente.FirstOrDefault(item => item.Id == aux[5]);
-                    inscripcion.plan = lista_plan.FirstOrDefault(item => item.Id == aux[6]);
-                    inscripcion.supervisor = lista_sup.FirstOrDefault(item => item.Id == aux[7]);
-                }
-                inscripcion.Estado = bool.Parse(aux[8]);
+                inscripcion.Id = dataReader.GetInt32(0);
+                inscripcion.FechaInicio = dataReader.GetDateTime(1);
+                inscripcion.FechaFinal = dataReader.GetDateTime(2);
+                inscripcion.Precio = dataReader.GetDouble(3);
+                inscripcion.Descuento = dataReader.GetInt32(4);
+                inscripcion.ClienteId = dataReader.GetString(5);
+                inscripcion.SupervisorId = dataReader.GetString(6);
+                inscripcion.PlanId = dataReader.GetInt32(7);
+                inscripcion.IdEstado = dataReader.GetInt32(8);
                 return inscripcion;
             }
-            catch (Exception) { }
-            return null;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en el mapeo de datos: " + ex.Message);
+                return null;
+            }
+        }
+        public Response<Inscripcion> Insert(Inscripcion inscripcion)
+        {
+            try
+            {
+                using (OracleCommand command = conexion._conexion.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PKG_INSCRIPCIONES.p_insertarinscripcion";
+
+                    command.Parameters.Add("i_descuento", OracleDbType.Int32).Value = inscripcion.Descuento;
+                    command.Parameters.Add("i_cliente_id", OracleDbType.Varchar2).Value = inscripcion.ClienteId;
+                    command.Parameters.Add("i_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.SupervisorId;
+                    command.Parameters.Add("i_plan_id", OracleDbType.Int32).Value = inscripcion.PlanId;
+
+                    command.ExecuteNonQuery();
+                }
+                return new Response<Inscripcion>(true, "Se ha registrado correctamente.", null, inscripcion);
+            }
+            catch (Exception)
+            {
+                return new Response<Inscripcion>(true, "No se ha registrado la inscripcion.", null, inscripcion);
+
+            }
+        }
+        public List<Inscripcion> GetAll()
+        {
+            List<Inscripcion> clientes = new List<Inscripcion>();
+            var comando = conexion._conexion.CreateCommand();
+            comando.CommandText = "select * from Personas";
+            conexion.Open();
+            OracleDataReader lector = comando.ExecuteReader();
+            while (lector.Read())
+            {
+                clientes.Add(Mapper(lector));
+            }
+            conexion.Close();
+            return clientes;
         }
 
+        public string Delete(string id_cliente)
+        {
+            try
+            {
+                using (OracleCommand command = conexion._conexion.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PKG_CLIENTES.p_eliminarcliente";
+
+                    // Configura los parámetros del procedimiento almacenado
+                    command.Parameters.Add("d_id", OracleDbType.Varchar2).Value = id_cliente;
+
+                    conexion.Open();
+                    command.ExecuteNonQuery();
+                    conexion.Close();
+
+                }
+                return "Se ha actualizado el cliente";
+            }
+            catch (Exception)
+            {
+                return "No se ha realizado la actualizacion";
+            }
+
+
+        }
+        public string Update(Inscripcion inscripcion, string old_id, DateTime fecha_ingreso)
+        {
+
+            try
+            {
+                using (OracleCommand command = conexion._conexion.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PKG_INSCRIPCIONES.p_actualizarinscripcion";
+
+                    command.Parameters.Add("old_id", OracleDbType.Varchar2).Value = oldId;
+                    command.Parameters.Add("u_fecha_inicio", OracleDbType.Date).Value = fechaInicio;
+                    command.Parameters.Add("u_descuento", OracleDbType.Int32).Value = descuento;
+                    command.Parameters.Add("u_cliente_id", OracleDbType.Varchar2).Value = clienteId;
+                    command.Parameters.Add("u_supervisor_id", OracleDbType.Varchar2).Value = supervisorId;
+                    command.Parameters.Add("u_plan_id", OracleDbType.Int32).Value = planId;
+
+                    // Ejecutar el procedimiento almacenado
+                    command.ExecuteNonQuery();
+                }
+                return "Se ha registrado correctamente.";
+            }
+            catch (Exception)
+            {
+                return "No se ha registrado la inscripcion.";
+
+            }
+
+        }
     }
 }

@@ -9,14 +9,14 @@ namespace Entidades.Pagos_y_Facturas
     public class Facturas
     {
         public int Id { get; set; }
-        public decimal? PagoIngresado { get; set; }
-        public decimal? Subtotal { get; set; }
-        public decimal? Saldo { get; set; }
+        public double PagoIngresado { get; set; }
+        public double Subtotal { get; set; }
+        public double Saldo { get; set; }
         public int IdInscripcion { get; set; }
         public Facturas()
         {
         }
-        public Facturas(int id, decimal? pagoIngresado, decimal? subtotal, decimal? saldo, int idInscripcion)
+        public Facturas(int id, double pagoIngresado, double subtotal, double saldo, int idInscripcion)
         {
             Id = id;
             PagoIngresado = pagoIngresado;

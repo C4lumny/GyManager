@@ -99,9 +99,9 @@
     <Compile Include="Pagos y Facturas\Facturas.cs" />
     <Compile Include="Pagos y Facturas\Pago.cs" />
     <Compile Include="ServicioProveidos\Turno_Atencion.cs" />
-    <Compile Include="Personas\Cliente.cs" />
+    <Compile Include="Personas\Clientess.cs" />
     <Compile Include="Response\Response.cs" />
-    <Compile Include="Personas\Supervisor.cs" />
+    <Compile Include="Personas\Supervisoress.cs" />
     <Compile Include="ServicioProveidos\Inscripcion.cs" />
     <Compile Include="Personas\Personas.cs" />
     <Compile Include="ServicioProveidos\PlanGimnasio.cs" />

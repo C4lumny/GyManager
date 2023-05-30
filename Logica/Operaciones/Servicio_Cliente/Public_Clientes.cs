@@ -10,7 +10,7 @@ namespace Logica.Operaciones.AccesoPublico
         {
 
         } 
-        public Cliente ReturnCliente(string id_cliente)
+        public Clientess ReturnCliente(string id_cliente)
         {
             try
             {

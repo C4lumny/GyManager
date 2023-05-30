@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Logica.Operaciones
 {
-    public class Protected_Supervisor : Abs_ProtectedClass<Supervisor>
+    public class Protected_Supervisor : Abs_ProtectedClass<Supervisoress>
     {
         protected RepositorioSupervisor Repositorio_Supervisores;
         protected RepositorioTurnos Repositorio_Turnos; 
@@ -24,7 +24,7 @@ namespace Logica.Operaciones
             }
             else { return false; }
         }
-        protected override List<Supervisor> GetMainList()
+        protected override List<Supervisoress> GetMainList()
         {
             var Supervisores = Repositorio_Supervisores.Load();
             if (Supervisores == null)
@@ -41,7 +41,7 @@ namespace Logica.Operaciones
             }
             return Supervisores;
         }
-        protected bool IsTurnoValid(Turno_Atencion turno, Supervisor supervisor)
+        protected bool IsTurnoValid(Turno_Atencion turno, Supervisoress supervisor)
         {
             if (turno.Hora_Inicio >= turno.Hora_Salida)
             {
