@@ -54,7 +54,9 @@ namespace Datos
                     command.Parameters.Add("i_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.SupervisorId;
                     command.Parameters.Add("i_plan_id", OracleDbType.Int32).Value = inscripcion.PlanId;
 
+                    conexion.Open();
                     command.ExecuteNonQuery();
+                    conexion.Close();
                 }
                 return new Response<Inscripcion>(true, "Se ha registrado correctamente.", null, inscripcion);
             }
@@ -79,33 +81,32 @@ namespace Datos
             return clientes;
         }
 
-        public string Delete(string id_cliente)
+        public string Delete(string id)
         {
             try
             {
                 using (OracleCommand command = conexion._conexion.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PKG_CLIENTES.p_eliminarcliente";
+                    command.CommandText = "PKG_INSCRIPCIONES.p_eliminarinscripcion";
 
-                    // Configura los parámetros del procedimiento almacenado
-                    command.Parameters.Add("d_id", OracleDbType.Varchar2).Value = id_cliente;
+                    command.Parameters.Add("id_cliente_or_inscripcion", OracleDbType.Varchar2).Value = id;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
                     conexion.Close();
 
                 }
-                return "Se ha actualizado el cliente";
+                return "Se ha eliminado la inscripcion ";
             }
             catch (Exception)
             {
-                return "No se ha realizado la actualizacion";
+                return "No se ha realizado la eliminacion";
             }
 
 
         }
-        public string Update(Inscripcion inscripcion, string old_id, DateTime fecha_ingreso)
+        public string Update(Inscripcion inscripcion, string old_id)
         {
 
             try
@@ -122,14 +123,15 @@ namespace Datos
                     command.Parameters.Add("u_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.SupervisorId;
                     command.Parameters.Add("u_plan_id", OracleDbType.Int32).Value = inscripcion.PlanId;
 
-                    // Ejecutar el procedimiento almacenado
+                    conexion.Open();
                     command.ExecuteNonQuery();
+                    conexion.Close();
                 }
-                return "Se ha registrado correctamente.";
+                return "Se ha actualizado correctamente.";
             }
             catch (Exception)
             {
-                return "No se ha registrado la inscripcion.";
+                return "No se ha actualizado la inscripcion.";
 
             }
 

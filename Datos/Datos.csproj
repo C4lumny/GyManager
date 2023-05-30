@@ -95,7 +95,8 @@
   <ItemGroup>
     <Compile Include="Archivos\Clase Abstracta\Abs_Repositorio.cs" />
     <Compile Include="Archivos\Coneccion.cs" />
-    <Compile Include="Archivos\Repositorio\RepositorioInscripcionHistorica.cs" />
+    <Compile Include="Archivos\Repositorio\RepositorioDatosBiomedicos.cs" />
+    <Compile Include="Archivos\Repositorio\RepositorioDiscapacidades.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioPagos.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioSupervisor.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioTurnos.cs" />

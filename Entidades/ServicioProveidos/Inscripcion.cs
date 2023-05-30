@@ -55,6 +55,10 @@ namespace Entidades
 
     public class Inscripcion
     {
+        public Inscripcion()
+        {
+            
+        }
         public int Id { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinal { get; set; }

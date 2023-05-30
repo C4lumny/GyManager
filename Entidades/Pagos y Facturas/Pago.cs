@@ -30,6 +30,10 @@ namespace Entidades.Pagos_y_Facturas
 
     public class Pago
     {
+        public Pago()
+        {
+            
+        }
         public int Id { get; set; }
         public double ValorIngresado { get; set; }
         public DateTime FechaPago { get; set; }

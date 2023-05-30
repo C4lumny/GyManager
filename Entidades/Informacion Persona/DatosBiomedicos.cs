@@ -11,6 +11,21 @@ namespace Entidades.Informacion_Persona
         public DatosBiomedicos()
         {
         }
+
+        public DatosBiomedicos(int id, DateTime fechaRegistro, double altura, double peso, double? imc, double grasaCorporal, int frecuenciaCardiaca, int presionArterial, int? idCategoriaPeso, string idCliente)
+        {
+            Id = id;
+            FechaRegistro = fechaRegistro;
+            Altura = altura;
+            Peso = peso;
+            Imc = imc;
+            GrasaCorporal = grasaCorporal;
+            FrecuenciaCardiaca = frecuenciaCardiaca;
+            PresionArterial = presionArterial;
+            IdCategoriaPeso = idCategoriaPeso;
+            IdCliente = idCliente;
+        }
+
         public int Id { get; set; }
         public DateTime FechaRegistro { get; set; }
         public double Altura { get; set; }

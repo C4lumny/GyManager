@@ -40,6 +40,10 @@ namespace Entidades
 
     public class Turno_Atencion
     {
+        public Turno_Atencion()
+        {
+            
+        }
         public int Id { get; set; }
         public string Dia { get; set; }
         public DateTime HoraEntrada { get; set; }

@@ -8,6 +8,10 @@ namespace Entidades.Informacion_Persona
 {
     public class Discapacidad
     {
+        public Discapacidad()
+        {
+            
+        }
         public int Id { get; set; }
         public string Nombre { get; set; }
 
