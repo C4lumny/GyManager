@@ -66,7 +66,7 @@ namespace Datos
         {
             List<Clientess> clientes = new List<Clientess>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "select * from Personas";
+            comando.CommandText = "select * from Clientes";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())
@@ -101,7 +101,7 @@ namespace Datos
                 return "No se ha realizado la actualizacion";
             }
         }
-        public string Update(Clientess cliente, string old_id, DateTime fecha_ingreso)
+        public string Update(Clientess cliente, string old_id)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace Datos
                     command.Parameters.Add("u_genero", OracleDbType.Varchar2).Value = cliente.Genero;
                     command.Parameters.Add("u_telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
                     command.Parameters.Add("u_fecha_nacimiento", OracleDbType.Date).Value = cliente.Fecha_nacimiento;
-                    command.Parameters.Add("u_fecha_ingreso", OracleDbType.Date).Value = fecha_ingreso;
+                    command.Parameters.Add("u_fecha_ingreso", OracleDbType.Date).Value = cliente.Fecha_ingreso;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
