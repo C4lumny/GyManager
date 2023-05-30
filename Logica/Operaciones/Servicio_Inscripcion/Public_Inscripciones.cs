@@ -36,12 +36,12 @@ namespace Logica.Operaciones.AccesoPublico
                 return null;
             }
         }
-        public List<Cliente> ClientesPorSupervisor(Supervisor supervisor) // ingresa un supervisor y retorna los clientes asociados por medio de la inscripcion.
+        public List<Clientess> ClientesPorSupervisor(Supervisoress supervisor) // ingresa un supervisor y retorna los clientes asociados por medio de la inscripcion.
         {
             var inscripciones = GetMainList();
             if (inscripciones != null)
             {
-                List<Cliente> Clientes = new List<Cliente>();
+                List<Clientess> Clientes = new List<Clientess>();
                 foreach (var item in inscripciones)
                 {
                     if (item.supervisor.Id == supervisor.Id)

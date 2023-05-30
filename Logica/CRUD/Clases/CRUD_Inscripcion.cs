@@ -40,7 +40,7 @@ namespace Logica
             }
             else
             {
-                return GetMainList().FindAll(item => item.Id.ToUpper().StartsWith(search.ToUpper()) || item.cliente.Nombre.ToUpper().Contains(search.ToUpper()) ||
+                return GetMainList().FindAll(item => item.Id.ToString().StartsWith(search.ToUpper()) || item.C.Nombre.ToUpper().Contains(search.ToUpper()) ||
                 item.cliente.Id.ToUpper().StartsWith(search.ToUpper()) || item.supervisor.Id.ToUpper().StartsWith(search.ToUpper()) || item.plan.Id.ToUpper().StartsWith(search.ToUpper()) ||
                 item.Precio.ToString().Contains(search) || item.EstadoToString().ToUpper().Contains(search.ToUpper()));
             }
@@ -112,12 +112,12 @@ namespace Logica
             if (Inscripciones == null) { return null; }
             return Inscripciones;
         }
-        public Response<Inscripcion> Renovate(string id_inscripcion, int dias, string id_supervisor, string id_plan, double descuento)
+        public Response<Inscripcion> Renovate(string id_inscripcion, int dias, string id_supervisor, int id_plan, int descuento)
         {
             try
             {
                 Inscripcion inscripcion = ReturnInscripcion(id_inscripcion);
-                Supervisor supervisor = Op_supervisor.ReturnSupervisor(id_supervisor);
+                Supervisoress supervisor = Op_supervisor.ReturnSupervisor(id_supervisor);
                 PlanGimnasio plan = Op_planes.ReturnPlan(id_plan);
 
                 var response = isRenovationValid(inscripcion, supervisor, plan, descuento);
@@ -127,13 +127,13 @@ namespace Logica
                 }
                 else
                 {
-                    inscripcion.supervisor = supervisor;
-                    inscripcion.plan = plan;
+                    inscripcion.SupervisorId = id_supervisor;
+                    inscripcion.PlanId = id_plan;
                     inscripcion.Descuento = descuento;
                     inscripcion.Precio = plan.Precio * (100 - descuento) / 100;
-                    inscripcion.Fecha_inicio = DateTime.Now;
-                    inscripcion.Fecha_finalizacion = inscripcion.Fecha_inicio.AddDays(dias);
-                    inscripcion.Estado = true;
+                    inscripcion.FechaInicio = DateTime.Now;
+                    inscripcion.FechaFinal = inscripcion.FechaInicio.AddDays(dias);
+                    inscripcion.IdEstado = 0;
                     Repositorio_Historial.Save(inscripcion);
                     Repositorio_Inscripciones.Save(inscripcion);
                     return new Response<Inscripcion>(true, "Contrato renovado correctamente.");

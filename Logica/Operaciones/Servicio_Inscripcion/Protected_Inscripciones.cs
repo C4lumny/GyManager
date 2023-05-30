@@ -56,7 +56,7 @@ namespace Logica.Operaciones
                 return Inscripciones_actualizadas;
             }
         }
-        protected Response<Inscripcion> isRenovationValid(Inscripcion inscripcion, Supervisor supervisor, PlanGimnasio plan, double descuento)
+        protected Response<Inscripcion> isRenovationValid(Inscripcion inscripcion, Supervisoress supervisor, PlanGimnasio plan, double descuento)
         {
             var Inscripciones = GetMainList();
             if (Inscripciones == null)

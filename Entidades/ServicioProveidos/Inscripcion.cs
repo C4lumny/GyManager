@@ -58,7 +58,7 @@ namespace Entidades
         public int Id { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinal { get; set; }
-        public float Precio { get; set; }
+        public double Precio { get; set; }
         public int Descuento { get; set; }
         public string ClienteId { get; set; }
         public string SupervisorId { get; set; }
