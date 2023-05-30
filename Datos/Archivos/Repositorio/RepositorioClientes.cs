@@ -66,7 +66,7 @@ namespace Datos
         {
             List<Clientess> clientes = new List<Clientess>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "select * from Personas";
+            comando.CommandText = "select * from Clientes";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())
