@@ -8,8 +8,8 @@ namespace Entidades
     {
         public Supervisores() { }
 
-        public Supervisores(string id, string nombre, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, string correo, DateTime fecha_ingreso)
-            : base(id, nombre, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
+        public Supervisores(string id, string nombre, string apellido, string genero, string telefono, double altura, double peso, DateTime fecha_nacimiento, string correo, DateTime fecha_ingreso)
+            : base(id, nombre, apellido, genero, telefono, altura, peso, fecha_nacimiento, fecha_ingreso)
         {
             Correo = correo;
         }
@@ -18,7 +18,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"{Id};{Nombre};{Genero};{Telefono};{Altura};{Peso};{Fecha_nacimiento};{Correo};{Fecha_ingreso}";
+            return $"{Id};{Nombre};{Apellido};{Genero};{Telefono};{Altura};{Peso};{Fecha_nacimiento};{Correo};{Fecha_ingreso}";
         }
     }
 }

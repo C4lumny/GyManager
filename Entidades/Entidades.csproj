@@ -96,7 +96,7 @@
     <Compile Include="Administrador\Administrador.cs" />
     <Compile Include="Informacion Persona\DatosBiomedicos.cs" />
     <Compile Include="Informacion Persona\Discapacidad.cs" />
-    <Compile Include="Informacion Persona\HistorialBiomedico.cs" />
+    <Compile Include="Pagos y Facturas\Facturas.cs" />
     <Compile Include="Pagos y Facturas\Pago.cs" />
     <Compile Include="ServicioProveidos\Turno_Atencion.cs" />
     <Compile Include="Personas\Cliente.cs" />

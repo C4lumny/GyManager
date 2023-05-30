@@ -16,5 +16,4 @@ namespace Entidades.Informacion_Persona
             return $"{Id};{Nombre}";
         }
     }
-
 }
