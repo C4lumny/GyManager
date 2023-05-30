@@ -29,6 +29,17 @@
         private void InitializeComponent()
         {
             this.panel = new System.Windows.Forms.Panel();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblGrasa = new System.Windows.Forms.Label();
+            this.lblPeso = new System.Windows.Forms.Label();
+            this.lblAltura = new System.Windows.Forms.Label();
+            this.lblFechaNacimiento = new System.Windows.Forms.Label();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblGenero = new System.Windows.Forms.Label();
+            this.lblApellidos = new System.Windows.Forms.Label();
+            this.lblNombres = new System.Windows.Forms.Label();
             this.lblCedula = new System.Windows.Forms.Label();
             this.txtPresion = new System.Windows.Forms.TextBox();
             this.txtFrecuencia = new System.Windows.Forms.TextBox();
@@ -41,17 +52,6 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCedula = new System.Windows.Forms.TextBox();
-            this.lblNombres = new System.Windows.Forms.Label();
-            this.lblApellidos = new System.Windows.Forms.Label();
-            this.lblGenero = new System.Windows.Forms.Label();
-            this.lblTelefono = new System.Windows.Forms.Label();
-            this.lblFechaNacimiento = new System.Windows.Forms.Label();
-            this.lblAltura = new System.Windows.Forms.Label();
-            this.lblPeso = new System.Windows.Forms.Label();
-            this.lblGrasa = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,116 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(436, 656);
             this.panel.TabIndex = 0;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(168, 620);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 22;
+            this.btnGuardar.Text = "GUARDAR";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(95, 563);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Presion:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(79, 513);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 20);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Frecuencia:";
+            // 
+            // lblGrasa
+            // 
+            this.lblGrasa.AutoSize = true;
+            this.lblGrasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGrasa.Location = new System.Drawing.Point(94, 456);
+            this.lblGrasa.Name = "lblGrasa";
+            this.lblGrasa.Size = new System.Drawing.Size(57, 20);
+            this.lblGrasa.TabIndex = 19;
+            this.lblGrasa.Text = "Grasa:";
+            // 
+            // lblPeso
+            // 
+            this.lblPeso.AutoSize = true;
+            this.lblPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeso.Location = new System.Drawing.Point(102, 399);
+            this.lblPeso.Name = "lblPeso";
+            this.lblPeso.Size = new System.Drawing.Size(49, 20);
+            this.lblPeso.TabIndex = 18;
+            this.lblPeso.Text = "Peso:";
+            // 
+            // lblAltura
+            // 
+            this.lblAltura.AutoSize = true;
+            this.lblAltura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAltura.Location = new System.Drawing.Point(102, 343);
+            this.lblAltura.Name = "lblAltura";
+            this.lblAltura.Size = new System.Drawing.Size(55, 20);
+            this.lblAltura.TabIndex = 17;
+            this.lblAltura.Text = "Altura:";
+            // 
+            // lblFechaNacimiento
+            // 
+            this.lblFechaNacimiento.AutoSize = true;
+            this.lblFechaNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(28, 298);
+            this.lblFechaNacimiento.Name = "lblFechaNacimiento";
+            this.lblFechaNacimiento.Size = new System.Drawing.Size(165, 20);
+            this.lblFechaNacimiento.TabIndex = 16;
+            this.lblFechaNacimiento.Text = "Fecha de nacimiento: ";
+            // 
+            // lblTelefono
+            // 
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefono.Location = new System.Drawing.Point(90, 253);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(79, 20);
+            this.lblTelefono.TabIndex = 15;
+            this.lblTelefono.Text = "Telefono: ";
+            // 
+            // lblGenero
+            // 
+            this.lblGenero.AutoSize = true;
+            this.lblGenero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGenero.Location = new System.Drawing.Point(90, 201);
+            this.lblGenero.Name = "lblGenero";
+            this.lblGenero.Size = new System.Drawing.Size(71, 20);
+            this.lblGenero.TabIndex = 14;
+            this.lblGenero.Text = "Genero: ";
+            // 
+            // lblApellidos
+            // 
+            this.lblApellidos.AutoSize = true;
+            this.lblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellidos.Location = new System.Drawing.Point(90, 154);
+            this.lblApellidos.Name = "lblApellidos";
+            this.lblApellidos.Size = new System.Drawing.Size(81, 20);
+            this.lblApellidos.TabIndex = 13;
+            this.lblApellidos.Text = "Apellidos: ";
+            // 
+            // lblNombres
+            // 
+            this.lblNombres.AutoSize = true;
+            this.lblNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombres.Location = new System.Drawing.Point(90, 99);
+            this.lblNombres.Name = "lblNombres";
+            this.lblNombres.Size = new System.Drawing.Size(81, 20);
+            this.lblNombres.TabIndex = 12;
+            this.lblNombres.Text = "Nombres: ";
             // 
             // lblCedula
             // 
@@ -152,6 +262,7 @@
             // 
             // cmbGenero
             // 
+            this.cmbGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGenero.FormattingEnabled = true;
             this.cmbGenero.Items.AddRange(new object[] {
             "M",
@@ -184,115 +295,6 @@
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(184, 23);
             this.txtCedula.TabIndex = 0;
-            // 
-            // lblNombres
-            // 
-            this.lblNombres.AutoSize = true;
-            this.lblNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombres.Location = new System.Drawing.Point(90, 99);
-            this.lblNombres.Name = "lblNombres";
-            this.lblNombres.Size = new System.Drawing.Size(81, 20);
-            this.lblNombres.TabIndex = 12;
-            this.lblNombres.Text = "Nombres: ";
-            // 
-            // lblApellidos
-            // 
-            this.lblApellidos.AutoSize = true;
-            this.lblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidos.Location = new System.Drawing.Point(90, 154);
-            this.lblApellidos.Name = "lblApellidos";
-            this.lblApellidos.Size = new System.Drawing.Size(81, 20);
-            this.lblApellidos.TabIndex = 13;
-            this.lblApellidos.Text = "Apellidos: ";
-            // 
-            // lblGenero
-            // 
-            this.lblGenero.AutoSize = true;
-            this.lblGenero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenero.Location = new System.Drawing.Point(90, 201);
-            this.lblGenero.Name = "lblGenero";
-            this.lblGenero.Size = new System.Drawing.Size(71, 20);
-            this.lblGenero.TabIndex = 14;
-            this.lblGenero.Text = "Genero: ";
-            // 
-            // lblTelefono
-            // 
-            this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefono.Location = new System.Drawing.Point(90, 253);
-            this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(79, 20);
-            this.lblTelefono.TabIndex = 15;
-            this.lblTelefono.Text = "Telefono: ";
-            // 
-            // lblFechaNacimiento
-            // 
-            this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(28, 298);
-            this.lblFechaNacimiento.Name = "lblFechaNacimiento";
-            this.lblFechaNacimiento.Size = new System.Drawing.Size(165, 20);
-            this.lblFechaNacimiento.TabIndex = 16;
-            this.lblFechaNacimiento.Text = "Fecha de nacimiento: ";
-            // 
-            // lblAltura
-            // 
-            this.lblAltura.AutoSize = true;
-            this.lblAltura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAltura.Location = new System.Drawing.Point(102, 343);
-            this.lblAltura.Name = "lblAltura";
-            this.lblAltura.Size = new System.Drawing.Size(55, 20);
-            this.lblAltura.TabIndex = 17;
-            this.lblAltura.Text = "Altura:";
-            // 
-            // lblPeso
-            // 
-            this.lblPeso.AutoSize = true;
-            this.lblPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeso.Location = new System.Drawing.Point(102, 399);
-            this.lblPeso.Name = "lblPeso";
-            this.lblPeso.Size = new System.Drawing.Size(49, 20);
-            this.lblPeso.TabIndex = 18;
-            this.lblPeso.Text = "Peso:";
-            // 
-            // lblGrasa
-            // 
-            this.lblGrasa.AutoSize = true;
-            this.lblGrasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrasa.Location = new System.Drawing.Point(94, 456);
-            this.lblGrasa.Name = "lblGrasa";
-            this.lblGrasa.Size = new System.Drawing.Size(57, 20);
-            this.lblGrasa.TabIndex = 19;
-            this.lblGrasa.Text = "Grasa:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(79, 513);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 20);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Frecuencia:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(95, 563);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 20);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Presion:";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(168, 620);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 22;
-            this.btnGuardar.Text = "GUARDAR";
-            this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // InsertarCliente
             // 
