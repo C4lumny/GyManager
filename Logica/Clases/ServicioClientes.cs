@@ -4,19 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Datos.Archivos.Repositorio;
+using Datos;
 
 namespace Logica.Clases
 {
     public class ServicioClientes : ICRUD<Clientess>
     {
+        RepositorioClientes rep = new RepositorioClientes();
+
+        public ServicioClientes()
+        {
+            
+        }
+
         public void Actualizar(Clientess entidad, int id)
         {
-            throw new NotImplementedException();
+            rep.Update(entidad, id.ToString());
         }
 
         public void Crear(Clientess entidad)
         {
-            throw new NotImplementedException();
+            rep.Insert(entidad);
         }
 
         public void Eliminar(int id)
