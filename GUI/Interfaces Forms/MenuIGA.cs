@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.Pureba.Insertar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -108,9 +109,8 @@ namespace GUI.pruba
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            InsertarCliente insertar = new InsertarCliente();
+            insertar.Show();
             hideSubMenu();
         }
 

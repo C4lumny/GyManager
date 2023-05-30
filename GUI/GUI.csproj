@@ -119,65 +119,71 @@
     <Compile Include="Interfaces Forms\MenuIGA.Designer.cs">
       <DependentUpon>MenuIGA.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveClientesBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveClientesBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveClientesBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveClientesBD.Designer.cs">
       <DependentUpon>ReceiveClientesBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveDatosBiomedicosBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveDatosBiomedicosBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveDatosBiomedicosBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveDatosBiomedicosBD.Designer.cs">
       <DependentUpon>ReceiveDatosBiomedicosBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveFacturasBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveFacturasBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveFacturasBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveFacturasBD.Designer.cs">
       <DependentUpon>ReceiveFacturasBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveHistorialBiomedicoBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveHistorialBiomedicoBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveHistorialBiomedicoBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveHistorialBiomedicoBD.Designer.cs">
       <DependentUpon>ReceiveHistorialBiomedicoBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveHistorialFacturaBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveHistorialFacturaBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveHistorialFacturaBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveHistorialFacturaBD.Designer.cs">
       <DependentUpon>ReceiveHistorialFacturaBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveHistorialPagosBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveHistorialPagosBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveHistorialPagosBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveHistorialPagosBD.Designer.cs">
       <DependentUpon>ReceiveHistorialPagosBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveInscripcionBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveInscripcionBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveInscripcionBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveInscripcionBD.Designer.cs">
       <DependentUpon>ReceiveInscripcionBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceivePagosBD.cs">
+    <Compile Include="Pureba\Consultar\ReceivePagosBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceivePagosBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceivePagosBD.Designer.cs">
       <DependentUpon>ReceivePagosBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceivePlanGimnasioBD.cs">
+    <Compile Include="Pureba\Consultar\ReceivePlanGimnasioBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceivePlanGimnasioBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceivePlanGimnasioBD.Designer.cs">
       <DependentUpon>ReceivePlanGimnasioBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pureba\ReceiveSupervisorBD.cs">
+    <Compile Include="Pureba\Consultar\ReceiveSupervisorBD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pureba\ReceiveSupervisorBD.Designer.cs">
+    <Compile Include="Pureba\Consultar\ReceiveSupervisorBD.Designer.cs">
       <DependentUpon>ReceiveSupervisorBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pureba\Insertar\InsertarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pureba\Insertar\InsertarCliente.Designer.cs">
+      <DependentUpon>InsertarCliente.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -211,35 +217,38 @@
     <EmbeddedResource Include="Interfaces Forms\MenuIGA.resx">
       <DependentUpon>MenuIGA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveClientesBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveClientesBD.resx">
       <DependentUpon>ReceiveClientesBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveDatosBiomedicosBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveDatosBiomedicosBD.resx">
       <DependentUpon>ReceiveDatosBiomedicosBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveFacturasBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveFacturasBD.resx">
       <DependentUpon>ReceiveFacturasBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveHistorialBiomedicoBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveHistorialBiomedicoBD.resx">
       <DependentUpon>ReceiveHistorialBiomedicoBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveHistorialFacturaBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveHistorialFacturaBD.resx">
       <DependentUpon>ReceiveHistorialFacturaBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveHistorialPagosBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveHistorialPagosBD.resx">
       <DependentUpon>ReceiveHistorialPagosBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveInscripcionBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveInscripcionBD.resx">
       <DependentUpon>ReceiveInscripcionBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceivePagosBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceivePagosBD.resx">
       <DependentUpon>ReceivePagosBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceivePlanGimnasioBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceivePlanGimnasioBD.resx">
       <DependentUpon>ReceivePlanGimnasioBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pureba\ReceiveSupervisorBD.resx">
+    <EmbeddedResource Include="Pureba\Consultar\ReceiveSupervisorBD.resx">
       <DependentUpon>ReceiveSupervisorBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pureba\Insertar\InsertarCliente.resx">
+      <DependentUpon>InsertarCliente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
