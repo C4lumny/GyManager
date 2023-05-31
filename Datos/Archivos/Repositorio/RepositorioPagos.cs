@@ -77,7 +77,7 @@ namespace Datos.Archivos.Repositorio
             return pagos;
         }
 
-        public string Delete(string id)
+        public string Delete(int id)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace Datos.Archivos.Repositorio
             }
         }
 
-        public string Update(Pago pago, string old_id)
+        public string Update(Pago pago, int old_id)
         {
             try
             {

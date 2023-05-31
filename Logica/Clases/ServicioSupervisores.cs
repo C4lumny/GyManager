@@ -1,4 +1,6 @@
-﻿using Entidades;
+﻿using Datos;
+using Datos.Archivos;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +9,32 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioSupervisores : ICRUD<Supervisoress>
+    public class ServicioSupervisores 
     {
-        public void Actualizar(Supervisoress entidad, int id)
+        RepositorioSupervisor rep = new RepositorioSupervisor();
+        public void Actualizar(Supervisoress entidad, string id)
         {
-            throw new NotImplementedException();
+            rep.Update(entidad, id);
         }
 
         public void Crear(Supervisoress entidad)
         {
-            throw new NotImplementedException();
+            rep.Insert(entidad);
         }
 
-        public void Eliminar(int id)
+        public void Eliminar(string id)
         {
-            throw new NotImplementedException();
+            rep.Delete(id);
         }
 
         public List<Supervisoress> Leer()
         {
-            throw new NotImplementedException();
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista;
         }
     }
 }

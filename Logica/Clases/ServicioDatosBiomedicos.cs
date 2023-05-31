@@ -1,4 +1,6 @@
-﻿using Entidades.Informacion_Persona;
+﻿using Datos;
+using Datos.Archivos.Repositorio;
+using Entidades.Informacion_Persona;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +9,36 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioDatosBiomedicos : ICRUD<DatosBiomedicos>
+    public class ServicioDatosBiomedicos 
     {
-        public void Actualizar(DatosBiomedicos entidad, int id)
+        RepositorioDatosBiomedicos rep = new RepositorioDatosBiomedicos();
+        public ServicioDatosBiomedicos()
         {
-            throw new NotImplementedException();
+            
+        }
+        public void Actualizar(DatosBiomedicos entidad, string id)
+        {
+            rep.Update(entidad, id);
         }
 
         public void Crear(DatosBiomedicos entidad)
         {
-            throw new NotImplementedException();
+            rep.Insert(entidad);
         }
 
-        public void Eliminar(int id)
+        public void Eliminar(string id)
         {
-            throw new NotImplementedException();
+            rep.Delete(id);
         }
 
         public List<DatosBiomedicos> Leer()
         {
-            throw new NotImplementedException();
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista;
         }
     }
 }

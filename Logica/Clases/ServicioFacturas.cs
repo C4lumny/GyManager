@@ -1,4 +1,5 @@
-﻿using Entidades.Pagos_y_Facturas;
+﻿using Datos.Archivos.Repositorio;
+using Entidades.Pagos_y_Facturas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,21 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioFacturas : ICRUD<Facturas>
+    public class ServicioFacturas 
     {
-        public void Actualizar(Facturas entidad, int id)
-        {
-            throw new NotImplementedException();
-        }
+        RepositorioFacturas rep = new RepositorioFacturas();
 
-        public void Crear(Facturas entidad)
+        public ServicioFacturas()
         {
-            throw new NotImplementedException();
         }
-
-        public void Eliminar(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Facturas> Leer()
         {
-            throw new NotImplementedException();
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista;
         }
     }
 }

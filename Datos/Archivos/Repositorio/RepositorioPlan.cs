@@ -67,7 +67,7 @@ namespace Datos
             }
         }
 
-        public string Update(PlanGimnasio plan, string old_id)
+        public string Update(PlanGimnasio plan, int old_id)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace Datos
             }
         }
 
-        public string Delete(string id)
+        public string Delete(int id)
         {
             try
             {

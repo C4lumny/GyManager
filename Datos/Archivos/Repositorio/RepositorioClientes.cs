@@ -11,7 +11,7 @@ namespace Datos
 {
     public class RepositorioClientes
     {
-        Coneccion conexion;
+        Coneccion conexion = new Coneccion();
         public RepositorioClientes()
         {
             conexion = new Coneccion();
@@ -110,6 +110,7 @@ namespace Datos
                 using (OracleCommand command = conexion._conexion.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PKG_CLIENTE.p_eliminartodocliente";
                     conexion.Open();
                     command.ExecuteNonQuery();
                     conexion.Close();

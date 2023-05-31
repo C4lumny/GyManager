@@ -32,7 +32,10 @@ namespace Logica.Clases
         {
             throw new NotImplementedException();
         }
-
+        public void EliminarTodo()
+        {
+            rep.DeleteAll();
+        }
         public List<Clientess> Leer() { 
             var lista = rep.GetAll();
             if (lista == null)
@@ -41,5 +44,6 @@ namespace Logica.Clases
             }
             return lista;
         }
+
     }
 }

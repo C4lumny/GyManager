@@ -1,4 +1,5 @@
-﻿using Entidades.Informacion_Persona;
+﻿using Datos.Archivos.Repositorio;
+using Entidades.Informacion_Persona;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,23 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioDiscapacidad : ICRUD<Discapacidad>
+    public class ServicioDiscapacidad 
     {
-        public void Actualizar(Discapacidad entidad, int id)
+        RepositorioDiscapacidades rep = new RepositorioDiscapacidades();
+
+        public ServicioDiscapacidad()
         {
-            throw new NotImplementedException();
+            
+        }
+        public void asignar(Discapacidad entidad, string id)
+        {
+            rep.AsignarDiscapacidad(id, entidad);
         }
 
-        public void Crear(Discapacidad entidad)
+        public void eliminar(Discapacidad entidad, string id)
         {
-            throw new NotImplementedException();
+            rep.EliminarDiscapacidadCliente(id, entidad);
         }
 
-        public void Eliminar(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Discapacidad> Leer()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

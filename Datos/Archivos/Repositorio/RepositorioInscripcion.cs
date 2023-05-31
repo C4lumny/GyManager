@@ -80,7 +80,6 @@ namespace Datos
             conexion.Close();
             return clientes;
         }
-
         public string Delete(string id)
         {
             try

@@ -18,36 +18,8 @@ namespace Datos.Archivos.Repositorio
         {
             
         }
-        public Response<Discapacidad> InsertDiscapacidad(string nombre)
-        {
-            Response<Discapacidad> response = new Response<Discapacidad>(false, "", null, null);
 
-            try
-            {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "pkg_discapacidades.p_insertardiscapacidad";
-
-                    command.Parameters.Add("i_nombre", OracleDbType.Varchar2).Value = nombre;
-
-                    conexion.Open();
-                    command.ExecuteNonQuery();
-                    conexion.Close();
-
-                    response.Success = true;
-                    response.Msg = "Discapacidad insertada correctamente";
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Msg = ex.Message;
-            }
-
-            return response;
-        }
-
-        public Response<Discapacidad> AsignarDiscapacidad(string idCliente, string discapacidad)
+        public Response<Discapacidad> AsignarDiscapacidad(string idCliente, Discapacidad discapacidad)
         {
             Response<Discapacidad> response = new Response<Discapacidad>(false, "", null, null);
 
@@ -77,7 +49,7 @@ namespace Datos.Archivos.Repositorio
             return response;
         }
 
-        public Response<Discapacidad> EliminarDiscapacidadCliente(string idCliente, string idDiscapacidad)
+        public Response<Discapacidad> EliminarDiscapacidadCliente(string idCliente, Discapacidad idDiscapacidad)
         {
             Response<Discapacidad> response = new Response<Discapacidad>(false, "", null, null);
 
@@ -127,7 +99,7 @@ namespace Datos.Archivos.Repositorio
                     int idDiscapacidad = Convert.ToInt32(command.Parameters["result"].Value);
                     conexion.Close();
 
-                    if (idDiscapacidad != 0)
+                    if (idDiscapacidad != -1)
                     {
                         Discapacidad discapacidad = new Discapacidad
                         {

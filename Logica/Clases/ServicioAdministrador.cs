@@ -1,4 +1,6 @@
-﻿using Entidades.Administrador;
+﻿using Datos;
+using Datos.Archivos.Repositorio;
+using Entidades.Administrador;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +11,18 @@ namespace Logica.Clases
 {
     public class ServicioAdministrador 
     {
-        public void Actualizar(Administrador entidad, int id)
-        {
-            throw new NotImplementedException();
-        }
+        RepositorioAdministrador rep = new RepositorioAdministrador();
+
 
         public void Crear(Administrador entidad)
         {
-            throw new NotImplementedException();
+            rep.Insert(entidad);
         }
 
-        public void Eliminar(int id)
+        public void Eliminar(string id)
         {
-            throw new NotImplementedException();
+            rep.Delete(id);
         }
 
-        public Administrador Leer()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
