@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.DTOHorarios;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -11,22 +12,20 @@ namespace Datos.Archivos.Repositorio
         public RepositorioTurnos()
         { 
         }
-        public Turno_Atencion Mapper(OracleDataReader dataReader)
+        public Dtohorarios Mapper(OracleDataReader dataReader)
         {
             try
             {
-                if (!dataReader.HasRows)
-                {
-                    return null;
-                }
-
-                Turno_Atencion turno = new Turno_Atencion();
-                turno.Id = dataReader.GetInt32(0);
-                turno.Dia = dataReader.GetString(1);
-                turno.HoraEntrada = dataReader.GetDateTime(2);
-                turno.HoraSalida = dataReader.GetDateTime(3);
-
-                return turno;
+                if (!dataReader.HasRows) { return null; }
+                Dtohorarios dtohorarios = new Dtohorarios();
+                dtohorarios.Supervisor_Id = dataReader.GetString(0);
+                dtohorarios.Supervisor_nombres = dataReader.GetString(1);
+                dtohorarios.Supervisor_apellidos = dataReader.GetString(2);
+                dtohorarios.Turno_id = dataReader.GetInt32(3).ToString();
+                dtohorarios.Dia = dataReader.GetString(4);
+                dtohorarios.HoraEntrada = dataReader.GetDateTime(5).ToShortTimeString();
+                dtohorarios.HoraSalida = dataReader.GetDateTime(6).ToShortTimeString();
+                return dtohorarios;
             }
             catch (Exception)
             {
@@ -34,18 +33,19 @@ namespace Datos.Archivos.Repositorio
             }
         }
 
-        public Response<Turno_Atencion> Insert(Turno_Atencion turno)
+        public Response<Turno_Atencion> Asignar(Turno_Atencion turno, string id_sup)
         {
             try
             {
                 using (OracleCommand command = conexion._conexion.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PKG_TURNOS_ATENCION.p_insertarturno";
+                    command.CommandText = "PKG_TURNOS_ATENCION.p_asignarturno";
 
-                    command.Parameters.Add("i_dia", OracleDbType.Varchar2).Value = turno.Dia;
-                    command.Parameters.Add("i_hora_entrada", OracleDbType.Date).Value = turno.HoraEntrada;
-                    command.Parameters.Add("i_hora_salida", OracleDbType.Date).Value = turno.HoraSalida;
+                    command.Parameters.Add("a_id_sup", OracleDbType.Varchar2).Value = id_sup;
+                    command.Parameters.Add("a_dia", OracleDbType.Varchar2).Value = turno.Dia;
+                    command.Parameters.Add("a_hora_entrada", OracleDbType.Date).Value = turno.HoraEntrada;
+                    command.Parameters.Add("a_hora_salida", OracleDbType.Date).Value = turno.HoraSalida;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
@@ -59,42 +59,17 @@ namespace Datos.Archivos.Repositorio
             }
         }
 
-        public string Update(Turno_Atencion turno, int old_id)
+        public string Delete(int id_sup, string id_turno)
         {
             try
             {
                 using (OracleCommand command = conexion._conexion.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PKG_TURNOS_ATENCION.p_actualizarturno";
+                    command.CommandText = "PKG_TURNOS_ATENCION.p_eliminarturnosupervisor";
 
-                    command.Parameters.Add("old_id", OracleDbType.Int32).Value = old_id;
-                    command.Parameters.Add("u_dia", OracleDbType.Varchar2).Value = turno.Dia;
-                    command.Parameters.Add("u_hora_entrada", OracleDbType.Date).Value = turno.HoraEntrada;
-                    command.Parameters.Add("u_hora_salida", OracleDbType.Date).Value = turno.HoraSalida;
-
-                    conexion.Open();
-                    command.ExecuteNonQuery();
-                    conexion.Close();
-                }
-                return "Se ha actualizado correctamente.";
-            }
-            catch (Exception)
-            {
-                return "No se ha actualizado el turno.";
-            }
-        }
-
-        public string Delete(int id)
-        {
-            try
-            {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PKG_TURNOS_ATENCION.p_eliminarturno";
-
-                    command.Parameters.Add("d_id", OracleDbType.Int32).Value = id;
+                    command.Parameters.Add("e_id_sup", OracleDbType.Int32).Value = id_sup;
+                    command.Parameters.Add("e_id_turno", OracleDbType.Int32).Value = id_turno;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
@@ -108,11 +83,11 @@ namespace Datos.Archivos.Repositorio
             }
         }
 
-        public List<Turno_Atencion> GetAll()
+        public List<Dtohorarios> GetAll()
         {
-            List<Turno_Atencion> turnos = new List<Turno_Atencion>();
+            List<Dtohorarios> turnos = new List<Dtohorarios>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM Turnos_Atencion";
+            comando.CommandText = "SELECT * FROM vista_horarios";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())

@@ -29,10 +29,15 @@ namespace GUI.Pureba
             {
                 foreach (Inscripcion inscripcion in lista)
                 {
-                    dgvInscripcion.Rows.Add(inscripcion.FechaFinal, inscripcion.Precio, inscripcion.ClienteId);
+                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.ClienteId, inscripcion.SupervisorId, inscripcion.PlanId, inscripcion.IdEstado);
                 }
             }
 
+        }
+
+        private void ConsultarInscripcionBD_Load(object sender, EventArgs e)
+        {
+            CargarGrilla();
         }
     }
 }

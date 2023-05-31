@@ -29,7 +29,7 @@ namespace GUI.CRUD.Insertar
             plan.Dias = int.Parse(txtDias.Text);
             plan.Descripcion = txtDescripcion.Text;
 
-            servPlan.Crear(plan);
+            MessageBox.Show(servPlan.Crear(plan));
         }
     }
 }

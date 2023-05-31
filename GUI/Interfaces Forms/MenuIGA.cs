@@ -28,6 +28,7 @@ namespace GUI.pruba
             pnlInscripcionesSbmn.Visible = false;
             pnlProductosSbmn.Visible = false;
             pnlSupervisoresSbmn.Visible = false;
+            panelPlanes.Visible = false;
         }
 
         private void hideSubMenu()
@@ -51,7 +52,10 @@ namespace GUI.pruba
             {
                 pnlProductosSbmn.Visible = false;
             }
-
+            if (panelPlanes.Visible == true)
+            {
+                panelPlanes.Visible = false;
+            }
         }
 
         private void showSubMenu(Panel subMenu)
@@ -74,17 +78,15 @@ namespace GUI.pruba
 
         private void btnAgregarInscripcion_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            InsertarInscripcion ver = new InsertarInscripcion();
+            ver.Show();
             hideSubMenu();
         }
 
         private void btnConsultarInscripcion_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            ConsultarInscripcionBD ver = new ConsultarInscripcionBD();
+            ver.Show();
             hideSubMenu();
         }
 
@@ -183,17 +185,15 @@ namespace GUI.pruba
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            InsertarPago ver = new InsertarPago();
+            ver.Show();
             hideSubMenu();
         }
 
         private void btnConsultarProducto_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            ConsultarPagoBD ver = new ConsultarPagoBD();
+            ver.Show();
             hideSubMenu();
         }
 
@@ -219,6 +219,50 @@ namespace GUI.pruba
             {
                 Application.Exit(); // Cierra la aplicación cuando se presiona el botón "X"
             }
+        }
+
+
+        private void pnlLogo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelPlanes_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnAgregarPlan_Click(object sender, EventArgs e)
+        {
+            InsertarPlanGimnasio insertarplan = new InsertarPlanGimnasio();
+            insertarplan.Show();
+        }
+
+        private void btnConsultarPlan_Click(object sender, EventArgs e)
+        {
+            ConsultarPlanGimnasioBD ver = new ConsultarPlanGimnasioBD();
+            ver.Show();
+        }
+
+        private void btnActualizarPlan_Click(object sender, EventArgs e)
+        {
+            /*
+            Codigo
+            */
+            hideSubMenu();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            showSubMenu(panelPlanes);
+        }
+
+        private void btnEliminarPlan_Click_1(object sender, EventArgs e)
+        {
+            /*
+                Codigo
+            */
+            hideSubMenu();
         }
     }
 }

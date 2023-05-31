@@ -70,6 +70,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "ConsultarPagoBD";
             this.Text = "ReceivePagosBD";
+            this.Load += new System.EventHandler(this.ConsultarPagoBD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

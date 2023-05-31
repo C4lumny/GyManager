@@ -22,6 +22,7 @@ namespace GUI.Pureba.Insertar
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+
             // Crear un objeto Cliente
             Clientess cliente = new Clientess();
             DatosBiomedicos datos = new DatosBiomedicos();
@@ -39,7 +40,7 @@ namespace GUI.Pureba.Insertar
             datos.FrecuenciaCardiaca = int.Parse(txtFrecuencia.Text);
             datos.PresionArterial = int.Parse(txtPresion.Text);
 
-            serv.Crear(cliente);
+            MessageBox.Show(serv.Crear(cliente));
         }
     }
 }

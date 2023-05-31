@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Pagos_y_Facturas;
 using Logica.Clases;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace GUI.CRUD.Insertar
             inscripcion.PlanId = int.Parse(txtIDPlan.Text);
             inscripcion.Descuento = int.Parse(txtDescuento.Text);
 
-            servInscripcion.Crear(inscripcion);
+            MessageBox.Show(servInscripcion.Crear(inscripcion));
         }
     }
 }

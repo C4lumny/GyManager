@@ -1,4 +1,7 @@
-﻿using Entidades;
+﻿using Datos.Archivos;
+using Datos.Archivos.Repositorio;
+using Entidades;
+using Entidades.Informacion_Persona;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +10,23 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    internal class ServicioTurnoAtencion : ICRUD<Turno_Atencion>
+    public class ServicioTurnoAtencion
     {
-        public void Actualizar(Turno_Atencion entidad, int id)
+
+        RepositorioTurnos rep = new RepositorioTurnos();
+
+        public ServicioTurnoAtencion()
         {
-            throw new NotImplementedException();
+            
+        }
+        public string asignar(Turno_Atencion entidad, string id)
+        {
+            return rep.Asignar(entidad, id).Msg;
         }
 
-        public void Crear(Turno_Atencion entidad)
+        public string eliminar(string id_sup, int id_turno)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Eliminar(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Turno_Atencion> Leer()
-        {
-            throw new NotImplementedException();
+            return rep.Delete(id_turno, id_sup);
         }
     }
 }

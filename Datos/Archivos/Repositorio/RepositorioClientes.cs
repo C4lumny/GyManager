@@ -23,11 +23,12 @@ namespace Datos
                 if (!dataReader.HasRows) { return null; }
                 Clientess cliente = new Clientess();
                 cliente.Id = dataReader.GetString(0);
-                cliente.Nombre = dataReader.GetString(1); 
-                cliente.Genero = dataReader.GetString(2); 
-                cliente.Telefono = dataReader.GetString(3);
-                cliente.Fecha_nacimiento = dataReader.GetDateTime(4);
-                cliente.Fecha_ingreso = dataReader.GetDateTime(5);
+                cliente.Nombre = dataReader.GetString(1);
+                cliente.Apellido = dataReader.GetString(2);
+                cliente.Genero = dataReader.GetString(3); 
+                cliente.Telefono = dataReader.GetString(4);
+                cliente.Fecha_nacimiento = dataReader.GetDateTime(5);
+                cliente.Fecha_ingreso = dataReader.GetDateTime(6);
                 return cliente;
             }
             catch (Exception)

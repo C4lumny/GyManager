@@ -29,16 +29,13 @@
         private void InitializeComponent()
         {
             this.dgvInscripcion = new System.Windows.Forms.DataGridView();
+            this.clmFecha_Inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnFechaFInal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnIdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnNombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnIdSupervisor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnNombreSupervisor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPlan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnEstadoPlan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripcion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,20 +43,22 @@
             // 
             this.dgvInscripcion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInscripcion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmFecha_Inicio,
             this.clmnFechaFInal,
             this.clmnPrecio,
             this.clmnIdCliente,
-            this.clmnNombreCliente,
             this.clmnIdSupervisor,
-            this.clmnNombreSupervisor,
             this.clmnPlan,
-            this.clmnEstadoPlan,
-            this.Column1,
-            this.Column2});
+            this.clmnEstadoPlan});
             this.dgvInscripcion.Location = new System.Drawing.Point(12, 12);
             this.dgvInscripcion.Name = "dgvInscripcion";
-            this.dgvInscripcion.Size = new System.Drawing.Size(844, 426);
+            this.dgvInscripcion.Size = new System.Drawing.Size(744, 426);
             this.dgvInscripcion.TabIndex = 0;
+            // 
+            // clmFecha_Inicio
+            // 
+            this.clmFecha_Inicio.HeaderText = "Fecha_Inicio";
+            this.clmFecha_Inicio.Name = "clmFecha_Inicio";
             // 
             // clmnFechaFInal
             // 
@@ -77,20 +76,10 @@
             this.clmnIdCliente.HeaderText = "Id C";
             this.clmnIdCliente.Name = "clmnIdCliente";
             // 
-            // clmnNombreCliente
-            // 
-            this.clmnNombreCliente.HeaderText = "Nombre C";
-            this.clmnNombreCliente.Name = "clmnNombreCliente";
-            // 
             // clmnIdSupervisor
             // 
             this.clmnIdSupervisor.HeaderText = "Id S";
             this.clmnIdSupervisor.Name = "clmnIdSupervisor";
-            // 
-            // clmnNombreSupervisor
-            // 
-            this.clmnNombreSupervisor.HeaderText = "Nombre S";
-            this.clmnNombreSupervisor.Name = "clmnNombreSupervisor";
             // 
             // clmnPlan
             // 
@@ -103,26 +92,15 @@
             this.clmnEstadoPlan.Name = "clmnEstadoPlan";
             this.clmnEstadoPlan.ReadOnly = true;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
             // ConsultarInscripcionBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 450);
+            this.ClientSize = new System.Drawing.Size(770, 450);
             this.Controls.Add(this.dgvInscripcion);
             this.Name = "ConsultarInscripcionBD";
             this.Text = "ReceiveInscripcionBD";
+            this.Load += new System.EventHandler(this.ConsultarInscripcionBD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripcion)).EndInit();
             this.ResumeLayout(false);
 
@@ -131,15 +109,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvInscripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmFecha_Inicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnFechaFInal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnIdCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombreCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnIdSupervisor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombreSupervisor;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPlan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEstadoPlan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
