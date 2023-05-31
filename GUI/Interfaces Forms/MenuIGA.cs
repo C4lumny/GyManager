@@ -1,4 +1,5 @@
-﻿using GUI.Pureba;
+﻿using GUI.CRUD.Insertar;
+using GUI.Pureba;
 using GUI.Pureba.Insertar;
 using System;
 using System.Collections.Generic;
@@ -145,17 +146,17 @@ namespace GUI.pruba
 
         private void btnAgregarSupervisor_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            InsertarSupervisor insertarSup = new InsertarSupervisor();
+            insertarSup.Show();
+
             hideSubMenu();
         }
 
         private void btnConsultarSupervisor_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            ConsultarSupervisorBD consultarSup = new ConsultarSupervisorBD();
+            consultarSup.Show();
+            
             hideSubMenu();
         }
 
