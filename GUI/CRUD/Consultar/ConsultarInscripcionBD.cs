@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace GUI.Pureba
 {
-    public partial class ReceivePlanGimnasioBD : Form
+    public partial class ConsultarInscripcionBD : Form
     {
-        public ReceivePlanGimnasioBD()
+        public ConsultarInscripcionBD()
         {
             InitializeComponent();
+        }
+
+        private void ReceiveInscripcionBD_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

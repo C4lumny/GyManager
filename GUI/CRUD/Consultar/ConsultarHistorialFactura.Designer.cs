@@ -1,6 +1,6 @@
 ﻿namespace GUI.Pureba
 {
-    partial class ReceiveSupervisorBD
+    partial class ConsultarHistorialFactura
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.clmnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnGenero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnPagoIngresado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnIDInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnAccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,54 +41,49 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmnNombre,
-            this.clmnApellido,
-            this.clmnGenero,
-            this.clmnTelefono,
-            this.clmnCorreo});
-            this.dataGridView1.Location = new System.Drawing.Point(116, 39);
+            this.clmnPagoIngresado,
+            this.clmnSubtotal,
+            this.clmnSaldo,
+            this.clmnIDInscripcion,
+            this.clmnAccion});
+            this.dataGridView1.Location = new System.Drawing.Point(137, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(545, 347);
+            this.dataGridView1.Size = new System.Drawing.Size(544, 426);
             this.dataGridView1.TabIndex = 0;
             // 
-            // clmnNombre
+            // clmnPagoIngresado
             // 
-            this.clmnNombre.HeaderText = "Nombre";
-            this.clmnNombre.Name = "clmnNombre";
-            this.clmnNombre.ReadOnly = true;
+            this.clmnPagoIngresado.HeaderText = "Pago Ingresado";
+            this.clmnPagoIngresado.Name = "clmnPagoIngresado";
             // 
-            // clmnApellido
+            // clmnSubtotal
             // 
-            this.clmnApellido.HeaderText = "Apellidos";
-            this.clmnApellido.Name = "clmnApellido";
-            this.clmnApellido.ReadOnly = true;
+            this.clmnSubtotal.HeaderText = "Subtotal";
+            this.clmnSubtotal.Name = "clmnSubtotal";
             // 
-            // clmnGenero
+            // clmnSaldo
             // 
-            this.clmnGenero.HeaderText = "Genero";
-            this.clmnGenero.Name = "clmnGenero";
-            this.clmnGenero.ReadOnly = true;
+            this.clmnSaldo.HeaderText = "Saldo";
+            this.clmnSaldo.Name = "clmnSaldo";
             // 
-            // clmnTelefono
+            // clmnIDInscripcion
             // 
-            this.clmnTelefono.HeaderText = "Telefono";
-            this.clmnTelefono.Name = "clmnTelefono";
-            this.clmnTelefono.ReadOnly = true;
+            this.clmnIDInscripcion.HeaderText = "ID Inscripcion";
+            this.clmnIDInscripcion.Name = "clmnIDInscripcion";
             // 
-            // clmnCorreo
+            // clmnAccion
             // 
-            this.clmnCorreo.HeaderText = "Correo";
-            this.clmnCorreo.Name = "clmnCorreo";
-            this.clmnCorreo.ReadOnly = true;
+            this.clmnAccion.HeaderText = "Accion";
+            this.clmnAccion.Name = "clmnAccion";
             // 
-            // ReceiveSupervisorBD
+            // ReceiveHistorialFacturaBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "ReceiveSupervisorBD";
-            this.Text = "ReceiveSupervisorBD";
+            this.Name = "ReceiveHistorialFacturaBD";
+            this.Text = "ReceiveHistorialFacturaBD";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -97,10 +92,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnApellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnGenero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnTelefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnCorreo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnPagoIngresado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSubtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSaldo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnIDInscripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnAccion;
     }
 }

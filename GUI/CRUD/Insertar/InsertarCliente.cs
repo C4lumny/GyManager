@@ -32,7 +32,7 @@ namespace GUI.Pureba.Insertar
             cliente.Apellido = txtApellido.Text;
             cliente.Genero = cmbGenero.SelectedItem.ToString();
             cliente.Telefono = txtTelefono.Text;
-            cliente.Fecha_nacimiento = dateTimePicker1.Value;
+            cliente.Fecha_nacimiento = dtmFechaNacimiento.Value;
             datos.Altura = double.Parse(txtAltura.Text);
             datos.Peso = double.Parse(txtPeso.Text);
             datos.GrasaCorporal = double.Parse(txtGrasa.Text);

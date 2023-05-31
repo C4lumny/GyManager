@@ -1,6 +1,6 @@
 ﻿namespace GUI.Pureba
 {
-    partial class ReceiveHistorialPagosBD
+    partial class ConsultarHistorialPagosBD
     {
         /// <summary>
         /// Required designer variable.

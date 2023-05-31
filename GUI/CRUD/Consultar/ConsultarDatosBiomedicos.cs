@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GUI.Pureba
 {
-    public partial class ReceiveSupervisorBD : Form
+    public partial class ConsultarDatosBiomedicos : Form
     {
-        public ReceiveSupervisorBD()
+        public ConsultarDatosBiomedicos()
         {
             InitializeComponent();
         }

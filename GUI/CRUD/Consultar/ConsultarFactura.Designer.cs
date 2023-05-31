@@ -1,6 +1,6 @@
 ﻿namespace GUI.Pureba
 {
-    partial class ReceivePlanGimnasioBD
+    partial class ConsultarFactura
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.clmnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnPagoIngresado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnIdInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,37 +40,47 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmnNombre,
-            this.clmnPrecio,
-            this.clmnDias});
-            this.dataGridView1.Location = new System.Drawing.Point(252, 12);
+            this.clmnPagoIngresado,
+            this.clmnSubtotal,
+            this.clmnSaldo,
+            this.clmnIdInscripcion});
+            this.dataGridView1.Location = new System.Drawing.Point(165, 33);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(343, 411);
+            this.dataGridView1.Size = new System.Drawing.Size(445, 367);
             this.dataGridView1.TabIndex = 0;
             // 
-            // clmnNombre
+            // clmnPagoIngresado
             // 
-            this.clmnNombre.HeaderText = "Nombre";
-            this.clmnNombre.Name = "clmnNombre";
+            this.clmnPagoIngresado.HeaderText = "Pago Ingresado";
+            this.clmnPagoIngresado.Name = "clmnPagoIngresado";
+            this.clmnPagoIngresado.ReadOnly = true;
             // 
-            // clmnPrecio
+            // clmnSubtotal
             // 
-            this.clmnPrecio.HeaderText = "Precio";
-            this.clmnPrecio.Name = "clmnPrecio";
+            this.clmnSubtotal.HeaderText = "Subtotal";
+            this.clmnSubtotal.Name = "clmnSubtotal";
+            this.clmnSubtotal.ReadOnly = true;
             // 
-            // clmnDias
+            // clmnSaldo
             // 
-            this.clmnDias.HeaderText = "Dias";
-            this.clmnDias.Name = "clmnDias";
+            this.clmnSaldo.HeaderText = "Saldo";
+            this.clmnSaldo.Name = "clmnSaldo";
+            this.clmnSaldo.ReadOnly = true;
             // 
-            // ReceivePlanGimnasioBD
+            // clmnIdInscripcion
+            // 
+            this.clmnIdInscripcion.HeaderText = "ID Inscripcion";
+            this.clmnIdInscripcion.Name = "clmnIdInscripcion";
+            this.clmnIdInscripcion.ReadOnly = true;
+            // 
+            // ReceiveFacturasBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "ReceivePlanGimnasioBD";
-            this.Text = "ReceivePlanGimnasioBD";
+            this.Name = "ReceiveFacturasBD";
+            this.Text = "ReceiveFacturasBD";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -78,8 +89,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnDias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnPagoIngresado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSubtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSaldo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnIdInscripcion;
     }
 }

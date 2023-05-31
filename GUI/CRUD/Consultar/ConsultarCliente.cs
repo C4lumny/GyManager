@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace GUI.Pureba
 {
-    public partial class ReceiveClientesBD : Form
+    public partial class ConsultarCliente : Form
     {
         ServicioClientes serv; 
-        public ReceiveClientesBD()
+        public ConsultarCliente()
         {
             serv = new ServicioClientes();
             InitializeComponent();
