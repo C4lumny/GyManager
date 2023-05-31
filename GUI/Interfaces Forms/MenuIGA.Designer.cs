@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.pnlMenuLateral = new System.Windows.Forms.Panel();
+            this.panelPlanes = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAgregarPlan = new System.Windows.Forms.Button();
+            this.btnConsultarPlan = new System.Windows.Forms.Button();
+            this.btnActualizarPlan = new System.Windows.Forms.Button();
+            this.btnEliminarPlan = new System.Windows.Forms.Button();
+            this.btnPlan = new System.Windows.Forms.Button();
             this.pnlProductosSbmn = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -58,18 +64,13 @@
             this.btnAgregarInscripcion = new System.Windows.Forms.Button();
             this.btnInscripciones = new System.Windows.Forms.Button();
             this.pnlLogo = new System.Windows.Forms.Panel();
-            this.btnEliminarPlan = new System.Windows.Forms.Button();
-            this.btnActualizarPlan = new System.Windows.Forms.Button();
-            this.btnConsultarPlan = new System.Windows.Forms.Button();
-            this.btnAgregarPlan = new System.Windows.Forms.Button();
-            this.panelPlanes = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnPlan = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlMenuLateral.SuspendLayout();
+            this.panelPlanes.SuspendLayout();
             this.pnlProductosSbmn.SuspendLayout();
             this.pnlSupervisoresSbmn.SuspendLayout();
             this.pnlClientesSbmn.SuspendLayout();
             this.pnlInscripcionesSbmn.SuspendLayout();
-            this.panelPlanes.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMenuLateral
@@ -93,6 +94,100 @@
             this.pnlMenuLateral.Size = new System.Drawing.Size(250, 635);
             this.pnlMenuLateral.TabIndex = 0;
             // 
+            // panelPlanes
+            // 
+            this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
+            this.panelPlanes.Controls.Add(this.btnAgregarPlan);
+            this.panelPlanes.Controls.Add(this.btnConsultarPlan);
+            this.panelPlanes.Controls.Add(this.btnActualizarPlan);
+            this.panelPlanes.Controls.Add(this.btnEliminarPlan);
+            this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPlanes.Location = new System.Drawing.Point(0, 989);
+            this.panelPlanes.Name = "panelPlanes";
+            this.panelPlanes.Size = new System.Drawing.Size(233, 0);
+            this.panelPlanes.TabIndex = 1;
+            this.panelPlanes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPlanes_Paint);
+            // 
+            // btnAgregarPlan
+            // 
+            this.btnAgregarPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAgregarPlan.FlatAppearance.BorderSize = 0;
+            this.btnAgregarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarPlan.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarPlan.Location = new System.Drawing.Point(3, 3);
+            this.btnAgregarPlan.Name = "btnAgregarPlan";
+            this.btnAgregarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnAgregarPlan.Size = new System.Drawing.Size(233, 40);
+            this.btnAgregarPlan.TabIndex = 4;
+            this.btnAgregarPlan.Text = "Agregar";
+            this.btnAgregarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarPlan.UseVisualStyleBackColor = true;
+            this.btnAgregarPlan.Click += new System.EventHandler(this.btnAgregarPlan_Click);
+            // 
+            // btnConsultarPlan
+            // 
+            this.btnConsultarPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConsultarPlan.FlatAppearance.BorderSize = 0;
+            this.btnConsultarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarPlan.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarPlan.Location = new System.Drawing.Point(3, 49);
+            this.btnConsultarPlan.Name = "btnConsultarPlan";
+            this.btnConsultarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnConsultarPlan.Size = new System.Drawing.Size(233, 40);
+            this.btnConsultarPlan.TabIndex = 5;
+            this.btnConsultarPlan.Text = "Consultar";
+            this.btnConsultarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarPlan.UseVisualStyleBackColor = true;
+            this.btnConsultarPlan.Click += new System.EventHandler(this.btnConsultarPlan_Click);
+            // 
+            // btnActualizarPlan
+            // 
+            this.btnActualizarPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnActualizarPlan.FlatAppearance.BorderSize = 0;
+            this.btnActualizarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarPlan.ForeColor = System.Drawing.Color.White;
+            this.btnActualizarPlan.Location = new System.Drawing.Point(3, 95);
+            this.btnActualizarPlan.Name = "btnActualizarPlan";
+            this.btnActualizarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnActualizarPlan.Size = new System.Drawing.Size(233, 40);
+            this.btnActualizarPlan.TabIndex = 6;
+            this.btnActualizarPlan.Text = "Actualizar";
+            this.btnActualizarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActualizarPlan.UseVisualStyleBackColor = true;
+            this.btnActualizarPlan.Click += new System.EventHandler(this.btnActualizarPlan_Click);
+            // 
+            // btnEliminarPlan
+            // 
+            this.btnEliminarPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEliminarPlan.FlatAppearance.BorderSize = 0;
+            this.btnEliminarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarPlan.ForeColor = System.Drawing.Color.White;
+            this.btnEliminarPlan.Location = new System.Drawing.Point(3, 141);
+            this.btnEliminarPlan.Name = "btnEliminarPlan";
+            this.btnEliminarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnEliminarPlan.Size = new System.Drawing.Size(233, 40);
+            this.btnEliminarPlan.TabIndex = 7;
+            this.btnEliminarPlan.Text = "Eliminar";
+            this.btnEliminarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminarPlan.UseVisualStyleBackColor = true;
+            this.btnEliminarPlan.Click += new System.EventHandler(this.btnEliminarPlan_Click_1);
+            // 
+            // btnPlan
+            // 
+            this.btnPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPlan.FlatAppearance.BorderSize = 0;
+            this.btnPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlan.ForeColor = System.Drawing.Color.White;
+            this.btnPlan.Location = new System.Drawing.Point(0, 944);
+            this.btnPlan.Name = "btnPlan";
+            this.btnPlan.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnPlan.Size = new System.Drawing.Size(233, 45);
+            this.btnPlan.TabIndex = 7;
+            this.btnPlan.Text = "Planes de inscripcion";
+            this.btnPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPlan.UseVisualStyleBackColor = true;
+            this.btnPlan.Click += new System.EventHandler(this.button1_Click);
+            // 
             // pnlProductosSbmn
             // 
             this.pnlProductosSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
@@ -105,7 +200,7 @@
             this.pnlProductosSbmn.Controls.Add(this.btnConsultarProducto);
             this.pnlProductosSbmn.Controls.Add(this.btnAgregarProducto);
             this.pnlProductosSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 739);
+            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 776);
             this.pnlProductosSbmn.Name = "pnlProductosSbmn";
             this.pnlProductosSbmn.Size = new System.Drawing.Size(233, 168);
             this.pnlProductosSbmn.TabIndex = 6;
@@ -240,7 +335,7 @@
             this.btnProductos.FlatAppearance.BorderSize = 0;
             this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProductos.ForeColor = System.Drawing.Color.White;
-            this.btnProductos.Location = new System.Drawing.Point(0, 694);
+            this.btnProductos.Location = new System.Drawing.Point(0, 731);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnProductos.Size = new System.Drawing.Size(233, 45);
@@ -258,7 +353,7 @@
             this.pnlSupervisoresSbmn.Controls.Add(this.btnConsultarSupervisor);
             this.pnlSupervisoresSbmn.Controls.Add(this.btnAgregarSupervisor);
             this.pnlSupervisoresSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 526);
+            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 563);
             this.pnlSupervisoresSbmn.Name = "pnlSupervisoresSbmn";
             this.pnlSupervisoresSbmn.Size = new System.Drawing.Size(233, 168);
             this.pnlSupervisoresSbmn.TabIndex = 5;
@@ -333,7 +428,7 @@
             this.btnSupervisores.FlatAppearance.BorderSize = 0;
             this.btnSupervisores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupervisores.ForeColor = System.Drawing.Color.White;
-            this.btnSupervisores.Location = new System.Drawing.Point(0, 481);
+            this.btnSupervisores.Location = new System.Drawing.Point(0, 518);
             this.btnSupervisores.Name = "btnSupervisores";
             this.btnSupervisores.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSupervisores.Size = new System.Drawing.Size(233, 45);
@@ -346,6 +441,7 @@
             // pnlClientesSbmn
             // 
             this.pnlClientesSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
+            this.pnlClientesSbmn.Controls.Add(this.button1);
             this.pnlClientesSbmn.Controls.Add(this.btnEliminarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnActualizarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnConsultarCliente);
@@ -353,7 +449,7 @@
             this.pnlClientesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 313);
             this.pnlClientesSbmn.Name = "pnlClientesSbmn";
-            this.pnlClientesSbmn.Size = new System.Drawing.Size(233, 168);
+            this.pnlClientesSbmn.Size = new System.Drawing.Size(233, 205);
             this.pnlClientesSbmn.TabIndex = 4;
             // 
             // btnEliminarCliente
@@ -538,99 +634,21 @@
             this.pnlLogo.TabIndex = 0;
             this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
             // 
-            // btnEliminarPlan
+            // button1
             // 
-            this.btnEliminarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarPlan.FlatAppearance.BorderSize = 0;
-            this.btnEliminarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarPlan.Location = new System.Drawing.Point(3, 141);
-            this.btnEliminarPlan.Name = "btnEliminarPlan";
-            this.btnEliminarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnEliminarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnEliminarPlan.TabIndex = 7;
-            this.btnEliminarPlan.Text = "Eliminar";
-            this.btnEliminarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarPlan.UseVisualStyleBackColor = true;
-            this.btnEliminarPlan.Click += new System.EventHandler(this.btnEliminarPlan_Click_1);
-            // 
-            // btnActualizarPlan
-            // 
-            this.btnActualizarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnActualizarPlan.FlatAppearance.BorderSize = 0;
-            this.btnActualizarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarPlan.Location = new System.Drawing.Point(3, 95);
-            this.btnActualizarPlan.Name = "btnActualizarPlan";
-            this.btnActualizarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnActualizarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnActualizarPlan.TabIndex = 6;
-            this.btnActualizarPlan.Text = "Actualizar";
-            this.btnActualizarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarPlan.UseVisualStyleBackColor = true;
-            this.btnActualizarPlan.Click += new System.EventHandler(this.btnActualizarPlan_Click);
-            // 
-            // btnConsultarPlan
-            // 
-            this.btnConsultarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnConsultarPlan.FlatAppearance.BorderSize = 0;
-            this.btnConsultarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnConsultarPlan.Location = new System.Drawing.Point(3, 49);
-            this.btnConsultarPlan.Name = "btnConsultarPlan";
-            this.btnConsultarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnConsultarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnConsultarPlan.TabIndex = 5;
-            this.btnConsultarPlan.Text = "Consultar";
-            this.btnConsultarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarPlan.UseVisualStyleBackColor = true;
-            this.btnConsultarPlan.Click += new System.EventHandler(this.btnConsultarPlan_Click);
-            // 
-            // btnAgregarPlan
-            // 
-            this.btnAgregarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAgregarPlan.FlatAppearance.BorderSize = 0;
-            this.btnAgregarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarPlan.Location = new System.Drawing.Point(3, 3);
-            this.btnAgregarPlan.Name = "btnAgregarPlan";
-            this.btnAgregarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnAgregarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnAgregarPlan.TabIndex = 4;
-            this.btnAgregarPlan.Text = "Agregar";
-            this.btnAgregarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarPlan.UseVisualStyleBackColor = true;
-            this.btnAgregarPlan.Click += new System.EventHandler(this.btnAgregarPlan_Click);
-            // 
-            // panelPlanes
-            // 
-            this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.panelPlanes.Controls.Add(this.btnAgregarPlan);
-            this.panelPlanes.Controls.Add(this.btnConsultarPlan);
-            this.panelPlanes.Controls.Add(this.btnActualizarPlan);
-            this.panelPlanes.Controls.Add(this.btnEliminarPlan);
-            this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPlanes.Location = new System.Drawing.Point(0, 952);
-            this.panelPlanes.Name = "panelPlanes";
-            this.panelPlanes.Size = new System.Drawing.Size(233, 0);
-            this.panelPlanes.TabIndex = 1;
-            this.panelPlanes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPlanes_Paint);
-            // 
-            // btnPlan
-            // 
-            this.btnPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPlan.FlatAppearance.BorderSize = 0;
-            this.btnPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlan.ForeColor = System.Drawing.Color.White;
-            this.btnPlan.Location = new System.Drawing.Point(0, 907);
-            this.btnPlan.Name = "btnPlan";
-            this.btnPlan.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnPlan.Size = new System.Drawing.Size(233, 45);
-            this.btnPlan.TabIndex = 7;
-            this.btnPlan.Text = "Planes de inscripcion";
-            this.btnPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPlan.UseVisualStyleBackColor = true;
-            this.btnPlan.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 160);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(233, 40);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Consultar Datos Biomedicos";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // MenuIGA
             // 
@@ -644,11 +662,11 @@
             this.Text = "MenuIGA";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuIGA_FormClosing);
             this.pnlMenuLateral.ResumeLayout(false);
+            this.panelPlanes.ResumeLayout(false);
             this.pnlProductosSbmn.ResumeLayout(false);
             this.pnlSupervisoresSbmn.ResumeLayout(false);
             this.pnlClientesSbmn.ResumeLayout(false);
             this.pnlInscripcionesSbmn.ResumeLayout(false);
-            this.panelPlanes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -691,5 +709,6 @@
         private System.Windows.Forms.Button btnActualizarPlan;
         private System.Windows.Forms.Button btnEliminarPlan;
         private System.Windows.Forms.Button btnPlan;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Entidades.Informacion_Persona;
+using Entidades.Pagos_y_Facturas;
+using Logica.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +15,32 @@ namespace GUI.Pureba
 {
     public partial class ConsultarDatosBiomedicos : Form
     {
+        ServicioDatosBiomedicos serv;
+
         public ConsultarDatosBiomedicos()
         {
             InitializeComponent();
+            serv = new ServicioDatosBiomedicos();
+
+        }
+
+        private void ConsultarDatosBiomedicos_Load(object sender, EventArgs e)
+        {
+            CargarGrilla();
+        }
+
+        void CargarGrilla()
+        {
+            dataGridView1.Rows.Clear();
+            var lista = serv.Leer();
+            if (lista != null)
+            {
+                foreach (DatosBiomedicos dato in lista)
+                {
+                    dataGridView1.Rows.Add(dato.FechaRegistro, dato.IdCliente, dato.Altura, dato.Peso, dato.IdCategoriaPeso, dato.Imc, dato.GrasaCorporal, dato.FrecuenciaCardiaca, dato.PresionArterial);
+                }
+            }
+
         }
     }
 }

@@ -264,5 +264,13 @@ namespace GUI.pruba
             */
             hideSubMenu();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ConsultarDatosBiomedicos con = new ConsultarDatosBiomedicos();
+            con.Show();
+            hideSubMenu();
+
+        }
     }
 }

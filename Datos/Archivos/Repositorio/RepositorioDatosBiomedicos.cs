@@ -31,12 +31,10 @@ namespace Datos.Archivos.Repositorio
                 datosBiomedicos.FechaRegistro = dataReader.GetDateTime(1);
                 datosBiomedicos.Altura = dataReader.GetDouble(2);
                 datosBiomedicos.Peso = dataReader.GetDouble(3);
-                if (!dataReader.IsDBNull(4))
                     datosBiomedicos.Imc = dataReader.GetDouble(4);
                 datosBiomedicos.GrasaCorporal = dataReader.GetDouble(5);
                 datosBiomedicos.FrecuenciaCardiaca = dataReader.GetInt32(6);
                 datosBiomedicos.PresionArterial = dataReader.GetInt32(7);
-                if (!dataReader.IsDBNull(8))
                     datosBiomedicos.IdCategoriaPeso = dataReader.GetInt32(8);
                 datosBiomedicos.IdCliente = dataReader.GetString(9);
 
