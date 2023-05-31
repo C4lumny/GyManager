@@ -24,7 +24,7 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        public Pago Leer()
+        public List<Pago> Leer()
         {
             throw new NotImplementedException();
         }

@@ -24,7 +24,7 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        public Inscripcion Leer()
+        public List<Inscripcion> Leer()
         {
             throw new NotImplementedException();
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioAdministrador : ICRUD<Administrador>
+    public class ServicioAdministrador 
     {
         public void Actualizar(Administrador entidad, int id)
         {

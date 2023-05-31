@@ -102,7 +102,7 @@
     <Compile Include="Clases\ServicioInscripcion.cs" />
     <Compile Include="Clases\ServicioPago.cs" />
     <Compile Include="Clases\ServicioPlanGimnasio.cs" />
-    <Compile Include="Clases\Supervisores.cs" />
+    <Compile Include="Clases\ServicioSupervisores.cs" />
     <Compile Include="Clases\ServicioTurnoAtencion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

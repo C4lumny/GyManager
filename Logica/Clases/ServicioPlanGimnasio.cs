@@ -24,7 +24,7 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        public PlanGimnasio Leer()
+        public List<PlanGimnasio> Leer()
         {
             throw new NotImplementedException();
         }

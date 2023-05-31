@@ -33,9 +33,13 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        Clientess ICRUD<Clientess>.Leer()
-        {
-            throw new NotImplementedException();
+        public List<Clientess> Leer() { 
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista;
         }
     }
 }

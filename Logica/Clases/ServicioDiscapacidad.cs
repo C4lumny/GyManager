@@ -24,7 +24,7 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        public Discapacidad Leer()
+        public List<Discapacidad> Leer()
         {
             throw new NotImplementedException();
         }

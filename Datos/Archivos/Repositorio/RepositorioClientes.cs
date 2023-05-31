@@ -11,9 +11,10 @@ namespace Datos
 {
     public class RepositorioClientes
     {
-        Coneccion conexion = new Coneccion();
+        Coneccion conexion;
         public RepositorioClientes()
-        { 
+        {
+            conexion = new Coneccion();
         }
         public Clientess Mapper(OracleDataReader dataReader)
         {
@@ -64,10 +65,10 @@ namespace Datos
         }
         public List<Clientess> GetAll()
         {
+            conexion.Open();
             List<Clientess> clientes = new List<Clientess>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "select * from Clientes";
-            conexion.Open();
+            comando.CommandText = "select * from vista_clientes";
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
@@ -89,6 +90,26 @@ namespace Datos
                     // Configura los parámetros del procedimiento almacenado
                     command.Parameters.Add("d_id", OracleDbType.Varchar2).Value = id_cliente;
 
+                    conexion.Open();
+                    command.ExecuteNonQuery();
+                    conexion.Close();
+
+                }
+                return "Se ha eliminado el cliente";
+            }
+            catch (Exception)
+            {
+                return "No se ha realizado la actualizacion";
+            }
+        }
+
+        public string DeleteAll()
+        {
+            try
+            {
+                using (OracleCommand command = conexion._conexion.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
                     conexion.Open();
                     command.ExecuteNonQuery();
                     conexion.Close();

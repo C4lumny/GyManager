@@ -1,4 +1,5 @@
-﻿using GUI.Pureba.Insertar;
+﻿using GUI.Pureba;
+using GUI.Pureba.Insertar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -116,9 +117,8 @@ namespace GUI.pruba
 
         private void btnConsultarCliente_Click(object sender, EventArgs e)
         {
-            /*
-             Codigo
-             */
+            ReceiveClientesBD consulta = new ReceiveClientesBD();
+            consulta.Show();
             hideSubMenu();
         }
 

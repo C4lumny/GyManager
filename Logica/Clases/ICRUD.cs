@@ -9,7 +9,7 @@ namespace Logica.Clases
     public interface ICRUD<T>
     {
         void Crear(T entidad);
-        T Leer();
+        List<T> Leer();
         void Actualizar(T entidad, int id);
         void Eliminar(int id);
     }

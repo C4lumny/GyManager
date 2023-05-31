@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    internal class ServicioTurnoAtencion : ICRUD<Turno_Atencion>
+    public class ServicioSupervisores : ICRUD<Supervisoress>
     {
-        public void Actualizar(Turno_Atencion entidad, int id)
+        public void Actualizar(Supervisoress entidad, int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Crear(Turno_Atencion entidad)
+        public void Crear(Supervisoress entidad)
         {
             throw new NotImplementedException();
         }
@@ -24,7 +24,7 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        public List<Turno_Atencion> Leer()
+        public List<Supervisoress> Leer()
         {
             throw new NotImplementedException();
         }

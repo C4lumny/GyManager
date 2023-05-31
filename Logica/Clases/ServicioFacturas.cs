@@ -24,7 +24,7 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        public Facturas Leer()
+        public List<Facturas> Leer()
         {
             throw new NotImplementedException();
         }

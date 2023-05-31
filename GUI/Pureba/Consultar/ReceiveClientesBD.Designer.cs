@@ -28,26 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.clmCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnGenero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFecha_Nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnFechaIngreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvClientes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCedula,
             this.clmnNombre,
             this.clmnApellido,
             this.clmnGenero,
+            this.clmTelefono,
+            this.clmFecha_Nacimiento,
             this.clmnFechaIngreso});
-            this.dataGridView1.Location = new System.Drawing.Point(37, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(443, 404);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvClientes.Location = new System.Drawing.Point(44, 47);
+            this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.Size = new System.Drawing.Size(743, 462);
+            this.dgvClientes.TabIndex = 0;
+            // 
+            // clmCedula
+            // 
+            this.clmCedula.HeaderText = "Cedula";
+            this.clmCedula.Name = "clmCedula";
             // 
             // clmnNombre
             // 
@@ -66,6 +77,16 @@
             this.clmnGenero.HeaderText = "Genero";
             this.clmnGenero.Name = "clmnGenero";
             // 
+            // clmTelefono
+            // 
+            this.clmTelefono.HeaderText = "Telefono";
+            this.clmTelefono.Name = "clmTelefono";
+            // 
+            // clmFecha_Nacimiento
+            // 
+            this.clmFecha_Nacimiento.HeaderText = "Fecha_Nacimiento";
+            this.clmFecha_Nacimiento.Name = "clmFecha_Nacimiento";
+            // 
             // clmnFechaIngreso
             // 
             this.clmnFechaIngreso.HeaderText = "Fecha de Ingreso";
@@ -75,21 +96,25 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 558);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(831, 558);
+            this.Controls.Add(this.dgvClientes);
             this.Name = "ReceiveClientesBD";
             this.Text = "ReceiveBD";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.ReceiveClientesBD_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnApellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnGenero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTelefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmFecha_Nacimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnFechaIngreso;
     }
 }

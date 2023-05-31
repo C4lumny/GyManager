@@ -24,7 +24,7 @@ namespace Logica.Clases
             throw new NotImplementedException();
         }
 
-        public DatosBiomedicos Leer()
+        public List<DatosBiomedicos> Leer()
         {
             throw new NotImplementedException();
         }
