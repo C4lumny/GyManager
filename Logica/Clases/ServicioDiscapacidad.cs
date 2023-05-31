@@ -16,14 +16,14 @@ namespace Logica.Clases
         {
             
         }
-        public void asignar(Discapacidad entidad, string id)
+        public string asignar(Discapacidad entidad, string id)
         {
-            rep.AsignarDiscapacidad(id, entidad);
+            return rep.AsignarDiscapacidad(id, entidad).Msg;
         }
 
-        public void eliminar(Discapacidad entidad, string id)
+        public string eliminar(Discapacidad entidad, string id)
         {
-            rep.EliminarDiscapacidadCliente(id, entidad);
+            return rep.EliminarDiscapacidadCliente(id, entidad).Msg;
         }
 
     }

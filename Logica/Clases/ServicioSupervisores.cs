@@ -12,19 +12,19 @@ namespace Logica.Clases
     public class ServicioSupervisores 
     {
         RepositorioSupervisor rep = new RepositorioSupervisor();
-        public void Actualizar(Supervisoress entidad, string id)
+        public string Actualizar(Supervisoress entidad, string id)
         {
-            rep.Update(entidad, id);
+            return rep.Update(entidad, id);
         }
 
-        public void Crear(Supervisoress entidad)
+        public string Crear(Supervisoress entidad)
         {
-            rep.Insert(entidad);
+            return rep.Insert(entidad).Msg;
         }
 
-        public void Eliminar(string id)
+        public string Eliminar(string id)
         {
-            rep.Delete(id);
+            return rep.Delete(id);
         }
 
         public List<Supervisoress> Leer()

@@ -16,19 +16,19 @@ namespace Logica.Clases
         {
             
         }
-        public void Actualizar(DatosBiomedicos entidad, string id)
+        public string Actualizar(DatosBiomedicos entidad, string id)
         {
-            rep.Update(entidad, id);
+           return rep.Update(entidad, id);
         }
 
-        public void Crear(DatosBiomedicos entidad)
+        public string Crear(DatosBiomedicos entidad)
         {
-            rep.Insert(entidad);
+            return rep.Insert(entidad).Msg;
         }
 
-        public void Eliminar(string id)
+        public string Eliminar(string id)
         {
-            rep.Delete(id);
+            return rep.Delete(id);
         }
 
         public List<DatosBiomedicos> Leer()

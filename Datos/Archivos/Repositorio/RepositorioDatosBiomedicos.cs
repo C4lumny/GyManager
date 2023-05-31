@@ -131,7 +131,7 @@ namespace Datos.Archivos.Repositorio
         {
             List<DatosBiomedicos> datosBiomedicosList = new List<DatosBiomedicos>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM DatosBiomedicos";
+            comando.CommandText = "SELECT * FROM vista_datos_biomedicos";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())

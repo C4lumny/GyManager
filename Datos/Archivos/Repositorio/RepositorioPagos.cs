@@ -66,7 +66,7 @@ namespace Datos.Archivos.Repositorio
         {
             List<Pago> pagos = new List<Pago>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM Pagos";
+            comando.CommandText = "SELECT * FROM vista_pagos_inscripciones";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())

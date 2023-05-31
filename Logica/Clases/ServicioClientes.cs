@@ -9,7 +9,7 @@ using Datos;
 
 namespace Logica.Clases
 {
-    public class ServicioClientes : ICRUD<Clientess>
+    public class ServicioClientes 
     {
         RepositorioClientes rep = new RepositorioClientes();
 
@@ -18,23 +18,19 @@ namespace Logica.Clases
             
         }
 
-        public void Actualizar(Clientess entidad, int id)
+        public string Actualizar(Clientess entidad, int id)
         {
-            rep.Update(entidad, id.ToString());
+            return rep.Update(entidad, id.ToString());
         }
 
-        public void Crear(Clientess entidad)
+        public string Crear(Clientess entidad)
         {
-            rep.Insert(entidad);
+            return rep.Insert(entidad).Msg;
         }
 
-        public void Eliminar(int id)
+        public string Eliminar(int id)
         {
-            throw new NotImplementedException();
-        }
-        public void EliminarTodo()
-        {
-            rep.DeleteAll();
+           return rep.Delete(id.ToString());
         }
         public List<Clientess> Leer() { 
             var lista = rep.GetAll();

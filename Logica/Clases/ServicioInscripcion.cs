@@ -16,19 +16,19 @@ namespace Logica.Clases
         {
             
         }
-        public void Actualizar(Inscripcion entidad, string id)
+        public string Actualizar(Inscripcion entidad, string id)
         {
-            rep.Update(entidad, id);
+            return rep.Update(entidad, id);
         }
 
-        public void Crear(Inscripcion entidad)
+        public string Crear(Inscripcion entidad)
         {
-            rep.Insert(entidad);
+            return rep.Insert(entidad).Msg;
         }
 
-        public void Eliminar(string id)
+        public string Eliminar(string id)
         {
-            rep.Delete(id);
+            return rep.Delete(id);
         }
 
         public List<Inscripcion> Leer()

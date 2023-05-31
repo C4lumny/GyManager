@@ -9,22 +9,22 @@ using Datos;
 
 namespace Logica.Clases
 {
-    public class ServicioPlanGimnasio : ICRUD<PlanGimnasio>
+    public class ServicioPlanGimnasio
     {
         RepositorioPlan rep = new RepositorioPlan();
-        public void Actualizar(PlanGimnasio entidad, int id)
+        public string Actualizar(PlanGimnasio entidad, int id)
         {
-            rep.Update(entidad, id);
+            return rep.Update(entidad, id);
         }
 
-        public void Crear(PlanGimnasio entidad)
+        public string Crear(PlanGimnasio entidad)
         {
-            rep.Insert(entidad);
+            return rep.Insert(entidad).Msg;
         }
 
-        public void Eliminar(int id)
+        public string Eliminar(int id)
         {
-            rep.Delete(id);
+            return rep.Delete(id);
         }
 
         public List<PlanGimnasio> Leer()

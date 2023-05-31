@@ -70,7 +70,7 @@ namespace Datos
         {
             List<Inscripcion> clientes = new List<Inscripcion>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "select * from Personas";
+            comando.CommandText = "select * from vista_inscripciones";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())

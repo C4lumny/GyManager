@@ -129,7 +129,7 @@ namespace Datos.Archivos
         {
             List<Supervisoress> supervisores = new List<Supervisoress>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM Supervisores";
+            comando.CommandText = "SELECT * FROM vista_supervisores";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())

@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioPago : ICRUD<Pago>
+    public class ServicioPago 
     {
         RepositorioPagos rep = new RepositorioPagos();
 
-        public void Actualizar(Pago entidad, int id)
+        public string Actualizar(Pago entidad, int id)
         {
-            rep.Update(entidad, id);
+            return rep.Update(entidad, id);
         }
 
-        public void Crear(Pago entidad)
+        public string Crear(Pago entidad)
         {
-            rep.Insert(entidad);
+            return rep.Insert(entidad).Msg;
         }
 
-        public void Eliminar(int id)
+        public string Eliminar(int id)
         {
-            rep.Delete(id);
+            return rep.Delete(id);
         }
 
         public List<Pago> Leer()

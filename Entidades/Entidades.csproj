@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrador\Administrador.cs" />
+    <Compile Include="DTOHorarios\Dtohorarios.cs" />
     <Compile Include="Informacion Persona\DatosBiomedicos.cs" />
     <Compile Include="Informacion Persona\Discapacidad.cs" />
     <Compile Include="Pagos y Facturas\Facturas.cs" />

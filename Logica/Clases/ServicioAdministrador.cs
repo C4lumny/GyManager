@@ -14,14 +14,16 @@ namespace Logica.Clases
         RepositorioAdministrador rep = new RepositorioAdministrador();
 
 
-        public void Crear(Administrador entidad)
+        public string Crear(Administrador entidad)
         {
-            rep.Insert(entidad);
+
+               return rep.Insert(entidad).Msg;
+
         }
 
-        public void Eliminar(string id)
+        public string Eliminar(string id)
         {
-            rep.Delete(id);
+                return rep.Delete(id);
         }
 
     }

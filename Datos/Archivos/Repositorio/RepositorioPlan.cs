@@ -121,7 +121,7 @@ namespace Datos
         {
             List<PlanGimnasio> planes = new List<PlanGimnasio>();
             var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM Planes_Gimnasio";
+            comando.CommandText = "SELECT * FROM vista_planes_gimnasio";
             conexion.Open();
             OracleDataReader lector = comando.ExecuteReader();
             while (lector.Read())
