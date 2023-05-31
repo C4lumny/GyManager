@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtValorIngresado = new System.Windows.Forms.TextBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtIDInscripcion = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtValorIngresado = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,24 +49,15 @@
             this.panel1.Size = new System.Drawing.Size(424, 231);
             this.panel1.TabIndex = 0;
             // 
-            // label5
+            // btnGuardar
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(70, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 18);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Valor Ingresado";
-            // 
-            // txtValorIngresado
-            // 
-            this.txtValorIngresado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorIngresado.Location = new System.Drawing.Point(204, 20);
-            this.txtValorIngresado.Margin = new System.Windows.Forms.Padding(20);
-            this.txtValorIngresado.Name = "txtValorIngresado";
-            this.txtValorIngresado.Size = new System.Drawing.Size(200, 24);
-            this.txtValorIngresado.TabIndex = 11;
+            this.btnGuardar.Location = new System.Drawing.Point(160, 156);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 15;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label3
             // 
@@ -87,15 +78,24 @@
             this.txtIDInscripcion.Size = new System.Drawing.Size(200, 24);
             this.txtIDInscripcion.TabIndex = 13;
             // 
-            // btnGuardar
+            // label5
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(160, 156);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 15;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(70, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 18);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Valor Ingresado";
+            // 
+            // txtValorIngresado
+            // 
+            this.txtValorIngresado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorIngresado.Location = new System.Drawing.Point(204, 20);
+            this.txtValorIngresado.Margin = new System.Windows.Forms.Padding(20);
+            this.txtValorIngresado.Name = "txtValorIngresado";
+            this.txtValorIngresado.Size = new System.Drawing.Size(200, 24);
+            this.txtValorIngresado.TabIndex = 11;
             // 
             // InsertarPago
             // 

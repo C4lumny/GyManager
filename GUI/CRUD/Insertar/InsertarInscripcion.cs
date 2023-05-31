@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Logica.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +21,15 @@ namespace GUI.CRUD.Insertar
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            ServicioInscripcion servInscripcion = new ServicioInscripcion();
             Inscripcion inscripcion = new Inscripcion();
+
             inscripcion.ClienteId = txtIDCliente.Text;
             inscripcion.SupervisorId = txtIDSupervisor.Text;
             inscripcion.PlanId = int.Parse(txtIDPlan.Text);
             inscripcion.Descuento = int.Parse(txtDescuento.Text);
+
+            servInscripcion.Crear(inscripcion);
         }
     }
 }
