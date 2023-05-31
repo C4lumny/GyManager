@@ -92,15 +92,15 @@
             this.clmnFechaIngreso.HeaderText = "Fecha de Ingreso";
             this.clmnFechaIngreso.Name = "clmnFechaIngreso";
             // 
-            // ReceiveClientesBD
+            // ConsultarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 558);
             this.Controls.Add(this.dgvClientes);
-            this.Name = "ReceiveClientesBD";
+            this.Name = "ConsultarCliente";
             this.Text = "ReceiveBD";
-            this.Load += new System.EventHandler(this.ReceiveClientesBD_Load);
+            this.Load += new System.EventHandler(this.ConsultarCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
 

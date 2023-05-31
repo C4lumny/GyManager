@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvInscripcion = new System.Windows.Forms.DataGridView();
             this.clmnFechaFInal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnIdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,13 +39,13 @@
             this.clmnEstadoPlan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInscripcion)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvInscripcion
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvInscripcion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInscripcion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmnFechaFInal,
             this.clmnPrecio,
             this.clmnIdCliente,
@@ -56,10 +56,10 @@
             this.clmnEstadoPlan,
             this.Column1,
             this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(844, 426);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvInscripcion.Location = new System.Drawing.Point(12, 12);
+            this.dgvInscripcion.Name = "dgvInscripcion";
+            this.dgvInscripcion.Size = new System.Drawing.Size(844, 426);
+            this.dgvInscripcion.TabIndex = 0;
             // 
             // clmnFechaFInal
             // 
@@ -115,23 +115,22 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
-            // ReceiveInscripcionBD
+            // ConsultarInscripcionBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "ReceiveInscripcionBD";
+            this.Controls.Add(this.dgvInscripcion);
+            this.Name = "ConsultarInscripcionBD";
             this.Text = "ReceiveInscripcionBD";
-            this.Load += new System.EventHandler(this.ReceiveInscripcionBD_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInscripcion)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvInscripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnFechaFInal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnIdCliente;

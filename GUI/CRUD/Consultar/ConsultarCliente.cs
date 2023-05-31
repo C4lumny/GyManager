@@ -35,7 +35,7 @@ namespace GUI.Pureba
 
         }
 
-        private void ReceiveClientesBD_Load(object sender, EventArgs e)
+        private void ConsultarCliente_Load(object sender, EventArgs e)
         {
             CargarGrilla();
         }

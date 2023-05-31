@@ -44,7 +44,7 @@
             this.clmnIDInscripcion});
             this.dataGridView1.Location = new System.Drawing.Point(231, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(346, 426);
+            this.dataGridView1.Size = new System.Drawing.Size(344, 426);
             this.dataGridView1.TabIndex = 0;
             // 
             // clmnValorIngresado
@@ -62,13 +62,13 @@
             this.clmnIDInscripcion.HeaderText = "ID Inscripcion";
             this.clmnIDInscripcion.Name = "clmnIDInscripcion";
             // 
-            // ReceivePagosBD
+            // ConsultarPagoBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "ReceivePagosBD";
+            this.Name = "ConsultarPagoBD";
             this.Text = "ReceivePagosBD";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

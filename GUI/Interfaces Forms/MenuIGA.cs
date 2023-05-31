@@ -117,7 +117,7 @@ namespace GUI.pruba
 
         private void btnConsultarCliente_Click(object sender, EventArgs e)
         {
-            ReceiveClientesBD consulta = new ReceiveClientesBD();
+            ConsultarCliente consulta = new ConsultarCliente();
             consulta.Show();
             hideSubMenu();
         }

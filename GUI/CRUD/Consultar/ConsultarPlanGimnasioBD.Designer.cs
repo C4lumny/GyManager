@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPlanGimnasio = new System.Windows.Forms.DataGridView();
             this.clmnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanGimnasio)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvPlanGimnasio
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvPlanGimnasio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlanGimnasio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmnNombre,
             this.clmnPrecio,
             this.clmnDias});
-            this.dataGridView1.Location = new System.Drawing.Point(252, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(343, 411);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvPlanGimnasio.Location = new System.Drawing.Point(252, 12);
+            this.dgvPlanGimnasio.Name = "dgvPlanGimnasio";
+            this.dgvPlanGimnasio.Size = new System.Drawing.Size(343, 411);
+            this.dgvPlanGimnasio.TabIndex = 0;
             // 
             // clmnNombre
             // 
@@ -62,22 +62,23 @@
             this.clmnDias.HeaderText = "Dias";
             this.clmnDias.Name = "clmnDias";
             // 
-            // ReceivePlanGimnasioBD
+            // ConsultarPlanGimnasioBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "ReceivePlanGimnasioBD";
+            this.Controls.Add(this.dgvPlanGimnasio);
+            this.Name = "ConsultarPlanGimnasioBD";
             this.Text = "ReceivePlanGimnasioBD";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.ConsultarPlanGimnasioBD_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanGimnasio)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPlanGimnasio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnDias;

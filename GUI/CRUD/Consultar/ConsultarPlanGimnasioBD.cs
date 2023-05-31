@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Logica.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,30 @@ namespace GUI.Pureba
 {
     public partial class ConsultarPlanGimnasioBD : Form
     {
+        ServicioPlanGimnasio serv;
         public ConsultarPlanGimnasioBD()
         {
             InitializeComponent();
+            serv = new ServicioPlanGimnasio();
+        }
+
+        void CargarGrilla()
+        {
+            dgvPlanGimnasio.Rows.Clear();
+            var lista = serv.Leer();
+            if (lista != null)
+            {
+                foreach (PlanGimnasio plan in lista)
+                {
+                    dgvPlanGimnasio.Rows.Add(plan.Nombre, plan.Precio, plan.Dias);
+                }
+            }
+
+        }
+
+        private void ConsultarPlanGimnasioBD_Load(object sender, EventArgs e)
+        {
+            CargarGrilla();
         }
     }
 }
