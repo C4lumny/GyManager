@@ -16,19 +16,29 @@ namespace GUI.pruba
 {
     public partial class MenuIGA : Form
     {
+        private Form activo = null;
+
         public MenuIGA()
         {
             InitializeComponent();
             customizeDesign();
         }
-            
+
+        private void MenuIGA_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit(); // Cierra la aplicación cuando se presiona el botón "X"
+            }
+        }
+
         private void customizeDesign()
         {
             pnlClientesSbmn.Visible = false;
             pnlInscripcionesSbmn.Visible = false;
             pnlProductosSbmn.Visible = false;
             pnlSupervisoresSbmn.Visible = false;
-            panelPlanes.Visible = false;
+            pnlPlanes.Visible = false;
         }
 
         private void hideSubMenu()
@@ -52,9 +62,9 @@ namespace GUI.pruba
             {
                 pnlProductosSbmn.Visible = false;
             }
-            if (panelPlanes.Visible == true)
+            if (pnlPlanes.Visible == true)
             {
-                panelPlanes.Visible = false;
+                pnlPlanes.Visible = false;
             }
         }
 
@@ -71,6 +81,34 @@ namespace GUI.pruba
             }
         }
 
+        private void horaFecha_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
+            lblFecha.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void abrirForms(Form formHijo)
+        {
+            if (activo != null)
+            {
+                activo.Close();
+                activo = null;
+            }
+
+            if (formHijo != null)
+            {
+                formHijo.TopLevel = false;
+                formHijo.FormBorderStyle = FormBorderStyle.None;
+                formHijo.Dock = DockStyle.Fill;
+                pnlChild.Controls.Add(formHijo);
+                pnlChild.Tag = formHijo;
+                formHijo.BringToFront();
+                formHijo.Show();
+
+                activo = formHijo;
+            }
+        }
+
         private void btnInscripciones_Click(object sender, EventArgs e)
         {
             showSubMenu(pnlInscripcionesSbmn);
@@ -79,7 +117,7 @@ namespace GUI.pruba
         private void btnAgregarInscripcion_Click(object sender, EventArgs e)
         {
             InsertarInscripcion ver = new InsertarInscripcion();
-            ver.Show();
+            abrirForms(ver);
             hideSubMenu();
         }
 
@@ -114,14 +152,14 @@ namespace GUI.pruba
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
             InsertarCliente insertar = new InsertarCliente();
-            insertar.Show();
+            abrirForms(insertar);
             hideSubMenu();
         }
 
         private void btnConsultarCliente_Click(object sender, EventArgs e)
         {
             ConsultarCliente consulta = new ConsultarCliente();
-            consulta.Show();
+            abrirForms(consulta);
             hideSubMenu();
         }
 
@@ -138,6 +176,13 @@ namespace GUI.pruba
             /*
              Codigo
              */
+            hideSubMenu();
+        }
+
+        private void btnConsultarDatosBD_Click_1(object sender, EventArgs e)
+        {
+            ConsultarDatosBiomedicos con = new ConsultarDatosBiomedicos();
+            con.Show();
             hideSubMenu();
         }
 
@@ -213,35 +258,23 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void MenuIGA_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnPlanes_Click(object sender, EventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit(); // Cierra la aplicación cuando se presiona el botón "X"
-            }
-        }
-
-
-        private void pnlLogo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelPlanes_Paint(object sender, PaintEventArgs e)
-        {
-
+            showSubMenu(pnlPlanes);
         }
 
         private void btnAgregarPlan_Click(object sender, EventArgs e)
         {
             InsertarPlanGimnasio insertarplan = new InsertarPlanGimnasio();
             insertarplan.Show();
+            hideSubMenu();
         }
 
         private void btnConsultarPlan_Click(object sender, EventArgs e)
         {
-            ConsultarPlanGimnasioBD ver = new ConsultarPlanGimnasioBD();
-            ver.Show();
+            ConsultarPlanGimnasioBD consultarplan = new ConsultarPlanGimnasioBD();
+            consultarplan.Show();
+            hideSubMenu();
         }
 
         private void btnActualizarPlan_Click(object sender, EventArgs e)
@@ -252,11 +285,6 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            showSubMenu(panelPlanes);
-        }
-
         private void btnEliminarPlan_Click_1(object sender, EventArgs e)
         {
             /*
@@ -265,12 +293,9 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void pictureBox4_Click_1(object sender, EventArgs e)
         {
-            ConsultarDatosBiomedicos con = new ConsultarDatosBiomedicos();
-            con.Show();
-            hideSubMenu();
-
+            abrirForms(null);
         }
     }
 }

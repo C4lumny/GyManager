@@ -52,11 +52,14 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCedula = new System.Windows.Forms.TextBox();
+            this.lblInsertarCliente = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel
             // 
+            this.panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(64)))));
+            this.panel.Controls.Add(this.lblInsertarCliente);
             this.panel.Controls.Add(this.btnGuardar);
             this.panel.Controls.Add(this.label2);
             this.panel.Controls.Add(this.label1);
@@ -80,14 +83,15 @@
             this.panel.Controls.Add(this.txtApellido);
             this.panel.Controls.Add(this.txtNombre);
             this.panel.Controls.Add(this.txtCedula);
-            this.panel.Location = new System.Drawing.Point(12, 12);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(424, 656);
+            this.panel.Size = new System.Drawing.Size(668, 399);
             this.panel.TabIndex = 0;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(173, 624);
+            this.btnGuardar.Location = new System.Drawing.Point(335, 322);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 22;
@@ -99,7 +103,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(39, 559);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(42, 323);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 18);
             this.label2.TabIndex = 21;
@@ -109,7 +114,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(39, 509);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(335, 272);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 18);
             this.label1.TabIndex = 20;
@@ -119,7 +125,8 @@
             // 
             this.lblGrasa.AutoSize = true;
             this.lblGrasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrasa.Location = new System.Drawing.Point(39, 452);
+            this.lblGrasa.ForeColor = System.Drawing.Color.White;
+            this.lblGrasa.Location = new System.Drawing.Point(42, 271);
             this.lblGrasa.Name = "lblGrasa";
             this.lblGrasa.Size = new System.Drawing.Size(53, 18);
             this.lblGrasa.TabIndex = 19;
@@ -129,7 +136,8 @@
             // 
             this.lblPeso.AutoSize = true;
             this.lblPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeso.Location = new System.Drawing.Point(39, 395);
+            this.lblPeso.ForeColor = System.Drawing.Color.White;
+            this.lblPeso.Location = new System.Drawing.Point(336, 230);
             this.lblPeso.Name = "lblPeso";
             this.lblPeso.Size = new System.Drawing.Size(47, 18);
             this.lblPeso.TabIndex = 18;
@@ -139,7 +147,8 @@
             // 
             this.lblAltura.AutoSize = true;
             this.lblAltura.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAltura.Location = new System.Drawing.Point(39, 339);
+            this.lblAltura.ForeColor = System.Drawing.Color.White;
+            this.lblAltura.Location = new System.Drawing.Point(42, 229);
             this.lblAltura.Name = "lblAltura";
             this.lblAltura.Size = new System.Drawing.Size(49, 18);
             this.lblAltura.TabIndex = 17;
@@ -149,7 +158,8 @@
             // 
             this.lblFechaNacimiento.AutoSize = true;
             this.lblFechaNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(39, 295);
+            this.lblFechaNacimiento.ForeColor = System.Drawing.Color.White;
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(336, 82);
             this.lblFechaNacimiento.Name = "lblFechaNacimiento";
             this.lblFechaNacimiento.Size = new System.Drawing.Size(153, 18);
             this.lblFechaNacimiento.TabIndex = 16;
@@ -159,7 +169,8 @@
             // 
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefono.Location = new System.Drawing.Point(39, 249);
+            this.lblTelefono.ForeColor = System.Drawing.Color.White;
+            this.lblTelefono.Location = new System.Drawing.Point(336, 178);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(74, 18);
             this.lblTelefono.TabIndex = 15;
@@ -169,7 +180,8 @@
             // 
             this.lblGenero.AutoSize = true;
             this.lblGenero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenero.Location = new System.Drawing.Point(39, 197);
+            this.lblGenero.ForeColor = System.Drawing.Color.White;
+            this.lblGenero.Location = new System.Drawing.Point(41, 178);
             this.lblGenero.Name = "lblGenero";
             this.lblGenero.Size = new System.Drawing.Size(66, 18);
             this.lblGenero.TabIndex = 14;
@@ -179,7 +191,8 @@
             // 
             this.lblApellidos.AutoSize = true;
             this.lblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidos.Location = new System.Drawing.Point(39, 150);
+            this.lblApellidos.ForeColor = System.Drawing.Color.White;
+            this.lblApellidos.Location = new System.Drawing.Point(335, 129);
             this.lblApellidos.Name = "lblApellidos";
             this.lblApellidos.Size = new System.Drawing.Size(75, 18);
             this.lblApellidos.TabIndex = 13;
@@ -189,7 +202,8 @@
             // 
             this.lblNombres.AutoSize = true;
             this.lblNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombres.Location = new System.Drawing.Point(39, 95);
+            this.lblNombres.ForeColor = System.Drawing.Color.White;
+            this.lblNombres.Location = new System.Drawing.Point(41, 129);
             this.lblNombres.Name = "lblNombres";
             this.lblNombres.Size = new System.Drawing.Size(78, 18);
             this.lblNombres.TabIndex = 12;
@@ -199,7 +213,8 @@
             // 
             this.lblCedula.AutoSize = true;
             this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCedula.Location = new System.Drawing.Point(43, 41);
+            this.lblCedula.ForeColor = System.Drawing.Color.White;
+            this.lblCedula.Location = new System.Drawing.Point(42, 83);
             this.lblCedula.Name = "lblCedula";
             this.lblCedula.Size = new System.Drawing.Size(62, 18);
             this.lblCedula.TabIndex = 11;
@@ -208,7 +223,7 @@
             // txtPresion
             // 
             this.txtPresion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPresion.Location = new System.Drawing.Point(215, 557);
+            this.txtPresion.Location = new System.Drawing.Point(125, 323);
             this.txtPresion.Name = "txtPresion";
             this.txtPresion.Size = new System.Drawing.Size(184, 23);
             this.txtPresion.TabIndex = 10;
@@ -216,7 +231,7 @@
             // txtFrecuencia
             // 
             this.txtFrecuencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFrecuencia.Location = new System.Drawing.Point(215, 504);
+            this.txtFrecuencia.Location = new System.Drawing.Point(433, 271);
             this.txtFrecuencia.Name = "txtFrecuencia";
             this.txtFrecuencia.Size = new System.Drawing.Size(184, 23);
             this.txtFrecuencia.TabIndex = 9;
@@ -224,7 +239,7 @@
             // txtGrasa
             // 
             this.txtGrasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGrasa.Location = new System.Drawing.Point(215, 450);
+            this.txtGrasa.Location = new System.Drawing.Point(125, 271);
             this.txtGrasa.Name = "txtGrasa";
             this.txtGrasa.Size = new System.Drawing.Size(184, 23);
             this.txtGrasa.TabIndex = 8;
@@ -232,7 +247,7 @@
             // txtPeso
             // 
             this.txtPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPeso.Location = new System.Drawing.Point(215, 393);
+            this.txtPeso.Location = new System.Drawing.Point(433, 224);
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.Size = new System.Drawing.Size(184, 23);
             this.txtPeso.TabIndex = 7;
@@ -240,22 +255,23 @@
             // txtAltura
             // 
             this.txtAltura.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAltura.Location = new System.Drawing.Point(215, 337);
+            this.txtAltura.Location = new System.Drawing.Point(125, 229);
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(184, 23);
             this.txtAltura.TabIndex = 6;
             // 
             // dtmFechaNacimiento
             // 
-            this.dtmFechaNacimiento.Location = new System.Drawing.Point(215, 292);
+            this.dtmFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtmFechaNacimiento.Location = new System.Drawing.Point(536, 85);
             this.dtmFechaNacimiento.Name = "dtmFechaNacimiento";
-            this.dtmFechaNacimiento.Size = new System.Drawing.Size(184, 20);
+            this.dtmFechaNacimiento.Size = new System.Drawing.Size(81, 20);
             this.dtmFechaNacimiento.TabIndex = 5;
             // 
             // txtTelefono
             // 
             this.txtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(215, 244);
+            this.txtTelefono.Location = new System.Drawing.Point(433, 173);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(184, 23);
             this.txtTelefono.TabIndex = 4;
@@ -267,7 +283,7 @@
             this.cmbGenero.Items.AddRange(new object[] {
             "M",
             "F"});
-            this.cmbGenero.Location = new System.Drawing.Point(274, 195);
+            this.cmbGenero.Location = new System.Drawing.Point(239, 178);
             this.cmbGenero.Name = "cmbGenero";
             this.cmbGenero.Size = new System.Drawing.Size(70, 21);
             this.cmbGenero.TabIndex = 3;
@@ -275,7 +291,7 @@
             // txtApellido
             // 
             this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(215, 145);
+            this.txtApellido.Location = new System.Drawing.Point(433, 128);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(184, 23);
             this.txtApellido.TabIndex = 2;
@@ -283,7 +299,7 @@
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(215, 90);
+            this.txtNombre.Location = new System.Drawing.Point(125, 124);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(184, 23);
             this.txtNombre.TabIndex = 1;
@@ -291,16 +307,28 @@
             // txtCedula
             // 
             this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedula.Location = new System.Drawing.Point(215, 39);
+            this.txtCedula.Location = new System.Drawing.Point(125, 82);
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(184, 23);
             this.txtCedula.TabIndex = 0;
+            // 
+            // lblInsertarCliente
+            // 
+            this.lblInsertarCliente.AutoSize = true;
+            this.lblInsertarCliente.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInsertarCliente.ForeColor = System.Drawing.Color.White;
+            this.lblInsertarCliente.Location = new System.Drawing.Point(38, 24);
+            this.lblInsertarCliente.Name = "lblInsertarCliente";
+            this.lblInsertarCliente.Size = new System.Drawing.Size(289, 37);
+            this.lblInsertarCliente.TabIndex = 24;
+            this.lblInsertarCliente.Text = "Insertar clientes";
             // 
             // InsertarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 680);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(35)))), ((int)(((byte)(41)))));
+            this.ClientSize = new System.Drawing.Size(668, 399);
             this.Controls.Add(this.panel);
             this.Name = "InsertarCliente";
             this.Text = "InsertarCliente";
@@ -336,5 +364,6 @@
         private System.Windows.Forms.Label lblGenero;
         private System.Windows.Forms.Label lblApellidos;
         private System.Windows.Forms.Label lblNombres;
+        private System.Windows.Forms.Label lblInsertarCliente;
     }
 }

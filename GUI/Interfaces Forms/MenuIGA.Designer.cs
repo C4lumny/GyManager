@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuIGA));
             this.pnlMenuLateral = new System.Windows.Forms.Panel();
-            this.panelPlanes = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnAgregarPlan = new System.Windows.Forms.Button();
-            this.btnConsultarPlan = new System.Windows.Forms.Button();
-            this.btnActualizarPlan = new System.Windows.Forms.Button();
+            this.pnlPlanes = new System.Windows.Forms.Panel();
             this.btnEliminarPlan = new System.Windows.Forms.Button();
-            this.btnPlan = new System.Windows.Forms.Button();
+            this.btnActualizarPlan = new System.Windows.Forms.Button();
+            this.btnConsultarPlan = new System.Windows.Forms.Button();
+            this.btnAgregarPlan = new System.Windows.Forms.Button();
+            this.btnPlanes = new System.Windows.Forms.Button();
+            this.panelPlanes = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlProductosSbmn = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.btnEliminarProducto = new System.Windows.Forms.Button();
             this.btnActualizarProducto = new System.Windows.Forms.Button();
             this.btnConsultarProducto = new System.Windows.Forms.Button();
@@ -52,6 +51,7 @@
             this.btnAgregarSupervisor = new System.Windows.Forms.Button();
             this.btnSupervisores = new System.Windows.Forms.Button();
             this.pnlClientesSbmn = new System.Windows.Forms.Panel();
+            this.btnConsultarDB = new System.Windows.Forms.Button();
             this.btnEliminarCliente = new System.Windows.Forms.Button();
             this.btnActualizarCliente = new System.Windows.Forms.Button();
             this.btnConsultarCliente = new System.Windows.Forms.Button();
@@ -64,21 +64,35 @@
             this.btnAgregarInscripcion = new System.Windows.Forms.Button();
             this.btnInscripciones = new System.Windows.Forms.Button();
             this.pnlLogo = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pnlHora = new System.Windows.Forms.Panel();
+            this.pnlChild = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.lblHora = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.horaFecha = new System.Windows.Forms.Timer(this.components);
             this.pnlMenuLateral.SuspendLayout();
-            this.panelPlanes.SuspendLayout();
+            this.pnlPlanes.SuspendLayout();
             this.pnlProductosSbmn.SuspendLayout();
             this.pnlSupervisoresSbmn.SuspendLayout();
             this.pnlClientesSbmn.SuspendLayout();
             this.pnlInscripcionesSbmn.SuspendLayout();
+            this.pnlLogo.SuspendLayout();
+            this.pnlHora.SuspendLayout();
+            this.pnlChild.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMenuLateral
             // 
             this.pnlMenuLateral.AutoScroll = true;
             this.pnlMenuLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
+            this.pnlMenuLateral.Controls.Add(this.pnlPlanes);
+            this.pnlMenuLateral.Controls.Add(this.btnPlanes);
             this.pnlMenuLateral.Controls.Add(this.panelPlanes);
-            this.pnlMenuLateral.Controls.Add(this.btnPlan);
             this.pnlMenuLateral.Controls.Add(this.pnlProductosSbmn);
             this.pnlMenuLateral.Controls.Add(this.btnProductos);
             this.pnlMenuLateral.Controls.Add(this.pnlSupervisoresSbmn);
@@ -91,70 +105,21 @@
             this.pnlMenuLateral.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenuLateral.Location = new System.Drawing.Point(0, 0);
             this.pnlMenuLateral.Name = "pnlMenuLateral";
-            this.pnlMenuLateral.Size = new System.Drawing.Size(250, 635);
+            this.pnlMenuLateral.Size = new System.Drawing.Size(250, 561);
             this.pnlMenuLateral.TabIndex = 0;
             // 
-            // panelPlanes
+            // pnlPlanes
             // 
-            this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.panelPlanes.Controls.Add(this.btnAgregarPlan);
-            this.panelPlanes.Controls.Add(this.btnConsultarPlan);
-            this.panelPlanes.Controls.Add(this.btnActualizarPlan);
-            this.panelPlanes.Controls.Add(this.btnEliminarPlan);
-            this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPlanes.Location = new System.Drawing.Point(0, 989);
-            this.panelPlanes.Name = "panelPlanes";
-            this.panelPlanes.Size = new System.Drawing.Size(233, 0);
-            this.panelPlanes.TabIndex = 1;
-            this.panelPlanes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPlanes_Paint);
-            // 
-            // btnAgregarPlan
-            // 
-            this.btnAgregarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAgregarPlan.FlatAppearance.BorderSize = 0;
-            this.btnAgregarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarPlan.Location = new System.Drawing.Point(3, 3);
-            this.btnAgregarPlan.Name = "btnAgregarPlan";
-            this.btnAgregarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnAgregarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnAgregarPlan.TabIndex = 4;
-            this.btnAgregarPlan.Text = "Agregar";
-            this.btnAgregarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarPlan.UseVisualStyleBackColor = true;
-            this.btnAgregarPlan.Click += new System.EventHandler(this.btnAgregarPlan_Click);
-            // 
-            // btnConsultarPlan
-            // 
-            this.btnConsultarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnConsultarPlan.FlatAppearance.BorderSize = 0;
-            this.btnConsultarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnConsultarPlan.Location = new System.Drawing.Point(3, 49);
-            this.btnConsultarPlan.Name = "btnConsultarPlan";
-            this.btnConsultarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnConsultarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnConsultarPlan.TabIndex = 5;
-            this.btnConsultarPlan.Text = "Consultar";
-            this.btnConsultarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarPlan.UseVisualStyleBackColor = true;
-            this.btnConsultarPlan.Click += new System.EventHandler(this.btnConsultarPlan_Click);
-            // 
-            // btnActualizarPlan
-            // 
-            this.btnActualizarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnActualizarPlan.FlatAppearance.BorderSize = 0;
-            this.btnActualizarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarPlan.Location = new System.Drawing.Point(3, 95);
-            this.btnActualizarPlan.Name = "btnActualizarPlan";
-            this.btnActualizarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnActualizarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnActualizarPlan.TabIndex = 6;
-            this.btnActualizarPlan.Text = "Actualizar";
-            this.btnActualizarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarPlan.UseVisualStyleBackColor = true;
-            this.btnActualizarPlan.Click += new System.EventHandler(this.btnActualizarPlan_Click);
+            this.pnlPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
+            this.pnlPlanes.Controls.Add(this.btnEliminarPlan);
+            this.pnlPlanes.Controls.Add(this.btnActualizarPlan);
+            this.pnlPlanes.Controls.Add(this.btnConsultarPlan);
+            this.pnlPlanes.Controls.Add(this.btnAgregarPlan);
+            this.pnlPlanes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlPlanes.Location = new System.Drawing.Point(0, 1073);
+            this.pnlPlanes.Name = "pnlPlanes";
+            this.pnlPlanes.Size = new System.Drawing.Size(233, 168);
+            this.pnlPlanes.TabIndex = 7;
             // 
             // btnEliminarPlan
             // 
@@ -162,108 +127,99 @@
             this.btnEliminarPlan.FlatAppearance.BorderSize = 0;
             this.btnEliminarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarPlan.Location = new System.Drawing.Point(3, 141);
+            this.btnEliminarPlan.Location = new System.Drawing.Point(0, 120);
             this.btnEliminarPlan.Name = "btnEliminarPlan";
             this.btnEliminarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnEliminarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnEliminarPlan.TabIndex = 7;
+            this.btnEliminarPlan.TabIndex = 3;
             this.btnEliminarPlan.Text = "Eliminar";
             this.btnEliminarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminarPlan.UseVisualStyleBackColor = true;
-            this.btnEliminarPlan.Click += new System.EventHandler(this.btnEliminarPlan_Click_1);
             // 
-            // btnPlan
+            // btnActualizarPlan
             // 
-            this.btnPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPlan.FlatAppearance.BorderSize = 0;
-            this.btnPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlan.ForeColor = System.Drawing.Color.White;
-            this.btnPlan.Location = new System.Drawing.Point(0, 944);
-            this.btnPlan.Name = "btnPlan";
-            this.btnPlan.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnPlan.Size = new System.Drawing.Size(233, 45);
-            this.btnPlan.TabIndex = 7;
-            this.btnPlan.Text = "Planes de inscripcion";
-            this.btnPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPlan.UseVisualStyleBackColor = true;
-            this.btnPlan.Click += new System.EventHandler(this.button1_Click);
+            this.btnActualizarPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnActualizarPlan.FlatAppearance.BorderSize = 0;
+            this.btnActualizarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarPlan.ForeColor = System.Drawing.Color.White;
+            this.btnActualizarPlan.Location = new System.Drawing.Point(0, 80);
+            this.btnActualizarPlan.Name = "btnActualizarPlan";
+            this.btnActualizarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnActualizarPlan.Size = new System.Drawing.Size(233, 40);
+            this.btnActualizarPlan.TabIndex = 2;
+            this.btnActualizarPlan.Text = "Actualizar";
+            this.btnActualizarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActualizarPlan.UseVisualStyleBackColor = true;
+            // 
+            // btnConsultarPlan
+            // 
+            this.btnConsultarPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConsultarPlan.FlatAppearance.BorderSize = 0;
+            this.btnConsultarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarPlan.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarPlan.Location = new System.Drawing.Point(0, 40);
+            this.btnConsultarPlan.Name = "btnConsultarPlan";
+            this.btnConsultarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnConsultarPlan.Size = new System.Drawing.Size(233, 40);
+            this.btnConsultarPlan.TabIndex = 1;
+            this.btnConsultarPlan.Text = "Consultar";
+            this.btnConsultarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarPlan.UseVisualStyleBackColor = true;
+            this.btnConsultarPlan.Click += new System.EventHandler(this.btnConsultarPlan_Click);
+            // 
+            // btnAgregarPlan
+            // 
+            this.btnAgregarPlan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAgregarPlan.FlatAppearance.BorderSize = 0;
+            this.btnAgregarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarPlan.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarPlan.Location = new System.Drawing.Point(0, 0);
+            this.btnAgregarPlan.Name = "btnAgregarPlan";
+            this.btnAgregarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnAgregarPlan.Size = new System.Drawing.Size(233, 40);
+            this.btnAgregarPlan.TabIndex = 0;
+            this.btnAgregarPlan.Text = "Agregar";
+            this.btnAgregarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarPlan.UseVisualStyleBackColor = true;
+            this.btnAgregarPlan.Click += new System.EventHandler(this.btnAgregarPlan_Click);
+            // 
+            // btnPlanes
+            // 
+            this.btnPlanes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPlanes.FlatAppearance.BorderSize = 0;
+            this.btnPlanes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlanes.ForeColor = System.Drawing.Color.White;
+            this.btnPlanes.Location = new System.Drawing.Point(0, 1028);
+            this.btnPlanes.Name = "btnPlanes";
+            this.btnPlanes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnPlanes.Size = new System.Drawing.Size(233, 45);
+            this.btnPlanes.TabIndex = 8;
+            this.btnPlanes.Text = "Planes";
+            this.btnPlanes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPlanes.UseVisualStyleBackColor = true;
+            this.btnPlanes.Click += new System.EventHandler(this.btnPlanes_Click);
+            // 
+            // panelPlanes
+            // 
+            this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
+            this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPlanes.Location = new System.Drawing.Point(0, 1028);
+            this.panelPlanes.Name = "panelPlanes";
+            this.panelPlanes.Size = new System.Drawing.Size(233, 213);
+            this.panelPlanes.TabIndex = 1;
             // 
             // pnlProductosSbmn
             // 
             this.pnlProductosSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.pnlProductosSbmn.Controls.Add(this.button5);
-            this.pnlProductosSbmn.Controls.Add(this.button4);
-            this.pnlProductosSbmn.Controls.Add(this.button3);
-            this.pnlProductosSbmn.Controls.Add(this.button2);
             this.pnlProductosSbmn.Controls.Add(this.btnEliminarProducto);
             this.pnlProductosSbmn.Controls.Add(this.btnActualizarProducto);
             this.pnlProductosSbmn.Controls.Add(this.btnConsultarProducto);
             this.pnlProductosSbmn.Controls.Add(this.btnAgregarProducto);
             this.pnlProductosSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 776);
+            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 860);
             this.pnlProductosSbmn.Name = "pnlProductosSbmn";
             this.pnlProductosSbmn.Size = new System.Drawing.Size(233, 168);
             this.pnlProductosSbmn.TabIndex = 6;
-            // 
-            // button5
-            // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(0, 280);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(233, 40);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Eliminar";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 240);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(233, 40);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Actualizar";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 200);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(233, 40);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Consultar";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 160);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(233, 40);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Agregar";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // btnEliminarProducto
             // 
@@ -335,7 +291,7 @@
             this.btnProductos.FlatAppearance.BorderSize = 0;
             this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProductos.ForeColor = System.Drawing.Color.White;
-            this.btnProductos.Location = new System.Drawing.Point(0, 731);
+            this.btnProductos.Location = new System.Drawing.Point(0, 815);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnProductos.Size = new System.Drawing.Size(233, 45);
@@ -353,7 +309,7 @@
             this.pnlSupervisoresSbmn.Controls.Add(this.btnConsultarSupervisor);
             this.pnlSupervisoresSbmn.Controls.Add(this.btnAgregarSupervisor);
             this.pnlSupervisoresSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 563);
+            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 647);
             this.pnlSupervisoresSbmn.Name = "pnlSupervisoresSbmn";
             this.pnlSupervisoresSbmn.Size = new System.Drawing.Size(233, 168);
             this.pnlSupervisoresSbmn.TabIndex = 5;
@@ -428,7 +384,7 @@
             this.btnSupervisores.FlatAppearance.BorderSize = 0;
             this.btnSupervisores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupervisores.ForeColor = System.Drawing.Color.White;
-            this.btnSupervisores.Location = new System.Drawing.Point(0, 518);
+            this.btnSupervisores.Location = new System.Drawing.Point(0, 602);
             this.btnSupervisores.Name = "btnSupervisores";
             this.btnSupervisores.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSupervisores.Size = new System.Drawing.Size(233, 45);
@@ -441,16 +397,32 @@
             // pnlClientesSbmn
             // 
             this.pnlClientesSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.pnlClientesSbmn.Controls.Add(this.button1);
+            this.pnlClientesSbmn.Controls.Add(this.btnConsultarDB);
             this.pnlClientesSbmn.Controls.Add(this.btnEliminarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnActualizarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnConsultarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnAgregarCliente);
             this.pnlClientesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 313);
+            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 397);
             this.pnlClientesSbmn.Name = "pnlClientesSbmn";
             this.pnlClientesSbmn.Size = new System.Drawing.Size(233, 205);
             this.pnlClientesSbmn.TabIndex = 4;
+            // 
+            // btnConsultarDB
+            // 
+            this.btnConsultarDB.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConsultarDB.FlatAppearance.BorderSize = 0;
+            this.btnConsultarDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarDB.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarDB.Location = new System.Drawing.Point(0, 160);
+            this.btnConsultarDB.Name = "btnConsultarDB";
+            this.btnConsultarDB.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnConsultarDB.Size = new System.Drawing.Size(233, 40);
+            this.btnConsultarDB.TabIndex = 4;
+            this.btnConsultarDB.Text = "Consultar Datos Biomedicos";
+            this.btnConsultarDB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarDB.UseVisualStyleBackColor = true;
+            this.btnConsultarDB.Click += new System.EventHandler(this.btnConsultarDatosBD_Click_1);
             // 
             // btnEliminarCliente
             // 
@@ -522,7 +494,7 @@
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClientes.ForeColor = System.Drawing.Color.White;
-            this.btnClientes.Location = new System.Drawing.Point(0, 268);
+            this.btnClientes.Location = new System.Drawing.Point(0, 352);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnClientes.Size = new System.Drawing.Size(233, 45);
@@ -540,7 +512,7 @@
             this.pnlInscripcionesSbmn.Controls.Add(this.btnConsultarInscripcion);
             this.pnlInscripcionesSbmn.Controls.Add(this.btnAgregarInscripcion);
             this.pnlInscripcionesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlInscripcionesSbmn.Location = new System.Drawing.Point(0, 100);
+            this.pnlInscripcionesSbmn.Location = new System.Drawing.Point(0, 184);
             this.pnlInscripcionesSbmn.Name = "pnlInscripcionesSbmn";
             this.pnlInscripcionesSbmn.Size = new System.Drawing.Size(233, 168);
             this.pnlInscripcionesSbmn.TabIndex = 2;
@@ -615,7 +587,7 @@
             this.btnInscripciones.FlatAppearance.BorderSize = 0;
             this.btnInscripciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInscripciones.ForeColor = System.Drawing.Color.White;
-            this.btnInscripciones.Location = new System.Drawing.Point(0, 55);
+            this.btnInscripciones.Location = new System.Drawing.Point(0, 139);
             this.btnInscripciones.Name = "btnInscripciones";
             this.btnInscripciones.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnInscripciones.Size = new System.Drawing.Size(233, 45);
@@ -627,46 +599,121 @@
             // 
             // pnlLogo
             // 
+            this.pnlLogo.Controls.Add(this.pictureBox4);
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(233, 55);
+            this.pnlLogo.Size = new System.Drawing.Size(233, 139);
             this.pnlLogo.TabIndex = 0;
-            this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
             // 
-            // button1
+            // pnlHora
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 160);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(233, 40);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Consultar Datos Biomedicos";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.pnlHora.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(35)))), ((int)(((byte)(41)))));
+            this.pnlHora.Controls.Add(this.lblFecha);
+            this.pnlHora.Controls.Add(this.lblHora);
+            this.pnlHora.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlHora.Location = new System.Drawing.Point(250, 438);
+            this.pnlHora.Name = "pnlHora";
+            this.pnlHora.Size = new System.Drawing.Size(684, 123);
+            this.pnlHora.TabIndex = 1;
+            // 
+            // pnlChild
+            // 
+            this.pnlChild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(64)))));
+            this.pnlChild.Controls.Add(this.pictureBox2);
+            this.pnlChild.Controls.Add(this.pictureBox1);
+            this.pnlChild.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlChild.Location = new System.Drawing.Point(250, 0);
+            this.pnlChild.Name = "pnlChild";
+            this.pnlChild.Size = new System.Drawing.Size(684, 438);
+            this.pnlChild.TabIndex = 2;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(107, 207);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(484, 110);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(40, 12);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(143, 113);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click_1);
+            // 
+            // lblHora
+            // 
+            this.lblHora.AutoSize = true;
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblHora.Location = new System.Drawing.Point(21, 18);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(109, 39);
+            this.lblHora.TabIndex = 0;
+            this.lblHora.Text = "label1";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblFecha.Location = new System.Drawing.Point(22, 66);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(86, 31);
+            this.lblFecha.TabIndex = 1;
+            this.lblFecha.Text = "label2";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(249, 83);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(194, 118);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // horaFecha
+            // 
+            this.horaFecha.Enabled = true;
+            this.horaFecha.Tick += new System.EventHandler(this.horaFecha_Tick);
             // 
             // MenuIGA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 635);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
+            this.ClientSize = new System.Drawing.Size(934, 561);
+            this.Controls.Add(this.pnlChild);
+            this.Controls.Add(this.pnlHora);
             this.Controls.Add(this.pnlMenuLateral);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MinimumSize = new System.Drawing.Size(950, 600);
             this.Name = "MenuIGA";
             this.Text = "MenuIGA";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuIGA_FormClosing);
             this.pnlMenuLateral.ResumeLayout(false);
-            this.panelPlanes.ResumeLayout(false);
+            this.pnlPlanes.ResumeLayout(false);
             this.pnlProductosSbmn.ResumeLayout(false);
             this.pnlSupervisoresSbmn.ResumeLayout(false);
             this.pnlClientesSbmn.ResumeLayout(false);
             this.pnlInscripcionesSbmn.ResumeLayout(false);
+            this.pnlLogo.ResumeLayout(false);
+            this.pnlLogo.PerformLayout();
+            this.pnlHora.ResumeLayout(false);
+            this.pnlHora.PerformLayout();
+            this.pnlChild.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -681,11 +728,6 @@
         private System.Windows.Forms.Button btnEliminarInscripcion;
         private System.Windows.Forms.Button btnActualizarInscripcion;
         private System.Windows.Forms.Button btnConsultarInscripcion;
-        private System.Windows.Forms.Panel pnlProductosSbmn;
-        private System.Windows.Forms.Button btnEliminarProducto;
-        private System.Windows.Forms.Button btnActualizarProducto;
-        private System.Windows.Forms.Button btnConsultarProducto;
-        private System.Windows.Forms.Button btnAgregarProducto;
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Panel pnlSupervisoresSbmn;
         private System.Windows.Forms.Button btnEliminarSupervisor;
@@ -699,16 +741,26 @@
         private System.Windows.Forms.Button btnConsultarCliente;
         private System.Windows.Forms.Button btnAgregarCliente;
         private System.Windows.Forms.Button btnClientes;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.FlowLayoutPanel panelPlanes;
-        private System.Windows.Forms.Button btnAgregarPlan;
-        private System.Windows.Forms.Button btnConsultarPlan;
-        private System.Windows.Forms.Button btnActualizarPlan;
+        private System.Windows.Forms.Button btnConsultarDB;
+        private System.Windows.Forms.Panel pnlPlanes;
         private System.Windows.Forms.Button btnEliminarPlan;
-        private System.Windows.Forms.Button btnPlan;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnActualizarPlan;
+        private System.Windows.Forms.Button btnConsultarPlan;
+        private System.Windows.Forms.Button btnAgregarPlan;
+        private System.Windows.Forms.Button btnPlanes;
+        private System.Windows.Forms.Panel pnlProductosSbmn;
+        private System.Windows.Forms.Button btnEliminarProducto;
+        private System.Windows.Forms.Button btnActualizarProducto;
+        private System.Windows.Forms.Button btnConsultarProducto;
+        private System.Windows.Forms.Button btnAgregarProducto;
+        private System.Windows.Forms.Panel pnlHora;
+        private System.Windows.Forms.Panel pnlChild;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label lblHora;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer horaFecha;
     }
 }

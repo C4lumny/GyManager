@@ -44,5 +44,9 @@ namespace GUI.Pureba.Insertar
             MessageBox.Show(serv.Crear(cliente));
             serv2.Crear(datos);
         }
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
