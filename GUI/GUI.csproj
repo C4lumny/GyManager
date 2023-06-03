@@ -106,6 +106,12 @@
     <Compile Include="CRUD\Actualizar\ActualizarCliente.Designer.cs">
       <DependentUpon>ActualizarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarSupervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarSupervisor.Designer.cs">
+      <DependentUpon>ActualizarSupervisor.cs</DependentUpon>
+    </Compile>
     <Compile Include="CRUD\Insertar\InsertarInscripcion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,35 +185,35 @@
     <Compile Include="CRUD\Consultar\ConsultarHistorialFactura.Designer.cs">
       <DependentUpon>ConsultarHistorialFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarHistorialPagosBD.cs">
+    <Compile Include="CRUD\Consultar\ConsultarHistorialPagos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarHistorialPagosBD.Designer.cs">
-      <DependentUpon>ConsultarHistorialPagosBD.cs</DependentUpon>
+    <Compile Include="CRUD\Consultar\ConsultarHistorialPagos.Designer.cs">
+      <DependentUpon>ConsultarHistorialPagos.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarInscripcionBD.cs">
+    <Compile Include="CRUD\Consultar\ConsultarInscripcion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarInscripcionBD.Designer.cs">
-      <DependentUpon>ConsultarInscripcionBD.cs</DependentUpon>
+    <Compile Include="CRUD\Consultar\ConsultarInscripcion.Designer.cs">
+      <DependentUpon>ConsultarInscripcion.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarPagoBD.cs">
+    <Compile Include="CRUD\Consultar\ConsultarPago.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarPagoBD.Designer.cs">
-      <DependentUpon>ConsultarPagoBD.cs</DependentUpon>
+    <Compile Include="CRUD\Consultar\ConsultarPago.Designer.cs">
+      <DependentUpon>ConsultarPago.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarPlanGimnasioBD.cs">
+    <Compile Include="CRUD\Consultar\ConsultarPlanGimnasio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarPlanGimnasioBD.Designer.cs">
-      <DependentUpon>ConsultarPlanGimnasioBD.cs</DependentUpon>
+    <Compile Include="CRUD\Consultar\ConsultarPlanGimnasio.Designer.cs">
+      <DependentUpon>ConsultarPlanGimnasio.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarSupervisorBD.cs">
+    <Compile Include="CRUD\Consultar\ConsultarSupervisor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarSupervisorBD.Designer.cs">
-      <DependentUpon>ConsultarSupervisorBD.cs</DependentUpon>
+    <Compile Include="CRUD\Consultar\ConsultarSupervisor.Designer.cs">
+      <DependentUpon>ConsultarSupervisor.cs</DependentUpon>
     </Compile>
     <Compile Include="CRUD\Insertar\InsertarCliente.cs">
       <SubType>Form</SubType>
@@ -239,6 +245,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CRUD\Actualizar\ActualizarCliente.resx">
       <DependentUpon>ActualizarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Actualizar\ActualizarSupervisor.resx">
+      <DependentUpon>ActualizarSupervisor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Insertar\InsertarInscripcion.resx">
       <DependentUpon>InsertarInscripcion.cs</DependentUpon>
@@ -277,20 +286,20 @@
     <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialFactura.resx">
       <DependentUpon>ConsultarHistorialFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialPagosBD.resx">
-      <DependentUpon>ConsultarHistorialPagosBD.cs</DependentUpon>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialPagos.resx">
+      <DependentUpon>ConsultarHistorialPagos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUD\Consultar\ConsultarInscripcionBD.resx">
-      <DependentUpon>ConsultarInscripcionBD.cs</DependentUpon>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarInscripcion.resx">
+      <DependentUpon>ConsultarInscripcion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUD\Consultar\ConsultarPagoBD.resx">
-      <DependentUpon>ConsultarPagoBD.cs</DependentUpon>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarPago.resx">
+      <DependentUpon>ConsultarPago.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUD\Consultar\ConsultarPlanGimnasioBD.resx">
-      <DependentUpon>ConsultarPlanGimnasioBD.cs</DependentUpon>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarPlanGimnasio.resx">
+      <DependentUpon>ConsultarPlanGimnasio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUD\Consultar\ConsultarSupervisorBD.resx">
-      <DependentUpon>ConsultarSupervisorBD.cs</DependentUpon>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarSupervisor.resx">
+      <DependentUpon>ConsultarSupervisor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Insertar\InsertarCliente.resx">
       <DependentUpon>InsertarCliente.cs</DependentUpon>

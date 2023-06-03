@@ -18,6 +18,7 @@ namespace GUI.Pureba.Insertar
         public InsertarCliente()
         {
             InitializeComponent();
+            cmbGenero.SelectedIndex = 0;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

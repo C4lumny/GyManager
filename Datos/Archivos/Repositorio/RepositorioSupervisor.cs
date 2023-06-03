@@ -31,14 +31,13 @@ namespace Datos.Archivos
                 Supervisoress supervisor = new Supervisoress();
                 supervisor.Id = dataReader.GetString(0);
                 supervisor.Nombre = dataReader.GetString(1);
-                supervisor.Genero = dataReader.GetString(2);
-                supervisor.Telefono = dataReader.GetString(3);
-                supervisor.Fecha_nacimiento = dataReader.GetDateTime(4);
-                supervisor.Correo = dataReader.GetString(5);
-                supervisor.Fecha_ingreso = dataReader.GetDateTime(6);
-                supervisor.Apellido = dataReader.GetString(7);
-
-
+                supervisor.Apellido = dataReader.GetString(2);
+                supervisor.Genero = dataReader.GetString(3);
+                supervisor.Telefono = dataReader.GetString(4);
+                supervisor.Fecha_nacimiento = dataReader.GetDateTime(5);
+                supervisor.Correo = dataReader.GetString(6);
+                supervisor.Fecha_ingreso = dataReader.GetDateTime(7);
+                
                 return supervisor;
             }
             catch (Exception)

@@ -12,31 +12,30 @@ using System.Windows.Forms;
 
 namespace GUI.Pureba
 {
-    public partial class ConsultarSupervisorBD : Form
+    public partial class ConsultarInscripcion : Form
     {
-
-        ServicioSupervisores serv;
-        public ConsultarSupervisorBD()
+        ServicioInscripcion serv;
+        public ConsultarInscripcion()
         {
             InitializeComponent();
-            serv = new ServicioSupervisores();
+            serv = new ServicioInscripcion();
         }
 
         void CargarGrilla()
         {
-            dgvSupervisor.Rows.Clear();
+            dgvInscripcion.Rows.Clear();
             var lista = serv.GetAll();
             if (lista != null)
             {
-                foreach (Supervisoress supervisor in lista)
+                foreach (Inscripcion inscripcion in lista)
                 {
-                    dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo);
+                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, inscripcion.Supervisor.Id, inscripcion.Plan.Id, inscripcion.IdEstado);
                 }
             }
 
         }
 
-        private void ConsultarSupervisorBD_Load(object sender, EventArgs e)
+        private void ConsultarInscripcionBD_Load(object sender, EventArgs e)
         {
             CargarGrilla();
         }

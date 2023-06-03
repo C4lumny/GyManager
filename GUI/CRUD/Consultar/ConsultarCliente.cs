@@ -39,6 +39,7 @@ namespace GUI.Pureba
         private void ConsultarCliente_Load(object sender, EventArgs e)
         {
             CargarGrilla();
+            dgvClientes.ClearSelection();
         }
 
         private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)

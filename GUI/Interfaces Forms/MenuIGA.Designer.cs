@@ -32,21 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuIGA));
             this.pnlMenuLateral = new System.Windows.Forms.Panel();
             this.pnlPlanes = new System.Windows.Forms.Panel();
-            this.btnEliminarPlan = new System.Windows.Forms.Button();
-            this.btnActualizarPlan = new System.Windows.Forms.Button();
             this.btnConsultarPlan = new System.Windows.Forms.Button();
             this.btnAgregarPlan = new System.Windows.Forms.Button();
             this.btnPlanes = new System.Windows.Forms.Button();
             this.panelPlanes = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlProductosSbmn = new System.Windows.Forms.Panel();
-            this.btnEliminarProducto = new System.Windows.Forms.Button();
-            this.btnActualizarProducto = new System.Windows.Forms.Button();
             this.btnConsultarProducto = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
             this.pnlSupervisoresSbmn = new System.Windows.Forms.Panel();
-            this.btnEliminarSupervisor = new System.Windows.Forms.Button();
-            this.btnActualizarSupervisor = new System.Windows.Forms.Button();
             this.btnConsultarSupervisor = new System.Windows.Forms.Button();
             this.btnAgregarSupervisor = new System.Windows.Forms.Button();
             this.btnSupervisores = new System.Windows.Forms.Button();
@@ -60,6 +54,7 @@
             this.btnAgregarInscripcion = new System.Windows.Forms.Button();
             this.btnInscripciones = new System.Windows.Forms.Button();
             this.pnlLogo = new System.Windows.Forms.Panel();
+            this.lblRetorno = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlHora = new System.Windows.Forms.Panel();
             this.lblFecha = new System.Windows.Forms.Label();
@@ -68,9 +63,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.horaFecha = new System.Windows.Forms.Timer(this.components);
-            this.lblRetorno = new System.Windows.Forms.Label();
-            this.btnActualizarInscripcion = new System.Windows.Forms.Button();
-            this.btnEliminarInscripcion = new System.Windows.Forms.Button();
             this.pnlMenuLateral.SuspendLayout();
             this.pnlPlanes.SuspendLayout();
             this.pnlProductosSbmn.SuspendLayout();
@@ -110,45 +102,13 @@
             // pnlPlanes
             // 
             this.pnlPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.pnlPlanes.Controls.Add(this.btnEliminarPlan);
-            this.pnlPlanes.Controls.Add(this.btnActualizarPlan);
             this.pnlPlanes.Controls.Add(this.btnConsultarPlan);
             this.pnlPlanes.Controls.Add(this.btnAgregarPlan);
             this.pnlPlanes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlPlanes.Location = new System.Drawing.Point(0, 996);
+            this.pnlPlanes.Location = new System.Drawing.Point(0, 773);
             this.pnlPlanes.Name = "pnlPlanes";
-            this.pnlPlanes.Size = new System.Drawing.Size(233, 168);
+            this.pnlPlanes.Size = new System.Drawing.Size(233, 99);
             this.pnlPlanes.TabIndex = 7;
-            // 
-            // btnEliminarPlan
-            // 
-            this.btnEliminarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarPlan.FlatAppearance.BorderSize = 0;
-            this.btnEliminarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarPlan.Location = new System.Drawing.Point(0, 120);
-            this.btnEliminarPlan.Name = "btnEliminarPlan";
-            this.btnEliminarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnEliminarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnEliminarPlan.TabIndex = 3;
-            this.btnEliminarPlan.Text = "Eliminar";
-            this.btnEliminarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarPlan.UseVisualStyleBackColor = true;
-            // 
-            // btnActualizarPlan
-            // 
-            this.btnActualizarPlan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnActualizarPlan.FlatAppearance.BorderSize = 0;
-            this.btnActualizarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarPlan.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarPlan.Location = new System.Drawing.Point(0, 80);
-            this.btnActualizarPlan.Name = "btnActualizarPlan";
-            this.btnActualizarPlan.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnActualizarPlan.Size = new System.Drawing.Size(233, 40);
-            this.btnActualizarPlan.TabIndex = 2;
-            this.btnActualizarPlan.Text = "Actualizar";
-            this.btnActualizarPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarPlan.UseVisualStyleBackColor = true;
             // 
             // btnConsultarPlan
             // 
@@ -188,7 +148,7 @@
             this.btnPlanes.FlatAppearance.BorderSize = 0;
             this.btnPlanes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlanes.ForeColor = System.Drawing.Color.White;
-            this.btnPlanes.Location = new System.Drawing.Point(0, 951);
+            this.btnPlanes.Location = new System.Drawing.Point(0, 728);
             this.btnPlanes.Name = "btnPlanes";
             this.btnPlanes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnPlanes.Size = new System.Drawing.Size(233, 45);
@@ -202,55 +162,21 @@
             // 
             this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
             this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPlanes.Location = new System.Drawing.Point(0, 951);
+            this.panelPlanes.Location = new System.Drawing.Point(0, 728);
             this.panelPlanes.Name = "panelPlanes";
-            this.panelPlanes.Size = new System.Drawing.Size(233, 213);
+            this.panelPlanes.Size = new System.Drawing.Size(233, 144);
             this.panelPlanes.TabIndex = 1;
             // 
             // pnlProductosSbmn
             // 
             this.pnlProductosSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.pnlProductosSbmn.Controls.Add(this.btnEliminarProducto);
-            this.pnlProductosSbmn.Controls.Add(this.btnActualizarProducto);
             this.pnlProductosSbmn.Controls.Add(this.btnConsultarProducto);
             this.pnlProductosSbmn.Controls.Add(this.btnAgregarProducto);
             this.pnlProductosSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 783);
+            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 633);
             this.pnlProductosSbmn.Name = "pnlProductosSbmn";
-            this.pnlProductosSbmn.Size = new System.Drawing.Size(233, 168);
+            this.pnlProductosSbmn.Size = new System.Drawing.Size(233, 95);
             this.pnlProductosSbmn.TabIndex = 6;
-            // 
-            // btnEliminarProducto
-            // 
-            this.btnEliminarProducto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarProducto.FlatAppearance.BorderSize = 0;
-            this.btnEliminarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarProducto.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarProducto.Location = new System.Drawing.Point(0, 120);
-            this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnEliminarProducto.Size = new System.Drawing.Size(233, 40);
-            this.btnEliminarProducto.TabIndex = 3;
-            this.btnEliminarProducto.Text = "Eliminar";
-            this.btnEliminarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarProducto.UseVisualStyleBackColor = true;
-            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
-            // 
-            // btnActualizarProducto
-            // 
-            this.btnActualizarProducto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnActualizarProducto.FlatAppearance.BorderSize = 0;
-            this.btnActualizarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarProducto.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarProducto.Location = new System.Drawing.Point(0, 80);
-            this.btnActualizarProducto.Name = "btnActualizarProducto";
-            this.btnActualizarProducto.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnActualizarProducto.Size = new System.Drawing.Size(233, 40);
-            this.btnActualizarProducto.TabIndex = 2;
-            this.btnActualizarProducto.Text = "Actualizar";
-            this.btnActualizarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarProducto.UseVisualStyleBackColor = true;
-            this.btnActualizarProducto.Click += new System.EventHandler(this.btnActualizarProducto_Click);
             // 
             // btnConsultarProducto
             // 
@@ -290,7 +216,7 @@
             this.btnProductos.FlatAppearance.BorderSize = 0;
             this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProductos.ForeColor = System.Drawing.Color.White;
-            this.btnProductos.Location = new System.Drawing.Point(0, 738);
+            this.btnProductos.Location = new System.Drawing.Point(0, 588);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnProductos.Size = new System.Drawing.Size(233, 45);
@@ -303,47 +229,13 @@
             // pnlSupervisoresSbmn
             // 
             this.pnlSupervisoresSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.pnlSupervisoresSbmn.Controls.Add(this.btnEliminarSupervisor);
-            this.pnlSupervisoresSbmn.Controls.Add(this.btnActualizarSupervisor);
             this.pnlSupervisoresSbmn.Controls.Add(this.btnConsultarSupervisor);
             this.pnlSupervisoresSbmn.Controls.Add(this.btnAgregarSupervisor);
             this.pnlSupervisoresSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 570);
+            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 501);
             this.pnlSupervisoresSbmn.Name = "pnlSupervisoresSbmn";
-            this.pnlSupervisoresSbmn.Size = new System.Drawing.Size(233, 168);
+            this.pnlSupervisoresSbmn.Size = new System.Drawing.Size(233, 87);
             this.pnlSupervisoresSbmn.TabIndex = 5;
-            // 
-            // btnEliminarSupervisor
-            // 
-            this.btnEliminarSupervisor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarSupervisor.FlatAppearance.BorderSize = 0;
-            this.btnEliminarSupervisor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarSupervisor.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarSupervisor.Location = new System.Drawing.Point(0, 120);
-            this.btnEliminarSupervisor.Name = "btnEliminarSupervisor";
-            this.btnEliminarSupervisor.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnEliminarSupervisor.Size = new System.Drawing.Size(233, 40);
-            this.btnEliminarSupervisor.TabIndex = 3;
-            this.btnEliminarSupervisor.Text = "Eliminar";
-            this.btnEliminarSupervisor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarSupervisor.UseVisualStyleBackColor = true;
-            this.btnEliminarSupervisor.Click += new System.EventHandler(this.btnEliminarSupervisor_Click);
-            // 
-            // btnActualizarSupervisor
-            // 
-            this.btnActualizarSupervisor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnActualizarSupervisor.FlatAppearance.BorderSize = 0;
-            this.btnActualizarSupervisor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarSupervisor.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarSupervisor.Location = new System.Drawing.Point(0, 80);
-            this.btnActualizarSupervisor.Name = "btnActualizarSupervisor";
-            this.btnActualizarSupervisor.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnActualizarSupervisor.Size = new System.Drawing.Size(233, 40);
-            this.btnActualizarSupervisor.TabIndex = 2;
-            this.btnActualizarSupervisor.Text = "Actualizar";
-            this.btnActualizarSupervisor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarSupervisor.UseVisualStyleBackColor = true;
-            this.btnActualizarSupervisor.Click += new System.EventHandler(this.btnActualizarSupervisor_Click);
             // 
             // btnConsultarSupervisor
             // 
@@ -383,7 +275,7 @@
             this.btnSupervisores.FlatAppearance.BorderSize = 0;
             this.btnSupervisores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupervisores.ForeColor = System.Drawing.Color.White;
-            this.btnSupervisores.Location = new System.Drawing.Point(0, 525);
+            this.btnSupervisores.Location = new System.Drawing.Point(0, 456);
             this.btnSupervisores.Name = "btnSupervisores";
             this.btnSupervisores.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSupervisores.Size = new System.Drawing.Size(233, 45);
@@ -400,7 +292,7 @@
             this.pnlClientesSbmn.Controls.Add(this.btnConsultarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnAgregarCliente);
             this.pnlClientesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 397);
+            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 328);
             this.pnlClientesSbmn.Name = "pnlClientesSbmn";
             this.pnlClientesSbmn.Size = new System.Drawing.Size(233, 128);
             this.pnlClientesSbmn.TabIndex = 4;
@@ -459,7 +351,7 @@
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClientes.ForeColor = System.Drawing.Color.White;
-            this.btnClientes.Location = new System.Drawing.Point(0, 352);
+            this.btnClientes.Location = new System.Drawing.Point(0, 283);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnClientes.Size = new System.Drawing.Size(233, 45);
@@ -472,14 +364,12 @@
             // pnlInscripcionesSbmn
             // 
             this.pnlInscripcionesSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.pnlInscripcionesSbmn.Controls.Add(this.btnEliminarInscripcion);
-            this.pnlInscripcionesSbmn.Controls.Add(this.btnActualizarInscripcion);
             this.pnlInscripcionesSbmn.Controls.Add(this.btnConsultarInscripcion);
             this.pnlInscripcionesSbmn.Controls.Add(this.btnAgregarInscripcion);
             this.pnlInscripcionesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInscripcionesSbmn.Location = new System.Drawing.Point(0, 184);
             this.pnlInscripcionesSbmn.Name = "pnlInscripcionesSbmn";
-            this.pnlInscripcionesSbmn.Size = new System.Drawing.Size(233, 168);
+            this.pnlInscripcionesSbmn.Size = new System.Drawing.Size(233, 99);
             this.pnlInscripcionesSbmn.TabIndex = 2;
             // 
             // btnConsultarInscripcion
@@ -539,6 +429,18 @@
             this.pnlLogo.Name = "pnlLogo";
             this.pnlLogo.Size = new System.Drawing.Size(233, 139);
             this.pnlLogo.TabIndex = 0;
+            // 
+            // lblRetorno
+            // 
+            this.lblRetorno.AutoSize = true;
+            this.lblRetorno.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblRetorno.ForeColor = System.Drawing.Color.White;
+            this.lblRetorno.Location = new System.Drawing.Point(37, 98);
+            this.lblRetorno.Name = "lblRetorno";
+            this.lblRetorno.Size = new System.Drawing.Size(151, 13);
+            this.lblRetorno.TabIndex = 1;
+            this.lblRetorno.Text = "Pulsa aqui para volver al lobby";
+            this.lblRetorno.Visible = false;
             // 
             // picLogo
             // 
@@ -621,50 +523,6 @@
             this.horaFecha.Enabled = true;
             this.horaFecha.Tick += new System.EventHandler(this.horaFecha_Tick);
             // 
-            // lblRetorno
-            // 
-            this.lblRetorno.AutoSize = true;
-            this.lblRetorno.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblRetorno.ForeColor = System.Drawing.Color.White;
-            this.lblRetorno.Location = new System.Drawing.Point(37, 98);
-            this.lblRetorno.Name = "lblRetorno";
-            this.lblRetorno.Size = new System.Drawing.Size(151, 13);
-            this.lblRetorno.TabIndex = 1;
-            this.lblRetorno.Text = "Pulsa aqui para volver al lobby";
-            this.lblRetorno.Visible = false;
-            // 
-            // btnActualizarInscripcion
-            // 
-            this.btnActualizarInscripcion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnActualizarInscripcion.FlatAppearance.BorderSize = 0;
-            this.btnActualizarInscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarInscripcion.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarInscripcion.Location = new System.Drawing.Point(0, 80);
-            this.btnActualizarInscripcion.Name = "btnActualizarInscripcion";
-            this.btnActualizarInscripcion.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnActualizarInscripcion.Size = new System.Drawing.Size(233, 40);
-            this.btnActualizarInscripcion.TabIndex = 2;
-            this.btnActualizarInscripcion.Text = "Actualizar";
-            this.btnActualizarInscripcion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarInscripcion.UseVisualStyleBackColor = true;
-            this.btnActualizarInscripcion.Click += new System.EventHandler(this.btnActualizarInscripcion_Click);
-            // 
-            // btnEliminarInscripcion
-            // 
-            this.btnEliminarInscripcion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarInscripcion.FlatAppearance.BorderSize = 0;
-            this.btnEliminarInscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarInscripcion.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarInscripcion.Location = new System.Drawing.Point(0, 120);
-            this.btnEliminarInscripcion.Name = "btnEliminarInscripcion";
-            this.btnEliminarInscripcion.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnEliminarInscripcion.Size = new System.Drawing.Size(233, 40);
-            this.btnEliminarInscripcion.TabIndex = 3;
-            this.btnEliminarInscripcion.Text = "Eliminar";
-            this.btnEliminarInscripcion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarInscripcion.UseVisualStyleBackColor = true;
-            this.btnEliminarInscripcion.Click += new System.EventHandler(this.btnEliminarInscripcion_Click);
-            // 
             // MenuIGA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -706,8 +564,6 @@
         private System.Windows.Forms.Button btnConsultarInscripcion;
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Panel pnlSupervisoresSbmn;
-        private System.Windows.Forms.Button btnEliminarSupervisor;
-        private System.Windows.Forms.Button btnActualizarSupervisor;
         private System.Windows.Forms.Button btnConsultarSupervisor;
         private System.Windows.Forms.Button btnAgregarSupervisor;
         private System.Windows.Forms.Button btnSupervisores;
@@ -718,14 +574,10 @@
         private System.Windows.Forms.FlowLayoutPanel panelPlanes;
         private System.Windows.Forms.Button btnConsultarDB;
         private System.Windows.Forms.Panel pnlPlanes;
-        private System.Windows.Forms.Button btnEliminarPlan;
-        private System.Windows.Forms.Button btnActualizarPlan;
         private System.Windows.Forms.Button btnConsultarPlan;
         private System.Windows.Forms.Button btnAgregarPlan;
         private System.Windows.Forms.Button btnPlanes;
         private System.Windows.Forms.Panel pnlProductosSbmn;
-        private System.Windows.Forms.Button btnEliminarProducto;
-        private System.Windows.Forms.Button btnActualizarProducto;
         private System.Windows.Forms.Button btnConsultarProducto;
         private System.Windows.Forms.Button btnAgregarProducto;
         private System.Windows.Forms.Panel pnlHora;
@@ -737,7 +589,5 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer horaFecha;
         private System.Windows.Forms.Label lblRetorno;
-        private System.Windows.Forms.Button btnEliminarInscripcion;
-        private System.Windows.Forms.Button btnActualizarInscripcion;
     }
 }

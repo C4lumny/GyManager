@@ -42,6 +42,8 @@ namespace GUI.CRUD.Actualizar
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            ServicioClientes serv = new ServicioClientes();
+            Clientess cliente = serv.GetObjectById(clienteId);
             try
             {
                 Clientess clienteAct = new Clientess();
@@ -49,10 +51,11 @@ namespace GUI.CRUD.Actualizar
                 clienteAct.Nombre = txtNombre.Text;
                 clienteAct.Apellido = txtApellido.Text;
                 clienteAct.Telefono = txtTelefono.Text;
-                clienteAct.Genero = cmbGenero.SelectedItem.ToString();
                 clienteAct.Fecha_nacimiento = dtmFechaNacimiento.Value;
+                clienteAct.Genero = cmbGenero.SelectedItem.ToString();
+                clienteAct.Fecha_ingreso = cliente.Fecha_ingreso;
 
-                ServicioClientes serv = new ServicioClientes();
+                
                 serv.Actualizar(clienteAct, clienteId);
 
                 MessageBox.Show("Cliente actualizado correctamente", "Actualización exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);

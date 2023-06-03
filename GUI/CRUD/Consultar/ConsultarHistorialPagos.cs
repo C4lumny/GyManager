@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GUI.Pureba
 {
-    public partial class ConsultarHistorialPagosBD : Form
+    public partial class ConsultarHistorialPagos : Form
     {
-        public ConsultarHistorialPagosBD()
+        public ConsultarHistorialPagos()
         {
             InitializeComponent();
         }

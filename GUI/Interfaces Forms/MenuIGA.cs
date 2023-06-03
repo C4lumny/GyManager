@@ -124,7 +124,7 @@ namespace GUI.pruba
 
         private void btnConsultarInscripcion_Click(object sender, EventArgs e)
         {
-            ConsultarInscripcionBD ver = new ConsultarInscripcionBD();
+            ConsultarInscripcion ver = new ConsultarInscripcion();
             ver.Show();
             hideSubMenu();
         }
@@ -195,15 +195,15 @@ namespace GUI.pruba
         private void btnAgregarSupervisor_Click(object sender, EventArgs e)
         {
             InsertarSupervisor insertarSup = new InsertarSupervisor();
-            insertarSup.Show();
+            openForms(insertarSup);
 
             hideSubMenu();
         }
 
         private void btnConsultarSupervisor_Click(object sender, EventArgs e)
         {
-            ConsultarSupervisorBD consultarSup = new ConsultarSupervisorBD();
-            consultarSup.Show();
+            ConsultarSupervisor consultarSup = new ConsultarSupervisor();
+            openForms(consultarSup);
             
             hideSubMenu();
         }
@@ -238,7 +238,7 @@ namespace GUI.pruba
 
         private void btnConsultarProducto_Click(object sender, EventArgs e)
         {
-            ConsultarPagoBD ver = new ConsultarPagoBD();
+            ConsultarPago ver = new ConsultarPago();
             ver.Show();
             hideSubMenu();
         }
@@ -273,7 +273,7 @@ namespace GUI.pruba
 
         private void btnConsultarPlan_Click(object sender, EventArgs e)
         {
-            ConsultarPlanGimnasioBD consultarplan = new ConsultarPlanGimnasioBD();
+            ConsultarPlanGimnasio consultarplan = new ConsultarPlanGimnasio();
             consultarplan.Show();
             hideSubMenu();
         }

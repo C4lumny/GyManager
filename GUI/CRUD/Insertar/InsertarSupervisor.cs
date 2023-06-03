@@ -17,6 +17,7 @@ namespace GUI.CRUD.Insertar
         public InsertarSupervisor()
         {
             InitializeComponent();
+            cmbGenero.SelectedIndex = 0;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -34,5 +35,7 @@ namespace GUI.CRUD.Insertar
 
             MessageBox.Show(servSupervisor.Crear(supervisor));
         }
+
+
     }
 }

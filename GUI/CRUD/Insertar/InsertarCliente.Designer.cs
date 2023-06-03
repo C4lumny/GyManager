@@ -96,9 +96,9 @@
             this.lblInsertarCliente.ForeColor = System.Drawing.Color.White;
             this.lblInsertarCliente.Location = new System.Drawing.Point(38, 24);
             this.lblInsertarCliente.Name = "lblInsertarCliente";
-            this.lblInsertarCliente.Size = new System.Drawing.Size(289, 37);
+            this.lblInsertarCliente.Size = new System.Drawing.Size(273, 37);
             this.lblInsertarCliente.TabIndex = 24;
-            this.lblInsertarCliente.Text = "Insertar clientes";
+            this.lblInsertarCliente.Text = "Insertar cliente";
             // 
             // btnGuardar
             // 

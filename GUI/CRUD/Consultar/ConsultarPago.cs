@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Pagos_y_Facturas;
 using Logica.Clases;
 using System;
 using System.Collections.Generic;
@@ -12,32 +13,32 @@ using System.Windows.Forms;
 
 namespace GUI.Pureba
 {
-    public partial class ConsultarPlanGimnasioBD : Form
+    public partial class ConsultarPago : Form
     {
-        ServicioPlanGimnasio serv;
-        public ConsultarPlanGimnasioBD()
+        ServicioPago serv;
+        public ConsultarPago()
         {
             InitializeComponent();
-            serv = new ServicioPlanGimnasio();
+            serv = new ServicioPago();
+        }
+
+        private void ConsultarPagoBD_Load(object sender, EventArgs e)
+        {
+            CargarGrilla();
         }
 
         void CargarGrilla()
         {
-            dgvPlanGimnasio.Rows.Clear();
+            dataGridView1.Rows.Clear();
             var lista = serv.GetAll();
             if (lista != null)
             {
-                foreach (PlanGimnasio plan in lista)
+                foreach (Pago pago in lista)
                 {
-                    dgvPlanGimnasio.Rows.Add(plan.Nombre, plan.Precio, plan.Dias);
+                    dataGridView1.Rows.Add(pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
                 }
             }
 
-        }
-
-        private void ConsultarPlanGimnasioBD_Load(object sender, EventArgs e)
-        {
-            CargarGrilla();
         }
     }
 }
