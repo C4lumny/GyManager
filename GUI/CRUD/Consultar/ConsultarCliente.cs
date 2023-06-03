@@ -24,7 +24,7 @@ namespace GUI.Pureba
         void CargarGrilla()
         {
             dgvClientes.Rows.Clear();
-            var lista = serv.Leer();
+            var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (Clientess cliente in lista)
@@ -55,7 +55,7 @@ namespace GUI.Pureba
             if (btnEliminar.Tag != null && btnEliminar.Tag is string clienteId)
             {
                 ServicioClientes serv = new ServicioClientes();
-                serv.Eliminar(int.Parse(clienteId));
+                serv.Eliminar(clienteId);
 
                 btnEliminar.Visible = false;
                 CargarGrilla();

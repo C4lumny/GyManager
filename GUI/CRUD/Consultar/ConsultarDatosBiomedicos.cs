@@ -32,12 +32,12 @@ namespace GUI.Pureba
         void CargarGrilla()
         {
             dataGridView1.Rows.Clear();
-            var lista = serv.Leer();
+            var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (DatosBiomedicos dato in lista)
                 {
-                    dataGridView1.Rows.Add(dato.FechaRegistro, dato.IdCliente, dato.Altura, dato.Peso, dato.IdCategoriaPeso, dato.Imc, dato.GrasaCorporal, dato.FrecuenciaCardiaca, dato.PresionArterial);
+                    dataGridView1.Rows.Add(dato.FechaRegistro, dato.cliente.Id, dato.Altura, dato.Peso, dato.IdCategoriaPeso, dato.Imc, dato.GrasaCorporal, dato.FrecuenciaCardiaca, dato.PresionArterial);
                 }
             }
 

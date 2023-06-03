@@ -1,4 +1,5 @@
 ﻿using Datos.Archivos;
+using Datos.Archivos.Clase_Abstracta;
 using Entidades;
 using Entidades.Informacion_Persona;
 using Oracle.ManagedDataAccess.Client;
@@ -10,14 +11,15 @@ using System.IO;
 
 namespace Datos.Archivos.Repositorio
 {
-    public class RepositorioDatosBiomedicos
+    public class RepositorioDatosBiomedicos : Abs_Repositorio<DatosBiomedicos>, IUpdate<DatosBiomedicos, string>
     {
-        public RepositorioDatosBiomedicos()
+        IConexion conexion;
+        public RepositorioDatosBiomedicos(IConexion _connect)
         {
-            
+            conexion = _connect;
+            MiVista("vista_datos_biomedicos");
         }
-        Coneccion conexion = new Coneccion();
-        public DatosBiomedicos Mapper(OracleDataReader dataReader)
+        protected override DatosBiomedicos Mapper(OracleDataReader dataReader)
         {
             try
             {
@@ -31,12 +33,13 @@ namespace Datos.Archivos.Repositorio
                 datosBiomedicos.FechaRegistro = dataReader.GetDateTime(1);
                 datosBiomedicos.Altura = dataReader.GetDouble(2);
                 datosBiomedicos.Peso = dataReader.GetDouble(3);
-                    datosBiomedicos.Imc = dataReader.GetDouble(4);
-                datosBiomedicos.GrasaCorporal = dataReader.GetDouble(5);
+                datosBiomedicos.Imc = dataReader.GetDouble(4);
+                datosBiomedicos.GrasaCorporal = dataReader.GetInt32(5);
                 datosBiomedicos.FrecuenciaCardiaca = dataReader.GetInt32(6);
                 datosBiomedicos.PresionArterial = dataReader.GetInt32(7);
-                    datosBiomedicos.IdCategoriaPeso = dataReader.GetInt32(8);
-                datosBiomedicos.IdCliente = dataReader.GetString(9);
+                datosBiomedicos.IdCategoriaPeso = dataReader.GetInt32(8);
+                datosBiomedicos.cliente.Id = dataReader.GetString(9);
+
 
                 return datosBiomedicos;
             }
@@ -50,14 +53,14 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_DATOS_BIOMEDICOS.p_insertardatobiomedico";
 
                     command.Parameters.Add("i_altura", OracleDbType.Double).Value = datosBiomedicos.Altura;
                     command.Parameters.Add("i_peso", OracleDbType.Double).Value = datosBiomedicos.Peso;
-                    command.Parameters.Add("i_id_cliente", OracleDbType.Varchar2).Value = datosBiomedicos.IdCliente;
+                    command.Parameters.Add("i_id_cliente", OracleDbType.Varchar2).Value = datosBiomedicos.cliente.Id;
                     command.Parameters.Add("i_grasa", OracleDbType.Double).Value = datosBiomedicos.GrasaCorporal;
                     command.Parameters.Add("i_frecuencia", OracleDbType.Int32).Value = datosBiomedicos.FrecuenciaCardiaca;
                     command.Parameters.Add("i_presion", OracleDbType.Int32).Value = datosBiomedicos.PresionArterial;
@@ -78,7 +81,7 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_DATOS_BIOMEDICOS.p_actualizardatobiomedico";
@@ -106,7 +109,7 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_DATOS_BIOMEDICOS.p_eliminardatobiomedico";
@@ -125,28 +128,13 @@ namespace Datos.Archivos.Repositorio
             }
         }
 
-        public List<DatosBiomedicos> GetAll()
-        {
-            List<DatosBiomedicos> datosBiomedicosList = new List<DatosBiomedicos>();
-            var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM vista_datos_biomedicos";
-            conexion.Open();
-            OracleDataReader lector = comando.ExecuteReader();
-            while (lector.Read())
-            {
-                datosBiomedicosList.Add(Mapper(lector));
-            }
-            conexion.Close();
-            return datosBiomedicosList;
-        }
-
         public int EncontrarDatoBiomedico(string idCliente)
         {
             int idDato = 0;
 
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "pkg_datos_biomedicos.f_encontrardatobiomedico";

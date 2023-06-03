@@ -1,4 +1,6 @@
-﻿using Entidades;
+﻿using Datos.Archivos.Clase_Abstracta;
+using Entidades;
+using Entidades.Informacion_Persona;
 using Entidades.Pagos_y_Facturas;
 using Oracle.ManagedDataAccess.Client;
 using System;
@@ -10,13 +12,15 @@ using System.Threading.Tasks;
 
 namespace Datos.Archivos.Repositorio
 {
-    public class RepositorioPagos 
+    public class RepositorioPagos : Abs_Repositorio<Pago>, IUpdate<Pago, int>
     {
-        Coneccion conexion = new Coneccion();
-        public RepositorioPagos()
+        IConexion conexion;
+        public RepositorioPagos(IConexion _connect)
         {
+            conexion = _connect;
+            MiVista("vista_pagos_inscripciones");
         }
-        public Pago Mapper(OracleDataReader dataReader)
+        protected override Pago Mapper(OracleDataReader dataReader)
         {
             try
             {
@@ -29,7 +33,7 @@ namespace Datos.Archivos.Repositorio
                 pago.Id = dataReader.GetInt32(0);
                 pago.ValorIngresado = dataReader.GetDouble(1);
                 pago.FechaPago = dataReader.GetDateTime(2);
-                pago.IdInscripcion = dataReader.GetInt32(3);
+                pago.Inscripcion.Id = dataReader.GetInt32(3);
                 return pago;
             }
             catch (Exception)
@@ -42,13 +46,13 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_PAGOS_INSCRIPCIONES.p_insertarpago";
 
                     command.Parameters.Add("i_valor_ingresado", OracleDbType.Double).Value = pago.ValorIngresado;
-                    command.Parameters.Add("i_id_inscripcion", OracleDbType.Int32).Value = pago.IdInscripcion;
+                    command.Parameters.Add("i_id_inscripcion", OracleDbType.Int32).Value = pago.Inscripcion.Id;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
@@ -62,26 +66,11 @@ namespace Datos.Archivos.Repositorio
             }
         }
 
-        public List<Pago> GetAll()
-        {
-            List<Pago> pagos = new List<Pago>();
-            var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM vista_pagos_inscripciones";
-            conexion.Open();
-            OracleDataReader lector = comando.ExecuteReader();
-            while (lector.Read())
-            {
-                pagos.Add(Mapper(lector));
-            }
-            conexion.Close();
-            return pagos;
-        }
-
         public string Delete(int id)
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_PAGOS_INSCRIPCIONES.p_eliminarpago";
@@ -104,14 +93,14 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_PAGOS_INSCRIPCIONES.p_actualizarpago";
 
                     command.Parameters.Add("old_id", OracleDbType.Int32).Value = old_id;
                     command.Parameters.Add("u_valor_ingresado", OracleDbType.Double).Value = pago.ValorIngresado;
-                    command.Parameters.Add("u_id_inscripcion", OracleDbType.Int32).Value = pago.IdInscripcion;
+                    command.Parameters.Add("u_id_inscripcion", OracleDbType.Int32).Value = pago.Inscripcion.Id;
 
                     conexion.Open();
                     command.ExecuteNonQuery();

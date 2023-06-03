@@ -93,6 +93,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\IAdministrador.cs" />
+    <Compile Include="Clases\IGetBySearch.cs" />
     <Compile Include="Clases\ServicioAdministrador.cs" />
     <Compile Include="Clases\ServicioClientes.cs" />
     <Compile Include="Clases\ServicioDatosBiomedicos.cs" />

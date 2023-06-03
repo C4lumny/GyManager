@@ -1,4 +1,6 @@
-﻿using Entidades;
+﻿using Datos.Archivos.Clase_Abstracta;
+using Entidades;
+using Entidades.Informacion_Persona;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -7,15 +9,17 @@ using System.IO;
 
 namespace Datos.Archivos
 {
-    public class RepositorioSupervisor 
+    public class RepositorioSupervisor : Abs_Repositorio<Supervisoress>, IUpdate<Supervisoress, string>
     {
-        Coneccion conexion = new Coneccion();
-        public RepositorioSupervisor()
-        { 
+        IConexion conexion;
+        public RepositorioSupervisor(IConexion _connect)
+        {
+            conexion = _connect;
+            MiVista("vista_supervisores");
         }
 
 
-        public Supervisoress Mapper(OracleDataReader dataReader)
+        protected override Supervisoress Mapper(OracleDataReader dataReader)
         {
             try
             {
@@ -47,7 +51,7 @@ namespace Datos.Archivos
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_SUPERVISORES.p_insertarsupervisor";
@@ -76,7 +80,7 @@ namespace Datos.Archivos
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_SUPERVISORES.p_actualizarsupervisor";
@@ -107,7 +111,7 @@ namespace Datos.Archivos
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_SUPERVISORES.p_eliminarsupervisor";
@@ -126,19 +130,5 @@ namespace Datos.Archivos
             }
         }
 
-        public List<Supervisoress> GetAll()
-        {
-            List<Supervisoress> supervisores = new List<Supervisoress>();
-            var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM vista_supervisores";
-            conexion.Open();
-            OracleDataReader lector = comando.ExecuteReader();
-            while (lector.Read())
-            {
-                supervisores.Add(Mapper(lector));
-            }
-            conexion.Close();
-            return supervisores;
-        }
     }
 }

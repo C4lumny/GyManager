@@ -93,8 +93,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Archivos\Clase Abstracta\Abs_Repositorio.cs" />
-    <Compile Include="Archivos\Coneccion.cs" />
+    <Compile Include="Archivos\Clases Abstractas e Interfaces\Abs_Repositorio.cs" />
+    <Compile Include="Archivos\Clases Abstractas e Interfaces\IAsignarYDesasignar.cs" />
+    <Compile Include="Archivos\Clases Abstractas e Interfaces\IConexion.cs" />
+    <Compile Include="Archivos\Clases Abstractas e Interfaces\IDeleteAndInsert.cs" />
+    <Compile Include="Archivos\Clases Abstractas e Interfaces\IUpdate.cs" />
+    <Compile Include="Archivos\ConexionOracle.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioDatosBiomedicos.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioDiscapacidades.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioFacturas.cs" />

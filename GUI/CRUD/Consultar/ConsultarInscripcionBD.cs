@@ -24,12 +24,12 @@ namespace GUI.Pureba
         void CargarGrilla()
         {
             dgvInscripcion.Rows.Clear();
-            var lista = serv.Leer();
+            var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (Inscripcion inscripcion in lista)
                 {
-                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.ClienteId, inscripcion.SupervisorId, inscripcion.PlanId, inscripcion.IdEstado);
+                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, inscripcion.Supervisor.Id, inscripcion.Plan.Id, inscripcion.IdEstado);
                 }
             }
 

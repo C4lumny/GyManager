@@ -25,7 +25,7 @@ namespace GUI.Pureba
         void CargarGrilla()
         {
             dgvSupervisor.Rows.Clear();
-            var lista = serv.Leer();
+            var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (Supervisoress supervisor in lista)

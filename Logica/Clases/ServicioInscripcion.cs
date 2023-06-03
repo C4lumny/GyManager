@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Archivos;
 using Datos.Archivos.Repositorio;
 using Entidades;
 using System;
@@ -9,12 +10,15 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioInscripcion 
+    public class ServicioInscripcion : ICRUD<Inscripcion, string>, IGetBySearch<Inscripcion>
     {
-        RepositorioInscripcion rep = new RepositorioInscripcion();
+        ConexionOracle coneccion;
+
+        RepositorioInscripcion rep;
         public ServicioInscripcion()
         {
-            
+            coneccion = new ConexionOracle();
+            rep = new RepositorioInscripcion(coneccion);
         }
         public string Actualizar(Inscripcion entidad, string id)
         {
@@ -31,7 +35,25 @@ namespace Logica.Clases
             return rep.Delete(id);
         }
 
-        public List<Inscripcion> Leer()
+        public List<Inscripcion> GetListBySearch(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Inscripcion GetObjectById(string id)
+        {
+            try
+            {
+                return GetAll().FirstOrDefault(item => item.Cliente.Id == id || item.Id.ToString() == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            };
+        }
+
+        public List<Inscripcion> GetAll()
         {
             var lista = rep.GetAll();
             if (lista == null)

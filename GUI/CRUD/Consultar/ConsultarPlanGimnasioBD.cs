@@ -24,7 +24,7 @@ namespace GUI.Pureba
         void CargarGrilla()
         {
             dgvPlanGimnasio.Rows.Clear();
-            var lista = serv.Leer();
+            var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (PlanGimnasio plan in lista)

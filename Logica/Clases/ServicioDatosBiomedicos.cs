@@ -1,5 +1,7 @@
 ﻿using Datos;
+using Datos.Archivos;
 using Datos.Archivos.Repositorio;
+using Entidades;
 using Entidades.Informacion_Persona;
 using System;
 using System.Collections.Generic;
@@ -9,12 +11,16 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioDatosBiomedicos 
+    public class ServicioDatosBiomedicos : ICRUD<DatosBiomedicos, string>, IGetBySearch<DatosBiomedicos>
     {
-        RepositorioDatosBiomedicos rep = new RepositorioDatosBiomedicos();
+        ConexionOracle coneccion;
+        RepositorioDatosBiomedicos rep;
+
+        
         public ServicioDatosBiomedicos()
         {
-            
+            coneccion = new ConexionOracle();
+            rep = new RepositorioDatosBiomedicos(coneccion);
         }
         public string Actualizar(DatosBiomedicos entidad, string id)
         {
@@ -31,7 +37,7 @@ namespace Logica.Clases
             return rep.Delete(id);
         }
 
-        public List<DatosBiomedicos> Leer()
+        public List<DatosBiomedicos> GetAll()
         {
             var lista = rep.GetAll();
             if (lista == null)
@@ -39,6 +45,16 @@ namespace Logica.Clases
                 return null;
             }
             return lista;
+        }
+
+        public List<DatosBiomedicos> GetListBySearch(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DatosBiomedicos GetObjectById(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

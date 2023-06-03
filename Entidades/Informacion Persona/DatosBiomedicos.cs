@@ -12,7 +12,12 @@ namespace Entidades.Informacion_Persona
         {
         }
 
-        public DatosBiomedicos(int id, DateTime fechaRegistro, double altura, double peso, double? imc, double grasaCorporal, int frecuenciaCardiaca, int presionArterial, int? idCategoriaPeso, string idCliente)
+        public DatosBiomedicos(Clientess cliente)
+        {
+            this.cliente = cliente;
+        }
+
+        public DatosBiomedicos(int id, DateTime fechaRegistro, double altura, double peso, double? imc, double grasaCorporal, int frecuenciaCardiaca, int presionArterial, int? idCategoriaPeso, Clientess cliente)
         {
             Id = id;
             FechaRegistro = fechaRegistro;
@@ -23,7 +28,7 @@ namespace Entidades.Informacion_Persona
             FrecuenciaCardiaca = frecuenciaCardiaca;
             PresionArterial = presionArterial;
             IdCategoriaPeso = idCategoriaPeso;
-            IdCliente = idCliente;
+            this.cliente = cliente;
         }
 
         public int Id { get; set; }
@@ -35,12 +40,8 @@ namespace Entidades.Informacion_Persona
         public int FrecuenciaCardiaca { get; set; }
         public int PresionArterial { get; set; }
         public int? IdCategoriaPeso { get; set; }
-        public string IdCliente { get; set; }
+        public Clientess cliente { get; set; }
 
-        public override string ToString()
-        {
-            return $"{Id};{FechaRegistro};{Altura};{Peso};{Imc};{GrasaCorporal};{FrecuenciaCardiaca};{PresionArterial};{IdCategoriaPeso};{IdCliente}";
-        }
     }
 
 }

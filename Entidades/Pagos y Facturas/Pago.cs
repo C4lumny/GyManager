@@ -32,17 +32,12 @@ namespace Entidades.Pagos_y_Facturas
     {
         public Pago()
         {
-            
+            Inscripcion = new Inscripcion();    
         }
         public int Id { get; set; }
         public double ValorIngresado { get; set; }
         public DateTime FechaPago { get; set; }
-        public int IdInscripcion { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Id};{ValorIngresado};{FechaPago};{IdInscripcion}";
-        }
+        public Inscripcion Inscripcion { get; set; }
     }
 
 }

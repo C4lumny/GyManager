@@ -9,9 +9,17 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioSupervisores 
+    public class ServicioSupervisores : ICRUD<Supervisoress, string>, IGetBySearch<Supervisoress>
     {
-        RepositorioSupervisor rep = new RepositorioSupervisor();
+        ConexionOracle coneccion;
+
+        RepositorioSupervisor rep;
+
+        public ServicioSupervisores()
+        {
+            coneccion = new ConexionOracle();
+            rep = new RepositorioSupervisor(coneccion);
+        }
         public string Actualizar(Supervisoress entidad, string id)
         {
             return rep.Update(entidad, id);
@@ -27,7 +35,7 @@ namespace Logica.Clases
             return rep.Delete(id);
         }
 
-        public List<Supervisoress> Leer()
+        public List<Supervisoress> GetAll()
         {
             var lista = rep.GetAll();
             if (lista == null)
@@ -35,6 +43,24 @@ namespace Logica.Clases
                 return null;
             }
             return lista;
+        }
+
+        public List<Supervisoress> GetListBySearch(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Supervisoress GetObjectById(string id)
+        {
+            try
+            {
+                return GetAll().FirstOrDefault(item => item.Id == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            };
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Datos.Archivos.Repositorio;
+﻿using Datos;
+using Datos.Archivos;
+using Datos.Archivos.Repositorio;
 using Entidades.Pagos_y_Facturas;
 using System;
 using System.Collections.Generic;
@@ -10,11 +12,26 @@ namespace Logica.Clases
 {
     public class ServicioFacturas 
     {
-        RepositorioFacturas rep = new RepositorioFacturas();
+        ConexionOracle coneccion;
+
+        RepositorioFacturas rep;
 
         public ServicioFacturas()
         {
+            coneccion = new ConexionOracle();
+            rep = new RepositorioFacturas(coneccion);
         }
+
+        public List<Facturas> GetListBySearch(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Facturas GetObjectById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Facturas> Leer()
         {
             var lista = rep.GetAll();

@@ -10,10 +10,5 @@
         public double Precio { get; set; }
         public string Descripcion { get; set; }
         public int Dias { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Id};{Nombre};{Precio};{Descripcion};{Dias}";
-        }
     }
 }

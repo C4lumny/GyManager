@@ -30,12 +30,12 @@ namespace GUI.Pureba
         void CargarGrilla()
         {
             dataGridView1.Rows.Clear();
-            var lista = serv.Leer();
+            var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (Pago pago in lista)
                 {
-                    dataGridView1.Rows.Add(pago.ValorIngresado, pago.FechaPago, pago.IdInscripcion);
+                    dataGridView1.Rows.Add(pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
                 }
             }
 

@@ -1,4 +1,5 @@
 ﻿using Datos.Archivos;
+using Datos.Archivos.Clase_Abstracta;
 using Entidades;
 using Oracle.ManagedDataAccess.Client;
 using System;
@@ -9,14 +10,17 @@ using System.IO;
 
 namespace Datos
 {
-    public class RepositorioClientes
+    public class RepositorioClientes : Abs_Repositorio<Clientess>, IUpdate<Clientess, string>
     {
-        Coneccion conexion = new Coneccion();
-        public RepositorioClientes()
+        IConexion conexion;
+
+        public RepositorioClientes(IConexion _connect)
         {
-            conexion = new Coneccion();
+            conexion = _connect;
+            MiVista("vista_clientes");
         }
-        public Clientess Mapper(OracleDataReader dataReader)
+
+        protected override Clientess Mapper(OracleDataReader dataReader)
         {
             try
             {
@@ -29,6 +33,7 @@ namespace Datos
                 cliente.Telefono = dataReader.GetString(4);
                 cliente.Fecha_nacimiento = dataReader.GetDateTime(5);
                 cliente.Fecha_ingreso = dataReader.GetDateTime(6);
+
                 return cliente;
             }
             catch (Exception)
@@ -40,7 +45,7 @@ namespace Datos
         {
             try
             {
-            using (OracleCommand command = conexion._conexion.CreateCommand())
+            using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "PKG_CLIENTE.p_insertarcliente";
@@ -64,26 +69,11 @@ namespace Datos
                
             }
         }
-        public List<Clientess> GetAll()
-        {
-            conexion.Open();
-            List<Clientess> clientes = new List<Clientess>();
-            var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "select * from vista_clientes";
-            OracleDataReader lector = comando.ExecuteReader();
-            while (lector.Read())
-            {
-                clientes.Add(Mapper(lector));
-            }
-            conexion.Close();
-            return clientes;
-        }
-
         public string Delete(string id_cliente)
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_CLIENTE.p_eliminarcliente";
@@ -103,12 +93,11 @@ namespace Datos
                 return "No se ha realizado la actualizacion";
             }
         }
-
         public string DeleteAll()
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_CLIENTE.p_eliminartodocliente";
@@ -128,7 +117,7 @@ namespace Datos
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_CLIENTE.p_actualizarcliente";

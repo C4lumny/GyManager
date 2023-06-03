@@ -5,19 +5,22 @@ using Oracle.ManagedDataAccess.Client;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
+using Datos.Archivos.Clase_Abstracta;
+using Entidades.Informacion_Persona;
 
 namespace Datos
 {
-    public class RepositorioPlan
+    public class RepositorioPlan : Abs_Repositorio<PlanGimnasio>, IUpdate<PlanGimnasio, string>
     {
-        Coneccion conexion = new Coneccion();
+        IConexion conexion;
 
-        protected string ruta = "Planes .txt"; 
-        public RepositorioPlan()
+        public RepositorioPlan(IConexion _connect)
         {
+            conexion = _connect;
+            MiVista("vista_planes_gimnasio");
         }
 
-        public PlanGimnasio Mapper(OracleDataReader dataReader)
+        protected override PlanGimnasio Mapper(OracleDataReader dataReader)
         {
             try
             {
@@ -45,7 +48,7 @@ namespace Datos
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_PLANES_GIMNASIO.p_insertarplan";
@@ -67,11 +70,11 @@ namespace Datos
             }
         }
 
-        public string Update(PlanGimnasio plan, int old_id)
+        public string Update(PlanGimnasio plan, string old_id)
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_PLANES_GIMNASIO.p_actualizarplan";
@@ -94,11 +97,11 @@ namespace Datos
             }
         }
 
-        public string Delete(int id)
+        public string Delete(string id)
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_PLANES_GIMNASIO.p_eliminarplan";
@@ -115,21 +118,6 @@ namespace Datos
             {
                 return "No se ha realizado la eliminación.";
             }
-        }
-
-        public List<PlanGimnasio> GetAll()
-        {
-            List<PlanGimnasio> planes = new List<PlanGimnasio>();
-            var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "SELECT * FROM vista_planes_gimnasio";
-            conexion.Open();
-            OracleDataReader lector = comando.ExecuteReader();
-            while (lector.Read())
-            {
-                planes.Add(Mapper(lector));
-            }
-            conexion.Close();
-            return planes;
         }
 
     }

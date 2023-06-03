@@ -23,11 +23,15 @@ namespace GUI.CRUD.Insertar
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             ServicioInscripcion servInscripcion = new ServicioInscripcion();
+            ServicioClientes servicioClientes = new ServicioClientes();
+            ServicioPlanGimnasio servicioplan = new ServicioPlanGimnasio();
+            ServicioSupervisores serviciosupervisor = new ServicioSupervisores();
+
             Inscripcion inscripcion = new Inscripcion();
 
-            inscripcion.ClienteId = txtIDCliente.Text;
-            inscripcion.SupervisorId = txtIDSupervisor.Text;
-            inscripcion.PlanId = int.Parse(txtIDPlan.Text);
+            inscripcion.Cliente = servicioClientes.GetObjectById(txtIDCliente.Text);
+            inscripcion.Supervisor = serviciosupervisor.GetObjectById(txtIDSupervisor.Text);
+            inscripcion.Plan = servicioplan.GetObjectById(txtIDPlan.Text);
             inscripcion.Descuento = int.Parse(txtDescuento.Text);
 
             MessageBox.Show(servInscripcion.Crear(inscripcion));

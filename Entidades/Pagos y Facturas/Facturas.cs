@@ -12,21 +12,17 @@ namespace Entidades.Pagos_y_Facturas
         public double PagoIngresado { get; set; }
         public double Subtotal { get; set; }
         public double Saldo { get; set; }
-        public int IdInscripcion { get; set; }
+        public Inscripcion Inscripcion { get; set; }
         public Facturas()
         {
         }
-        public Facturas(int id, double pagoIngresado, double subtotal, double saldo, int idInscripcion)
+        public Facturas(int id, double pagoIngresado, double subtotal, double saldo, Inscripcion Inscripcion)
         {
             Id = id;
             PagoIngresado = pagoIngresado;
             Subtotal = subtotal;
             Saldo = saldo;
-            IdInscripcion = idInscripcion;
-        }
-        public override string ToString()
-        {
-            return $"{Id};{PagoIngresado};{Subtotal};{Saldo};{IdInscripcion}";
+            this.Inscripcion = Inscripcion;
         }
     }
 

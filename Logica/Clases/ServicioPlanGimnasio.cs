@@ -6,13 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos.Archivos.Repositorio;
 using Datos;
+using Entidades.Pagos_y_Facturas;
+using Datos.Archivos;
 
 namespace Logica.Clases
 {
-    public class ServicioPlanGimnasio
+    public class ServicioPlanGimnasio : ICRUD<PlanGimnasio, string>, IGetBySearch<PlanGimnasio>
     {
-        RepositorioPlan rep = new RepositorioPlan();
-        public string Actualizar(PlanGimnasio entidad, int id)
+        ConexionOracle coneccion;
+
+        RepositorioPlan rep;
+        public ServicioPlanGimnasio()
+        {
+            coneccion = new ConexionOracle();
+            rep = new RepositorioPlan(coneccion);
+        }
+        public string Actualizar(PlanGimnasio entidad, string id)
         {
             return rep.Update(entidad, id);
         }
@@ -22,12 +31,12 @@ namespace Logica.Clases
             return rep.Insert(entidad).Msg;
         }
 
-        public string Eliminar(int id)
+        public string Eliminar(string id)
         {
             return rep.Delete(id);
         }
 
-        public List<PlanGimnasio> Leer()
+        public List<PlanGimnasio> GetAll()
         {
             var lista = rep.GetAll();
             if (lista == null)
@@ -35,6 +44,24 @@ namespace Logica.Clases
                 return null;
             }
             return lista;
+        }
+
+        public List<PlanGimnasio> GetListBySearch(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PlanGimnasio GetObjectById(string id)
+        {
+            try
+            {
+                return GetAll().FirstOrDefault(item => item.Id.ToString() == id || item.Nombre == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            };
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Datos.Archivos;
+using Datos.Archivos.Clase_Abstracta;
 using Entidades;
+using Entidades.Informacion_Persona;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -11,26 +13,32 @@ using System.Security.Cryptography;
 
 namespace Datos
 {
-    public class RepositorioInscripcion
+    public class RepositorioInscripcion : Abs_Repositorio<Inscripcion>, IUpdate<Inscripcion, string>
     {
-        Coneccion conexion = new Coneccion();
-        public RepositorioInscripcion()
+        IConexion conexion;
+        public RepositorioInscripcion(IConexion _connect)
         {
+            conexion = _connect;
+            MiVista("vista_inscripciones");
         }
-        public Inscripcion Mapper(OracleDataReader dataReader)
+        protected override Inscripcion Mapper(OracleDataReader dataReader)
         {
             try
             {
+
                 if (!dataReader.HasRows) { return null; }
                 Inscripcion inscripcion = new Inscripcion();
+                inscripcion.Cliente = new Clientess();
+                inscripcion.Supervisor = new Supervisoress();
+                inscripcion.Plan = new PlanGimnasio();
                 inscripcion.Id = dataReader.GetInt32(0);
                 inscripcion.FechaInicio = dataReader.GetDateTime(1);
                 inscripcion.FechaFinal = dataReader.GetDateTime(2);
                 inscripcion.Precio = dataReader.GetDouble(3);
                 inscripcion.Descuento = dataReader.GetInt32(4);
-                inscripcion.ClienteId = dataReader.GetString(5);
-                inscripcion.SupervisorId = dataReader.GetString(6);
-                inscripcion.PlanId = dataReader.GetInt32(7);
+                inscripcion.Cliente.Id = dataReader.GetString(5);
+                inscripcion.Supervisor.Id = dataReader.GetString(6);
+                inscripcion.Plan.Id = dataReader.GetInt32(7);
                 inscripcion.IdEstado = dataReader.GetInt32(8);
                 return inscripcion;
             }
@@ -44,15 +52,15 @@ namespace Datos
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_INSCRIPCIONES.p_insertarinscripcion";
 
                     command.Parameters.Add("i_descuento", OracleDbType.Int32).Value = inscripcion.Descuento;
-                    command.Parameters.Add("i_cliente_id", OracleDbType.Varchar2).Value = inscripcion.ClienteId;
-                    command.Parameters.Add("i_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.SupervisorId;
-                    command.Parameters.Add("i_plan_id", OracleDbType.Int32).Value = inscripcion.PlanId;
+                    command.Parameters.Add("i_cliente_id", OracleDbType.Varchar2).Value = inscripcion.Cliente.Id;
+                    command.Parameters.Add("i_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.Supervisor.Id;
+                    command.Parameters.Add("i_plan_id", OracleDbType.Int32).Value = inscripcion.Plan.Id;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
@@ -66,25 +74,11 @@ namespace Datos
 
             }
         }
-        public List<Inscripcion> GetAll()
-        {
-            List<Inscripcion> clientes = new List<Inscripcion>();
-            var comando = conexion._conexion.CreateCommand();
-            comando.CommandText = "select * from vista_inscripciones";
-            conexion.Open();
-            OracleDataReader lector = comando.ExecuteReader();
-            while (lector.Read())
-            {
-                clientes.Add(Mapper(lector));
-            }
-            conexion.Close();
-            return clientes;
-        }
         public string Delete(string id)
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_INSCRIPCIONES.p_eliminarinscripcion";
@@ -110,7 +104,7 @@ namespace Datos
 
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_INSCRIPCIONES.p_actualizarinscripcion";
@@ -118,9 +112,9 @@ namespace Datos
                     command.Parameters.Add("old_id", OracleDbType.Varchar2).Value = old_id;
                     command.Parameters.Add("u_fecha_inicio", OracleDbType.Date).Value = inscripcion.FechaInicio;
                     command.Parameters.Add("u_descuento", OracleDbType.Int32).Value = inscripcion.Descuento;
-                    command.Parameters.Add("u_cliente_id", OracleDbType.Varchar2).Value = inscripcion.ClienteId;
-                    command.Parameters.Add("u_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.SupervisorId;
-                    command.Parameters.Add("u_plan_id", OracleDbType.Int32).Value = inscripcion.PlanId;
+                    command.Parameters.Add("u_cliente_id", OracleDbType.Varchar2).Value = inscripcion.Cliente.Id;
+                    command.Parameters.Add("u_supervisor_id", OracleDbType.Varchar2).Value = inscripcion.Supervisor.Id;
+                    command.Parameters.Add("u_plan_id", OracleDbType.Int32).Value = inscripcion.Plan.Id;
 
                     conexion.Open();
                     command.ExecuteNonQuery();

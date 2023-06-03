@@ -10,23 +10,24 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioTurnoAtencion
+    public class ServicioTurnoAtencion 
     {
+        ConexionOracle coneccion;
 
         RepositorioTurnos rep = new RepositorioTurnos();
 
-        public ServicioTurnoAtencion()
-        {
+        //public ServicioTurnoAtencion()
+        //{
             
-        }
-        public string asignar(Turno_Atencion entidad, string id)
-        {
-            return rep.Asignar(entidad, id).Msg;
-        }
+        //}
+        //public string asignar(Turno_Atencion entidad, string id)
+        //{
+        //    return rep.Asignar(entidad, id).Msg;
+        //}
 
-        public string eliminar(string id_sup, int id_turno)
-        {
-            return rep.Delete(id_turno, id_sup);
-        }
+        //public string eliminar(string id_sup, int id_turno)
+        //{
+        //    return rep.Delete(id_turno, id_sup);
+        //}
     }
 }

@@ -25,9 +25,9 @@ namespace GUI.CRUD.Insertar
 
             Pago pago = new Pago();
             ServicioPago servPago = new ServicioPago();
-
+            ServicioInscripcion servicioInscripcion = new ServicioInscripcion();
             pago.ValorIngresado = int.Parse(txtValorIngresado.Text);
-            pago.IdInscripcion = int.Parse(txtIDInscripcion.Text);
+            pago.Inscripcion = servicioInscripcion.GetObjectById(txtIDInscripcion.Text);
 
 
             MessageBox.Show(servPago.Crear(pago));

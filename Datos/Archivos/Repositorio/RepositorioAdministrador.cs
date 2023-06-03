@@ -10,7 +10,7 @@ namespace Datos.Archivos.Repositorio
 {
     public class RepositorioAdministrador
     {
-        Coneccion conexion = new Coneccion();
+        ConexionOracle conexion = new ConexionOracle();
         public RepositorioAdministrador() 
         {
         }

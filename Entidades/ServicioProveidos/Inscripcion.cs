@@ -57,22 +57,34 @@ namespace Entidades
     {
         public Inscripcion()
         {
-            
+            Cliente = new Clientess();
+            Supervisor = new Supervisoress();
+            Plan = new PlanGimnasio();
         }
+
+        public Inscripcion(int id, DateTime fechaInicio, DateTime fechaFinal, double precio, int descuento, Clientess cliente, Supervisoress supervisor, PlanGimnasio plan, int idEstado)
+        {
+            Id = id;
+            FechaInicio = fechaInicio;
+            FechaFinal = fechaFinal;
+            Precio = precio;
+            Descuento = descuento;
+            Cliente = cliente;
+            Supervisor = supervisor;
+            Plan = plan;
+            IdEstado = idEstado;
+        }
+
         public int Id { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinal { get; set; }
         public double Precio { get; set; }
         public int Descuento { get; set; }
-        public string ClienteId { get; set; }
-        public string SupervisorId { get; set; }
-        public int PlanId { get; set; }
+        public Clientess Cliente { get; set; }
+        public Supervisoress Supervisor { get; set; }
+        public PlanGimnasio Plan { get; set; }
         public int IdEstado { get; set; }
 
-        public override string ToString()
-        {
-            return $"{Id};{FechaInicio};{FechaFinal};{Precio};{Descuento};{ClienteId};{SupervisorId};{PlanId};{IdEstado}";
-        }
     }
 
 }
