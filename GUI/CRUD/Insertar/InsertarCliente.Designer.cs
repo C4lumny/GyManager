@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel = new System.Windows.Forms.Panel();
+            this.lblInsertarCliente = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCedula = new System.Windows.Forms.TextBox();
-            this.lblInsertarCliente = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,17 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(668, 399);
             this.panel.TabIndex = 0;
+            // 
+            // lblInsertarCliente
+            // 
+            this.lblInsertarCliente.AutoSize = true;
+            this.lblInsertarCliente.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInsertarCliente.ForeColor = System.Drawing.Color.White;
+            this.lblInsertarCliente.Location = new System.Drawing.Point(38, 24);
+            this.lblInsertarCliente.Name = "lblInsertarCliente";
+            this.lblInsertarCliente.Size = new System.Drawing.Size(289, 37);
+            this.lblInsertarCliente.TabIndex = 24;
+            this.lblInsertarCliente.Text = "Insertar clientes";
             // 
             // btnGuardar
             // 
@@ -267,6 +278,7 @@
             this.dtmFechaNacimiento.Name = "dtmFechaNacimiento";
             this.dtmFechaNacimiento.Size = new System.Drawing.Size(81, 20);
             this.dtmFechaNacimiento.TabIndex = 5;
+            this.dtmFechaNacimiento.ValueChanged += new System.EventHandler(this.dtmFechaNacimiento_ValueChanged);
             // 
             // txtTelefono
             // 
@@ -311,17 +323,6 @@
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(184, 23);
             this.txtCedula.TabIndex = 0;
-            // 
-            // lblInsertarCliente
-            // 
-            this.lblInsertarCliente.AutoSize = true;
-            this.lblInsertarCliente.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInsertarCliente.ForeColor = System.Drawing.Color.White;
-            this.lblInsertarCliente.Location = new System.Drawing.Point(38, 24);
-            this.lblInsertarCliente.Name = "lblInsertarCliente";
-            this.lblInsertarCliente.Size = new System.Drawing.Size(289, 37);
-            this.lblInsertarCliente.TabIndex = 24;
-            this.lblInsertarCliente.Text = "Insertar clientes";
             // 
             // InsertarCliente
             // 

@@ -41,6 +41,29 @@ namespace GUI.pruba
             pnlPlanes.Visible = false;
         }
 
+        private void openForms(Form formHijo)
+        {
+            if (activo != null)
+            {
+                activo.Close();
+                activo = null;
+            }
+
+            if (formHijo != null)
+            {
+                lblRetorno.Visible = true;
+                formHijo.TopLevel = false;
+                formHijo.FormBorderStyle = FormBorderStyle.None;
+                formHijo.Dock = DockStyle.Fill;
+                pnlChild.Controls.Add(formHijo);
+                pnlChild.Tag = formHijo;
+                formHijo.BringToFront();
+                formHijo.Show();
+
+                activo = formHijo;
+            }
+        }
+
         private void hideSubMenu()
         {
             if(pnlInscripcionesSbmn.Visible == true)
@@ -87,28 +110,6 @@ namespace GUI.pruba
             lblFecha.Text = DateTime.Now.ToLongDateString();
         }
 
-        private void abrirForms(Form formHijo)
-        {
-            if (activo != null)
-            {
-                activo.Close();
-                activo = null;
-            }
-
-            if (formHijo != null)
-            {
-                formHijo.TopLevel = false;
-                formHijo.FormBorderStyle = FormBorderStyle.None;
-                formHijo.Dock = DockStyle.Fill;
-                pnlChild.Controls.Add(formHijo);
-                pnlChild.Tag = formHijo;
-                formHijo.BringToFront();
-                formHijo.Show();
-
-                activo = formHijo;
-            }
-        }
-
         private void btnInscripciones_Click(object sender, EventArgs e)
         {
             showSubMenu(pnlInscripcionesSbmn);
@@ -117,7 +118,7 @@ namespace GUI.pruba
         private void btnAgregarInscripcion_Click(object sender, EventArgs e)
         {
             InsertarInscripcion ver = new InsertarInscripcion();
-            abrirForms(ver);
+            openForms(ver);
             hideSubMenu();
         }
 
@@ -152,14 +153,14 @@ namespace GUI.pruba
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
             InsertarCliente insertar = new InsertarCliente();
-            abrirForms(insertar);
+            openForms(insertar);
             hideSubMenu();
         }
 
         private void btnConsultarCliente_Click(object sender, EventArgs e)
         {
             ConsultarCliente consulta = new ConsultarCliente();
-            abrirForms(consulta);
+            openForms(consulta);
             hideSubMenu();
         }
 
@@ -182,7 +183,7 @@ namespace GUI.pruba
         private void btnConsultarDatosBD_Click_1(object sender, EventArgs e)
         {
             ConsultarDatosBiomedicos con = new ConsultarDatosBiomedicos();
-            con.Show();
+            openForms(con);
             hideSubMenu();
         }
 
@@ -293,9 +294,10 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void pictureBox4_Click_1(object sender, EventArgs e)
+        private void picLogo_Click_1(object sender, EventArgs e)
         {
-            abrirForms(null);
+            openForms(null);
+            lblRetorno.Visible = false;
         }
     }
 }

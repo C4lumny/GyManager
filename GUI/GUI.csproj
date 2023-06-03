@@ -100,6 +100,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRUD\Actualizar\ActualizarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarCliente.Designer.cs">
+      <DependentUpon>ActualizarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="CRUD\Insertar\InsertarInscripcion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CRUD\Actualizar\ActualizarCliente.resx">
+      <DependentUpon>ActualizarCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Insertar\InsertarInscripcion.resx">
       <DependentUpon>InsertarInscripcion.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,10 +296,7 @@
       <DependentUpon>InsertarCliente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CRUD\Actualizar\" />
-    <Folder Include="CRUD\Eliminar\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

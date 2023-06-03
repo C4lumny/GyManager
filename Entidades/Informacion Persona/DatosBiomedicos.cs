@@ -10,6 +10,7 @@ namespace Entidades.Informacion_Persona
     {
         public DatosBiomedicos()
         {
+            this.cliente = new Clientess();
         }
 
         public DatosBiomedicos(Clientess cliente)

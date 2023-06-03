@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using GUI.CRUD.Actualizar;
 using Logica.Clases;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace GUI.Pureba
             InitializeComponent();
         }
 
-        void CargarGrilla()
+        public void CargarGrilla()
         {
             dgvClientes.Rows.Clear();
             var lista = serv.GetAll();
@@ -46,7 +47,10 @@ namespace GUI.Pureba
             {
                 string clienteId = (string)dgvClientes.Rows[e.RowIndex].Cells["clmCedula"].Value;
                 btnEliminar.Visible = true;
+                btnActualizarCliente.Visible = true;
+
                 btnEliminar.Tag = clienteId; // Almacena el ID del cliente en la propiedad Tag del botón
+                btnActualizarCliente.Tag = clienteId; //Almaceno el id en el boton actualizar
             }
         }
 
@@ -57,9 +61,28 @@ namespace GUI.Pureba
                 ServicioClientes serv = new ServicioClientes();
                 serv.Eliminar(clienteId);
 
+                btnActualizarCliente.Visible = false;
                 btnEliminar.Visible = false;
                 CargarGrilla();
             }
+        }
+
+        private void btnActualizarCliente_Click(object sender, EventArgs e)
+        {
+            if (btnActualizarCliente.Tag != null && btnActualizarCliente.Tag is string clienteId)
+            {
+                ActualizarCliente actCliente = new ActualizarCliente(clienteId);
+                actCliente.FormClosed += new System.Windows.Forms.FormClosedEventHandler(ActualizarCliente_FormClosed);
+                actCliente.Show();
+
+                btnActualizarCliente.Visible = false;
+                btnEliminar.Visible = false;
+            }
+        }
+
+        private void ActualizarCliente_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CargarGrilla();
         }
     }
 }

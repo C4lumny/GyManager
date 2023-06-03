@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvDatosBiomedicos = new System.Windows.Forms.DataGridView();
             this.clmFechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnAltura = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,13 +38,17 @@
             this.clmnGrasaCorporal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnFrecuenciaCardiaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPresionArterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosBiomedicos)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvDatosBiomedicos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDatosBiomedicos.AllowUserToAddRows = false;
+            this.dgvDatosBiomedicos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDatosBiomedicos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatosBiomedicos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmFechaRegistro,
             this.clmnCliente,
             this.clmnAltura,
@@ -54,53 +58,64 @@
             this.clmnGrasaCorporal,
             this.clmnFrecuenciaCardiaca,
             this.clmnPresionArterial});
-            this.dataGridView1.Location = new System.Drawing.Point(34, 46);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(943, 426);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvDatosBiomedicos.Location = new System.Drawing.Point(12, 44);
+            this.dgvDatosBiomedicos.Name = "dgvDatosBiomedicos";
+            this.dgvDatosBiomedicos.RowHeadersVisible = false;
+            this.dgvDatosBiomedicos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvDatosBiomedicos.Size = new System.Drawing.Size(644, 326);
+            this.dgvDatosBiomedicos.TabIndex = 0;
             // 
             // clmFechaRegistro
             // 
+            this.clmFechaRegistro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmFechaRegistro.HeaderText = "Fecha Registro";
             this.clmFechaRegistro.Name = "clmFechaRegistro";
             // 
             // clmnCliente
             // 
+            this.clmnCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnCliente.HeaderText = "Cliente";
             this.clmnCliente.Name = "clmnCliente";
             // 
             // clmnAltura
             // 
+            this.clmnAltura.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnAltura.HeaderText = "Altura";
             this.clmnAltura.Name = "clmnAltura";
             // 
             // clmnPeso
             // 
+            this.clmnPeso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnPeso.HeaderText = "Peso";
             this.clmnPeso.Name = "clmnPeso";
             // 
             // clmCategoria
             // 
+            this.clmCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmCategoria.HeaderText = "Categoria de peso";
             this.clmCategoria.Name = "clmCategoria";
             // 
             // clmnIMC
             // 
+            this.clmnIMC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnIMC.HeaderText = "IMC";
             this.clmnIMC.Name = "clmnIMC";
             // 
             // clmnGrasaCorporal
             // 
+            this.clmnGrasaCorporal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnGrasaCorporal.HeaderText = "Grasa Corporal(%)";
             this.clmnGrasaCorporal.Name = "clmnGrasaCorporal";
             // 
             // clmnFrecuenciaCardiaca
             // 
+            this.clmnFrecuenciaCardiaca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnFrecuenciaCardiaca.HeaderText = "Frecuencia Cardiaca";
             this.clmnFrecuenciaCardiaca.Name = "clmnFrecuenciaCardiaca";
             // 
             // clmnPresionArterial
             // 
+            this.clmnPresionArterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnPresionArterial.HeaderText = "Presion Arterial";
             this.clmnPresionArterial.Name = "clmnPresionArterial";
             // 
@@ -108,19 +123,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 506);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(668, 399);
+            this.Controls.Add(this.dgvDatosBiomedicos);
             this.Name = "ConsultarDatosBiomedicos";
             this.Text = "ReceiveDatosBiomedicosBD";
             this.Load += new System.EventHandler(this.ConsultarDatosBiomedicos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosBiomedicos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvDatosBiomedicos;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFechaRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnAltura;

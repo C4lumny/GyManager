@@ -31,13 +31,13 @@ namespace GUI.Pureba
 
         void CargarGrilla()
         {
-            dataGridView1.Rows.Clear();
+            dgvDatosBiomedicos.Rows.Clear();
             var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (DatosBiomedicos dato in lista)
                 {
-                    dataGridView1.Rows.Add(dato.FechaRegistro, dato.cliente.Id, dato.Altura, dato.Peso, dato.IdCategoriaPeso, dato.Imc, dato.GrasaCorporal, dato.FrecuenciaCardiaca, dato.PresionArterial);
+                    dgvDatosBiomedicos.Rows.Add(dato.FechaRegistro, dato.cliente.Id, dato.Altura, dato.Peso, dato.IdCategoriaPeso, dato.Imc, dato.GrasaCorporal, dato.FrecuenciaCardiaca, dato.PresionArterial);
                 }
             }
 

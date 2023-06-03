@@ -51,5 +51,17 @@ namespace GUI.Pureba.Insertar
         {
             this.Close();
         }
+
+        private void dtmFechaNacimiento_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = dtmFechaNacimiento.Value;
+            DateTime fechaActual = DateTime.Now;
+
+            if (fechaSeleccionada > fechaActual)
+            {
+                MessageBox.Show("No se permite seleccionar una fecha mayor a la fecha actual.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtmFechaNacimiento.Value = fechaActual;
+            }
+        }
     }
 }
