@@ -87,7 +87,7 @@
             this.clmnPresionArterial});
             this.dgvDatosBiomedicos.EnableHeadersVisualStyles = false;
             this.dgvDatosBiomedicos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.dgvDatosBiomedicos.Location = new System.Drawing.Point(12, 93);
+            this.dgvDatosBiomedicos.Location = new System.Drawing.Point(12, 103);
             this.dgvDatosBiomedicos.Name = "dgvDatosBiomedicos";
             this.dgvDatosBiomedicos.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
