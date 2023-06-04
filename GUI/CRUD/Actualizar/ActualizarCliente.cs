@@ -14,12 +14,12 @@ using System.Windows.Forms;
 
 namespace GUI.CRUD.Actualizar
 {
-    public partial class ActualizarCliente : Form
+    public partial class ActualizarPlanG : Form
     {
 
         private string clienteId;
 
-        public ActualizarCliente(string id)
+        public ActualizarPlanG(string id)
         {
             InitializeComponent();
             clienteId = id;

@@ -1,6 +1,6 @@
 ﻿namespace GUI.CRUD.Actualizar
 {
-    partial class ActualizarCliente
+    partial class ActualizarPlanG
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             this.panel = new System.Windows.Forms.Panel();
             this.lblActualizarCliente = new System.Windows.Forms.Label();
-            this.btnActualizar = new System.Windows.Forms.Button();
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblGenero = new System.Windows.Forms.Label();
@@ -43,14 +42,15 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCedula = new System.Windows.Forms.TextBox();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel
             // 
             this.panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(64)))));
-            this.panel.Controls.Add(this.lblActualizarCliente);
             this.panel.Controls.Add(this.btnActualizar);
+            this.panel.Controls.Add(this.lblActualizarCliente);
             this.panel.Controls.Add(this.lblFechaNacimiento);
             this.panel.Controls.Add(this.lblTelefono);
             this.panel.Controls.Add(this.lblGenero);
@@ -79,16 +79,6 @@
             this.lblActualizarCliente.Size = new System.Drawing.Size(305, 37);
             this.lblActualizarCliente.TabIndex = 24;
             this.lblActualizarCliente.Text = "Actualizar cliente";
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Location = new System.Drawing.Point(283, 327);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
-            this.btnActualizar.TabIndex = 22;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // lblFechaNacimiento
             // 
@@ -208,6 +198,21 @@
             this.txtCedula.Size = new System.Drawing.Size(184, 23);
             this.txtCedula.TabIndex = 0;
             // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(136)))), ((int)(((byte)(158)))));
+            this.btnActualizar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnActualizar.Location = new System.Drawing.Point(272, 321);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(90, 30);
+            this.btnActualizar.TabIndex = 28;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
             // ActualizarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,7 +231,6 @@
 
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Label lblActualizarCliente;
-        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Label lblFechaNacimiento;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblGenero;
@@ -239,5 +243,6 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtCedula;
+        private System.Windows.Forms.Button btnActualizar;
     }
 }

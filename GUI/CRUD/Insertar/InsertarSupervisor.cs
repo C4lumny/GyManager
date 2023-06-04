@@ -35,7 +35,5 @@ namespace GUI.CRUD.Insertar
 
             MessageBox.Show(servSupervisor.Crear(supervisor));
         }
-
-
     }
 }

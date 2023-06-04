@@ -106,6 +106,12 @@
     <Compile Include="CRUD\Actualizar\ActualizarCliente.Designer.cs">
       <DependentUpon>ActualizarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarPlanGimnasio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarPlanGimnasio.Designer.cs">
+      <DependentUpon>ActualizarPlanGimnasio.cs</DependentUpon>
+    </Compile>
     <Compile Include="CRUD\Actualizar\ActualizarSupervisor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CRUD\Actualizar\ActualizarCliente.resx">
       <DependentUpon>ActualizarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Actualizar\ActualizarPlanGimnasio.resx">
+      <DependentUpon>ActualizarPlanGimnasio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Actualizar\ActualizarSupervisor.resx">
       <DependentUpon>ActualizarSupervisor.cs</DependentUpon>

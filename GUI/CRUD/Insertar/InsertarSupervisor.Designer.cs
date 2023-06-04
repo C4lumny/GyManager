@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblInsertarSupervisor = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCedula = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,17 +44,17 @@
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.lblInsertarSupervisor = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.btnGuardar);
             this.panel1.Controls.Add(this.lblInsertarSupervisor);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtCedula);
-            this.panel1.Controls.Add(this.btnGuardar);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -72,6 +72,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(668, 399);
             this.panel1.TabIndex = 0;
+            // 
+            // lblInsertarSupervisor
+            // 
+            this.lblInsertarSupervisor.AutoSize = true;
+            this.lblInsertarSupervisor.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInsertarSupervisor.ForeColor = System.Drawing.Color.White;
+            this.lblInsertarSupervisor.Location = new System.Drawing.Point(38, 33);
+            this.lblInsertarSupervisor.Name = "lblInsertarSupervisor";
+            this.lblInsertarSupervisor.Size = new System.Drawing.Size(321, 37);
+            this.lblInsertarSupervisor.TabIndex = 25;
+            this.lblInsertarSupervisor.Text = "Insertar supervisor";
             // 
             // label6
             // 
@@ -92,16 +103,6 @@
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(195, 24);
             this.txtCedula.TabIndex = 13;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(350, 315);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 12;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label5
             // 
@@ -227,16 +228,20 @@
             this.txtNombre.Size = new System.Drawing.Size(195, 24);
             this.txtNombre.TabIndex = 0;
             // 
-            // lblInsertarSupervisor
+            // btnGuardar
             // 
-            this.lblInsertarSupervisor.AutoSize = true;
-            this.lblInsertarSupervisor.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInsertarSupervisor.ForeColor = System.Drawing.Color.White;
-            this.lblInsertarSupervisor.Location = new System.Drawing.Point(38, 33);
-            this.lblInsertarSupervisor.Name = "lblInsertarSupervisor";
-            this.lblInsertarSupervisor.Size = new System.Drawing.Size(321, 37);
-            this.lblInsertarSupervisor.TabIndex = 25;
-            this.lblInsertarSupervisor.Text = "Insertar supervisor";
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(136)))), ((int)(((byte)(158)))));
+            this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnGuardar.Location = new System.Drawing.Point(350, 306);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(90, 30);
+            this.btnGuardar.TabIndex = 29;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // InsertarSupervisor
             // 
@@ -261,7 +266,6 @@
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -271,5 +275,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCedula;
         private System.Windows.Forms.Label lblInsertarSupervisor;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }

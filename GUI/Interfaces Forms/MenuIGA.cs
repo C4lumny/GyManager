@@ -267,14 +267,14 @@ namespace GUI.pruba
         private void btnAgregarPlan_Click(object sender, EventArgs e)
         {
             InsertarPlanGimnasio insertarplan = new InsertarPlanGimnasio();
-            insertarplan.Show();
+            openForms(insertarplan);
             hideSubMenu();
         }
 
         private void btnConsultarPlan_Click(object sender, EventArgs e)
         {
             ConsultarPlanGimnasio consultarplan = new ConsultarPlanGimnasio();
-            consultarplan.Show();
+            openForms(consultarplan);
             hideSubMenu();
         }
 

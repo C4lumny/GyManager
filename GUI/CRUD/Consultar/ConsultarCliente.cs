@@ -72,7 +72,7 @@ namespace GUI.Pureba
         {
             if (btnActualizarCliente.Tag != null && btnActualizarCliente.Tag is string clienteId)
             {
-                ActualizarCliente actCliente = new ActualizarCliente(clienteId);
+                ActualizarPlanG actCliente = new ActualizarPlanG(clienteId);
                 actCliente.FormClosed += new System.Windows.Forms.FormClosedEventHandler(ActualizarCliente_FormClosed);
                 actCliente.Show();
 
