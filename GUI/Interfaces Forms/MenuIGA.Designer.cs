@@ -105,9 +105,9 @@
             this.pnlPlanes.Controls.Add(this.btnConsultarPlan);
             this.pnlPlanes.Controls.Add(this.btnAgregarPlan);
             this.pnlPlanes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlPlanes.Location = new System.Drawing.Point(0, 773);
+            this.pnlPlanes.Location = new System.Drawing.Point(0, 755);
             this.pnlPlanes.Name = "pnlPlanes";
-            this.pnlPlanes.Size = new System.Drawing.Size(233, 99);
+            this.pnlPlanes.Size = new System.Drawing.Size(233, 87);
             this.pnlPlanes.TabIndex = 7;
             // 
             // btnConsultarPlan
@@ -148,7 +148,7 @@
             this.btnPlanes.FlatAppearance.BorderSize = 0;
             this.btnPlanes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlanes.ForeColor = System.Drawing.Color.White;
-            this.btnPlanes.Location = new System.Drawing.Point(0, 728);
+            this.btnPlanes.Location = new System.Drawing.Point(0, 710);
             this.btnPlanes.Name = "btnPlanes";
             this.btnPlanes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnPlanes.Size = new System.Drawing.Size(233, 45);
@@ -162,9 +162,9 @@
             // 
             this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
             this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPlanes.Location = new System.Drawing.Point(0, 728);
+            this.panelPlanes.Location = new System.Drawing.Point(0, 710);
             this.panelPlanes.Name = "panelPlanes";
-            this.panelPlanes.Size = new System.Drawing.Size(233, 144);
+            this.panelPlanes.Size = new System.Drawing.Size(233, 132);
             this.panelPlanes.TabIndex = 1;
             // 
             // pnlProductosSbmn
@@ -173,9 +173,9 @@
             this.pnlProductosSbmn.Controls.Add(this.btnConsultarProducto);
             this.pnlProductosSbmn.Controls.Add(this.btnAgregarProducto);
             this.pnlProductosSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 633);
+            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 621);
             this.pnlProductosSbmn.Name = "pnlProductosSbmn";
-            this.pnlProductosSbmn.Size = new System.Drawing.Size(233, 95);
+            this.pnlProductosSbmn.Size = new System.Drawing.Size(233, 89);
             this.pnlProductosSbmn.TabIndex = 6;
             // 
             // btnConsultarProducto
@@ -216,7 +216,7 @@
             this.btnProductos.FlatAppearance.BorderSize = 0;
             this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProductos.ForeColor = System.Drawing.Color.White;
-            this.btnProductos.Location = new System.Drawing.Point(0, 588);
+            this.btnProductos.Location = new System.Drawing.Point(0, 576);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnProductos.Size = new System.Drawing.Size(233, 45);
@@ -232,7 +232,7 @@
             this.pnlSupervisoresSbmn.Controls.Add(this.btnConsultarSupervisor);
             this.pnlSupervisoresSbmn.Controls.Add(this.btnAgregarSupervisor);
             this.pnlSupervisoresSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 501);
+            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 489);
             this.pnlSupervisoresSbmn.Name = "pnlSupervisoresSbmn";
             this.pnlSupervisoresSbmn.Size = new System.Drawing.Size(233, 87);
             this.pnlSupervisoresSbmn.TabIndex = 5;
@@ -275,7 +275,7 @@
             this.btnSupervisores.FlatAppearance.BorderSize = 0;
             this.btnSupervisores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupervisores.ForeColor = System.Drawing.Color.White;
-            this.btnSupervisores.Location = new System.Drawing.Point(0, 456);
+            this.btnSupervisores.Location = new System.Drawing.Point(0, 444);
             this.btnSupervisores.Name = "btnSupervisores";
             this.btnSupervisores.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSupervisores.Size = new System.Drawing.Size(233, 45);
@@ -292,7 +292,7 @@
             this.pnlClientesSbmn.Controls.Add(this.btnConsultarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnAgregarCliente);
             this.pnlClientesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 328);
+            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 316);
             this.pnlClientesSbmn.Name = "pnlClientesSbmn";
             this.pnlClientesSbmn.Size = new System.Drawing.Size(233, 128);
             this.pnlClientesSbmn.TabIndex = 4;
@@ -351,7 +351,7 @@
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClientes.ForeColor = System.Drawing.Color.White;
-            this.btnClientes.Location = new System.Drawing.Point(0, 283);
+            this.btnClientes.Location = new System.Drawing.Point(0, 271);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnClientes.Size = new System.Drawing.Size(233, 45);
@@ -369,7 +369,7 @@
             this.pnlInscripcionesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInscripcionesSbmn.Location = new System.Drawing.Point(0, 184);
             this.pnlInscripcionesSbmn.Name = "pnlInscripcionesSbmn";
-            this.pnlInscripcionesSbmn.Size = new System.Drawing.Size(233, 99);
+            this.pnlInscripcionesSbmn.Size = new System.Drawing.Size(233, 87);
             this.pnlInscripcionesSbmn.TabIndex = 2;
             // 
             // btnConsultarInscripcion

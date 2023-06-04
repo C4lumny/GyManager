@@ -36,12 +36,14 @@ namespace GUI.CRUD.Actualizar
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             ServicioPlanGimnasio serv = new ServicioPlanGimnasio();
+            PlanGimnasio plan = serv.GetObjectById(planId);
             try
             {
                 PlanGimnasio planAct = new PlanGimnasio();
                 planAct.Nombre = txtNombre.Text;
                 planAct.Precio = double.Parse(txtPrecio.Text);
                 planAct.Dias = (int.Parse(txtDias.Text));
+                planAct.Descripcion = plan.Descripcion;
 
 
                 serv.Actualizar(planAct, planId);

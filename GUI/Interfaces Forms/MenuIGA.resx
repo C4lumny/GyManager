@@ -121,7 +121,7 @@
   <data name="picLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAI8AAABxCAYAAADs+/D6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAB/JJREFUeF7tl0GO7TQQRZkwRH8TzGAVjBC7YALbYADbQPr7QLAQ/kp60uh+6Yqr
+        vgAADr4B6kKxwAAAB/JJREFUeF7tl0GO7TQQRZkwRH8TzGAVjBC7YALbYADbQPr7QLAQ/kp60uh+6Yqr
         UsWvXHlO/OAOjlqxk5dy+VQ5/cWXX314N6aD5TFtLI9pY3lMG8tj2lge08bymDaWx7SxPKaN5TFtLI9p
         Y3lMG8tj2lge08bymDaWx7SxPKaN5TFtLI9pY3lMG8tj2lge08bymDaWx7SxPKaN5TFtLI9pY3lMG8tj
         2lge08bymDZby/PLr7+9//3pU5k//vzr/bvvf3j/+ptv33//+PHzGK6z374axIH4EJdexzWMQD7i797J
@@ -161,7 +161,7 @@
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAeYAAABwCAYAAADL29MlAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAG1dJREFUeF7tnWnvHUV2h/Ml8j5fgLeJ8iLSRFGkCKFIQcOgSTJBZEBMCBATVrEN
+        vQAADr0BR/uQrQAAG1dJREFUeF7tnWnvHUV2h/Ml8j5fgLeJ8iLSRFGkCKFIQcOgSTJBZEBMCBATVrEN
         g4UZexjAJgaDwQazmR3MZmNsBjM2ZjM2GAzYBrPY7MvMwEyWSTp+Oupw6Xu6u0519e2+9/5ePBL4f7t6
         qVP1O1V16tQf/OGffCcTQgghxDCQMAshhBADQsIshBBCDAgJsxBCCDEgJMxCCCHEgJAwCyGEEANCwiyE
         EEIMCAmzEEIIMSAkzEIIIcSAkDALIYQQA0LCLIQQQgwICbMQQggxICTMQgghxICQMAshhBADQsIshBBC
@@ -284,7 +284,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMIAAACCCAYAAAAUuRddAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAACtRJREFUeF7tmcGt7rYRhdOEG8nGW5fgZVrIwkBq8CpIC9lklwYCuAFvjfSQRVLG
+        vgAADr4B6kKxwAAACtRJREFUeF7tmcGt7rYRhdOEG8nGW5fgZVrIwkBq8CpIC9lklwYCuAFvjfSQRVLG
         DU+SYwwmHIocUvop6Rzgw3tPuqLImTlD6r7ffPPtd19CvB0ZQYiCjCBEQUYQoiAjCFGQEYQoyAhCFGQE
         IQoyghAFGUGIgowgREFGEKIgIwhRkBGEKMgIQhRkBCEKMoIQBRlBiIKMIERBRhCiICMIUZARhCjICEIU
         ZAQhCjKCEAUZQYjC443w2+9/9/X97/+QBs/bsezYd8SvobbmEexYd+axRvjhxz9+/eOf//qa0Z/+/Jdf

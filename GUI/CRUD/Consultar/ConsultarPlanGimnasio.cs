@@ -33,7 +33,6 @@ namespace GUI.Pureba
                     dgvPlanGimnasio.Rows.Add(plan.Id, plan.Nombre, plan.Precio, plan.Dias);
                 }
             }
-
         }
 
         private void ConsultarPlanGimnasioBD_Load(object sender, EventArgs e)
@@ -46,7 +45,7 @@ namespace GUI.Pureba
         {
             if (e.RowIndex >= 0) // Verifica si se hace clic en una fila válida
             {
-                string planId = (string)dgvPlanGimnasio.Rows[e.RowIndex].Cells["clmnId"].Value;
+                string planId = (string)dgvPlanGimnasio.Rows[e.RowIndex].Cells["clmnId"].Value.ToString();
                 btnEliminar.Visible = true;
                 btnActualizar.Visible = true;
 
@@ -59,7 +58,7 @@ namespace GUI.Pureba
         {
             if (btnEliminar.Tag != null && btnEliminar.Tag is string planId)
             {
-                ServicioClientes serv = new ServicioClientes();
+                ServicioPlanGimnasio serv = new ServicioPlanGimnasio();
                 serv.Eliminar(planId);
 
                 btnActualizar.Visible = false;
