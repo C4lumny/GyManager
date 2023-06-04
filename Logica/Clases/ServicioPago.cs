@@ -2,6 +2,7 @@
 using Datos.Archivos;
 using Datos.Archivos.Repositorio;
 using Entidades;
+using Entidades.Informacion_Persona;
 using Entidades.Pagos_y_Facturas;
 using System;
 using System.Collections.Generic;
@@ -83,6 +84,16 @@ namespace Logica.Clases
 
                 return null;
             }
+        }
+        public List<Pago> GetHistorial()
+        {
+            rep.HistorialAccess();
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista;
         }
     }
 }

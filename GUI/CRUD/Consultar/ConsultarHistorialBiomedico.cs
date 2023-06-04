@@ -27,12 +27,6 @@ namespace GUI.Pureba
 
         }
 
-        private void ConsultarDatosBiomedicos_Load(object sender, EventArgs e)
-        {
-            CargarGrilla();
-            dgvHistorialBiomedico.ClearSelection();
-        }
-
         void CargarGrilla()
         {
             dgvHistorialBiomedico.Rows.Clear();

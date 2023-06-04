@@ -38,7 +38,6 @@
             this.clmSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnIdInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnAccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorialFactura)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,8 +62,7 @@
             this.clmnPagoIngresado,
             this.clmSubtotal,
             this.clmnSaldo,
-            this.clmnIdInscripcion,
-            this.clmnAccion});
+            this.clmnIdInscripcion});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -134,13 +132,6 @@
             this.clmnIdInscripcion.Name = "clmnIdInscripcion";
             this.clmnIdInscripcion.ReadOnly = true;
             // 
-            // clmnAccion
-            // 
-            this.clmnAccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.clmnAccion.HeaderText = "Acción";
-            this.clmnAccion.Name = "clmnAccion";
-            this.clmnAccion.ReadOnly = true;
-            // 
             // ConsultarHistorialFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,6 +154,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSubtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnSaldo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnIdInscripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnAccion;
     }
 }
