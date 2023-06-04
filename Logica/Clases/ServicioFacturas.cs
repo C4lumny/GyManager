@@ -29,10 +29,18 @@ namespace Logica.Clases
 
         public Facturas GetObjectById(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FirstOrDefault(item => item.Id.ToString() == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
-        public List<Facturas> Leer()
+        public List<Facturas> GetAll()
         {
             var lista = rep.GetAll();
             if (lista == null)

@@ -34,8 +34,8 @@ namespace Entidades.Pagos_y_Facturas
         {
             Inscripcion = new Inscripcion();    
         }
-        public int Id { get; set; }
-        public double ValorIngresado { get; set; }
+        public int? Id { get; set; }
+        public double? ValorIngresado { get; set; }
         public DateTime FechaPago { get; set; }
         public Inscripcion Inscripcion { get; set; }
     }

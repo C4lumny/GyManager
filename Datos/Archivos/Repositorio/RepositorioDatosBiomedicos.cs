@@ -29,16 +29,16 @@ namespace Datos.Archivos.Repositorio
                 }
 
                 DatosBiomedicos datosBiomedicos = new DatosBiomedicos();
-                datosBiomedicos.Id = dataReader.GetInt32(0);
+                datosBiomedicos.Id = dataReader.IsDBNull(0) ? null : (int?)dataReader.GetInt32(0);
                 datosBiomedicos.FechaRegistro = dataReader.GetDateTime(1);
-                datosBiomedicos.Altura = dataReader.GetDouble(2);
-                datosBiomedicos.Peso = dataReader.GetDouble(3);
-                datosBiomedicos.Imc = dataReader.GetDouble(4);
-                datosBiomedicos.GrasaCorporal = dataReader.GetInt32(5);
+                datosBiomedicos.Altura = dataReader.IsDBNull(2) ? null : (double?)dataReader.GetDouble(2);
+                datosBiomedicos.Peso = dataReader.IsDBNull(3) ? null : (double?)dataReader.GetDouble(3);
+                datosBiomedicos.Imc = dataReader.IsDBNull(4) ? null : (double?)dataReader.GetDouble(4);
+                datosBiomedicos.GrasaCorporal = dataReader.IsDBNull(5) ? null : (int?)dataReader.GetInt32(5);
                 datosBiomedicos.FrecuenciaCardiaca = dataReader.GetInt32(6);
-                datosBiomedicos.PresionArterial = dataReader.GetInt32(7);
-                datosBiomedicos.IdCategoriaPeso = dataReader.GetInt32(8);
-                datosBiomedicos.cliente.Id = dataReader.GetString(9);
+                datosBiomedicos.PresionArterial = dataReader.IsDBNull(7) ? null : (int?)dataReader.GetInt32(7);
+                datosBiomedicos.IdCategoriaPeso = dataReader.GetString(8);
+                datosBiomedicos.id_cliente = dataReader.IsDBNull(9) ? null : dataReader.GetString(9);
 
 
                 return datosBiomedicos;
@@ -60,7 +60,7 @@ namespace Datos.Archivos.Repositorio
 
                     command.Parameters.Add("i_altura", OracleDbType.Double).Value = datosBiomedicos.Altura;
                     command.Parameters.Add("i_peso", OracleDbType.Double).Value = datosBiomedicos.Peso;
-                    command.Parameters.Add("i_id_cliente", OracleDbType.Varchar2).Value = datosBiomedicos.cliente.Id;
+                    command.Parameters.Add("i_id_cliente", OracleDbType.Varchar2).Value = datosBiomedicos.id_cliente;
                     command.Parameters.Add("i_grasa", OracleDbType.Double).Value = datosBiomedicos.GrasaCorporal;
                     command.Parameters.Add("i_frecuencia", OracleDbType.Int32).Value = datosBiomedicos.FrecuenciaCardiaca;
                     command.Parameters.Add("i_presion", OracleDbType.Int32).Value = datosBiomedicos.PresionArterial;
@@ -73,11 +73,11 @@ namespace Datos.Archivos.Repositorio
             }
             catch (Exception)
             {
-                return new Response<DatosBiomedicos>(true, "No se ha registrado los datos biomédicos.", null, datosBiomedicos);
+                return new Response<DatosBiomedicos>(false, "No se han registrado los datos biomédicos.", null, datosBiomedicos);
             }
         }
 
-        public string Update(DatosBiomedicos datosBiomedicos, string old_cliente)
+        public Response<DatosBiomedicos> Update(DatosBiomedicos datosBiomedicos, string id)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Datos.Archivos.Repositorio
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_DATOS_BIOMEDICOS.p_actualizardatobiomedico";
 
-                    command.Parameters.Add("old_cliente", OracleDbType.Varchar2).Value = old_cliente;
+                    command.Parameters.Add("old_cliente", OracleDbType.Varchar2).Value = id;
                     command.Parameters.Add("u_altura", OracleDbType.Double).Value = datosBiomedicos.Altura;
                     command.Parameters.Add("u_peso", OracleDbType.Double).Value = datosBiomedicos.Peso;
                     command.Parameters.Add("u_grasa", OracleDbType.Double).Value = datosBiomedicos.GrasaCorporal;
@@ -97,15 +97,15 @@ namespace Datos.Archivos.Repositorio
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha actualizado correctamente.";
+                return new Response<DatosBiomedicos>(true, "Se ha actualizado correctamente.", null, datosBiomedicos);
             }
             catch (Exception)
             {
-                return "No se ha actualizado los datos biomédicos.";
+                return new Response<DatosBiomedicos>(false, "No se han actualizado los datos biomédicos.", null, datosBiomedicos);
             }
         }
 
-        public string Delete(string idCliente)
+        public Response<DatosBiomedicos> Delete(string id)
         {
             try
             {
@@ -114,45 +114,19 @@ namespace Datos.Archivos.Repositorio
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "PKG_DATOS_BIOMEDICOS.p_eliminardatobiomedico";
 
-                    command.Parameters.Add("d_id_cliente", OracleDbType.Varchar2).Value = idCliente;
+                    command.Parameters.Add("d_id_cliente", OracleDbType.Varchar2).Value = id;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha eliminado los datos biomédicos.";
+                return new Response<DatosBiomedicos>(true, "Se ha eliminado correctamente.");
             }
             catch (Exception)
             {
-                return "No se ha realizado la eliminación de los datos biomédicos.";
+                return new Response<DatosBiomedicos>(true, "No se ha eliminado el datos biomédicos.");
             }
         }
 
-        public int EncontrarDatoBiomedico(string idCliente)
-        {
-            int idDato = 0;
-
-            try
-            {
-                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "pkg_datos_biomedicos.f_encontrardatobiomedico";
-                    command.Parameters.Add("f_id_cliente", OracleDbType.Varchar2).Value = idCliente;
-                    command.Parameters.Add("id_dato", OracleDbType.Int32).Direction = ParameterDirection.ReturnValue;
-
-                    conexion.Open();
-                    command.ExecuteNonQuery();
-                    idDato = Convert.ToInt32(command.Parameters["id_dato"].Value);
-                    conexion.Close();
-                }
-            }
-            catch (Exception)
-            {
-                // Manejar la excepción según sea necesario
-            }
-
-            return idDato;
-        }
     }
 }

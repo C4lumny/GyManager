@@ -10,15 +10,14 @@ namespace Entidades.Informacion_Persona
     {
         public DatosBiomedicos()
         {
-            this.cliente = new Clientess();
         }
 
         public DatosBiomedicos(Clientess cliente)
         {
-            this.cliente = cliente;
+            this.id_cliente = cliente.Id;
         }
 
-        public DatosBiomedicos(int id, DateTime fechaRegistro, double altura, double peso, double? imc, double grasaCorporal, int frecuenciaCardiaca, int presionArterial, int? idCategoriaPeso, Clientess cliente)
+        public DatosBiomedicos(int id, DateTime fechaRegistro, double altura, double peso, double? imc, double grasaCorporal, int frecuenciaCardiaca, int presionArterial, string idCategoriaPeso, string cliente)
         {
             Id = id;
             FechaRegistro = fechaRegistro;
@@ -29,19 +28,19 @@ namespace Entidades.Informacion_Persona
             FrecuenciaCardiaca = frecuenciaCardiaca;
             PresionArterial = presionArterial;
             IdCategoriaPeso = idCategoriaPeso;
-            this.cliente = cliente;
+            this.id_cliente = cliente;
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public DateTime FechaRegistro { get; set; }
-        public double Altura { get; set; }
-        public double Peso { get; set; }
+        public double? Altura { get; set; }
+        public double? Peso { get; set; }
         public double? Imc { get; set; }
-        public double GrasaCorporal { get; set; }
+        public double? GrasaCorporal { get; set; }
         public int FrecuenciaCardiaca { get; set; }
-        public int PresionArterial { get; set; }
-        public int? IdCategoriaPeso { get; set; }
-        public Clientess cliente { get; set; }
+        public int? PresionArterial { get; set; }
+        public string IdCategoriaPeso { get; set; }
+        public string id_cliente { get; set; }
 
     }
 

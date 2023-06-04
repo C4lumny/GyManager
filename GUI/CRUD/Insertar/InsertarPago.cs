@@ -30,7 +30,7 @@ namespace GUI.CRUD.Insertar
             pago.Inscripcion = servicioInscripcion.GetObjectById(txtIDInscripcion.Text);
 
 
-            MessageBox.Show(servPago.Crear(pago));
+            MessageBox.Show(servPago.Crear(pago).Msg);
         }
     }
 }

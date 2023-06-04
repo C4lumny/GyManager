@@ -20,19 +20,49 @@ namespace Logica.Clases
             coneccion = new ConexionOracle();
             rep = new RepositorioSupervisor(coneccion);
         }
-        public string Actualizar(Supervisoress entidad, string id)
+        public Response<Supervisoress> Actualizar(Supervisoress entidad, string id)
         {
-            return rep.Update(entidad, id);
+            try
+            {
+                if (!validarActualizacion(entidad, id).Success)
+                {
+                    return validarActualizacion(entidad, id);
+                }
+                return rep.Update(entidad, id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
-        public string Crear(Supervisoress entidad)
+        public Response<Supervisoress> Crear(Supervisoress entidad)
         {
-            return rep.Insert(entidad).Msg;
+            try
+            {
+                if (!validarCreacion(entidad).Success)
+                {
+                    return validarCreacion(entidad);
+                }
+                return rep.Insert(entidad);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Eliminar(string id)
+        public Response<Supervisoress> Eliminar(string id)
         {
-            return rep.Delete(id);
+            try
+            {
+                return rep.Delete(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public List<Supervisoress> GetAll()
@@ -69,6 +99,44 @@ namespace Logica.Clases
 
                 return null;
             };
+        }
+        public Response<Supervisoress> validarCreacion(Supervisoress supervisor)
+        {
+            if (GetAll() == null)
+            {
+                return new Response<Supervisoress>(true, "Valido.");
+            }
+            else if (GetAll().Any(item => item.Id == supervisor.Id))
+            {
+                return new Response<Supervisoress>(false, "El supervisor ya se encuentra registrado.");
+            }
+            else if (supervisor.Fecha_nacimiento.AddYears(18) >= DateTime.Now)
+            {
+                return new Response<Supervisoress>(false, "La edad minima de registro es de 18 años.");
+            }
+            else
+            {
+                return new Response<Supervisoress>(true, "Valido.");
+            }
+        }
+        public Response<Supervisoress> validarActualizacion(Supervisoress supervisor, string id_supervisor)
+        {
+            if (GetAll() == null)
+            {
+                return new Response<Supervisoress>(false, "No hay supervisores registrados.");
+            }
+            else if (GetAll().Any(item => item.Id == supervisor.Id && item.Id != id_supervisor))
+            {
+                return new Response<Supervisoress>(false, "El supervisor ya se encuentra registrado.");
+            }
+            else if (supervisor.Fecha_nacimiento.AddYears(14) >= DateTime.Now)
+            {
+                return new Response<Supervisoress>(false, "La edad minima de registro es de 18 años.");
+            }
+            else
+            {
+                return new Response<Supervisoress>(true, "Valido.");
+            }
         }
     }
 }

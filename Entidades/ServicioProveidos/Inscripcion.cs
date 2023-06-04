@@ -62,7 +62,7 @@ namespace Entidades
             Plan = new PlanGimnasio();
         }
 
-        public Inscripcion(int id, DateTime fechaInicio, DateTime fechaFinal, double precio, int descuento, Clientess cliente, Supervisoress supervisor, PlanGimnasio plan, int idEstado)
+        public Inscripcion(int id, DateTime fechaInicio, DateTime fechaFinal, double precio, int descuento, Clientess cliente, Supervisoress supervisor, PlanGimnasio plan, string idEstado)
         {
             Id = id;
             FechaInicio = fechaInicio;
@@ -75,15 +75,15 @@ namespace Entidades
             IdEstado = idEstado;
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinal { get; set; }
-        public double Precio { get; set; }
-        public int Descuento { get; set; }
+        public double? Precio { get; set; }
+        public int? Descuento { get; set; }
         public Clientess Cliente { get; set; }
         public Supervisoress Supervisor { get; set; }
         public PlanGimnasio Plan { get; set; }
-        public int IdEstado { get; set; }
+        public string IdEstado { get; set; }
 
     }
 

@@ -9,10 +9,10 @@ namespace Logica.Clases
 {
     public interface ICRUD<T, Id_Type>
     {
-        string Crear(T entidad);
+        Response<T> Crear(T entidad);
         List<T> GetAll();
-        string Actualizar(T entidad, Id_Type id);
-        string Eliminar(Id_Type id);
+        Response<T> Actualizar(T entidad, Id_Type id);
+        Response<T> Eliminar(Id_Type id);
     }
 
 }

@@ -7,6 +7,7 @@ using System.IO;
 using System.Data;
 using Datos.Archivos.Clase_Abstracta;
 using Entidades.Informacion_Persona;
+using System.Numerics;
 
 namespace Datos
 {
@@ -32,7 +33,7 @@ namespace Datos
                 PlanGimnasio plan = new PlanGimnasio();
                 plan.Id = dataReader.GetInt32(0);
                 plan.Nombre = dataReader.GetString(1);
-                plan.Precio = dataReader.GetDouble(2);
+                plan.Precio = dataReader.IsDBNull(2) ? null : (double?)dataReader.GetDouble(2);
                 plan.Descripcion = dataReader.GetString(3);
                 plan.Dias = dataReader.GetInt32(4);
 
@@ -70,7 +71,7 @@ namespace Datos
             }
         }
 
-        public string Update(PlanGimnasio plan, string old_id)
+        public Response<PlanGimnasio> Update(PlanGimnasio plan, string old_id)
         {
             try
             {
@@ -89,15 +90,15 @@ namespace Datos
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha actualizado correctamente.";
+                return new Response<PlanGimnasio>(true, "Se ha actualizado correctamente.", null, plan);
             }
             catch (Exception)
             {
-                return "No se ha actualizado el plan.";
+                return new Response<PlanGimnasio>(false, "No se ha actualizado el plan.", null, plan);
             }
         }
 
-        public string Delete(string id)
+        public Response<PlanGimnasio> Delete(string id)
         {
             try
             {
@@ -112,11 +113,11 @@ namespace Datos
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha eliminado el plan.";
+                return new Response<PlanGimnasio>(true, "Se ha eliminado correctamente.");
             }
             catch (Exception)
             {
-                return "No se ha realizado la eliminación.";
+                return new Response<PlanGimnasio>(false, "No se ha eliminado el plan.");
             }
         }
 

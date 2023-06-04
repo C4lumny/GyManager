@@ -9,6 +9,6 @@ namespace Datos.Archivos.Clase_Abstracta
 {
     public interface IUpdate<T, Id_Type> : IDeleteAndInsert<T, Id_Type>
     {
-        string Update(T cliente, Id_Type old_id);
+        Response<T> Update(T cliente, Id_Type old_id);
     }
 }

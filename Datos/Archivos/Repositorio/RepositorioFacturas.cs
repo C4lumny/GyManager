@@ -25,11 +25,11 @@ namespace Datos.Archivos.Repositorio
             {
                 if (!dataReader.HasRows) { return null; }
                 Facturas factura = new Facturas();
-                factura.Id = dataReader.GetInt32(0);
+                factura.Id = dataReader.IsDBNull(0) ? null : (int?)dataReader.GetInt32(0);
                 factura.PagoIngresado = dataReader.GetDouble(1);
                 factura.Subtotal = dataReader.GetDouble(2);
                 factura.Saldo = dataReader.GetDouble(3);
-                factura.Inscripcion.Id = dataReader.GetInt32(4);
+                factura.Inscripcion.Id = dataReader.IsDBNull(4) ? null : (int?)dataReader.GetInt32(4);
                 return factura;
             }
             catch (Exception)

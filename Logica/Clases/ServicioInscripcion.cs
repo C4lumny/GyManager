@@ -2,6 +2,7 @@
 using Datos.Archivos;
 using Datos.Archivos.Repositorio;
 using Entidades;
+using Entidades.Informacion_Persona;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +21,42 @@ namespace Logica.Clases
             coneccion = new ConexionOracle();
             rep = new RepositorioInscripcion(coneccion);
         }
-        public string Actualizar(Inscripcion entidad, string id)
+        public Response<Inscripcion> Actualizar(Inscripcion entidad, string id)
         {
-            return rep.Update(entidad, id);
+            try
+            {
+                return rep.Update(entidad, id);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Crear(Inscripcion entidad)
+        public Response<Inscripcion> Crear(Inscripcion entidad)
         {
-            return rep.Insert(entidad).Msg;
+            try
+            {
+                return rep.Insert(entidad);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Eliminar(string id)
+        public Response<Inscripcion> Eliminar(string id)
         {
-            return rep.Delete(id);
+            try
+            {
+                return rep.Delete(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public List<Inscripcion> GetListBySearch(string search)
@@ -70,5 +94,6 @@ namespace Logica.Clases
             }
             return lista;
         }
+
     }
 }

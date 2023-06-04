@@ -37,7 +37,10 @@ namespace GUI.Pureba
                 {
                     foreach (Supervisoress supervisor in lista)
                     {
-                        dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
+                        if (supervisor.Id != "NULL")
+                        {
+                            dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
+                        }
                     }
                 }
             }
@@ -95,6 +98,11 @@ namespace GUI.Pureba
         private void ActualizarSupervisor_FormClosed(object sender, FormClosedEventArgs e)
         {
             CargarGrilla();
+        }
+
+        private void dgvSupervisor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

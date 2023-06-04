@@ -25,10 +25,21 @@ namespace GUI.Pureba.Insertar
         {
 
             // Crear un objeto Cliente
-            Clientess cliente = new Clientess();
             ServicioClientes serv = new ServicioClientes();
             ServicioDatosBiomedicos serv2 = new ServicioDatosBiomedicos();
             // Llenar el objeto Cliente con los valores de los TextBox
+
+
+            DatosBiomedicos datos = new DatosBiomedicos();
+
+            datos.Altura = double.Parse(txtAltura.Text);
+            datos.Peso = double.Parse(txtPeso.Text);
+            datos.GrasaCorporal = double.Parse(txtGrasa.Text);
+            datos.FrecuenciaCardiaca = int.Parse(txtFrecuencia.Text);
+            datos.PresionArterial = int.Parse(txtPresion.Text);
+            datos.id_cliente = txtCedula.Text;
+
+            Clientess cliente = new Clientess(datos);
             cliente.Id = txtCedula.Text;
             cliente.Nombre = txtNombre.Text;
             cliente.Apellido = txtApellido.Text;
@@ -36,17 +47,7 @@ namespace GUI.Pureba.Insertar
             cliente.Telefono = txtTelefono.Text;
             cliente.Fecha_nacimiento = dtmFechaNacimiento.Value;
 
-            DatosBiomedicos datos = new DatosBiomedicos(cliente);
-
-            datos.Altura = double.Parse(txtAltura.Text);
-            datos.Peso = double.Parse(txtPeso.Text);
-            datos.GrasaCorporal = double.Parse(txtGrasa.Text);
-            datos.FrecuenciaCardiaca = int.Parse(txtFrecuencia.Text);
-            datos.PresionArterial = int.Parse(txtPresion.Text);
-
-
-            MessageBox.Show(serv.Crear(cliente));
-            serv2.Crear(datos);
+            MessageBox.Show(serv.Crear(cliente).Msg);
         }
 
         private void dtmFechaNacimiento_ValueChanged(object sender, EventArgs e)

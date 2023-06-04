@@ -33,7 +33,7 @@ namespace GUI.CRUD.Insertar
             supervisor.Fecha_nacimiento = dtmFechaNacimiento.Value;
             supervisor.Correo = txtCorreo.Text;
 
-            MessageBox.Show(servSupervisor.Crear(supervisor));
+            MessageBox.Show(servSupervisor.Crear(supervisor).Msg);
         }
     }
 }

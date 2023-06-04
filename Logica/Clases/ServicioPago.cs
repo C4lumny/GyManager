@@ -21,19 +21,40 @@ namespace Logica.Clases
             coneccion = new ConexionOracle();
             rep = new RepositorioPagos(coneccion);
         }
-        public string Actualizar(Pago entidad, int id)
+        public Response<Pago> Actualizar(Pago entidad, int id)
         {
-            return rep.Update(entidad, id);
+            try
+            {
+                return rep.Update(entidad, id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Crear(Pago entidad)
+        public Response<Pago> Crear(Pago entidad)
         {
-            return rep.Insert(entidad).Msg;
+            try
+            {
+                return rep.Insert(entidad);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Eliminar(int id)
+        public Response<Pago> Eliminar(int id)
         {
-            return rep.Delete(id);
+            try
+            {
+                return rep.Delete(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public List<Pago> GetAll()
@@ -53,7 +74,15 @@ namespace Logica.Clases
 
         public Pago GetObjectById(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FirstOrDefault(item => item.Id.ToString() == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
     }
 }

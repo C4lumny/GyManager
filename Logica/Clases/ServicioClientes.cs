@@ -18,13 +18,13 @@ namespace Logica.Clases
             rep = new RepositorioClientes(coneccion);
         }
 
-        public string Actualizar(Clientess entidad, string id)
+        public Response<Clientess> Actualizar(Clientess entidad, string id)
         {
             try
             {
                 if (!validarActualizacion(entidad, id).Success)
                 {
-                    return validarActualizacion(entidad, id).Msg;
+                    return validarActualizacion(entidad, id);
                 }
                 return rep.Update(entidad, id);
             }
@@ -34,15 +34,15 @@ namespace Logica.Clases
             }
         }
 
-        public string Crear(Clientess entidad)
+        public Response<Clientess> Crear(Clientess entidad)
         {
             try
             {
                 if (!validarCreacion(entidad).Success)
                 {
-                    return validarCreacion(entidad).Msg;
+                    return validarCreacion(entidad);
                 }
-                return rep.Insert(entidad).Msg;
+                return rep.Insert(entidad);
             }
             catch (Exception)
             {
@@ -50,9 +50,17 @@ namespace Logica.Clases
             }
         }
 
-        public string Eliminar(string id)
+        public Response<Clientess> Eliminar(string id)
         {
-            return rep.Delete(id.ToString());
+            try
+            {
+                return rep.Delete(id.ToString());
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public List<Clientess> GetAll()

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbPlanes = new System.Windows.Forms.ComboBox();
+            this.cmbSupervisores = new System.Windows.Forms.ComboBox();
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -36,8 +38,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDescuento = new System.Windows.Forms.TextBox();
-            this.cmbSupervisores = new System.Windows.Forms.ComboBox();
-            this.cmbPlanes = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(668, 399);
             this.panel1.TabIndex = 0;
+            // 
+            // cmbPlanes
+            // 
+            this.cmbPlanes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlanes.FormattingEnabled = true;
+            this.cmbPlanes.Location = new System.Drawing.Point(301, 184);
+            this.cmbPlanes.Name = "cmbPlanes";
+            this.cmbPlanes.Size = new System.Drawing.Size(200, 21);
+            this.cmbPlanes.TabIndex = 32;
+            // 
+            // cmbSupervisores
+            // 
+            this.cmbSupervisores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSupervisores.FormattingEnabled = true;
+            this.cmbSupervisores.Location = new System.Drawing.Point(301, 117);
+            this.cmbSupervisores.Name = "cmbSupervisores";
+            this.cmbSupervisores.Size = new System.Drawing.Size(200, 21);
+            this.cmbSupervisores.TabIndex = 31;
+            this.cmbSupervisores.SelectedIndexChanged += new System.EventHandler(this.cmbSupervisores_SelectedIndexChanged);
             // 
             // cmbClientes
             // 
@@ -135,24 +154,6 @@
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(200, 24);
             this.txtDescuento.TabIndex = 3;
-            // 
-            // cmbSupervisores
-            // 
-            this.cmbSupervisores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSupervisores.FormattingEnabled = true;
-            this.cmbSupervisores.Location = new System.Drawing.Point(301, 117);
-            this.cmbSupervisores.Name = "cmbSupervisores";
-            this.cmbSupervisores.Size = new System.Drawing.Size(200, 21);
-            this.cmbSupervisores.TabIndex = 31;
-            // 
-            // cmbPlanes
-            // 
-            this.cmbPlanes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlanes.FormattingEnabled = true;
-            this.cmbPlanes.Location = new System.Drawing.Point(301, 184);
-            this.cmbPlanes.Name = "cmbPlanes";
-            this.cmbPlanes.Size = new System.Drawing.Size(200, 21);
-            this.cmbPlanes.TabIndex = 32;
             // 
             // InsertarInscripcion
             // 

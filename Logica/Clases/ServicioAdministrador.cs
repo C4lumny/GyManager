@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Archivos;
 using Datos.Archivos.Repositorio;
 using Entidades.Administrador;
 using System;
@@ -9,22 +10,39 @@ using System.Threading.Tasks;
 
 namespace Logica.Clases
 {
-    public class ServicioAdministrador 
+    public class ServicioAdministrador : IAdministrador
     {
-        RepositorioAdministrador rep = new RepositorioAdministrador();
+        ConexionOracle coneccion;
+        RepositorioAdministrador rep;
 
-
+        public ServicioAdministrador()
+        {
+            coneccion = new ConexionOracle();
+            rep = new RepositorioAdministrador(coneccion);
+        }
         public string Crear(Administrador entidad)
         {
+            try
+            {
+                return rep.Insert(entidad).Msg;
+            }
+            catch (Exception)
+            {
 
-               return rep.Insert(entidad).Msg;
-
+                return "Error";
+            }
         }
 
         public string Eliminar(string id)
         {
+            try
+            {
                 return rep.Delete(id);
+            }
+            catch (Exception)
+            {
+                return "Error";
+            }
         }
-
     }
 }

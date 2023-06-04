@@ -44,7 +44,7 @@ namespace Entidades
         {
             
         }
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Dia { get; set; }
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSalida { get; set; }

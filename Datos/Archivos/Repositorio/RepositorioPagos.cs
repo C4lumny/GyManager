@@ -30,10 +30,10 @@ namespace Datos.Archivos.Repositorio
                 }
 
                 Pago pago = new Pago();
-                pago.Id = dataReader.GetInt32(0);
-                pago.ValorIngresado = dataReader.GetDouble(1);
+                pago.Id = dataReader.IsDBNull(0) ? null : (int?)dataReader.GetInt32(3) ;
+                pago.ValorIngresado = dataReader.IsDBNull(1) ? null : (double?)dataReader.GetDouble(1);
                 pago.FechaPago = dataReader.GetDateTime(2);
-                pago.Inscripcion.Id = dataReader.GetInt32(3);
+                pago.Inscripcion.Id = dataReader.IsDBNull(3) ? null : (int?)dataReader.GetInt32(3);
                 return pago;
             }
             catch (Exception)
@@ -62,11 +62,11 @@ namespace Datos.Archivos.Repositorio
             }
             catch (Exception)
             {
-                return new Response<Pago>(true, "No se ha registrado el pago.", null, pago);
+                return new Response<Pago>(false, "No se ha registrado el pago.", null, pago);
             }
         }
 
-        public string Delete(int id)
+        public Response<Pago> Delete(int id)
         {
             try
             {
@@ -81,15 +81,15 @@ namespace Datos.Archivos.Repositorio
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha eliminado el pago.";
+                return new Response<Pago>(true, "Se ha eliminado el pago correctamente.");
             }
             catch (Exception)
             {
-                return "No se ha eliminado el pago.";
+                return new Response<Pago>(false, "No se ha eliminado el pago.");
             }
         }
 
-        public string Update(Pago pago, int old_id)
+        public Response<Pago> Update(Pago pago, int old_id)
         {
             try
             {
@@ -106,11 +106,11 @@ namespace Datos.Archivos.Repositorio
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha actualizado el pago correctamente.";
+                return new Response<Pago>(true, "Se ha actualizado el pago correctamente.", null, pago);
             }
             catch (Exception)
             {
-                return "No se ha actualizado el pago.";
+                return new Response<Pago>(false, "No se ha actualizado el pago.", null, pago);
             }
         }
     }

@@ -21,19 +21,48 @@ namespace Logica.Clases
             coneccion = new ConexionOracle();
             rep = new RepositorioPlan(coneccion);
         }
-        public string Actualizar(PlanGimnasio entidad, string id)
+        public Response<PlanGimnasio> Actualizar(PlanGimnasio entidad, string id)
         {
-            return rep.Update(entidad, id);
+            try
+            {
+                if (!validarActualizacion(entidad, id).Success)
+                {
+                    return validarCreacion(entidad);
+                }
+                return rep.Update(entidad, id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Crear(PlanGimnasio entidad)
+        public Response<PlanGimnasio> Crear(PlanGimnasio entidad)
         {
-            return rep.Insert(entidad).Msg;
+            try
+            {
+                if (!validarCreacion(entidad).Success)
+                {
+                    return validarCreacion(entidad);
+                }
+                return rep.Insert(entidad);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Eliminar(string id)
+        public Response<PlanGimnasio> Eliminar(string id)
         {
-            return rep.Delete(id);
+            try
+            {
+                return rep.Delete(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public List<PlanGimnasio> GetAll()
@@ -70,6 +99,35 @@ namespace Logica.Clases
 
                 return null;
             };
+        }
+
+        public Response<PlanGimnasio> validarCreacion(PlanGimnasio plan)
+        {
+
+            if (GetAll().Any(item => item.Nombre.ToUpper() == plan.Nombre.ToUpper()))
+            {
+                return new Response<PlanGimnasio>(false, "Por favor ingrese un nombre de plan unico .");
+            }
+            else if (plan.Dias <= 0)
+            {
+                return new Response<PlanGimnasio>(false, "Cantidad de dias invalida.");
+            }
+            return new Response<PlanGimnasio>(true, "Valido.");
+        }
+
+        public Response<PlanGimnasio> validarActualizacion(PlanGimnasio plan, string id_plan)
+        {
+            var plan_old = GetObjectById(id_plan);
+            
+            if (GetAll().Any(item => item.Nombre == plan.Nombre && item.Nombre.ToUpper() != plan_old.Nombre.ToUpper()))
+            {
+                return new Response<PlanGimnasio>(false, "Por favor ingrese un nombre de plan unico .");
+            }
+            else if (plan.Dias <= 0)
+            {
+                return new Response<PlanGimnasio>(false, "Cantidad de dias invalida.");
+            }
+            return new Response<PlanGimnasio>(true, "Valido.");
         }
     }
 }

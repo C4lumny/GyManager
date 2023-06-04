@@ -26,13 +26,13 @@ namespace Datos
             {
                 if (!dataReader.HasRows) { return null; }
                 Clientess cliente = new Clientess();
-                cliente.Id = dataReader.GetString(0);
-                cliente.Nombre = dataReader.GetString(1);
-                cliente.Apellido = dataReader.GetString(2);
-                cliente.Genero = dataReader.GetString(3); 
-                cliente.Telefono = dataReader.GetString(4);
-                cliente.Fecha_nacimiento = dataReader.GetDateTime(5);
-                cliente.Fecha_ingreso = dataReader.GetDateTime(6);
+                cliente.Id = dataReader.IsDBNull(0) ? null : dataReader.GetString(0);
+                cliente.Nombre = dataReader.IsDBNull(1) ? null : dataReader.GetString(1);
+                cliente.Apellido = dataReader.IsDBNull(2) ? null : dataReader.GetString(2);
+                cliente.Genero = dataReader.IsDBNull(3) ? null : dataReader.GetString(3);
+                cliente.Telefono = dataReader.IsDBNull(4) ? null : dataReader.GetString(4);
+                cliente.Fecha_nacimiento = dataReader.IsDBNull(5) ? DateTime.MinValue : dataReader.GetDateTime(5);
+                cliente.Fecha_ingreso = dataReader.IsDBNull(6) ? DateTime.MinValue : dataReader.GetDateTime(6);
 
                 return cliente;
             }
@@ -45,31 +45,35 @@ namespace Datos
         {
             try
             {
-            using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "PKG_CLIENTE.p_insertarcliente";
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PKG_CLIENTE.p_insertarcliente";
 
-                command.Parameters.Add("i_id", OracleDbType.Varchar2).Value = cliente.Id;
-                command.Parameters.Add("i_nombres", OracleDbType.Varchar2).Value = cliente.Nombre;
-                command.Parameters.Add("i_apellidos", OracleDbType.Varchar2).Value = cliente.Apellido;
-                command.Parameters.Add("i_genero", OracleDbType.Varchar2).Value = cliente.Genero;
-                command.Parameters.Add("i_telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
-                command.Parameters.Add("i_fecha_nacimiento", OracleDbType.Date).Value = cliente.Fecha_nacimiento; // Asigna la fecha de nacimiento adecuada
+                    command.Parameters.Add("i_id", OracleDbType.Varchar2).Value = cliente.Id;
+                    command.Parameters.Add("i_nombres", OracleDbType.Varchar2).Value = cliente.Nombre;
+                    command.Parameters.Add("i_apellidos", OracleDbType.Varchar2).Value = cliente.Apellido;
+                    command.Parameters.Add("i_genero", OracleDbType.Varchar2).Value = cliente.Genero;
+                    command.Parameters.Add("i_telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
+                    command.Parameters.Add("i_altura", OracleDbType.Decimal).Value = cliente.datosBiomedicos.Altura;
+                    command.Parameters.Add("i_peso", OracleDbType.Decimal).Value = cliente.datosBiomedicos.Peso;
+                    command.Parameters.Add("i_grasa", OracleDbType.Decimal).Value = cliente.datosBiomedicos.GrasaCorporal;
+                    command.Parameters.Add("i_frecuencia", OracleDbType.Decimal).Value = cliente.datosBiomedicos.FrecuenciaCardiaca;
+                    command.Parameters.Add("i_presion", OracleDbType.Decimal).Value = cliente.datosBiomedicos.PresionArterial;
+                    command.Parameters.Add("i_fecha_nacimiento", OracleDbType.Date).Value = cliente.Fecha_nacimiento;
 
                     conexion.Open();
                     command.ExecuteNonQuery();
                     conexion.Close();
-            }
-            return new Response<Clientess>(true, "Se ha registrado correctamente.", null, cliente);
+                }
+                return new Response<Clientess>(true, "Se ha registrado correctamente.", null, cliente);
             }
             catch (Exception)
             {
-                return new Response<Clientess>(true, "No se ha registrado al cliente.", null, cliente);
-               
+                return new Response<Clientess>(false, "No se ha registrado al cliente.", null, cliente);
             }
         }
-        public string Delete(string id_cliente)
+        public Response<Clientess> Delete(string id_cliente)
         {
             try
             {
@@ -86,34 +90,14 @@ namespace Datos
                     conexion.Close();
 
                 }
-                return "Se ha eliminado el cliente";
+                return new Response<Clientess>(true, "Se ha eliminado el cliente");
             }
             catch (Exception)
             {
-                return "No se ha realizado la actualizacion";
+                return new Response<Clientess>(false, "No se ha eliminado al cliente.");
             }
         }
-        public string DeleteAll()
-        {
-            try
-            {
-                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PKG_CLIENTE.p_eliminartodocliente";
-                    conexion.Open();
-                    command.ExecuteNonQuery();
-                    conexion.Close();
-
-                }
-                return "Se ha eliminado el cliente";
-            }
-            catch (Exception)
-            {
-                return "No se ha realizado la actualizacion";
-            }
-        }
-        public string Update(Clientess cliente, string old_id)
+        public Response<Clientess> Update(Clientess cliente, string old_id)
         {
             try
             {
@@ -137,11 +121,11 @@ namespace Datos
                     conexion.Close();
 
                 }
-                return "Se ha actualizado el cliente";
+                return new Response<Clientess>(true, "Se ha actualizado el cliente", null, cliente);
             }
             catch (Exception)
             {
-                return "No se ha realizado la actualizacion";
+                return new Response<Clientess>(false, "No se ha registrado al cliente.", null, cliente);
             }
         }
     }

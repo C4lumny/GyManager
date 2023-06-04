@@ -29,15 +29,16 @@ namespace Datos.Archivos
                 }
 
                 Supervisoress supervisor = new Supervisoress();
-                supervisor.Id = dataReader.GetString(0);
-                supervisor.Nombre = dataReader.GetString(1);
-                supervisor.Apellido = dataReader.GetString(2);
-                supervisor.Genero = dataReader.GetString(3);
-                supervisor.Telefono = dataReader.GetString(4);
-                supervisor.Fecha_nacimiento = dataReader.GetDateTime(5);
-                supervisor.Correo = dataReader.GetString(6);
-                supervisor.Fecha_ingreso = dataReader.GetDateTime(7);
-                
+                supervisor.Id = dataReader.IsDBNull(0) ? null : dataReader.GetString(0);
+                supervisor.Nombre = dataReader.IsDBNull(1) ? null : dataReader.GetString(1);
+                supervisor.Apellido = dataReader.IsDBNull(2) ? null : dataReader.GetString(2);
+                supervisor.Genero = dataReader.IsDBNull(3) ? null : dataReader.GetString(3);
+                supervisor.Telefono = dataReader.IsDBNull(4) ? null : dataReader.GetString(4);
+                supervisor.Fecha_nacimiento = dataReader.IsDBNull(5) ? DateTime.MinValue : dataReader.GetDateTime(5);
+                supervisor.Correo = dataReader.IsDBNull(6) ? null : dataReader.GetString(6);
+                supervisor.Fecha_ingreso = dataReader.IsDBNull(7) ? DateTime.MinValue : dataReader.GetDateTime(7);
+
+
                 return supervisor;
             }
             catch (Exception)
@@ -71,11 +72,11 @@ namespace Datos.Archivos
             }
             catch (Exception)
             {
-                return new Response<Supervisoress>(true, "No se ha registrado el supervisor.", null, supervisor);
+                return new Response<Supervisoress>(false, "No se ha registrado el supervisor.", null, supervisor);
             }
         }
 
-        public string Update(Supervisoress supervisor, string old_id)
+        public Response<Supervisoress> Update(Supervisoress supervisor, string old_id)
         {
             try
             {
@@ -98,15 +99,15 @@ namespace Datos.Archivos
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha actualizado correctamente.";
+                return new Response<Supervisoress>(true, "Se ha actualizado correctamente.", null, supervisor);
             }
             catch (Exception)
             {
-                return "No se ha actualizado el supervisor.";
+                return new Response<Supervisoress>(false, "No se ha azctualizado el supervisor.", null, supervisor);
             }
         }
 
-        public string Delete(string id)
+        public Response<Supervisoress> Delete(string id)
         {
             try
             {
@@ -121,11 +122,11 @@ namespace Datos.Archivos
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha eliminado el supervisor.";
+                return new Response<Supervisoress>(true, "Se ha eliminado correctamente.");
             }
             catch (Exception)
             {
-                return "No se ha realizado la eliminación del supervisor.";
+                return new Response<Supervisoress>(false, "No se ha eliminado el supervisor.");
             }
         }
 

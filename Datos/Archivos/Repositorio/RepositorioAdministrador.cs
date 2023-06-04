@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using Datos.Archivos.Clase_Abstracta;
+using Entidades;
 using Entidades.Administrador;
 using Oracle.ManagedDataAccess.Client;
 using System;
@@ -10,15 +11,16 @@ namespace Datos.Archivos.Repositorio
 {
     public class RepositorioAdministrador
     {
-        ConexionOracle conexion = new ConexionOracle();
-        public RepositorioAdministrador() 
+        IConexion conexion;
+        public RepositorioAdministrador(IConexion _connect) 
         {
+            conexion = _connect;
         }
         public Response<Administrador> Insert(Administrador administrador)
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "pkg_administradores.p_insertaradministrador";
@@ -42,7 +44,7 @@ namespace Datos.Archivos.Repositorio
         {
             try
             {
-                using (OracleCommand command = conexion._conexion.CreateCommand())
+                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "pkg_administradores.p_eliminardministrador";

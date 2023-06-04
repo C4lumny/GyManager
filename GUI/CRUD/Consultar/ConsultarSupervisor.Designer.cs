@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnActualizarSupervisor = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvSupervisor = new System.Windows.Forms.DataGridView();
             this.clmCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,8 +43,6 @@
             this.clmCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFechaIngreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnActualizarSupervisor = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupervisor)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +58,38 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(668, 399);
             this.panel1.TabIndex = 0;
+            // 
+            // btnActualizarSupervisor
+            // 
+            this.btnActualizarSupervisor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnActualizarSupervisor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnActualizarSupervisor.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnActualizarSupervisor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarSupervisor.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnActualizarSupervisor.Location = new System.Drawing.Point(157, 332);
+            this.btnActualizarSupervisor.Name = "btnActualizarSupervisor";
+            this.btnActualizarSupervisor.Size = new System.Drawing.Size(90, 30);
+            this.btnActualizarSupervisor.TabIndex = 7;
+            this.btnActualizarSupervisor.Text = "Actualizar";
+            this.btnActualizarSupervisor.UseVisualStyleBackColor = false;
+            this.btnActualizarSupervisor.Visible = false;
+            this.btnActualizarSupervisor.Click += new System.EventHandler(this.btnActualizarSupervisor_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnEliminar.Location = new System.Drawing.Point(33, 332);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(90, 30);
+            this.btnEliminar.TabIndex = 6;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dgvSupervisor
             // 
@@ -94,7 +126,7 @@
             this.dgvSupervisor.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -110,6 +142,7 @@
             this.dgvSupervisor.Size = new System.Drawing.Size(605, 213);
             this.dgvSupervisor.TabIndex = 4;
             this.dgvSupervisor.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupervisor_CellClick);
+            this.dgvSupervisor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupervisor_CellContentClick);
             // 
             // clmCedula
             // 
@@ -169,38 +202,6 @@
             this.clmFechaIngreso.HeaderText = "Fecha de ingreso";
             this.clmFechaIngreso.Name = "clmFechaIngreso";
             this.clmFechaIngreso.ReadOnly = true;
-            // 
-            // btnActualizarSupervisor
-            // 
-            this.btnActualizarSupervisor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnActualizarSupervisor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnActualizarSupervisor.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnActualizarSupervisor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarSupervisor.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnActualizarSupervisor.Location = new System.Drawing.Point(157, 332);
-            this.btnActualizarSupervisor.Name = "btnActualizarSupervisor";
-            this.btnActualizarSupervisor.Size = new System.Drawing.Size(90, 30);
-            this.btnActualizarSupervisor.TabIndex = 7;
-            this.btnActualizarSupervisor.Text = "Actualizar";
-            this.btnActualizarSupervisor.UseVisualStyleBackColor = false;
-            this.btnActualizarSupervisor.Visible = false;
-            this.btnActualizarSupervisor.Click += new System.EventHandler(this.btnActualizarSupervisor_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnEliminar.Location = new System.Drawing.Point(33, 332);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(90, 30);
-            this.btnEliminar.TabIndex = 6;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Visible = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // ConsultarSupervisor
             // 

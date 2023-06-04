@@ -36,7 +36,7 @@ namespace GUI.CRUD.Insertar
             inscripcion.Plan = servicioPlan.GetObjectById(cmbPlanes.Text);
             inscripcion.Descuento = int.Parse(txtDescuento.Text);
 
-            MessageBox.Show(servicioInscripcion.Crear(inscripcion));
+            MessageBox.Show(servicioInscripcion.Crear(inscripcion).Msg);
         }
 
         private void InsertarInscripcion_Load(object sender, EventArgs e)
@@ -74,6 +74,11 @@ namespace GUI.CRUD.Insertar
             {
                 cmbPlanes.SelectedIndex = 0;
             }
+        }
+
+        private void cmbSupervisores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

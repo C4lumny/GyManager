@@ -22,19 +22,41 @@ namespace Logica.Clases
             coneccion = new ConexionOracle();
             rep = new RepositorioDatosBiomedicos(coneccion);
         }
-        public string Actualizar(DatosBiomedicos entidad, string id)
+        public Response<DatosBiomedicos> Actualizar(DatosBiomedicos entidad, string id)
         {
-           return rep.Update(entidad, id);
+            try
+            {
+                return rep.Update(entidad, id);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Crear(DatosBiomedicos entidad)
+        public Response<DatosBiomedicos> Crear(DatosBiomedicos entidad)
         {
-            return rep.Insert(entidad).Msg;
+            try
+            {
+                return rep.Insert(entidad);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public string Eliminar(string id)
+        public Response<DatosBiomedicos> Eliminar(string id)
         {
-            return rep.Delete(id);
+            try
+            {
+                return rep.Delete(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public List<DatosBiomedicos> GetAll()
@@ -51,7 +73,7 @@ namespace Logica.Clases
         {
             try
             {
-                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search) || item.cliente.Id.StartsWith(search));
+                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search) || item.id_cliente.StartsWith(search));
             }
             catch (Exception)
             {
@@ -62,7 +84,15 @@ namespace Logica.Clases
 
         public DatosBiomedicos GetObjectById(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FirstOrDefault(item => item.Id.ToString() == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            };
         }
        
     }

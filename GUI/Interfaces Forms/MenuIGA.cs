@@ -119,7 +119,7 @@ namespace GUI.pruba
         private void btnConsultarInscripcion_Click(object sender, EventArgs e)
         {
             ConsultarInscripcion ver = new ConsultarInscripcion();
-            ver.Show();
+            openForms(ver);
             hideSubMenu();
         }
 

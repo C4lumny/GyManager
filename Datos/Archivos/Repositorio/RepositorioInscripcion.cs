@@ -31,15 +31,22 @@ namespace Datos
                 inscripcion.Cliente = new Clientess();
                 inscripcion.Supervisor = new Supervisoress();
                 inscripcion.Plan = new PlanGimnasio();
-                inscripcion.Id = dataReader.GetInt32(0);
+
+                inscripcion.Id = dataReader.IsDBNull(0) ? null : (int?)dataReader.GetInt32(0);
                 inscripcion.FechaInicio = dataReader.GetDateTime(1);
                 inscripcion.FechaFinal = dataReader.GetDateTime(2);
                 inscripcion.Precio = dataReader.GetDouble(3);
                 inscripcion.Descuento = dataReader.GetInt32(4);
+
                 inscripcion.Cliente.Id = dataReader.GetString(5);
-                inscripcion.Supervisor.Id = dataReader.GetString(6);
-                inscripcion.Plan.Id = dataReader.GetInt32(7);
-                inscripcion.IdEstado = dataReader.GetInt32(8);
+                inscripcion.Cliente.Nombre = dataReader.GetString(6);
+                inscripcion.Cliente.Apellido = dataReader.GetString(7);
+                inscripcion.Supervisor.Id = dataReader.IsDBNull(8) ? "NULL" : dataReader.GetString(8);
+                inscripcion.Supervisor.Nombre = dataReader.GetString(9);
+                inscripcion.Supervisor.Apellido = dataReader.GetString(10);
+                inscripcion.Plan.Nombre = dataReader.GetString(11);
+                inscripcion.IdEstado = dataReader.GetString(12);
+
                 return inscripcion;
             }
             catch (Exception ex)
@@ -70,11 +77,11 @@ namespace Datos
             }
             catch (Exception)
             {
-                return new Response<Inscripcion>(true, "No se ha registrado la inscripcion.", null, inscripcion);
+                return new Response<Inscripcion>(false, "No se ha registrado la inscripcion.", null, inscripcion);
 
             }
         }
-        public string Delete(string id)
+        public Response<Inscripcion> Delete(string id)
         {
             try
             {
@@ -90,16 +97,17 @@ namespace Datos
                     conexion.Close();
 
                 }
-                return "Se ha eliminado la inscripcion ";
+                return new Response<Inscripcion>(true, "Se ha eliminado correctamente.");
             }
             catch (Exception)
             {
-                return "No se ha realizado la eliminacion";
+                return new Response<Inscripcion>(false, "No se ha eliminado la inscripcion.");
+
             }
 
 
         }
-        public string Update(Inscripcion inscripcion, string old_id)
+        public Response<Inscripcion> Update(Inscripcion inscripcion, string old_id)
         {
 
             try
@@ -120,11 +128,11 @@ namespace Datos
                     command.ExecuteNonQuery();
                     conexion.Close();
                 }
-                return "Se ha actualizado correctamente.";
+                return new Response<Inscripcion>(true, "Se ha actualizado correctamente.", null, inscripcion);
             }
             catch (Exception)
             {
-                return "No se ha actualizado la inscripcion.";
+                return new Response<Inscripcion>(false, "No se ha aztualizado la inscripcion.", null, inscripcion);
 
             }
 

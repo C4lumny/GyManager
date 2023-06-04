@@ -27,9 +27,14 @@ namespace GUI.Pureba
             var lista = serv.GetAll();
             if (lista != null)
             {
+                string s_nombreCompleto;
+                string c_nombreCompleto;
                 foreach (Inscripcion inscripcion in lista)
                 {
-                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, inscripcion.Cliente.Nombre, inscripcion.Supervisor.Id, inscripcion.Supervisor.Nombre, inscripcion.Plan.Id, inscripcion.IdEstado);
+                    c_nombreCompleto = inscripcion.Cliente.Nombre + " " + inscripcion.Cliente.Apellido;
+                    s_nombreCompleto = inscripcion.Supervisor.Nombre + " " + inscripcion.Supervisor.Apellido;
+
+                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, c_nombreCompleto, inscripcion.Supervisor.Id, s_nombreCompleto, inscripcion.Plan.Nombre, inscripcion.IdEstado);
                 }
             }
 
@@ -38,6 +43,11 @@ namespace GUI.Pureba
         private void ConsultarInscripcionBD_Load(object sender, EventArgs e)
         {
             CargarGrilla();
+        }
+
+        private void pnlConsultarDGV_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
