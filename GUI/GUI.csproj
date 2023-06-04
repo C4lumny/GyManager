@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{499B46AB-E102-4375-A570-EAA46206EE86}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>GUI</RootNamespace>
     <AssemblyName>GUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -97,36 +100,132 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Login\LoginGUI.cs" />
-    <Compile Include="Login\LoginMenu.cs" />
+    <Compile Include="CRUD\Actualizar\ActualizarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarCliente.Designer.cs">
+      <DependentUpon>ActualizarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarPlanGimnasio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarPlanGimnasio.Designer.cs">
+      <DependentUpon>ActualizarPlanGimnasio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarSupervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarSupervisor.Designer.cs">
+      <DependentUpon>ActualizarSupervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarInscripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarInscripcion.Designer.cs">
+      <DependentUpon>InsertarInscripcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarPago.Designer.cs">
+      <DependentUpon>InsertarPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarPlanGimnasio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarPlanGimnasio.Designer.cs">
+      <DependentUpon>InsertarPlanGimnasio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarSupervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarSupervisor.Designer.cs">
+      <DependentUpon>InsertarSupervisor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main\Principal.cs" />
-    <Compile Include="Menus\ClienteMENU.cs" />
-    <Compile Include="Menus\InscripcionMENU.cs" />
-    <Compile Include="Menus\PlanGimnasioMENU.cs" />
-    <Compile Include="Menus\SupervisorMENU.cs" />
-    <Compile Include="Opciones_Menu\InscripcionGUI.cs" />
-    <Compile Include="Opciones_Menu\SupervisorGUI.cs" />
-    <Compile Include="Opciones_Menu\ClienteGUI.cs" />
-    <Compile Include="Opciones_Menu\PlanGUI.cs" />
-    <Compile Include="Main\PrincipalGUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Opciones_Menu\Turno_AtencionGUI.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="pruba\Login.cs">
+    <Compile Include="Interfaces Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pruba\Login.Designer.cs">
+    <Compile Include="Interfaces Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="pruba\MenuIGA.cs">
+    <Compile Include="Interfaces Forms\MenuIGA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pruba\MenuIGA.Designer.cs">
+    <Compile Include="Interfaces Forms\MenuIGA.Designer.cs">
       <DependentUpon>MenuIGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarCliente.Designer.cs">
+      <DependentUpon>ConsultarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarDatosBiomedicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarDatosBiomedicos.Designer.cs">
+      <DependentUpon>ConsultarDatosBiomedicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarFactura.Designer.cs">
+      <DependentUpon>ConsultarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarHistorialBiomedico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarHistorialBiomedico.Designer.cs">
+      <DependentUpon>ConsultarHistorialBiomedico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarHistorialFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarHistorialFactura.Designer.cs">
+      <DependentUpon>ConsultarHistorialFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarHistorialPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarHistorialPagos.Designer.cs">
+      <DependentUpon>ConsultarHistorialPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarInscripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarInscripcion.Designer.cs">
+      <DependentUpon>ConsultarInscripcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarPago.Designer.cs">
+      <DependentUpon>ConsultarPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarPlanGimnasio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarPlanGimnasio.Designer.cs">
+      <DependentUpon>ConsultarPlanGimnasio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarSupervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Consultar\ConsultarSupervisor.Designer.cs">
+      <DependentUpon>ConsultarSupervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Insertar\InsertarCliente.Designer.cs">
+      <DependentUpon>InsertarCliente.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -150,14 +249,72 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CRUD\Actualizar\ActualizarCliente.resx">
+      <DependentUpon>ActualizarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Actualizar\ActualizarPlanGimnasio.resx">
+      <DependentUpon>ActualizarPlanGimnasio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Actualizar\ActualizarSupervisor.resx">
+      <DependentUpon>ActualizarSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Insertar\InsertarInscripcion.resx">
+      <DependentUpon>InsertarInscripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Insertar\InsertarPago.resx">
+      <DependentUpon>InsertarPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Insertar\InsertarPlanGimnasio.resx">
+      <DependentUpon>InsertarPlanGimnasio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Insertar\InsertarSupervisor.resx">
+      <DependentUpon>InsertarSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="pruba\Login.resx">
+    <EmbeddedResource Include="Interfaces Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces Forms\MenuIGA.resx">
+      <DependentUpon>MenuIGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarCliente.resx">
+      <DependentUpon>ConsultarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarDatosBiomedicos.resx">
+      <DependentUpon>ConsultarDatosBiomedicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarFactura.resx">
+      <DependentUpon>ConsultarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialBiomedico.resx">
+      <DependentUpon>ConsultarHistorialBiomedico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialFactura.resx">
+      <DependentUpon>ConsultarHistorialFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialPagos.resx">
+      <DependentUpon>ConsultarHistorialPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarInscripcion.resx">
+      <DependentUpon>ConsultarInscripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarPago.resx">
+      <DependentUpon>ConsultarPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarPlanGimnasio.resx">
+      <DependentUpon>ConsultarPlanGimnasio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Consultar\ConsultarSupervisor.resx">
+      <DependentUpon>ConsultarSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Insertar\InsertarCliente.resx">
+      <DependentUpon>InsertarCliente.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

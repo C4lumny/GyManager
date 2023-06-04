@@ -1,5 +1,6 @@
 ﻿namespace Entidades.Administrador
 {
+    //Asumo que esta tabla ya está como deberia
     public class Administrador
     {
         public string UserName { get; set; }
