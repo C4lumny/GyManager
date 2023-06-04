@@ -85,7 +85,6 @@
             this.btnActualizarCliente.TabIndex = 5;
             this.btnActualizarCliente.Text = "Actualizar";
             this.btnActualizarCliente.UseVisualStyleBackColor = false;
-            this.btnActualizarCliente.Visible = false;
             this.btnActualizarCliente.Click += new System.EventHandler(this.btnActualizarCliente_Click);
             // 
             // btnEliminar
@@ -101,7 +100,6 @@
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dgvClientes

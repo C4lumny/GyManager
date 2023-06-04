@@ -47,8 +47,6 @@ namespace GUI.Pureba
             if (e.RowIndex >= 0) // Verifica si se hace clic en una fila válida
             {
                 string clienteId = (string)dgvClientes.Rows[e.RowIndex].Cells["clmCedula"].Value;
-                btnEliminar.Visible = true;
-                btnActualizarCliente.Visible = true;
 
                 btnEliminar.Tag = clienteId; // Almacena el ID del cliente en la propiedad Tag del botón
                 btnActualizarCliente.Tag = clienteId; //Almaceno el id en el boton actualizar
@@ -59,12 +57,18 @@ namespace GUI.Pureba
         {
             if (btnEliminar.Tag != null && btnEliminar.Tag is string clienteId)
             {
-                ServicioClientes serv = new ServicioClientes();
-                serv.Eliminar(clienteId);
+                DialogResult result = MessageBox.Show("¿Estás seguro de que deseas eliminar este cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    ServicioClientes serv = new ServicioClientes();
+                    serv.Eliminar(clienteId);
 
-                btnActualizarCliente.Visible = false;
-                btnEliminar.Visible = false;
-                CargarGrilla();
+                    CargarGrilla();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningún cliente para eliminar.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -75,11 +79,13 @@ namespace GUI.Pureba
                 ActualizarPlanG actCliente = new ActualizarPlanG(clienteId);
                 actCliente.FormClosed += new System.Windows.Forms.FormClosedEventHandler(ActualizarCliente_FormClosed);
                 actCliente.Show();
-
-                btnActualizarCliente.Visible = false;
-                btnEliminar.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningún cliente para actualizar.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void ActualizarCliente_FormClosed(object sender, FormClosedEventArgs e)
         {
