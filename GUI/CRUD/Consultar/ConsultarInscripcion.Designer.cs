@@ -46,6 +46,7 @@
             this.clmnNombreSupervisor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPlanN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnEstadoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnFactura = new System.Windows.Forms.Button();
             this.pnlConsultarDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripcion)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +54,7 @@
             // pnlConsultarDGV
             // 
             this.pnlConsultarDGV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(64)))));
+            this.pnlConsultarDGV.Controls.Add(this.btnFactura);
             this.pnlConsultarDGV.Controls.Add(this.textBox1);
             this.pnlConsultarDGV.Controls.Add(this.btnActualizarCliente);
             this.pnlConsultarDGV.Controls.Add(this.btnEliminar);
@@ -167,57 +169,81 @@
             // 
             // clmnFecha_Inicio
             // 
+            this.clmnFecha_Inicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnFecha_Inicio.HeaderText = "Fecha de Inicio";
             this.clmnFecha_Inicio.Name = "clmnFecha_Inicio";
             this.clmnFecha_Inicio.ReadOnly = true;
             // 
             // clmFecha_final
             // 
+            this.clmFecha_final.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmFecha_final.HeaderText = "Fecha final";
             this.clmFecha_final.Name = "clmFecha_final";
             this.clmFecha_final.ReadOnly = true;
             // 
             // clmnPrecios
             // 
+            this.clmnPrecios.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnPrecios.HeaderText = "Precio";
             this.clmnPrecios.Name = "clmnPrecios";
             this.clmnPrecios.ReadOnly = true;
             // 
             // clmnIdClientes
             // 
+            this.clmnIdClientes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnIdClientes.HeaderText = "Id Cliente";
             this.clmnIdClientes.Name = "clmnIdClientes";
             this.clmnIdClientes.ReadOnly = true;
             // 
             // clmnNombreCliente
             // 
+            this.clmnNombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnNombreCliente.HeaderText = "Nombre completo C";
             this.clmnNombreCliente.Name = "clmnNombreCliente";
             this.clmnNombreCliente.ReadOnly = true;
             // 
             // clmnIdSupervisores
             // 
+            this.clmnIdSupervisores.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnIdSupervisores.HeaderText = "Id Supervisor";
             this.clmnIdSupervisores.Name = "clmnIdSupervisores";
             this.clmnIdSupervisores.ReadOnly = true;
             // 
             // clmnNombreSupervisor
             // 
+            this.clmnNombreSupervisor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnNombreSupervisor.HeaderText = "Nombre completo S";
             this.clmnNombreSupervisor.Name = "clmnNombreSupervisor";
             this.clmnNombreSupervisor.ReadOnly = true;
             // 
             // clmnPlanN
             // 
+            this.clmnPlanN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnPlanN.HeaderText = "Plan";
             this.clmnPlanN.Name = "clmnPlanN";
             this.clmnPlanN.ReadOnly = true;
             // 
             // clmnEstadoPago
             // 
+            this.clmnEstadoPago.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clmnEstadoPago.HeaderText = "Estado";
             this.clmnEstadoPago.Name = "clmnEstadoPago";
             this.clmnEstadoPago.ReadOnly = true;
+            // 
+            // btnFactura
+            // 
+            this.btnFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFactura.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnFactura.Location = new System.Drawing.Point(270, 333);
+            this.btnFactura.Name = "btnFactura";
+            this.btnFactura.Size = new System.Drawing.Size(90, 30);
+            this.btnFactura.TabIndex = 7;
+            this.btnFactura.Text = "Factura";
+            this.btnFactura.UseVisualStyleBackColor = false;
+            this.btnFactura.Visible = false;
             // 
             // ConsultarInscripcion
             // 
@@ -251,5 +277,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombreSupervisor;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPlanN;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEstadoPago;
+        private System.Windows.Forms.Button btnFactura;
     }
 }

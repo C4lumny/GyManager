@@ -66,7 +66,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(304, 330);
+            this.panel1.Size = new System.Drawing.Size(304, 376);
             this.panel1.TabIndex = 3;
             // 
             // panel4
@@ -109,7 +109,7 @@
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.txtUsername);
-            this.panel2.Location = new System.Drawing.Point(351, 77);
+            this.panel2.Location = new System.Drawing.Point(357, 107);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(394, 68);
             this.panel2.TabIndex = 4;
@@ -151,7 +151,7 @@
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.txtPassword);
-            this.panel3.Location = new System.Drawing.Point(351, 151);
+            this.panel3.Location = new System.Drawing.Point(357, 181);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(394, 68);
             this.panel3.TabIndex = 5;
@@ -194,7 +194,7 @@
             this.btnAcceder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAcceder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcceder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAcceder.Location = new System.Drawing.Point(351, 237);
+            this.btnAcceder.Location = new System.Drawing.Point(357, 267);
             this.btnAcceder.Name = "btnAcceder";
             this.btnAcceder.Size = new System.Drawing.Size(391, 35);
             this.btnAcceder.TabIndex = 6;
@@ -206,17 +206,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(492, 43);
+            this.label3.Location = new System.Drawing.Point(351, 58);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 31);
+            this.label3.Size = new System.Drawing.Size(164, 31);
             this.label3.TabIndex = 7;
-            this.label3.Text = "LOGIN";
+            this.label3.Text = "Inicie sesión";
             // 
             // btnCerrar
             // 
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
-            this.btnCerrar.Location = new System.Drawing.Point(755, 0);
+            this.btnCerrar.Location = new System.Drawing.Point(778, 0);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(26, 23);
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -228,7 +228,7 @@
             // 
             this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizar.Image")));
-            this.btnMinimizar.Location = new System.Drawing.Point(716, 0);
+            this.btnMinimizar.Location = new System.Drawing.Point(739, 0);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(29, 23);
             this.btnMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -241,7 +241,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(780, 330);
+            this.ClientSize = new System.Drawing.Size(805, 376);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.label3);

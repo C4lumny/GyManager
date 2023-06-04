@@ -123,22 +123,6 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void btnActualizarInscripcion_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
-            hideSubMenu();
-        }
-
-        private void btnEliminarInscripcion_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
-            hideSubMenu();
-        }
-
         private void btnClientes_Click(object sender, EventArgs e)
         {
             showSubMenu(pnlClientesSbmn);
@@ -155,22 +139,6 @@ namespace GUI.pruba
         {
             ConsultarCliente consulta = new ConsultarCliente();
             openForms(consulta);
-            hideSubMenu();
-        }
-
-        private void btnActualizarCliente_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
-            hideSubMenu();
-        }
-
-        private void btnEliminarCliente_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
             hideSubMenu();
         }
 
@@ -202,22 +170,6 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void btnActualizarSupervisor_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
-            hideSubMenu();
-        }
-
-        private void btnEliminarSupervisor_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
-            hideSubMenu();
-        }
-
         private void btnPlanes_Click(object sender, EventArgs e)
         {
             showSubMenu(pnlPlanes);
@@ -237,26 +189,31 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void btnActualizarPlan_Click(object sender, EventArgs e)
-        {
-            /*
-            Codigo
-            */
-            hideSubMenu();
-        }
-
-        private void btnEliminarPlan_Click_1(object sender, EventArgs e)
-        {
-            /*
-                Codigo
-            */
-            hideSubMenu();
-        }
-
         private void picLogo_Click_1(object sender, EventArgs e)
         {
             openForms(null);
             lblRetorno.Visible = false;
+        }
+
+        private void btnHistorialBiomedico_Click(object sender, EventArgs e)
+        {
+            ConsultarHistorialBiomedico consultarHB = new ConsultarHistorialBiomedico();
+            openForms(consultarHB);
+            hideSubMenu();
+        }
+
+        private void btnHistorialFactura_Click(object sender, EventArgs e)
+        {
+            ConsultarHistorialFactura consultarF = new ConsultarHistorialFactura();
+            openForms(consultarF);
+            hideSubMenu();
+        }
+
+        private void btnHistorialPagos_Click(object sender, EventArgs e)
+        {
+            ConsultarHistorialPagos consultarPagos = new ConsultarHistorialPagos();
+            openForms(consultarPagos);
+            hideSubMenu();
         }
     }
 }

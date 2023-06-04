@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace GUI.Pureba
 {
     public partial class ConsultarHistorialBiomedico : Form
     {
+
+        //ServicioHistorial serv;
         public ConsultarHistorialBiomedico()
         {
             InitializeComponent();

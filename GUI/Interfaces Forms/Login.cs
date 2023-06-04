@@ -25,9 +25,6 @@ namespace GUI.pruba
                 txtUsername.Text = "";
                 txtUsername.ForeColor = Color.Black;
             }
-            {
-
-            }
         }
 
         private void txtUsername_Leave(object sender, EventArgs e)
@@ -98,6 +95,5 @@ namespace GUI.pruba
         {
             isDragging = false;
         }
-
     }
 }
