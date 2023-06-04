@@ -1,4 +1,5 @@
-﻿using Logica.Clases;
+﻿using Entidades.Informacion_Persona;
+using Logica.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,40 @@ namespace GUI.Pureba
     {
 
         //ServicioHistorial serv;
+        ServicioDatosBiomedicos serv;
+
         public ConsultarHistorialBiomedico()
         {
             InitializeComponent();
+            serv = new ServicioDatosBiomedicos();
+            CargarGrilla();
+            dgvHistorialBiomedico.ClearSelection();
+
+        }
+
+        private void ConsultarDatosBiomedicos_Load(object sender, EventArgs e)
+        {
+            CargarGrilla();
+            dgvHistorialBiomedico.ClearSelection();
+        }
+
+        void CargarGrilla()
+        {
+            dgvHistorialBiomedico.Rows.Clear();
+            var lista = serv.GetHistorial();
+            if (lista != null)
+            {
+                foreach (DatosBiomedicos dato in lista)
+                {
+                    dgvHistorialBiomedico.Rows.Add(dato.FechaRegistro.ToShortDateString(), dato.id_cliente.ToString(), dato.Altura.ToString(), dato.Peso.ToString(), dato.IdCategoriaPeso.ToString(), dato.Imc.ToString(), dato.GrasaCorporal.ToString(), dato.FrecuenciaCardiaca.ToString(), dato.PresionArterial.ToString());
+                }
+            }
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

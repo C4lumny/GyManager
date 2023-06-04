@@ -95,5 +95,22 @@ namespace Logica.Clases
             return lista;
         }
 
+
+        public Response<Inscripcion> Renovar(Inscripcion entidad, string id)
+        {
+            try
+            {
+                if (entidad.IdEstado != "CADUCADO")
+                {
+                    return new Response<Inscripcion>(false, "Esta inscripcion esta vigente o todavia posee pagos pendientes");
+                }
+                return rep.Update(entidad, id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
     }
 }

@@ -127,6 +127,9 @@ namespace Datos.Archivos.Repositorio
                 return new Response<DatosBiomedicos>(true, "No se ha eliminado el datos biomédicos.");
             }
         }
-
+        public void HistorialAccess()
+        {
+            MiVista("vista_historial_biomedico");
+        }
     }
 }

@@ -94,6 +94,16 @@ namespace Logica.Clases
                 return null;
             };
         }
-       
+
+        public List<DatosBiomedicos> GetHistorial()
+        {
+            rep.HistorialAccess();
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista;
+        }
     }
 }
