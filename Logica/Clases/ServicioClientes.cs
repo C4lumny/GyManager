@@ -1,14 +1,9 @@
-﻿using Entidades;
+﻿using Datos;
+using Datos.Archivos;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Datos.Archivos.Repositorio;
-using Datos;
-using Oracle.ManagedDataAccess.Client;
-using Datos.Archivos.Clase_Abstracta;
-using Datos.Archivos;
 
 namespace Logica.Clases
 {
@@ -25,20 +20,43 @@ namespace Logica.Clases
 
         public string Actualizar(Clientess entidad, string id)
         {
-            return rep.Update(entidad, id.ToString());
+            try
+            {
+                if (!validarActualizacion(entidad, id).Success)
+                {
+                    return validarActualizacion(entidad, id).Msg;
+                }
+                return rep.Update(entidad, id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public string Crear(Clientess entidad)
         {
-            return rep.Insert(entidad).Msg;
+            try
+            {
+                if (!validarCreacion(entidad).Success)
+                {
+                    return validarCreacion(entidad).Msg;
+                }
+                return rep.Insert(entidad).Msg;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public string Eliminar(string id)
         {
-           return rep.Delete(id.ToString());
+            return rep.Delete(id.ToString());
         }
-       
-        public List<Clientess> GetAll() { 
+
+        public List<Clientess> GetAll()
+        {
             var lista = rep.GetAll();
             if (lista == null)
             {
@@ -49,7 +67,15 @@ namespace Logica.Clases
 
         public List<Clientess> GetListBySearch(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FindAll(clientes => clientes.Id.StartsWith(search) || clientes.Nombre.Contains(search) || clientes.Apellido.Contains(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public Clientess GetObjectById(string id)
@@ -63,6 +89,46 @@ namespace Logica.Clases
 
                 return null;
             };
+        }
+
+        public Response<Clientess> validarCreacion(Clientess cliente)
+        {
+            if (GetAll() == null)
+            {
+                return new Response<Clientess>(true, "Valido.");
+            }
+            else if (GetAll().Any(item => item.Id == cliente.Id))
+            {
+                return new Response<Clientess>(false, "El cliente ya se encuentra registrado.");
+            }
+            else if (cliente.Fecha_nacimiento.AddYears(14) >= DateTime.Now)
+            {
+                return new Response<Clientess>(false, "La edad minima de registro es de 14 años.");
+            }
+            else
+            {
+                return new Response<Clientess>(true, "Valido.");
+            }
+        }
+    
+        public Response<Clientess> validarActualizacion(Clientess cliente, string id_cliente)
+        {
+            if (GetAll() == null)
+            {
+                return new Response<Clientess>(false, "No hay clientes registrados.");
+            }
+            else if (GetAll().Any(item => item.Id == cliente.Id && item.Id != id_cliente))
+            {
+                return new Response<Clientess>(false, "El cliente ya se encuentra registrado.");
+            }
+            else if (cliente.Fecha_nacimiento.AddYears(14) >= DateTime.Now)
+            {
+                return new Response<Clientess>(false, "La edad minima de registro es de 14 años.");
+            }
+            else
+            {
+                return new Response<Clientess>(true, "Valido.");
+            }
         }
     }
 }

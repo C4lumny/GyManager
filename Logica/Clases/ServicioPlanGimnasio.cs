@@ -48,7 +48,15 @@ namespace Logica.Clases
 
         public List<PlanGimnasio> GetListBySearch(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search) || item.Nombre.StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public PlanGimnasio GetObjectById(string id)

@@ -37,7 +37,15 @@ namespace Logica.Clases
 
         public List<Inscripcion> GetListBySearch(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search) || item.Cliente.Id.StartsWith(search) || item.Plan.Id.ToString().StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public Inscripcion GetObjectById(string id)

@@ -47,7 +47,15 @@ namespace Logica.Clases
 
         public List<Supervisoress> GetListBySearch(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FindAll(item => item.Id.StartsWith(search) || item.Nombre.Contains(search) || item.Apellido.Contains(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            };
         }
 
         public Supervisoress GetObjectById(string id)

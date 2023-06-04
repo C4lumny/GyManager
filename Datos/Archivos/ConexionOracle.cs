@@ -14,7 +14,7 @@ namespace Datos.Archivos
         public OracleConnection _conexion;
         public ConexionOracle()
         {
-            _conexion = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XEPDB1)));User Id=usuario1;Password=1234;");
+            _conexion = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XEPDB1)));User Id=Aisaac;Password=isaacdavid1234;");
         }
         public void Open()
         {

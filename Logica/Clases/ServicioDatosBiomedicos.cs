@@ -49,12 +49,21 @@ namespace Logica.Clases
 
         public List<DatosBiomedicos> GetListBySearch(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search) || item.cliente.Id.StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public DatosBiomedicos GetObjectById(string id)
         {
             throw new NotImplementedException();
         }
+       
     }
 }
