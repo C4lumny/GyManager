@@ -36,7 +36,6 @@ namespace GUI.pruba
         {
             pnlClientesSbmn.Visible = false;
             pnlInscripcionesSbmn.Visible = false;
-            pnlProductosSbmn.Visible = false;
             pnlSupervisoresSbmn.Visible = false;
             pnlPlanes.Visible = false;
         }
@@ -79,11 +78,6 @@ namespace GUI.pruba
             if(pnlSupervisoresSbmn.Visible == true)
             {
                 pnlSupervisoresSbmn.Visible = false;
-            }
-
-            if(pnlProductosSbmn.Visible == true)
-            {
-                pnlProductosSbmn.Visible = false;
             }
             if (pnlPlanes.Visible == true)
             {
@@ -217,41 +211,6 @@ namespace GUI.pruba
         }
 
         private void btnEliminarSupervisor_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
-            hideSubMenu();
-        }
-
-        private void btnProductos_Click(object sender, EventArgs e)
-        {
-            showSubMenu(pnlProductosSbmn);
-        }
-
-        private void btnAgregarProducto_Click(object sender, EventArgs e)
-        {
-            InsertarPago ver = new InsertarPago();
-            ver.Show();
-            hideSubMenu();
-        }
-
-        private void btnConsultarProducto_Click(object sender, EventArgs e)
-        {
-            ConsultarPago ver = new ConsultarPago();
-            ver.Show();
-            hideSubMenu();
-        }
-
-        private void btnActualizarProducto_Click(object sender, EventArgs e)
-        {
-            /*
-             Codigo
-             */
-            hideSubMenu();
-        }
-
-        private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             /*
              Codigo

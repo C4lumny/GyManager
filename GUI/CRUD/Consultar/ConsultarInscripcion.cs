@@ -29,7 +29,7 @@ namespace GUI.Pureba
             {
                 foreach (Inscripcion inscripcion in lista)
                 {
-                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, inscripcion.Supervisor.Id, inscripcion.Plan.Id, inscripcion.IdEstado);
+                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, inscripcion.Cliente.Nombre, inscripcion.Supervisor.Id, inscripcion.Supervisor.Nombre, inscripcion.Plan.Id, inscripcion.IdEstado);
                 }
             }
 

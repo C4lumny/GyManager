@@ -36,10 +36,6 @@
             this.btnAgregarPlan = new System.Windows.Forms.Button();
             this.btnPlanes = new System.Windows.Forms.Button();
             this.panelPlanes = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlProductosSbmn = new System.Windows.Forms.Panel();
-            this.btnConsultarProducto = new System.Windows.Forms.Button();
-            this.btnAgregarProducto = new System.Windows.Forms.Button();
-            this.btnProductos = new System.Windows.Forms.Button();
             this.pnlSupervisoresSbmn = new System.Windows.Forms.Panel();
             this.btnConsultarSupervisor = new System.Windows.Forms.Button();
             this.btnAgregarSupervisor = new System.Windows.Forms.Button();
@@ -65,7 +61,6 @@
             this.horaFecha = new System.Windows.Forms.Timer(this.components);
             this.pnlMenuLateral.SuspendLayout();
             this.pnlPlanes.SuspendLayout();
-            this.pnlProductosSbmn.SuspendLayout();
             this.pnlSupervisoresSbmn.SuspendLayout();
             this.pnlClientesSbmn.SuspendLayout();
             this.pnlInscripcionesSbmn.SuspendLayout();
@@ -84,8 +79,6 @@
             this.pnlMenuLateral.Controls.Add(this.pnlPlanes);
             this.pnlMenuLateral.Controls.Add(this.btnPlanes);
             this.pnlMenuLateral.Controls.Add(this.panelPlanes);
-            this.pnlMenuLateral.Controls.Add(this.pnlProductosSbmn);
-            this.pnlMenuLateral.Controls.Add(this.btnProductos);
             this.pnlMenuLateral.Controls.Add(this.pnlSupervisoresSbmn);
             this.pnlMenuLateral.Controls.Add(this.btnSupervisores);
             this.pnlMenuLateral.Controls.Add(this.pnlClientesSbmn);
@@ -105,7 +98,7 @@
             this.pnlPlanes.Controls.Add(this.btnConsultarPlan);
             this.pnlPlanes.Controls.Add(this.btnAgregarPlan);
             this.pnlPlanes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlPlanes.Location = new System.Drawing.Point(0, 755);
+            this.pnlPlanes.Location = new System.Drawing.Point(0, 621);
             this.pnlPlanes.Name = "pnlPlanes";
             this.pnlPlanes.Size = new System.Drawing.Size(233, 87);
             this.pnlPlanes.TabIndex = 7;
@@ -148,7 +141,7 @@
             this.btnPlanes.FlatAppearance.BorderSize = 0;
             this.btnPlanes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlanes.ForeColor = System.Drawing.Color.White;
-            this.btnPlanes.Location = new System.Drawing.Point(0, 710);
+            this.btnPlanes.Location = new System.Drawing.Point(0, 576);
             this.btnPlanes.Name = "btnPlanes";
             this.btnPlanes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnPlanes.Size = new System.Drawing.Size(233, 45);
@@ -162,69 +155,10 @@
             // 
             this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
             this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPlanes.Location = new System.Drawing.Point(0, 710);
+            this.panelPlanes.Location = new System.Drawing.Point(0, 576);
             this.panelPlanes.Name = "panelPlanes";
             this.panelPlanes.Size = new System.Drawing.Size(233, 132);
             this.panelPlanes.TabIndex = 1;
-            // 
-            // pnlProductosSbmn
-            // 
-            this.pnlProductosSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
-            this.pnlProductosSbmn.Controls.Add(this.btnConsultarProducto);
-            this.pnlProductosSbmn.Controls.Add(this.btnAgregarProducto);
-            this.pnlProductosSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlProductosSbmn.Location = new System.Drawing.Point(0, 621);
-            this.pnlProductosSbmn.Name = "pnlProductosSbmn";
-            this.pnlProductosSbmn.Size = new System.Drawing.Size(233, 89);
-            this.pnlProductosSbmn.TabIndex = 6;
-            // 
-            // btnConsultarProducto
-            // 
-            this.btnConsultarProducto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnConsultarProducto.FlatAppearance.BorderSize = 0;
-            this.btnConsultarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultarProducto.ForeColor = System.Drawing.Color.White;
-            this.btnConsultarProducto.Location = new System.Drawing.Point(0, 40);
-            this.btnConsultarProducto.Name = "btnConsultarProducto";
-            this.btnConsultarProducto.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnConsultarProducto.Size = new System.Drawing.Size(233, 40);
-            this.btnConsultarProducto.TabIndex = 1;
-            this.btnConsultarProducto.Text = "Consultar";
-            this.btnConsultarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarProducto.UseVisualStyleBackColor = true;
-            this.btnConsultarProducto.Click += new System.EventHandler(this.btnConsultarProducto_Click);
-            // 
-            // btnAgregarProducto
-            // 
-            this.btnAgregarProducto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAgregarProducto.FlatAppearance.BorderSize = 0;
-            this.btnAgregarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarProducto.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarProducto.Location = new System.Drawing.Point(0, 0);
-            this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnAgregarProducto.Size = new System.Drawing.Size(233, 40);
-            this.btnAgregarProducto.TabIndex = 0;
-            this.btnAgregarProducto.Text = "Agregar";
-            this.btnAgregarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarProducto.UseVisualStyleBackColor = true;
-            this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregarProducto_Click);
-            // 
-            // btnProductos
-            // 
-            this.btnProductos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnProductos.FlatAppearance.BorderSize = 0;
-            this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProductos.ForeColor = System.Drawing.Color.White;
-            this.btnProductos.Location = new System.Drawing.Point(0, 576);
-            this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnProductos.Size = new System.Drawing.Size(233, 45);
-            this.btnProductos.TabIndex = 6;
-            this.btnProductos.Text = "Pagos";
-            this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.UseVisualStyleBackColor = true;
-            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
             // pnlSupervisoresSbmn
             // 
@@ -538,7 +472,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuIGA_FormClosing);
             this.pnlMenuLateral.ResumeLayout(false);
             this.pnlPlanes.ResumeLayout(false);
-            this.pnlProductosSbmn.ResumeLayout(false);
             this.pnlSupervisoresSbmn.ResumeLayout(false);
             this.pnlClientesSbmn.ResumeLayout(false);
             this.pnlInscripcionesSbmn.ResumeLayout(false);
@@ -562,7 +495,6 @@
         private System.Windows.Forms.Button btnInscripciones;
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.Button btnConsultarInscripcion;
-        private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Panel pnlSupervisoresSbmn;
         private System.Windows.Forms.Button btnConsultarSupervisor;
         private System.Windows.Forms.Button btnAgregarSupervisor;
@@ -577,9 +509,6 @@
         private System.Windows.Forms.Button btnConsultarPlan;
         private System.Windows.Forms.Button btnAgregarPlan;
         private System.Windows.Forms.Button btnPlanes;
-        private System.Windows.Forms.Panel pnlProductosSbmn;
-        private System.Windows.Forms.Button btnConsultarProducto;
-        private System.Windows.Forms.Button btnAgregarProducto;
         private System.Windows.Forms.Panel pnlHora;
         private System.Windows.Forms.Panel pnlChild;
         private System.Windows.Forms.PictureBox pictureBox2;
