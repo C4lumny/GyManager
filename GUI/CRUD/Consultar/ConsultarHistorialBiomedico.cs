@@ -44,7 +44,6 @@ namespace GUI.Pureba
                     dgvHistorialBiomedico.Rows.Add(dato.FechaRegistro.ToShortDateString(), dato.id_cliente.ToString(), dato.Altura.ToString(), dato.Peso.ToString(), dato.IdCategoriaPeso.ToString(), dato.Imc.ToString(), dato.GrasaCorporal.ToString(), dato.FrecuenciaCardiaca.ToString(), dato.PresionArterial.ToString());
                 }
             }
-
         }
     }
 }
