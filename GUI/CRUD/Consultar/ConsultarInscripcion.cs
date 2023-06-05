@@ -1,4 +1,6 @@
 ﻿using Entidades;
+using GUI.CRUD.Insertar;
+using GUI.Imprimir;
 using Logica.Clases;
 using System;
 using System.Collections.Generic;
@@ -34,7 +36,7 @@ namespace GUI.Pureba
                     c_nombreCompleto = inscripcion.Cliente.Nombre + " " + inscripcion.Cliente.Apellido;
                     s_nombreCompleto = inscripcion.Supervisor.Nombre + " " + inscripcion.Supervisor.Apellido;
 
-                    dgvInscripcion.Rows.Add(inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, c_nombreCompleto, inscripcion.Supervisor.Id, s_nombreCompleto, inscripcion.Plan.Nombre, inscripcion.IdEstado);
+                    dgvInscripcion.Rows.Add(inscripcion.Id, inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, c_nombreCompleto, inscripcion.Supervisor.Id, s_nombreCompleto, inscripcion.Plan.Nombre, inscripcion.IdEstado);
                 }
             }
 
@@ -45,14 +47,16 @@ namespace GUI.Pureba
             CargarGrilla();
         }
 
-        private void pnlConsultarDGV_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnFactura_Click(object sender, EventArgs e)
         {
+            Impresion impresion = new Impresion();
+            impresion.Show();
+        }
 
+        private void btnPago_Click(object sender, EventArgs e)
+        {
+            InsertarPago insertarPago = new InsertarPago();
+            insertarPago.Show();
         }
     }
 }

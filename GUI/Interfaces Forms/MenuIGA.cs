@@ -218,17 +218,17 @@ namespace GUI.pruba
             hideSubMenu();
         }
 
-        private void btnHistorialFactura_Click(object sender, EventArgs e)
-        {
-            ConsultarHistorialFactura consultarF = new ConsultarHistorialFactura();
-            openForms(consultarF);
-            hideSubMenu();
-        }
-
         private void btnHistorialPagos_Click(object sender, EventArgs e)
         {
             ConsultarHistorialPagos consultarPagos = new ConsultarHistorialPagos();
             openForms(consultarPagos);
+            hideSubMenu();
+        }
+
+        private void btnConsultarPago_Click(object sender, EventArgs e)
+        {
+            ConsultarPago consultarPago = new ConsultarPago();
+            openForms(consultarPago);
             hideSubMenu();
         }
     }

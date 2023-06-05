@@ -180,23 +180,11 @@
     <Compile Include="CRUD\Consultar\ConsultarDatosBiomedicos.Designer.cs">
       <DependentUpon>ConsultarDatosBiomedicos.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarFactura.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarFactura.Designer.cs">
-      <DependentUpon>ConsultarFactura.cs</DependentUpon>
-    </Compile>
     <Compile Include="CRUD\Consultar\ConsultarHistorialBiomedico.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CRUD\Consultar\ConsultarHistorialBiomedico.Designer.cs">
       <DependentUpon>ConsultarHistorialBiomedico.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarHistorialFactura.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CRUD\Consultar\ConsultarHistorialFactura.Designer.cs">
-      <DependentUpon>ConsultarHistorialFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="CRUD\Consultar\ConsultarHistorialPagos.cs">
       <SubType>Form</SubType>
@@ -296,14 +284,8 @@
     <EmbeddedResource Include="CRUD\Consultar\ConsultarDatosBiomedicos.resx">
       <DependentUpon>ConsultarDatosBiomedicos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUD\Consultar\ConsultarFactura.resx">
-      <DependentUpon>ConsultarFactura.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialBiomedico.resx">
       <DependentUpon>ConsultarHistorialBiomedico.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialFactura.resx">
-      <DependentUpon>ConsultarHistorialFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Consultar\ConsultarHistorialPagos.resx">
       <DependentUpon>ConsultarHistorialPagos.cs</DependentUpon>

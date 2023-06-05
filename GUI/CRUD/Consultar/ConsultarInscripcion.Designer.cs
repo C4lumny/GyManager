@@ -33,11 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlConsultarDGV = new System.Windows.Forms.Panel();
+            this.btnPago = new System.Windows.Forms.Button();
             this.btnFactura = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnActualizarCliente = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvInscripcion = new System.Windows.Forms.DataGridView();
+            this.clmnIdInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnFecha_Inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFecha_final = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPrecios = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +56,7 @@
             // pnlConsultarDGV
             // 
             this.pnlConsultarDGV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(64)))));
+            this.pnlConsultarDGV.Controls.Add(this.btnPago);
             this.pnlConsultarDGV.Controls.Add(this.btnFactura);
             this.pnlConsultarDGV.Controls.Add(this.textBox1);
             this.pnlConsultarDGV.Controls.Add(this.btnActualizarCliente);
@@ -64,7 +67,21 @@
             this.pnlConsultarDGV.Name = "pnlConsultarDGV";
             this.pnlConsultarDGV.Size = new System.Drawing.Size(668, 399);
             this.pnlConsultarDGV.TabIndex = 4;
-            this.pnlConsultarDGV.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlConsultarDGV_Paint);
+            // 
+            // btnPago
+            // 
+            this.btnPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnPago.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPago.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPago.Location = new System.Drawing.Point(397, 333);
+            this.btnPago.Name = "btnPago";
+            this.btnPago.Size = new System.Drawing.Size(120, 30);
+            this.btnPago.TabIndex = 9;
+            this.btnPago.Text = "Realizar pago";
+            this.btnPago.UseVisualStyleBackColor = false;
+            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
             // 
             // btnFactura
             // 
@@ -73,13 +90,12 @@
             this.btnFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
             this.btnFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFactura.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnFactura.Location = new System.Drawing.Point(270, 333);
+            this.btnFactura.Location = new System.Drawing.Point(534, 333);
             this.btnFactura.Name = "btnFactura";
-            this.btnFactura.Size = new System.Drawing.Size(90, 30);
+            this.btnFactura.Size = new System.Drawing.Size(103, 30);
             this.btnFactura.TabIndex = 7;
-            this.btnFactura.Text = "Factura";
+            this.btnFactura.Text = "Imprimir factura";
             this.btnFactura.UseVisualStyleBackColor = false;
-            this.btnFactura.Visible = false;
             this.btnFactura.Click += new System.EventHandler(this.btnFactura_Click);
             // 
             // textBox1
@@ -106,7 +122,6 @@
             this.btnActualizarCliente.TabIndex = 5;
             this.btnActualizarCliente.Text = "Actualizar";
             this.btnActualizarCliente.UseVisualStyleBackColor = false;
-            this.btnActualizarCliente.Visible = false;
             // 
             // btnEliminar
             // 
@@ -121,7 +136,6 @@
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Visible = false;
             // 
             // dgvInscripcion
             // 
@@ -143,6 +157,7 @@
             this.dgvInscripcion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvInscripcion.ColumnHeadersHeight = 40;
             this.dgvInscripcion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmnIdInscripcion,
             this.clmnFecha_Inicio,
             this.clmFecha_final,
             this.clmnPrecios,
@@ -182,6 +197,13 @@
             this.dgvInscripcion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvInscripcion.Size = new System.Drawing.Size(605, 213);
             this.dgvInscripcion.TabIndex = 3;
+            // 
+            // clmnIdInscripcion
+            // 
+            this.clmnIdInscripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.clmnIdInscripcion.HeaderText = "ID";
+            this.clmnIdInscripcion.Name = "clmnIdInscripcion";
+            this.clmnIdInscripcion.ReadOnly = true;
             // 
             // clmnFecha_Inicio
             // 
@@ -269,6 +291,9 @@
         private System.Windows.Forms.Button btnActualizarCliente;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvInscripcion;
+        private System.Windows.Forms.Button btnFactura;
+        private System.Windows.Forms.Button btnPago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnIdInscripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnFecha_Inicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFecha_final;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPrecios;
@@ -278,6 +303,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnNombreSupervisor;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPlanN;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEstadoPago;
-        private System.Windows.Forms.Button btnFactura;
     }
 }

@@ -29,13 +29,13 @@ namespace GUI.Pureba
 
         void CargarGrilla()
         {
-            dataGridView1.Rows.Clear();
+            dgvPago.Rows.Clear();
             var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (Pago pago in lista)
                 {
-                    dataGridView1.Rows.Add(pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
+                    dgvPago.Rows.Add(pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
                 }
             }
 

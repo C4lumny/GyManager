@@ -46,6 +46,8 @@
             this.btnAgregarCliente = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
             this.pnlInscripcionesSbmn = new System.Windows.Forms.Panel();
+            this.btnHistorialPagos = new System.Windows.Forms.Button();
+            this.btnHistorialBiomedico = new System.Windows.Forms.Button();
             this.btnConsultarInscripcion = new System.Windows.Forms.Button();
             this.btnAgregarInscripcion = new System.Windows.Forms.Button();
             this.btnInscripciones = new System.Windows.Forms.Button();
@@ -59,9 +61,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.horaFecha = new System.Windows.Forms.Timer(this.components);
-            this.btnHistorialBiomedico = new System.Windows.Forms.Button();
-            this.btnHistorialFactura = new System.Windows.Forms.Button();
-            this.btnHistorialPagos = new System.Windows.Forms.Button();
+            this.btnConsultarPago = new System.Windows.Forms.Button();
             this.pnlMenuLateral.SuspendLayout();
             this.pnlPlanes.SuspendLayout();
             this.pnlSupervisoresSbmn.SuspendLayout();
@@ -79,6 +79,7 @@
             // 
             this.pnlMenuLateral.AutoScroll = true;
             this.pnlMenuLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
+            this.pnlMenuLateral.Controls.Add(this.btnConsultarPago);
             this.pnlMenuLateral.Controls.Add(this.pnlPlanes);
             this.pnlMenuLateral.Controls.Add(this.btnPlanes);
             this.pnlMenuLateral.Controls.Add(this.panelPlanes);
@@ -101,7 +102,7 @@
             this.pnlPlanes.Controls.Add(this.btnConsultarPlan);
             this.pnlPlanes.Controls.Add(this.btnAgregarPlan);
             this.pnlPlanes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlPlanes.Location = new System.Drawing.Point(0, 739);
+            this.pnlPlanes.Location = new System.Drawing.Point(0, 705);
             this.pnlPlanes.Name = "pnlPlanes";
             this.pnlPlanes.Size = new System.Drawing.Size(233, 87);
             this.pnlPlanes.TabIndex = 7;
@@ -144,7 +145,7 @@
             this.btnPlanes.FlatAppearance.BorderSize = 0;
             this.btnPlanes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlanes.ForeColor = System.Drawing.Color.White;
-            this.btnPlanes.Location = new System.Drawing.Point(0, 694);
+            this.btnPlanes.Location = new System.Drawing.Point(0, 660);
             this.btnPlanes.Name = "btnPlanes";
             this.btnPlanes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnPlanes.Size = new System.Drawing.Size(233, 45);
@@ -158,9 +159,9 @@
             // 
             this.panelPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(13)))), ((int)(((byte)(15)))));
             this.panelPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPlanes.Location = new System.Drawing.Point(0, 694);
+            this.panelPlanes.Location = new System.Drawing.Point(0, 660);
             this.panelPlanes.Name = "panelPlanes";
-            this.panelPlanes.Size = new System.Drawing.Size(233, 132);
+            this.panelPlanes.Size = new System.Drawing.Size(233, 177);
             this.panelPlanes.TabIndex = 1;
             // 
             // pnlSupervisoresSbmn
@@ -169,7 +170,7 @@
             this.pnlSupervisoresSbmn.Controls.Add(this.btnConsultarSupervisor);
             this.pnlSupervisoresSbmn.Controls.Add(this.btnAgregarSupervisor);
             this.pnlSupervisoresSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 607);
+            this.pnlSupervisoresSbmn.Location = new System.Drawing.Point(0, 573);
             this.pnlSupervisoresSbmn.Name = "pnlSupervisoresSbmn";
             this.pnlSupervisoresSbmn.Size = new System.Drawing.Size(233, 87);
             this.pnlSupervisoresSbmn.TabIndex = 5;
@@ -212,7 +213,7 @@
             this.btnSupervisores.FlatAppearance.BorderSize = 0;
             this.btnSupervisores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupervisores.ForeColor = System.Drawing.Color.White;
-            this.btnSupervisores.Location = new System.Drawing.Point(0, 562);
+            this.btnSupervisores.Location = new System.Drawing.Point(0, 528);
             this.btnSupervisores.Name = "btnSupervisores";
             this.btnSupervisores.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSupervisores.Size = new System.Drawing.Size(233, 45);
@@ -229,7 +230,7 @@
             this.pnlClientesSbmn.Controls.Add(this.btnConsultarCliente);
             this.pnlClientesSbmn.Controls.Add(this.btnAgregarCliente);
             this.pnlClientesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 434);
+            this.pnlClientesSbmn.Location = new System.Drawing.Point(0, 400);
             this.pnlClientesSbmn.Name = "pnlClientesSbmn";
             this.pnlClientesSbmn.Size = new System.Drawing.Size(233, 128);
             this.pnlClientesSbmn.TabIndex = 4;
@@ -288,7 +289,7 @@
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClientes.ForeColor = System.Drawing.Color.White;
-            this.btnClientes.Location = new System.Drawing.Point(0, 389);
+            this.btnClientes.Location = new System.Drawing.Point(0, 355);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnClientes.Size = new System.Drawing.Size(233, 45);
@@ -302,15 +303,46 @@
             // 
             this.pnlInscripcionesSbmn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
             this.pnlInscripcionesSbmn.Controls.Add(this.btnHistorialPagos);
-            this.pnlInscripcionesSbmn.Controls.Add(this.btnHistorialFactura);
             this.pnlInscripcionesSbmn.Controls.Add(this.btnHistorialBiomedico);
             this.pnlInscripcionesSbmn.Controls.Add(this.btnConsultarInscripcion);
             this.pnlInscripcionesSbmn.Controls.Add(this.btnAgregarInscripcion);
             this.pnlInscripcionesSbmn.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInscripcionesSbmn.Location = new System.Drawing.Point(0, 184);
             this.pnlInscripcionesSbmn.Name = "pnlInscripcionesSbmn";
-            this.pnlInscripcionesSbmn.Size = new System.Drawing.Size(233, 205);
+            this.pnlInscripcionesSbmn.Size = new System.Drawing.Size(233, 171);
             this.pnlInscripcionesSbmn.TabIndex = 2;
+            // 
+            // btnHistorialPagos
+            // 
+            this.btnHistorialPagos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHistorialPagos.FlatAppearance.BorderSize = 0;
+            this.btnHistorialPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistorialPagos.ForeColor = System.Drawing.Color.White;
+            this.btnHistorialPagos.Location = new System.Drawing.Point(0, 120);
+            this.btnHistorialPagos.Name = "btnHistorialPagos";
+            this.btnHistorialPagos.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnHistorialPagos.Size = new System.Drawing.Size(233, 45);
+            this.btnHistorialPagos.TabIndex = 4;
+            this.btnHistorialPagos.Text = "Historial Pagos";
+            this.btnHistorialPagos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistorialPagos.UseVisualStyleBackColor = true;
+            this.btnHistorialPagos.Click += new System.EventHandler(this.btnHistorialPagos_Click);
+            // 
+            // btnHistorialBiomedico
+            // 
+            this.btnHistorialBiomedico.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHistorialBiomedico.FlatAppearance.BorderSize = 0;
+            this.btnHistorialBiomedico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistorialBiomedico.ForeColor = System.Drawing.Color.White;
+            this.btnHistorialBiomedico.Location = new System.Drawing.Point(0, 80);
+            this.btnHistorialBiomedico.Name = "btnHistorialBiomedico";
+            this.btnHistorialBiomedico.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnHistorialBiomedico.Size = new System.Drawing.Size(233, 40);
+            this.btnHistorialBiomedico.TabIndex = 2;
+            this.btnHistorialBiomedico.Text = "Historial Biomedico";
+            this.btnHistorialBiomedico.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistorialBiomedico.UseVisualStyleBackColor = true;
+            this.btnHistorialBiomedico.Click += new System.EventHandler(this.btnHistorialBiomedico_Click);
             // 
             // btnConsultarInscripcion
             // 
@@ -463,53 +495,21 @@
             this.horaFecha.Enabled = true;
             this.horaFecha.Tick += new System.EventHandler(this.horaFecha_Tick);
             // 
-            // btnHistorialBiomedico
+            // btnConsultarPago
             // 
-            this.btnHistorialBiomedico.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnHistorialBiomedico.FlatAppearance.BorderSize = 0;
-            this.btnHistorialBiomedico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistorialBiomedico.ForeColor = System.Drawing.Color.White;
-            this.btnHistorialBiomedico.Location = new System.Drawing.Point(0, 80);
-            this.btnHistorialBiomedico.Name = "btnHistorialBiomedico";
-            this.btnHistorialBiomedico.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnHistorialBiomedico.Size = new System.Drawing.Size(233, 40);
-            this.btnHistorialBiomedico.TabIndex = 2;
-            this.btnHistorialBiomedico.Text = "Historial Biomedico";
-            this.btnHistorialBiomedico.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistorialBiomedico.UseVisualStyleBackColor = true;
-            this.btnHistorialBiomedico.Click += new System.EventHandler(this.btnHistorialBiomedico_Click);
-            // 
-            // btnHistorialFactura
-            // 
-            this.btnHistorialFactura.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnHistorialFactura.FlatAppearance.BorderSize = 0;
-            this.btnHistorialFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistorialFactura.ForeColor = System.Drawing.Color.White;
-            this.btnHistorialFactura.Location = new System.Drawing.Point(0, 120);
-            this.btnHistorialFactura.Name = "btnHistorialFactura";
-            this.btnHistorialFactura.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnHistorialFactura.Size = new System.Drawing.Size(233, 40);
-            this.btnHistorialFactura.TabIndex = 3;
-            this.btnHistorialFactura.Text = "Historial Factura";
-            this.btnHistorialFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistorialFactura.UseVisualStyleBackColor = true;
-            this.btnHistorialFactura.Click += new System.EventHandler(this.btnHistorialFactura_Click);
-            // 
-            // btnHistorialPagos
-            // 
-            this.btnHistorialPagos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnHistorialPagos.FlatAppearance.BorderSize = 0;
-            this.btnHistorialPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistorialPagos.ForeColor = System.Drawing.Color.White;
-            this.btnHistorialPagos.Location = new System.Drawing.Point(0, 160);
-            this.btnHistorialPagos.Name = "btnHistorialPagos";
-            this.btnHistorialPagos.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnHistorialPagos.Size = new System.Drawing.Size(233, 40);
-            this.btnHistorialPagos.TabIndex = 4;
-            this.btnHistorialPagos.Text = "Historial Pagos";
-            this.btnHistorialPagos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistorialPagos.UseVisualStyleBackColor = true;
-            this.btnHistorialPagos.Click += new System.EventHandler(this.btnHistorialPagos_Click);
+            this.btnConsultarPago.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConsultarPago.FlatAppearance.BorderSize = 0;
+            this.btnConsultarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarPago.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarPago.Location = new System.Drawing.Point(0, 792);
+            this.btnConsultarPago.Name = "btnConsultarPago";
+            this.btnConsultarPago.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnConsultarPago.Size = new System.Drawing.Size(233, 45);
+            this.btnConsultarPago.TabIndex = 9;
+            this.btnConsultarPago.Text = "Consultar pago";
+            this.btnConsultarPago.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarPago.UseVisualStyleBackColor = true;
+            this.btnConsultarPago.Click += new System.EventHandler(this.btnConsultarPago_Click);
             // 
             // MenuIGA
             // 
@@ -573,7 +573,7 @@
         private System.Windows.Forms.Timer horaFecha;
         private System.Windows.Forms.Label lblRetorno;
         private System.Windows.Forms.Button btnHistorialPagos;
-        private System.Windows.Forms.Button btnHistorialFactura;
         private System.Windows.Forms.Button btnHistorialBiomedico;
+        private System.Windows.Forms.Button btnConsultarPago;
     }
 }
