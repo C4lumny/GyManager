@@ -108,7 +108,7 @@
     <Compile Include="Pagos y Facturas\Pago.cs" />
     <Compile Include="ServicioProveidos\Turno_Atencion.cs" />
     <Compile Include="Personas\Clientess.cs" />
-    <Compile Include="Response\Response.cs" />
+    <Compile Include="Respuesta\Response.cs" />
     <Compile Include="Personas\Supervisoress.cs" />
     <Compile Include="ServicioProveidos\Inscripcion.cs" />
     <Compile Include="Personas\Personas.cs" />

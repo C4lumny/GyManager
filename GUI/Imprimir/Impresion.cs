@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Entidades.Pagos_y_Facturas;
+using Logica.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,7 @@ namespace GUI.Imprimir
     public partial class Impresion : Form
     {
         Facturas factura;
+        ServicioFacturas servicioFacturas = new ServicioFacturas();
         public Impresion(Facturas factura)
         {
             this.factura = factura;
@@ -49,6 +51,12 @@ namespace GUI.Imprimir
             DialogResult result = MessageBox.Show("¿Desea imprimir esta factura?", "Impresion!", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                var validacion = servicioFacturas.validar_factura(factura);
+                if (validacion.Success)
+                {
+                    MessageBox.Show(validacion.Msg);
+                    return;
+                }
                 HerramientasTickets.CreaTicket Ticket1 = new HerramientasTickets.CreaTicket();
 
                 Ticket1.TextoCentro("Empresa xxxxxxxxx "); //imprime una linea de descripcion
@@ -69,7 +77,8 @@ namespace GUI.Imprimir
                 Ticket1.TextoIzquierda("Cliente Nombres y Apellidos: " + factura.Inscripcion.Cliente.Nombre + " " + factura.Inscripcion.Cliente.Apellido);
                 Ticket1.TextoIzquierda("Plan contratado: " + factura.Inscripcion.Plan.Nombre);
                 Ticket1.TextoIzquierda(" ");
-                Ticket1.TextoIzquierda("Fecha:" + DateTime.Now.ToShortDateString() + " Hora:" + DateTime.Now.ToShortTimeString());
+                Ticket1.TextoIzquierda("Fecha:" + DateTime.Now.ToShortDateString());
+                Ticket1.TextoIzquierda("Hora:" + DateTime.Now.ToShortTimeString());
                 Ticket1.TextoIzquierda(" ");
 
                 HerramientasTickets.CreaTicket.LineasGuion();

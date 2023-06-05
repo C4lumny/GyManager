@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Entidades;
 namespace Logica.Clases
 {
     public class ServicioFacturas 
@@ -48,6 +48,17 @@ namespace Logica.Clases
                 return null;
             }
             return lista;
+        }
+        public Response<Facturas> validar_factura(Facturas factura)
+        {
+            if (factura.PagoIngresado <= 0)
+            {
+                return new Response<Facturas>(false, "No hay pagos registrados a esta factura");
+            }
+            else
+            {
+                return new Response<Facturas>(true, "Valido");
+            }
         }
     }
 }
