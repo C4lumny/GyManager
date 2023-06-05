@@ -142,6 +142,13 @@
     <Compile Include="CRUD\Insertar\InsertarSupervisor.Designer.cs">
       <DependentUpon>InsertarSupervisor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Imprimir\HerramientasTickets.cs" />
+    <Compile Include="Imprimir\Impresion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imprimir\Impresion.Designer.cs">
+      <DependentUpon>Impresion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main\Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -269,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Insertar\InsertarSupervisor.resx">
       <DependentUpon>InsertarSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imprimir\Impresion.resx">
+      <DependentUpon>Impresion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,4 +1,6 @@
-﻿using GUI.pruba;
+﻿using GUI.Imprimir;
+using GUI.pruba;
+using Logica.Clases;
 using System.Windows.Forms;
 
 
