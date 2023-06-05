@@ -12,7 +12,8 @@ namespace GUI.Main
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MenuIGA login = new MenuIGA();
+            ServicioFacturas servicio = new ServicioFacturas(); 
+            Impresion login = new Impresion(servicio.GetObjectById("23"));
             Application.Run(login);
         }
     }

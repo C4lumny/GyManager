@@ -30,7 +30,7 @@ namespace GUI.Imprimir
 
             public static string LineasGuion()
             {
-                string LineaGuion = "-------------------------------------------";  
+                string LineaGuion = "----------------------------------------------";  
 
                 return line.AppendLine(LineaGuion).ToString();
             }
@@ -43,8 +43,8 @@ namespace GUI.Imprimir
                     cort = max - 40;
                     parte1 = par1.Remove(40, cort);       
                 }
-                else { parte1 = par1; }                     
-
+                else { parte1 = par1; }
+                line.AppendLine(ticket = parte1);
             }
             public void TextoDerecha(string par1)
             {
