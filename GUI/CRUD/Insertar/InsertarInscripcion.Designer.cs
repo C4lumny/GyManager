@@ -76,7 +76,6 @@
             this.cmbSupervisores.Name = "cmbSupervisores";
             this.cmbSupervisores.Size = new System.Drawing.Size(200, 21);
             this.cmbSupervisores.TabIndex = 31;
-            this.cmbSupervisores.SelectedIndexChanged += new System.EventHandler(this.cmbSupervisores_SelectedIndexChanged);
             // 
             // cmbClientes
             // 

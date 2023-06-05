@@ -41,7 +41,7 @@ namespace GUI.CRUD.Insertar
 
         private void InsertarInscripcion_Load(object sender, EventArgs e)
         {
-            List<Clientess> ListCliente = servicioCliente.GetAll();
+            List<Clientess> ListCliente = servicioCliente.GetAll_NoInscripciones();
             List<Supervisoress> ListSupervisor = servicioSupervisor.GetAll();
             List<PlanGimnasio> ListPlan = servicioPlan.GetAll();
 
@@ -76,11 +76,6 @@ namespace GUI.CRUD.Insertar
             }
         }
 
-        private void cmbSupervisores_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -88,5 +83,6 @@ namespace GUI.CRUD.Insertar
                 e.Handled = true;
             }
         }
+
     }
 }

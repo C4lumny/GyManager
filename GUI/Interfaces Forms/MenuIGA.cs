@@ -1,6 +1,7 @@
 ﻿using GUI.CRUD.Insertar;
 using GUI.Pureba;
 using GUI.Pureba.Insertar;
+using Logica.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +24,20 @@ namespace GUI.pruba
         {
             InitializeComponent();
             customizeDesign();
+            // Carga de datos antes de ejecucion para rediucir el lag dentro del programa
+            ServicioInscripcion serInscripcion = new ServicioInscripcion();
+            serInscripcion.GetAll();
+            ServicioClientes serClientes = new ServicioClientes();
+            serClientes.GetAll();
+            ServicioDatosBiomedicos serDatos = new ServicioDatosBiomedicos();
+            serDatos.GetAll();
+            ServicioPago serPago = new ServicioPago();
+            serPago.GetAll();
+            ServicioSupervisores serSupervisores = new ServicioSupervisores();
+            serSupervisores.GetAll();
+            ServicioPlanGimnasio serPlanes = new ServicioPlanGimnasio();
+            serPlanes.GetAll();
+
         }
 
         private void MenuIGA_FormClosing(object sender, FormClosingEventArgs e)

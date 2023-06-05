@@ -41,9 +41,9 @@ namespace Datos
                 inscripcion.Cliente.Id = dataReader.GetString(5);
                 inscripcion.Cliente.Nombre = dataReader.GetString(6);
                 inscripcion.Cliente.Apellido = dataReader.GetString(7);
-                inscripcion.Supervisor.Id = dataReader.IsDBNull(8) ? "NULL" : dataReader.GetString(8);
-                inscripcion.Supervisor.Nombre = dataReader.GetString(9);
-                inscripcion.Supervisor.Apellido = dataReader.GetString(10);
+                inscripcion.Supervisor.Id = dataReader.IsDBNull(8) ? "SIN SUPERVISOR" : dataReader.GetString(8);
+                inscripcion.Supervisor.Nombre = dataReader.IsDBNull(9) ? "" : dataReader.GetString(9);
+                inscripcion.Supervisor.Apellido = dataReader.IsDBNull(10) ? "NULL" : dataReader.GetString(10);
                 inscripcion.Plan.Nombre = dataReader.GetString(11);
                 inscripcion.IdEstado = dataReader.GetString(12);
 
