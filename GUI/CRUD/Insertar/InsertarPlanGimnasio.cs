@@ -25,11 +25,27 @@ namespace GUI.CRUD.Insertar
             ServicioPlanGimnasio servPlan = new ServicioPlanGimnasio();
 
             plan.Nombre = txtNombrePlan.Text;
-            plan.Precio = double.Parse(txtPrecio.Text);
+            plan.Precio = double.Parse(txtPrecio.Text, System.Globalization.CultureInfo.InvariantCulture);
             plan.Dias = int.Parse(txtDias.Text);
             plan.Descripcion = txtDescripcion.Text;
 
             MessageBox.Show(servPlan.Crear(plan).Msg);
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDias_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

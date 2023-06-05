@@ -79,11 +79,11 @@
             // lblInsertarCliente
             // 
             this.lblInsertarCliente.AutoSize = true;
-            this.lblInsertarCliente.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInsertarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInsertarCliente.ForeColor = System.Drawing.Color.White;
             this.lblInsertarCliente.Location = new System.Drawing.Point(34, 18);
             this.lblInsertarCliente.Name = "lblInsertarCliente";
-            this.lblInsertarCliente.Size = new System.Drawing.Size(225, 37);
+            this.lblInsertarCliente.Size = new System.Drawing.Size(165, 31);
             this.lblInsertarCliente.TabIndex = 24;
             this.lblInsertarCliente.Text = "Insertar plan";
             // 
@@ -144,9 +144,11 @@
             // 
             this.txtDias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDias.Location = new System.Drawing.Point(298, 178);
+            this.txtDias.MaxLength = 3;
             this.txtDias.Name = "txtDias";
             this.txtDias.Size = new System.Drawing.Size(184, 23);
             this.txtDias.TabIndex = 6;
+            this.txtDias.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDias_KeyPress);
             // 
             // txtPrecio
             // 
@@ -155,6 +157,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(184, 23);
             this.txtPrecio.TabIndex = 4;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // txtNombrePlan
             // 

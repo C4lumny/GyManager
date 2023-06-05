@@ -151,9 +151,11 @@
             this.txtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescuento.Location = new System.Drawing.Point(301, 245);
             this.txtDescuento.Margin = new System.Windows.Forms.Padding(20);
+            this.txtDescuento.MaxLength = 3;
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(200, 24);
             this.txtDescuento.TabIndex = 3;
+            this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
             // 
             // InsertarInscripcion
             // 
