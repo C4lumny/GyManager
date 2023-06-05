@@ -15,10 +15,13 @@ namespace GUI.CRUD.Insertar
 {
     public partial class InsertarPago : Form
     {
+        private int inscripcionId;
         ServicioInscripcion servicioInscripcion = new ServicioInscripcion();
-        public InsertarPago()
+
+        public InsertarPago(int Id)
         {
             InitializeComponent();
+            inscripcionId = Id;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -27,24 +30,10 @@ namespace GUI.CRUD.Insertar
             ServicioPago servPago = new ServicioPago();
             ServicioInscripcion servicioInscripcion = new ServicioInscripcion();
             pago.ValorIngresado = int.Parse(txtValorIngresado.Text);
-            pago.Inscripcion = servicioInscripcion.GetObjectById(cmbInscripcion.Text);
+            pago.Inscripcion = servicioInscripcion.GetObjectById(inscripcionId.ToString());
 
             MessageBox.Show(servPago.Crear(pago).Msg);
-        }
-
-        private void InsertarPago_Load(object sender, EventArgs e)
-        {
-            List<Inscripcion> ListInscripcion = servicioInscripcion.GetAll();
-
-            foreach (Inscripcion inscripcion in ListInscripcion)
-            {
-                cmbInscripcion.Items.Add(inscripcion.Id);
-            }
-
-            if (cmbInscripcion.Items.Count > 0)
-            {
-                cmbInscripcion.SelectedIndex = 0;
-            }
+            this.Close();
         }
 
         private void txtValorIngresado_KeyPress(object sender, KeyPressEventArgs e)

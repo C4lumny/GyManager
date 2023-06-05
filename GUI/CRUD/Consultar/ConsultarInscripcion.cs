@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using GUI.CRUD.Actualizar;
 using GUI.CRUD.Insertar;
 using GUI.Imprimir;
 using Logica.Clases;
@@ -17,10 +18,13 @@ namespace GUI.Pureba
     public partial class ConsultarInscripcion : Form
     {
         ServicioInscripcion serv;
+        ServicioFacturas servicioFacturas = new ServicioFacturas();
+
         public ConsultarInscripcion()
         {
             InitializeComponent();
             serv = new ServicioInscripcion();
+
         }
 
         void CargarGrilla()
@@ -49,14 +53,39 @@ namespace GUI.Pureba
 
         private void btnFactura_Click(object sender, EventArgs e)
         {
-            Impresion impresion = new Impresion();
+            
+            Impresion impresion = new Impresion(servicioFacturas.GetObjectById("41"));
             impresion.Show();
+        }
+
+        private void dgvInscripcion_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Verifica si se hace clic en una fila válida
+            {
+                int inscripcionId = Convert.ToInt32(dgvInscripcion.Rows[e.RowIndex].Cells["clmnIdInscripcion"].Value);
+
+                btnEliminar.Tag = inscripcionId; // Almacena el ID del cliente en la propiedad Tag del botón
+                btnPago.Tag = inscripcionId; //Almaceno el id en el boton actualizar
+            }
         }
 
         private void btnPago_Click(object sender, EventArgs e)
         {
-            InsertarPago insertarPago = new InsertarPago();
-            insertarPago.Show();
+            if (btnPago.Tag != null && btnPago.Tag is int inscripcionId)
+            {
+                InsertarPago pagoInsertado = new InsertarPago(inscripcionId);
+                pagoInsertado.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InsertarPago_FormClosed);
+                pagoInsertado.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ninguna inscripción para pagar.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void InsertarPago_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CargarGrilla();
         }
     }
 }

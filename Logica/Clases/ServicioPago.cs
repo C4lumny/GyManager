@@ -74,7 +74,15 @@ namespace Logica.Clases
 
         public List<Pago> GetListBySearch(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public Pago GetObjectById(string id)

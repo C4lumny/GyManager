@@ -85,7 +85,7 @@
             // 
             // btnFactura
             // 
-            this.btnFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
             this.btnFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
             this.btnFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -197,6 +197,7 @@
             this.dgvInscripcion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvInscripcion.Size = new System.Drawing.Size(605, 213);
             this.dgvInscripcion.TabIndex = 3;
+            this.dgvInscripcion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInscripcion_CellClick);
             // 
             // clmnIdInscripcion
             // 

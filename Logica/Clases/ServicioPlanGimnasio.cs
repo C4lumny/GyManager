@@ -79,7 +79,7 @@ namespace Logica.Clases
         {
             try
             {
-                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search) || item.Nombre.StartsWith(search));
+                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search) || item.Nombre.ToUpper().StartsWith(search.ToUpper()));
             }
             catch (Exception)
             {

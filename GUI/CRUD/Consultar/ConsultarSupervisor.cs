@@ -100,9 +100,32 @@ namespace GUI.Pureba
             CargarGrilla();
         }
 
-        private void dgvSupervisor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-
+            string buscado = txtBusqueda.Text;
+            dgvSupervisor.Rows.Clear();
+            if (buscado.All(char.IsDigit))
+            {
+                List<Supervisoress> supervisorBuscado = serv.GetListBySearch(buscado);
+                if (supervisorBuscado != null)
+                {
+                    foreach (Supervisoress supervisor in supervisorBuscado)
+                    {
+                        dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
+                    }
+                }
+            }
+            else
+            {
+                List<Supervisoress> supervisorBuscado = serv.GetListBySearch(buscado.ToUpper());
+                if (supervisorBuscado != null)
+                {
+                    foreach (Supervisoress supervisor in supervisorBuscado)
+                    {
+                        dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
+                    }
+                }
+            }
         }
     }
 }
