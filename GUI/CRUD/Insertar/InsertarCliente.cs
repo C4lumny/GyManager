@@ -38,9 +38,9 @@ namespace GUI.Pureba.Insertar
 
             DatosBiomedicos datos = new DatosBiomedicos();
 
-            datos.Altura = double.Parse(txtAltura.Text);
-            datos.Peso = double.Parse(txtPeso.Text);
-            datos.GrasaCorporal = double.Parse(txtGrasa.Text);
+            datos.Altura = double.Parse(txtAltura.Text, System.Globalization.CultureInfo.InvariantCulture);
+            datos.Peso = double.Parse(txtPeso.Text, System.Globalization.CultureInfo.InvariantCulture);
+            datos.GrasaCorporal = double.Parse(txtGrasa.Text, System.Globalization.CultureInfo.InvariantCulture);
             datos.FrecuenciaCardiaca = int.Parse(txtFrecuencia.Text);
             datos.PresionArterial = int.Parse(txtPresion.Text);
             datos.id_cliente = txtCedula.Text;
