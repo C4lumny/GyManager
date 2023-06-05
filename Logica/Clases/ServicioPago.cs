@@ -38,6 +38,10 @@ namespace Logica.Clases
         {
             try
             {
+                if (true)
+                {
+
+                }
                 return rep.Insert(entidad);
             }
             catch (Exception)

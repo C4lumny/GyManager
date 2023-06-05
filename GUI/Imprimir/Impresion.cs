@@ -99,10 +99,10 @@ namespace GUI.Imprimir
                 // Ticket1.LineasTotales(); // imprime linea 
 
                 Ticket1.TextoIzquierda(" ");
-                Ticket1.TextoCentro("***************************************");
-                Ticket1.TextoCentro("*     Gracias por preferirnos.        *");
-                Ticket1.TextoCentro("*    GyManager Software Company       *");
-                Ticket1.TextoCentro("***************************************");
+                Ticket1.TextoCentro("******************************************");
+                Ticket1.TextoCentro("*        Gracias por preferirnos.        *");
+                Ticket1.TextoCentro("*       GyManager Software Company       *");
+                Ticket1.TextoCentro("******************************************");
                 Ticket1.TextoIzquierda(" ");
 
                 Ticket1.ImprimirTiket(comboBox1.Text); //Imprimir

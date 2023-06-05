@@ -93,14 +93,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\IAdministrador.cs" />
+    <Compile Include="Clases\Interfaces\IAdministrador.cs" />
     <Compile Include="Clases\IGetBySearch.cs" />
     <Compile Include="Clases\ServicioAdministrador.cs" />
     <Compile Include="Clases\ServicioClientes.cs" />
     <Compile Include="Clases\ServicioDatosBiomedicos.cs" />
     <Compile Include="Clases\ServicioDiscapacidad.cs" />
     <Compile Include="Clases\ServicioFacturas.cs" />
-    <Compile Include="Clases\ICRUD.cs" />
+    <Compile Include="Clases\Interfaces\ICRUD.cs" />
     <Compile Include="Clases\ServicioInscripcion.cs" />
     <Compile Include="Clases\ServicioPago.cs" />
     <Compile Include="Clases\ServicioPlanGimnasio.cs" />
@@ -128,9 +128,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\Herramientas\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

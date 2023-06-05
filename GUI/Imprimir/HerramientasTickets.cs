@@ -30,7 +30,7 @@ namespace GUI.Imprimir
 
             public static string LineasGuion()
             {
-                string LineaGuion = "----------------------------------------";  
+                string LineaGuion = "-------------------------------------------";  
 
                 return line.AppendLine(LineaGuion).ToString();
             }
