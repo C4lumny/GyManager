@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlConsultarDGV = new System.Windows.Forms.Panel();
+            this.btnFactura = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnActualizarCliente = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.clmnNombreSupervisor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPlanN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnEstadoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnFactura = new System.Windows.Forms.Button();
             this.pnlConsultarDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripcion)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +65,22 @@
             this.pnlConsultarDGV.Size = new System.Drawing.Size(668, 399);
             this.pnlConsultarDGV.TabIndex = 4;
             this.pnlConsultarDGV.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlConsultarDGV_Paint);
+            // 
+            // btnFactura
+            // 
+            this.btnFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFactura.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnFactura.Location = new System.Drawing.Point(270, 333);
+            this.btnFactura.Name = "btnFactura";
+            this.btnFactura.Size = new System.Drawing.Size(90, 30);
+            this.btnFactura.TabIndex = 7;
+            this.btnFactura.Text = "Factura";
+            this.btnFactura.UseVisualStyleBackColor = false;
+            this.btnFactura.Visible = false;
+            this.btnFactura.Click += new System.EventHandler(this.btnFactura_Click);
             // 
             // textBox1
             // 
@@ -229,21 +245,6 @@
             this.clmnEstadoPago.HeaderText = "Estado";
             this.clmnEstadoPago.Name = "clmnEstadoPago";
             this.clmnEstadoPago.ReadOnly = true;
-            // 
-            // btnFactura
-            // 
-            this.btnFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFactura.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnFactura.Location = new System.Drawing.Point(270, 333);
-            this.btnFactura.Name = "btnFactura";
-            this.btnFactura.Size = new System.Drawing.Size(90, 30);
-            this.btnFactura.TabIndex = 7;
-            this.btnFactura.Text = "Factura";
-            this.btnFactura.UseVisualStyleBackColor = false;
-            this.btnFactura.Visible = false;
             // 
             // ConsultarInscripcion
             // 

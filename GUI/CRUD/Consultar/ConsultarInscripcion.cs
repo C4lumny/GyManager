@@ -49,5 +49,10 @@ namespace GUI.Pureba
         {
 
         }
+
+        private void btnFactura_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

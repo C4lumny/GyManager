@@ -30,6 +30,13 @@ namespace Datos.Archivos.Repositorio
                 factura.Subtotal = dataReader.GetDouble(2);
                 factura.Saldo = dataReader.GetDouble(3);
                 factura.Inscripcion.Id = dataReader.IsDBNull(4) ? null : (int?)dataReader.GetInt32(4);
+                factura.Inscripcion.Descuento = dataReader.IsDBNull(5) ? null : (int?)dataReader.GetInt32(5);
+                factura.Inscripcion.Precio = dataReader.IsDBNull(6) ? null : (int?)dataReader.GetDouble(6);
+                factura.Inscripcion.Cliente.Id = dataReader.IsDBNull(7) ? null : dataReader.GetString(7);
+                factura.Inscripcion.Cliente.Nombre = dataReader.IsDBNull(8) ? null : dataReader.GetString(8);
+                factura.Inscripcion.Cliente.Apellido = dataReader.IsDBNull(9) ? null : dataReader.GetString(9);
+                factura.Inscripcion.Plan.Nombre = dataReader.IsDBNull(10) ? null : dataReader.GetString(10);
+                factura.Inscripcion.Plan.Precio = dataReader.IsDBNull(11) ? null : (int?)dataReader.GetDouble(11);
                 return factura;
             }
             catch (Exception)
