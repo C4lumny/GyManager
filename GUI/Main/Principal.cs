@@ -12,8 +12,7 @@ namespace GUI.Main
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ServicioFacturas ser = new ServicioFacturas();
-            Impresion login = new Impresion(ser.GetObjectById("22"));
+            MenuIGA login = new MenuIGA();
             Application.Run(login);
         }
     }
