@@ -86,6 +86,22 @@ namespace Logica.Clases
             }
         }
 
+        public List<Clientess> GetAll_NoInscripciones()
+        {
+            ServicioInscripcion servicioInscripcion = new ServicioInscripcion();
+
+            try
+            {
+                List<Clientess> resultado = GetAll().Where(obj1 => !servicioInscripcion.GetAll().Any(obj2 => obj2.Cliente.Id == obj1.Id)).ToList();
+                return resultado;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         public Clientess GetObjectById(string id)
         {
             try
@@ -118,7 +134,7 @@ namespace Logica.Clases
                 return new Response<Clientess>(true, "Valido.");
             }
         }
-    
+
         public Response<Clientess> validarActualizacion(Clientess cliente, string id_cliente)
         {
             if (GetAll() == null)

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Entidades;
 namespace Logica.Clases
 {
     public class ServicioFacturas 
@@ -40,6 +40,19 @@ namespace Logica.Clases
             }
         }
 
+        public Facturas GetObjectByIdInscripcion(string id)
+        {
+            try
+            {   
+                return GetAll().FirstOrDefault(item => item.Inscripcion.Id.ToString() == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         public List<Facturas> GetAll()
         {
             var lista = rep.GetAll();
@@ -48,6 +61,17 @@ namespace Logica.Clases
                 return null;
             }
             return lista;
+        }
+        public Response<Facturas> validar_factura(Facturas factura)
+        {
+            if (factura.PagoIngresado <= 0)
+            {
+                return new Response<Facturas>(false, "No hay pagos registrados a esta factura");
+            }
+            else
+            {
+                return new Response<Facturas>(true, "Valido");
+            }
         }
     }
 }

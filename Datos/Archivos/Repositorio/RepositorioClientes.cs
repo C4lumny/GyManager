@@ -55,11 +55,11 @@ namespace Datos
                     command.Parameters.Add("i_apellidos", OracleDbType.Varchar2).Value = cliente.Apellido;
                     command.Parameters.Add("i_genero", OracleDbType.Varchar2).Value = cliente.Genero;
                     command.Parameters.Add("i_telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
-                    command.Parameters.Add("i_altura", OracleDbType.Decimal).Value = cliente.datosBiomedicos.Altura;
-                    command.Parameters.Add("i_peso", OracleDbType.Decimal).Value = cliente.datosBiomedicos.Peso;
-                    command.Parameters.Add("i_grasa", OracleDbType.Decimal).Value = cliente.datosBiomedicos.GrasaCorporal;
-                    command.Parameters.Add("i_frecuencia", OracleDbType.Decimal).Value = cliente.datosBiomedicos.FrecuenciaCardiaca;
-                    command.Parameters.Add("i_presion", OracleDbType.Decimal).Value = cliente.datosBiomedicos.PresionArterial;
+                    command.Parameters.Add("i_altura", OracleDbType.Decimal).Value = Math.Round(double.Parse(cliente.datosBiomedicos.Altura.ToString()), 2);
+                    command.Parameters.Add("i_peso", OracleDbType.Decimal).Value = Math.Round(double.Parse(cliente.datosBiomedicos.Peso.ToString()), 2);
+                    command.Parameters.Add("i_grasa", OracleDbType.Decimal).Value = Math.Round(double.Parse(cliente.datosBiomedicos.GrasaCorporal.ToString()), 2);
+                    command.Parameters.Add("i_frecuencia", OracleDbType.Decimal).Value = Math.Round(double.Parse(cliente.datosBiomedicos.FrecuenciaCardiaca.ToString()), 2);
+                    command.Parameters.Add("i_presion", OracleDbType.Decimal).Value = Math.Round(double.Parse(cliente.datosBiomedicos.PresionArterial.ToString()), 2);
                     command.Parameters.Add("i_fecha_nacimiento", OracleDbType.Date).Value = cliente.Fecha_nacimiento;
 
                     conexion.Open();

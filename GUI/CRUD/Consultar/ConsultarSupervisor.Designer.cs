@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.btnActualizarSupervisor = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvSupervisor = new System.Windows.Forms.DataGridView();
@@ -50,6 +52,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtBusqueda);
             this.panel1.Controls.Add(this.btnActualizarSupervisor);
             this.panel1.Controls.Add(this.btnEliminar);
             this.panel1.Controls.Add(this.dgvSupervisor);
@@ -58,6 +62,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(668, 399);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(30, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 17);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Busqueda:";
+            // 
+            // txtBusqueda
+            // 
+            this.txtBusqueda.Location = new System.Drawing.Point(117, 51);
+            this.txtBusqueda.Multiline = true;
+            this.txtBusqueda.Name = "txtBusqueda";
+            this.txtBusqueda.Size = new System.Drawing.Size(192, 24);
+            this.txtBusqueda.TabIndex = 13;
+            this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
             // 
             // btnActualizarSupervisor
             // 
@@ -142,7 +166,6 @@
             this.dgvSupervisor.Size = new System.Drawing.Size(605, 213);
             this.dgvSupervisor.TabIndex = 4;
             this.dgvSupervisor.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupervisor_CellClick);
-            this.dgvSupervisor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupervisor_CellContentClick);
             // 
             // clmCedula
             // 
@@ -213,6 +236,7 @@
             this.Text = "Consultar supervisor";
             this.Load += new System.EventHandler(this.ConsultarSupervisor_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupervisor)).EndInit();
             this.ResumeLayout(false);
 
@@ -232,5 +256,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFechaIngreso;
         private System.Windows.Forms.Button btnActualizarSupervisor;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtBusqueda;
     }
 }

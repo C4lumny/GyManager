@@ -1,6 +1,7 @@
 ﻿using Datos.Archivos.Clase_Abstracta;
 using Entidades;
 using Entidades.Administrador;
+using Entidades.Pagos_y_Facturas;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -9,57 +10,27 @@ using System.IO;
 
 namespace Datos.Archivos.Repositorio
 {
-    public class RepositorioAdministrador
+    public class RepositorioAdministrador : Abs_Repositorio<Administrador>
     {
         IConexion conexion;
         public RepositorioAdministrador(IConexion _connect) 
         {
             conexion = _connect;
+            MiVista("vista_administradores");
         }
-        public Response<Administrador> Insert(Administrador administrador)
+        protected override Administrador Mapper(OracleDataReader dataReader)
         {
             try
             {
-                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "pkg_administradores.p_insertaradministrador";
-
-                    command.Parameters.Add("i_username", OracleDbType.Varchar2).Value = administrador.UserName;
-                    command.Parameters.Add("i_password", OracleDbType.Varchar2).Value = administrador.Password;
-
-                    conexion.Open();
-                    command.ExecuteNonQuery();
-                    conexion.Close();
-                }
-                return new Response<Administrador>(true, "Se ha insertado el administrador correctamente.");
+                if (!dataReader.HasRows) { return null; }
+                Administrador admin = new Administrador();
+                admin.UserName = dataReader.GetString(0);
+                admin.Password = dataReader.GetString(1);
+                return admin;
             }
             catch (Exception)
             {
-                return new Response<Administrador>(false, "No se ha podido insertar el administrador.");
-            }
-        }
-
-        public string Delete(string userName)
-        {
-            try
-            {
-                using (OracleCommand command = conexion.ObtenerConexion().CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "pkg_administradores.p_eliminardministrador";
-
-                    command.Parameters.Add("d_username", OracleDbType.Varchar2).Value = userName;
-
-                    conexion.Open();
-                    command.ExecuteNonQuery();
-                    conexion.Close();
-                }
-                return "Se ha eliminado el administrador correctamente.";
-            }
-            catch (Exception)
-            {
-                return "No se ha podido eliminar el administrador.";
+                return null;
             }
         }
     }

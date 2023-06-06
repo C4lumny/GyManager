@@ -30,7 +30,7 @@ namespace Datos.Archivos.Repositorio
                 }
 
                 Pago pago = new Pago();
-                pago.Id = dataReader.IsDBNull(0) ? null : (int?)dataReader.GetInt32(3) ;
+                pago.Id = dataReader.IsDBNull(0) ? null : (int?)dataReader.GetInt32(0) ;
                 pago.ValorIngresado = dataReader.IsDBNull(1) ? null : (double?)dataReader.GetDouble(1);
                 pago.FechaPago = dataReader.GetDateTime(2);
                 pago.Inscripcion.Id = dataReader.IsDBNull(3) ? null : (int?)dataReader.GetInt32(3);
@@ -113,5 +113,11 @@ namespace Datos.Archivos.Repositorio
                 return new Response<Pago>(false, "No se ha actualizado el pago.", null, pago);
             }
         }
+
+        public void HistorialAccess()
+        {
+            MiVista("vista_pagos_historial");
+        }
+
     }
 }

@@ -15,6 +15,7 @@ namespace Entidades.Pagos_y_Facturas
         public Inscripcion Inscripcion { get; set; }
         public Facturas()
         {
+            Inscripcion = new Inscripcion();
         }
         public Facturas(int id, double pagoIngresado, double subtotal, double saldo, Inscripcion Inscripcion)
         {

@@ -84,5 +84,33 @@ namespace GUI.Pureba
         {
             CargarGrilla();
         }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string buscado = txtBusqueda.Text;
+            dgvPlanGimnasio.Rows.Clear();
+            if (buscado.All(char.IsDigit))
+            {
+                List<PlanGimnasio> planBuscado = serv.GetListBySearch(buscado);
+                if (planBuscado != null)
+                {
+                    foreach (PlanGimnasio plan in planBuscado)
+                    {
+                        dgvPlanGimnasio.Rows.Add(plan.Id, plan.Nombre, plan.Precio, plan.Dias);
+                    }
+                }
+            }
+            else
+            {
+                List<PlanGimnasio> planBuscado = serv.GetListBySearch(buscado);
+                if (planBuscado != null)
+                {
+                    foreach (PlanGimnasio plan in planBuscado)
+                    {
+                        dgvPlanGimnasio.Rows.Add(plan.Id, plan.Nombre, plan.Precio, plan.Dias);
+                    }
+                }
+            }
+        }
     }
 }

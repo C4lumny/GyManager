@@ -2,6 +2,7 @@
 using Datos.Archivos;
 using Datos.Archivos.Repositorio;
 using Entidades;
+using Entidades.Informacion_Persona;
 using Entidades.Pagos_y_Facturas;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,10 @@ namespace Logica.Clases
         {
             try
             {
+                if (true)
+                {
+
+                }
                 return rep.Insert(entidad);
             }
             catch (Exception)
@@ -69,7 +74,28 @@ namespace Logica.Clases
 
         public List<Pago> GetListBySearch(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetAll().FindAll(item => item.Id.ToString().StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public List<Pago> GetListBySearchPG(string search)
+        {
+            try
+            {
+                return GetHistorial().FindAll(item => item.Id.ToString().StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public Pago GetObjectById(string id)
@@ -83,6 +109,16 @@ namespace Logica.Clases
 
                 return null;
             }
+        }
+        public List<Pago> GetHistorial()
+        {
+            rep.HistorialAccess();
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
+            }
+            return lista;
         }
     }
 }

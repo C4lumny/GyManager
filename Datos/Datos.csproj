@@ -100,11 +100,9 @@
     <Compile Include="Archivos\Clases Abstractas e Interfaces\IUpdate.cs" />
     <Compile Include="Archivos\ConexionOracle.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioDatosBiomedicos.cs" />
-    <Compile Include="Archivos\Repositorio\RepositorioDiscapacidades.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioFacturas.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioPagos.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioSupervisor.cs" />
-    <Compile Include="Archivos\Repositorio\RepositorioTurnos.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioAdministrador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Archivos\Repositorio\RepositorioInscripcion.cs" />

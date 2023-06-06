@@ -3,12 +3,7 @@ using Entidades.Pagos_y_Facturas;
 using Logica.Clases;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI.Pureba
@@ -29,16 +24,39 @@ namespace GUI.Pureba
 
         void CargarGrilla()
         {
-            dataGridView1.Rows.Clear();
+            dgvPago.Rows.Clear();
             var lista = serv.GetAll();
             if (lista != null)
             {
                 foreach (Pago pago in lista)
                 {
-                    dataGridView1.Rows.Add(pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
+                    dgvPago.Rows.Add(pago.Id, pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
                 }
             }
 
+        }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string buscado = txtBusqueda.Text;
+            dgvPago.Rows.Clear();
+            if (buscado.All(char.IsDigit))
+            {
+                List<Pago> pagoBuscado = serv.GetListBySearch(buscado);
+
+                foreach (Pago pago in pagoBuscado)
+                {
+                    dgvPago.Rows.Add(pago.Id, pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
+                }
+            }
+        }
+
+        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

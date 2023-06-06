@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,11 @@ namespace GUI.Pureba.Insertar
         {
             InitializeComponent();
             cmbGenero.SelectedIndex = 0;
+            txtAltura.Text = "1.00";
+            txtPeso.Text = "10.00";
+            txtGrasa.Text = "1";
+            txtFrecuencia.Text = "10";
+            txtPresion.Text = "100";
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -32,9 +38,9 @@ namespace GUI.Pureba.Insertar
 
             DatosBiomedicos datos = new DatosBiomedicos();
 
-            datos.Altura = double.Parse(txtAltura.Text);
-            datos.Peso = double.Parse(txtPeso.Text);
-            datos.GrasaCorporal = double.Parse(txtGrasa.Text);
+            datos.Altura = double.Parse(txtAltura.Text, System.Globalization.CultureInfo.InvariantCulture);
+            datos.Peso = double.Parse(txtPeso.Text, System.Globalization.CultureInfo.InvariantCulture);
+            datos.GrasaCorporal = double.Parse(txtGrasa.Text, System.Globalization.CultureInfo.InvariantCulture);
             datos.FrecuenciaCardiaca = int.Parse(txtFrecuencia.Text);
             datos.PresionArterial = int.Parse(txtPresion.Text);
             datos.id_cliente = txtCedula.Text;
@@ -59,6 +65,82 @@ namespace GUI.Pureba.Insertar
             {
                 MessageBox.Show("No se permite seleccionar una fecha mayor a la fecha actual.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtmFechaNacimiento.Value = fechaActual;
+            }
+        }
+
+        private void txtCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAltura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '\u007F' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.')
+            {
+                // Validar que no haya más de un punto
+                if (txtAltura.Text.Contains('.'))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtPeso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '\u007F' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.')
+            {
+                // Validar que no haya más de un punto
+                if (txtPeso.Text.Contains('.'))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtGrasa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '\u007F' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.')
+            {
+                // Validar que no haya más de un punto
+                if (txtGrasa.Text.Contains('.'))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtPresion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números, la tecla de retroceso y el carácter de separación '/'
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true; // Cancelar el evento KeyPress si se ingresa un carácter no válido
             }
         }
     }

@@ -63,7 +63,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(136)))), ((int)(((byte)(158)))));
             this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -78,17 +78,19 @@
             // 
             // lblInsertarCliente
             // 
+            this.lblInsertarCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblInsertarCliente.AutoSize = true;
-            this.lblInsertarCliente.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInsertarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInsertarCliente.ForeColor = System.Drawing.Color.White;
-            this.lblInsertarCliente.Location = new System.Drawing.Point(34, 18);
+            this.lblInsertarCliente.Location = new System.Drawing.Point(165, 20);
             this.lblInsertarCliente.Name = "lblInsertarCliente";
-            this.lblInsertarCliente.Size = new System.Drawing.Size(225, 37);
+            this.lblInsertarCliente.Size = new System.Drawing.Size(165, 31);
             this.lblInsertarCliente.TabIndex = 24;
             this.lblInsertarCliente.Text = "Insertar plan";
             // 
             // lblPeso
             // 
+            this.lblPeso.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPeso.AutoSize = true;
             this.lblPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPeso.ForeColor = System.Drawing.Color.White;
@@ -100,6 +102,7 @@
             // 
             // lblAltura
             // 
+            this.lblAltura.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAltura.AutoSize = true;
             this.lblAltura.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAltura.ForeColor = System.Drawing.Color.White;
@@ -111,6 +114,7 @@
             // 
             // lblTelefono
             // 
+            this.lblTelefono.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTelefono.ForeColor = System.Drawing.Color.White;
@@ -122,6 +126,7 @@
             // 
             // lblCedula
             // 
+            this.lblCedula.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblCedula.AutoSize = true;
             this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCedula.ForeColor = System.Drawing.Color.White;
@@ -133,6 +138,7 @@
             // 
             // txtDescripcion
             // 
+            this.txtDescripcion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(298, 239);
             this.txtDescripcion.Multiline = true;
@@ -142,22 +148,28 @@
             // 
             // txtDias
             // 
+            this.txtDias.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDias.Location = new System.Drawing.Point(298, 178);
+            this.txtDias.MaxLength = 3;
             this.txtDias.Name = "txtDias";
             this.txtDias.Size = new System.Drawing.Size(184, 23);
             this.txtDias.TabIndex = 6;
+            this.txtDias.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDias_KeyPress);
             // 
             // txtPrecio
             // 
+            this.txtPrecio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecio.Location = new System.Drawing.Point(298, 128);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(184, 23);
             this.txtPrecio.TabIndex = 4;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // txtNombrePlan
             // 
+            this.txtNombrePlan.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNombrePlan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombrePlan.Location = new System.Drawing.Point(298, 80);
             this.txtNombrePlan.Name = "txtNombrePlan";

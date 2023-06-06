@@ -18,6 +18,7 @@ namespace GUI.CRUD.Insertar
         {
             InitializeComponent();
             cmbGenero.SelectedIndex = 0;
+            txtCorreo.Text = "ejemplo@example.com";
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -34,6 +35,63 @@ namespace GUI.CRUD.Insertar
             supervisor.Correo = txtCorreo.Text;
 
             MessageBox.Show(servSupervisor.Crear(supervisor).Msg);
+        }
+
+        private void txtCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir caracteres alfanuméricos, la tecla de retroceso y los caracteres '.' y '@'
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.' && e.KeyChar != '@')
+            {
+                e.Handled = true; // Cancelar el evento KeyPress si se ingresa un carácter no válido
+            }
+
+            // Validar que se ingrese solo un carácter '@'
+            if (e.KeyChar == '@')
+            {
+                // Validar que no haya más de un carácter '@'
+                if (txtCorreo.Text.Contains('@'))
+                {
+                    e.Handled = true; // Cancelar el evento KeyPress si ya hay un carácter '@'
+                }
+            }
+
+            // Validar que se ingrese solo un carácter '.'
+            if (e.KeyChar == '.')
+            {
+                // Validar que no haya más de un carácter '.'
+                if (txtCorreo.Text.Contains('.'))
+                {
+                    e.Handled = true; // Cancelar el evento KeyPress si ya hay un carácter '.'
+                }
+            }
+        }
+
+        private void dtmFechaNacimiento_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = dtmFechaNacimiento.Value;
+            DateTime fechaActual = DateTime.Now;
+
+            if (fechaSeleccionada > fechaActual)
+            {
+                MessageBox.Show("No se permite seleccionar una fecha mayor a la fecha actual.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtmFechaNacimiento.Value = fechaActual;
+            }
         }
     }
 }

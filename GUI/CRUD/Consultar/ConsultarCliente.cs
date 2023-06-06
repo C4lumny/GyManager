@@ -91,5 +91,33 @@ namespace GUI.Pureba
         {
             CargarGrilla();
         }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string buscado = txtBusqueda.Text;
+            dgvClientes.Rows.Clear();
+            if (buscado.All(char.IsDigit))
+            {
+                List<Clientess> clienteBuscado = serv.GetListBySearch(buscado);
+                if (clienteBuscado != null)
+                {
+                    foreach (Clientess cliente in clienteBuscado)
+                    {
+                        dgvClientes.Rows.Add(cliente.Id, cliente.Nombre, cliente.Apellido, cliente.Genero, cliente.Telefono, cliente.Fecha_nacimiento, cliente.Fecha_ingreso);
+                    }
+                }
+            }
+            else
+            {
+                List<Clientess> clienteBuscado = serv.GetListBySearch(buscado.ToUpper());
+                if (clienteBuscado != null)
+                {
+                    foreach (Clientess cliente in clienteBuscado)
+                    {
+                        dgvClientes.Rows.Add(cliente.Id, cliente.Nombre, cliente.Apellido, cliente.Genero, cliente.Telefono, cliente.Fecha_nacimiento, cliente.Fecha_ingreso);
+                    }
+                }
+            }
+        }
     }
 }

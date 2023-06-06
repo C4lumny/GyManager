@@ -1,6 +1,7 @@
 ﻿using Datos;
 using Datos.Archivos;
 using Datos.Archivos.Repositorio;
+using Entidades;
 using Entidades.Administrador;
 using System;
 using System.Collections.Generic;
@@ -20,28 +21,26 @@ namespace Logica.Clases
             coneccion = new ConexionOracle();
             rep = new RepositorioAdministrador(coneccion);
         }
-        public string Crear(Administrador entidad)
-        {
-            try
-            {
-                return rep.Insert(entidad).Msg;
-            }
-            catch (Exception)
-            {
 
-                return "Error";
+        protected override List<Administrador> GetAll()
+        {
+            var lista = rep.GetAll();
+            if (lista == null)
+            {
+                return null;
             }
+            return lista;
         }
 
-        public string Eliminar(string id)
+        public override Response<Administrador> ValidarAdmin(Administrador entidad)
         {
-            try
+            if (!GetAll().Any(item => item.UserName.ToUpper() == entidad.UserName.ToUpper() && item.Password == entidad.Password))
             {
-                return rep.Delete(id);
+                return new Response<Administrador>(false, "Usuario y/o contraseña incorrectos");
             }
-            catch (Exception)
+            else
             {
-                return "Error";
+                return new Response<Administrador>(true, "Bienvenido: "  + entidad.UserName + "!");
             }
         }
     }
