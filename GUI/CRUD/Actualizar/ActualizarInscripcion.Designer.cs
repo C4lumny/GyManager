@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActualizarInscripcion));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblActualizarInscripcion = new System.Windows.Forms.Label();
             this.cmbPlanes = new System.Windows.Forms.ComboBox();
             this.cmbSupervisores = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -36,7 +38,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescuento = new System.Windows.Forms.TextBox();
-            this.lblActualizarInscripcion = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +57,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(708, 377);
             this.panel1.TabIndex = 1;
+            // 
+            // lblActualizarInscripcion
+            // 
+            this.lblActualizarInscripcion.AutoSize = true;
+            this.lblActualizarInscripcion.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActualizarInscripcion.ForeColor = System.Drawing.Color.White;
+            this.lblActualizarInscripcion.Location = new System.Drawing.Point(183, 22);
+            this.lblActualizarInscripcion.Name = "lblActualizarInscripcion";
+            this.lblActualizarInscripcion.Size = new System.Drawing.Size(369, 37);
+            this.lblActualizarInscripcion.TabIndex = 33;
+            this.lblActualizarInscripcion.Text = "Actualizar inscripcion";
             // 
             // cmbPlanes
             // 
@@ -139,23 +151,13 @@
             this.txtDescuento.Size = new System.Drawing.Size(200, 24);
             this.txtDescuento.TabIndex = 3;
             // 
-            // lblActualizarInscripcion
-            // 
-            this.lblActualizarInscripcion.AutoSize = true;
-            this.lblActualizarInscripcion.Font = new System.Drawing.Font("MesloLGM NF", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActualizarInscripcion.ForeColor = System.Drawing.Color.White;
-            this.lblActualizarInscripcion.Location = new System.Drawing.Point(183, 22);
-            this.lblActualizarInscripcion.Name = "lblActualizarInscripcion";
-            this.lblActualizarInscripcion.Size = new System.Drawing.Size(369, 37);
-            this.lblActualizarInscripcion.TabIndex = 33;
-            this.lblActualizarInscripcion.Text = "Actualizar inscripcion";
-            // 
             // ActualizarInscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 377);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ActualizarInscripcion";
             this.Text = "ActualizarInscripcion";
             this.Load += new System.EventHandler(this.ActualizarInscripcion_Load);

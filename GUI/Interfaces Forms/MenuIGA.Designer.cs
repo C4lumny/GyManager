@@ -520,6 +520,7 @@
             this.Controls.Add(this.pnlChild);
             this.Controls.Add(this.pnlHora);
             this.Controls.Add(this.pnlMenuLateral);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(950, 600);
             this.Name = "MenuIGA";
             this.Text = "MenuIGA";

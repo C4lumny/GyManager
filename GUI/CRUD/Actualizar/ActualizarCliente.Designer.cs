@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActualizarPlanG));
             this.panel = new System.Windows.Forms.Panel();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.lblActualizarCliente = new System.Windows.Forms.Label();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.lblTelefono = new System.Windows.Forms.Label();
-            this.cmbGenero = new System.Windows.Forms.ComboBox();
-            this.lblGenero = new System.Windows.Forms.Label();
-            this.txtApellido = new System.Windows.Forms.TextBox();
-            this.lblApellidos = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.lblNombres = new System.Windows.Forms.Label();
-            this.dtmFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
-            this.txtCedula = new System.Windows.Forms.TextBox();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblGenero = new System.Windows.Forms.Label();
+            this.lblApellidos = new System.Windows.Forms.Label();
+            this.lblNombres = new System.Windows.Forms.Label();
             this.lblCedula = new System.Windows.Forms.Label();
+            this.dtmFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.cmbGenero = new System.Windows.Forms.ComboBox();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtCedula = new System.Windows.Forms.TextBox();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,13 +96,16 @@
             this.lblActualizarCliente.TabIndex = 24;
             this.lblActualizarCliente.Text = "Actualizar cliente";
             // 
-            // txtTelefono
+            // lblFechaNacimiento
             // 
-            this.txtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(434, 243);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(184, 23);
-            this.txtTelefono.TabIndex = 4;
+            this.lblFechaNacimiento.AutoSize = true;
+            this.lblFechaNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaNacimiento.ForeColor = System.Drawing.Color.White;
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(337, 100);
+            this.lblFechaNacimiento.Name = "lblFechaNacimiento";
+            this.lblFechaNacimiento.Size = new System.Drawing.Size(153, 18);
+            this.lblFechaNacimiento.TabIndex = 16;
+            this.lblFechaNacimiento.Text = "Fecha de nacimiento: ";
             // 
             // lblTelefono
             // 
@@ -113,6 +117,66 @@
             this.lblTelefono.Size = new System.Drawing.Size(74, 18);
             this.lblTelefono.TabIndex = 15;
             this.lblTelefono.Text = "Telefono: ";
+            // 
+            // lblGenero
+            // 
+            this.lblGenero.AutoSize = true;
+            this.lblGenero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGenero.ForeColor = System.Drawing.Color.White;
+            this.lblGenero.Location = new System.Drawing.Point(42, 248);
+            this.lblGenero.Name = "lblGenero";
+            this.lblGenero.Size = new System.Drawing.Size(66, 18);
+            this.lblGenero.TabIndex = 14;
+            this.lblGenero.Text = "Genero: ";
+            // 
+            // lblApellidos
+            // 
+            this.lblApellidos.AutoSize = true;
+            this.lblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellidos.ForeColor = System.Drawing.Color.White;
+            this.lblApellidos.Location = new System.Drawing.Point(336, 174);
+            this.lblApellidos.Name = "lblApellidos";
+            this.lblApellidos.Size = new System.Drawing.Size(75, 18);
+            this.lblApellidos.TabIndex = 13;
+            this.lblApellidos.Text = "Apellidos: ";
+            // 
+            // lblNombres
+            // 
+            this.lblNombres.AutoSize = true;
+            this.lblNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombres.ForeColor = System.Drawing.Color.White;
+            this.lblNombres.Location = new System.Drawing.Point(42, 174);
+            this.lblNombres.Name = "lblNombres";
+            this.lblNombres.Size = new System.Drawing.Size(78, 18);
+            this.lblNombres.TabIndex = 12;
+            this.lblNombres.Text = "Nombres: ";
+            // 
+            // lblCedula
+            // 
+            this.lblCedula.AutoSize = true;
+            this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCedula.ForeColor = System.Drawing.Color.White;
+            this.lblCedula.Location = new System.Drawing.Point(43, 101);
+            this.lblCedula.Name = "lblCedula";
+            this.lblCedula.Size = new System.Drawing.Size(62, 18);
+            this.lblCedula.TabIndex = 11;
+            this.lblCedula.Text = "Cedula: ";
+            // 
+            // dtmFechaNacimiento
+            // 
+            this.dtmFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtmFechaNacimiento.Location = new System.Drawing.Point(537, 103);
+            this.dtmFechaNacimiento.Name = "dtmFechaNacimiento";
+            this.dtmFechaNacimiento.Size = new System.Drawing.Size(81, 20);
+            this.dtmFechaNacimiento.TabIndex = 5;
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.Location = new System.Drawing.Point(434, 243);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(184, 23);
+            this.txtTelefono.TabIndex = 4;
             // 
             // cmbGenero
             // 
@@ -126,17 +190,6 @@
             this.cmbGenero.Size = new System.Drawing.Size(70, 21);
             this.cmbGenero.TabIndex = 3;
             // 
-            // lblGenero
-            // 
-            this.lblGenero.AutoSize = true;
-            this.lblGenero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenero.ForeColor = System.Drawing.Color.White;
-            this.lblGenero.Location = new System.Drawing.Point(42, 248);
-            this.lblGenero.Name = "lblGenero";
-            this.lblGenero.Size = new System.Drawing.Size(66, 18);
-            this.lblGenero.TabIndex = 14;
-            this.lblGenero.Text = "Genero: ";
-            // 
             // txtApellido
             // 
             this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,17 +197,6 @@
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(184, 23);
             this.txtApellido.TabIndex = 2;
-            // 
-            // lblApellidos
-            // 
-            this.lblApellidos.AutoSize = true;
-            this.lblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidos.ForeColor = System.Drawing.Color.White;
-            this.lblApellidos.Location = new System.Drawing.Point(336, 174);
-            this.lblApellidos.Name = "lblApellidos";
-            this.lblApellidos.Size = new System.Drawing.Size(75, 18);
-            this.lblApellidos.TabIndex = 13;
-            this.lblApellidos.Text = "Apellidos: ";
             // 
             // txtNombre
             // 
@@ -164,36 +206,6 @@
             this.txtNombre.Size = new System.Drawing.Size(184, 23);
             this.txtNombre.TabIndex = 1;
             // 
-            // lblNombres
-            // 
-            this.lblNombres.AutoSize = true;
-            this.lblNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombres.ForeColor = System.Drawing.Color.White;
-            this.lblNombres.Location = new System.Drawing.Point(42, 174);
-            this.lblNombres.Name = "lblNombres";
-            this.lblNombres.Size = new System.Drawing.Size(78, 18);
-            this.lblNombres.TabIndex = 12;
-            this.lblNombres.Text = "Nombres: ";
-            // 
-            // dtmFechaNacimiento
-            // 
-            this.dtmFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtmFechaNacimiento.Location = new System.Drawing.Point(537, 103);
-            this.dtmFechaNacimiento.Name = "dtmFechaNacimiento";
-            this.dtmFechaNacimiento.Size = new System.Drawing.Size(81, 20);
-            this.dtmFechaNacimiento.TabIndex = 5;
-            // 
-            // lblFechaNacimiento
-            // 
-            this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaNacimiento.ForeColor = System.Drawing.Color.White;
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(337, 100);
-            this.lblFechaNacimiento.Name = "lblFechaNacimiento";
-            this.lblFechaNacimiento.Size = new System.Drawing.Size(153, 18);
-            this.lblFechaNacimiento.TabIndex = 16;
-            this.lblFechaNacimiento.Text = "Fecha de nacimiento: ";
-            // 
             // txtCedula
             // 
             this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -202,23 +214,13 @@
             this.txtCedula.Size = new System.Drawing.Size(184, 23);
             this.txtCedula.TabIndex = 0;
             // 
-            // lblCedula
-            // 
-            this.lblCedula.AutoSize = true;
-            this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCedula.ForeColor = System.Drawing.Color.White;
-            this.lblCedula.Location = new System.Drawing.Point(43, 101);
-            this.lblCedula.Name = "lblCedula";
-            this.lblCedula.Size = new System.Drawing.Size(62, 18);
-            this.lblCedula.TabIndex = 11;
-            this.lblCedula.Text = "Cedula: ";
-            // 
             // ActualizarPlanG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 399);
             this.Controls.Add(this.panel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ActualizarPlanG";
             this.Text = "ActualizarCliente";
             this.panel.ResumeLayout(false);
