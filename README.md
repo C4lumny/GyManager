@@ -1,5 +1,5 @@
 ![logo proyecto](https://user-images.githubusercontent.com/105754395/235493424-fc51fee1-8e81-4fc1-b3ab-d6f908e5448c.png)
-![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESARROLLO-green?style=for-the-badge)
+![Badge en Desarollo](https://img.shields.io/badge/STATUS-FINALIZADO-green?style=for-the-badge)
 ## GyManager
 _GyManager_ se encuentra centrado en el ámbito del bienestar y las actividades
 empresariales, el proyecto se basa en la creación de un programa que realiza el
