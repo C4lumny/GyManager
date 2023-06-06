@@ -102,30 +102,46 @@ namespace GUI.Pureba
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            string buscado = txtBusqueda.Text;
-            dgvSupervisor.Rows.Clear();
-            if (buscado.All(char.IsDigit))
+            try
             {
-                List<Supervisoress> supervisorBuscado = serv.GetListBySearch(buscado);
-                if (supervisorBuscado != null)
+                string buscado = txtBusqueda.Text;
+                dgvSupervisor.Rows.Clear();
+                if (buscado.All(char.IsDigit))
                 {
-                    foreach (Supervisoress supervisor in supervisorBuscado)
+                    List<Supervisoress> supervisorBuscado = serv.GetListBySearch(buscado);
+                    if (supervisorBuscado != null)
                     {
-                        dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
+                        foreach (Supervisoress supervisor in supervisorBuscado)
+                        {
+                            if (supervisor.Id != "NULL")
+                            {
+                                dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
+
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    List<Supervisoress> supervisorBuscado = serv.GetListBySearch(buscado.ToUpper());
+                    if (supervisorBuscado != null)
+                    {
+                        foreach (Supervisoress supervisor in supervisorBuscado)
+                        {
+                            if (supervisor.Id != "NULL")
+                            {
+                                dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
+
+                            }
+                        }
                     }
                 }
             }
-            else
+            catch(Exception)
             {
-                List<Supervisoress> supervisorBuscado = serv.GetListBySearch(buscado.ToUpper());
-                if (supervisorBuscado != null)
-                {
-                    foreach (Supervisoress supervisor in supervisorBuscado)
-                    {
-                        dgvSupervisor.Rows.Add(supervisor.Id, supervisor.Nombre, supervisor.Apellido, supervisor.Genero, supervisor.Telefono, supervisor.Correo, supervisor.Fecha_nacimiento, supervisor.Fecha_ingreso);
-                    }
-                }
+                return;
             }
+            
         }
     }
 }
