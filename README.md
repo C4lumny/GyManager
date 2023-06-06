@@ -14,7 +14,6 @@ problemas y brindar a los usuarios una mejor experiencia.
 
 * **Isaac Jacome** - *Encargado de la logica* - [Aisaac123](https://github.com/Aisaac123)
 * **Nathan Ospino** - *Encargado del diseño* - [C4lumny](https://github.com/C4lumny)
-* **Daniel Melo** - *Encargado de la documentación* - [Daniel-Melo924](https://github.com/Daniel-Melo924)
 
 ## Expresiones de Gratitud 🎁
 
