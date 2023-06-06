@@ -33,12 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlConsultarDGV = new System.Windows.Forms.Panel();
+            this.btnRenovar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.btnPago = new System.Windows.Forms.Button();
             this.btnFactura = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnActualizarCliente = new System.Windows.Forms.Button();
+            this.btnActualizarInscripcion = new System.Windows.Forms.Button();
             this.dgvInscripcion = new System.Windows.Forms.DataGridView();
             this.clmnIdInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnFecha_Inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,7 +51,6 @@
             this.clmnNombreSupervisor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPlanN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnEstadoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRenovar = new System.Windows.Forms.Button();
             this.pnlConsultarDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripcion)).BeginInit();
             this.SuspendLayout();
@@ -64,13 +64,28 @@
             this.pnlConsultarDGV.Controls.Add(this.btnPago);
             this.pnlConsultarDGV.Controls.Add(this.btnFactura);
             this.pnlConsultarDGV.Controls.Add(this.textBox1);
-            this.pnlConsultarDGV.Controls.Add(this.btnActualizarCliente);
+            this.pnlConsultarDGV.Controls.Add(this.btnActualizarInscripcion);
             this.pnlConsultarDGV.Controls.Add(this.dgvInscripcion);
             this.pnlConsultarDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlConsultarDGV.Location = new System.Drawing.Point(0, 0);
             this.pnlConsultarDGV.Name = "pnlConsultarDGV";
             this.pnlConsultarDGV.Size = new System.Drawing.Size(668, 399);
             this.pnlConsultarDGV.TabIndex = 4;
+            // 
+            // btnRenovar
+            // 
+            this.btnRenovar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRenovar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnRenovar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnRenovar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRenovar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnRenovar.Location = new System.Drawing.Point(149, 333);
+            this.btnRenovar.Name = "btnRenovar";
+            this.btnRenovar.Size = new System.Drawing.Size(90, 30);
+            this.btnRenovar.TabIndex = 15;
+            this.btnRenovar.Text = "Renovar";
+            this.btnRenovar.UseVisualStyleBackColor = false;
+            this.btnRenovar.Click += new System.EventHandler(this.btnRenovar_Click);
             // 
             // label1
             // 
@@ -134,20 +149,20 @@
             this.textBox1.Size = new System.Drawing.Size(100, 31);
             this.textBox1.TabIndex = 6;
             // 
-            // btnActualizarCliente
+            // btnActualizarInscripcion
             // 
-            this.btnActualizarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnActualizarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnActualizarCliente.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnActualizarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarCliente.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnActualizarCliente.Location = new System.Drawing.Point(34, 333);
-            this.btnActualizarCliente.Name = "btnActualizarCliente";
-            this.btnActualizarCliente.Size = new System.Drawing.Size(90, 30);
-            this.btnActualizarCliente.TabIndex = 5;
-            this.btnActualizarCliente.Text = "Actualizar";
-            this.btnActualizarCliente.UseVisualStyleBackColor = false;
-            this.btnActualizarCliente.Click += new System.EventHandler(this.btnActualizarCliente_Click);
+            this.btnActualizarInscripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnActualizarInscripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnActualizarInscripcion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
+            this.btnActualizarInscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarInscripcion.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnActualizarInscripcion.Location = new System.Drawing.Point(34, 333);
+            this.btnActualizarInscripcion.Name = "btnActualizarInscripcion";
+            this.btnActualizarInscripcion.Size = new System.Drawing.Size(90, 30);
+            this.btnActualizarInscripcion.TabIndex = 5;
+            this.btnActualizarInscripcion.Text = "Actualizar";
+            this.btnActualizarInscripcion.UseVisualStyleBackColor = false;
+            this.btnActualizarInscripcion.Click += new System.EventHandler(this.btnActualizarInscripcion_Click);
             // 
             // dgvInscripcion
             // 
@@ -281,20 +296,6 @@
             this.clmnEstadoPago.Name = "clmnEstadoPago";
             this.clmnEstadoPago.ReadOnly = true;
             // 
-            // btnRenovar
-            // 
-            this.btnRenovar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRenovar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnRenovar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(167)))), ((int)(((byte)(194)))));
-            this.btnRenovar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRenovar.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnRenovar.Location = new System.Drawing.Point(149, 333);
-            this.btnRenovar.Name = "btnRenovar";
-            this.btnRenovar.Size = new System.Drawing.Size(90, 30);
-            this.btnRenovar.TabIndex = 15;
-            this.btnRenovar.Text = "Renovar";
-            this.btnRenovar.UseVisualStyleBackColor = false;
-            // 
             // ConsultarInscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,7 +316,7 @@
 
         private System.Windows.Forms.Panel pnlConsultarDGV;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnActualizarCliente;
+        private System.Windows.Forms.Button btnActualizarInscripcion;
         private System.Windows.Forms.DataGridView dgvInscripcion;
         private System.Windows.Forms.Button btnFactura;
         private System.Windows.Forms.Button btnPago;

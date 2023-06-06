@@ -54,9 +54,16 @@ namespace GUI.Pureba
 
         private void btnFactura_Click(object sender, EventArgs e)
         {
+            if (btnFactura.Tag != null && btnFactura.Tag is int inscripcionId)
+            {
+                Impresion impresion = new Impresion(servicioFacturas.GetObjectByIdInscripcion(inscripcionId.ToString()));
+                impresion.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ninguna inscripción para pagar.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             
-            Impresion impresion = new Impresion(servicioFacturas.GetObjectById("41"));
-            impresion.Show();
         }
 
         private void dgvInscripcion_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -65,8 +72,10 @@ namespace GUI.Pureba
             {
                 int inscripcionId = Convert.ToInt32(dgvInscripcion.Rows[e.RowIndex].Cells["clmnIdInscripcion"].Value);
 
-                btnEliminar.Tag = inscripcionId; // Almacena el ID del cliente en la propiedad Tag del botón
                 btnPago.Tag = inscripcionId; //Almaceno el id en el boton actualizar
+                btnActualizarInscripcion.Tag = inscripcionId;
+                btnRenovar.Tag = inscripcionId;
+                btnFactura.Tag = inscripcionId;
             }
         }
 
@@ -119,9 +128,37 @@ namespace GUI.Pureba
             }
         }
 
-        private void btnActualizarCliente_Click(object sender, EventArgs e)
+        private void btnActualizarInscripcion_Click(object sender, EventArgs e)
         {
+            if (btnActualizarInscripcion.Tag != null && btnActualizarInscripcion.Tag is int inscripcionId)
+            {
+                ActualizarInscripcion actInscripcion = new ActualizarInscripcion(inscripcionId.ToString(), "Actualizar Inscripcion");
+                actInscripcion.FormClosed += new System.Windows.Forms.FormClosedEventHandler(ActualizarInscripcion_FormClosed);
+                actInscripcion.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningún cliente para actualizar.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
+        private void ActualizarInscripcion_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CargarGrilla();
+        }
+
+        private void btnRenovar_Click(object sender, EventArgs e)
+        {
+            if (btnActualizarInscripcion.Tag != null && btnActualizarInscripcion.Tag is int inscripcionId)
+            {
+                ActualizarInscripcion actInscripcion = new ActualizarInscripcion(inscripcionId.ToString(), "Renovar Inscripcion");
+                actInscripcion.FormClosed += new System.Windows.Forms.FormClosedEventHandler(ActualizarInscripcion_FormClosed);
+                actInscripcion.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningún cliente para actualizar.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

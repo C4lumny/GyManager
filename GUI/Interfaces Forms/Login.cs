@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades.Administrador;
+using Logica.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +14,18 @@ namespace GUI.pruba
 {
     public partial class Login : Form
     {
+        ServicioAdministrador servAdmin = new ServicioAdministrador();
+
         public Login()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            Administrador admin = new Administrador();
+            admin.UserName = txtUsername.Text;
+            admin.Password = txtPassword.Text;
+
+            ServicioAdministrador servAdmin = new ServicioAdministrador();
+            servAdmin.ValidarAdmin(admin);
         }
 
         private void txtUsername_Enter(object sender, EventArgs e)
@@ -68,9 +78,23 @@ namespace GUI.pruba
 
         private void btnAcceder_Click(object sender, EventArgs e)
         {
-            MenuIGA menu = new MenuIGA();
-            menu.Show();
-            this.Hide();
+            Administrador admin = new Administrador();
+            admin.UserName = txtUsername.Text;
+            admin.Password = txtPassword.Text;
+
+            ServicioAdministrador servAdmin = new ServicioAdministrador();
+            if (servAdmin.ValidarAdmin(admin).Success)
+            {
+                MessageBox.Show(servAdmin.ValidarAdmin(admin).Msg);
+                MenuIGA menu = new MenuIGA();
+                menu.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show(servAdmin.ValidarAdmin(admin).Msg);
+            }
+            
         }
 
         private bool isDragging = false;

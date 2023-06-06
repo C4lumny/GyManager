@@ -40,6 +40,19 @@ namespace Logica.Clases
             }
         }
 
+        public Facturas GetObjectByIdInscripcion(string id)
+        {
+            try
+            {   
+                return GetAll().FirstOrDefault(item => item.Inscripcion.Id.ToString() == id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         public List<Facturas> GetAll()
         {
             var lista = rep.GetAll();

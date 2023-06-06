@@ -50,7 +50,7 @@ namespace GUI.Imprimir
 
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnImpresion_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Desea imprimir esta factura?", "Impresion!", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -117,10 +117,6 @@ namespace GUI.Imprimir
 
                 MessageBox.Show("Gracias por preferirnos");
             }     
-        }
-
-        private void Impresion_Load(object sender, EventArgs e)
-        {
         }
     }
 }

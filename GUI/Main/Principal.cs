@@ -12,7 +12,7 @@ namespace GUI.Main
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MenuIGA login = new MenuIGA();
+            Login login = new Login();
             Application.Run(login);
         }
     }

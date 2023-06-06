@@ -94,16 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrador\Administrador.cs" />
-    <Compile Include="DTO\Dtohorarios.cs" />
-    <Compile Include="DTO\DTO_Cliente.cs" />
-    <Compile Include="DTO\DTO_DatosBiomedicos.cs" />
-    <Compile Include="DTO\DTO_Facturas.cs" />
-    <Compile Include="DTO\DTO_Inscripciones.cs" />
-    <Compile Include="DTO\DTO_Pagos.cs" />
-    <Compile Include="DTO\DTO_PlanesGimnasio.cs" />
-    <Compile Include="DTO\DTO_Supervisores.cs" />
     <Compile Include="Informacion Persona\DatosBiomedicos.cs" />
-    <Compile Include="Informacion Persona\Discapacidad.cs" />
     <Compile Include="Pagos y Facturas\Facturas.cs" />
     <Compile Include="Pagos y Facturas\Pago.cs" />
     <Compile Include="ServicioProveidos\Turno_Atencion.cs" />

@@ -40,7 +40,7 @@ namespace Logica.Clases
             }
             else
             {
-                return new Response<Administrador>(false, "Bienvenido: "  + entidad.UserName + "!");
+                return new Response<Administrador>(true, "Bienvenido: "  + entidad.UserName + "!");
             }
         }
     }

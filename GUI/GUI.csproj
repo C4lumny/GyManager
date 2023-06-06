@@ -37,6 +37,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>imageicono.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -111,6 +114,12 @@
     </Compile>
     <Compile Include="CRUD\Actualizar\ActualizarDatosBiomedicos.Designer.cs">
       <DependentUpon>ActualizarDatosBiomedicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarInscripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD\Actualizar\ActualizarInscripcion.Designer.cs">
+      <DependentUpon>ActualizarInscripcion.cs</DependentUpon>
     </Compile>
     <Compile Include="CRUD\Actualizar\ActualizarPlanGimnasio.cs">
       <SubType>Form</SubType>
@@ -256,6 +265,9 @@
     <EmbeddedResource Include="CRUD\Actualizar\ActualizarDatosBiomedicos.resx">
       <DependentUpon>ActualizarDatosBiomedicos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CRUD\Actualizar\ActualizarInscripcion.resx">
+      <DependentUpon>ActualizarInscripcion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CRUD\Actualizar\ActualizarPlanGimnasio.resx">
       <DependentUpon>ActualizarPlanGimnasio.cs</DependentUpon>
     </EmbeddedResource>
@@ -315,7 +327,9 @@
       <DependentUpon>InsertarCliente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="imageicono.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
