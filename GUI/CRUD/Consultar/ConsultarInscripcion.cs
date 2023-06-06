@@ -118,5 +118,10 @@ namespace GUI.Pureba
                 e.Handled = true;
             }
         }
+
+        private void btnActualizarCliente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
