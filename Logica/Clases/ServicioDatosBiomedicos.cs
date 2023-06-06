@@ -82,6 +82,19 @@ namespace Logica.Clases
             }
         }
 
+        public List<DatosBiomedicos> GetListBySearchHB(string search)
+        {
+            try
+            {
+                return GetHistorial().FindAll(item => item.Id.ToString().StartsWith(search) || item.id_cliente.StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         public DatosBiomedicos GetObjectById(string id)
         {
             try

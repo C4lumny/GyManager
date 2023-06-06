@@ -28,7 +28,7 @@ namespace GUI.Pureba
             {
                 foreach (Pago pago in lista)
                 {
-                    dgvHistorialPagos.Rows.Add(pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
+                    dgvHistorialPagos.Rows.Add(pago.Id, pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
                 }
             }
 
@@ -40,9 +40,27 @@ namespace GUI.Pureba
             dgvHistorialPagos.ClearSelection();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
+            string buscado = txtBusqueda.Text;
+            dgvHistorialPagos.Rows.Clear();
+            if (buscado.All(char.IsDigit))
+            {
+                List<Pago> pagoBuscado = serv.GetListBySearchPG(buscado);
 
+                foreach (Pago pago in pagoBuscado)
+                {
+                    dgvHistorialPagos.Rows.Add(pago.Id, pago.ValorIngresado, pago.FechaPago, pago.Inscripcion.Id);
+                }
+            }
+        }
+
+        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

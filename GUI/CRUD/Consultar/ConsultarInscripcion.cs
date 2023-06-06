@@ -4,6 +4,7 @@ using GUI.CRUD.Insertar;
 using GUI.Imprimir;
 using Logica.Clases;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,6 +87,36 @@ namespace GUI.Pureba
         private void InsertarPago_FormClosed(object sender, FormClosedEventArgs e)
         {
             CargarGrilla();
+        }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string buscado = txtBusqueda.Text;
+            dgvInscripcion.Rows.Clear();
+            if (buscado.All(char.IsDigit))
+            {
+                List<Inscripcion> inscripcionBuscada = serv.GetListBySearch(buscado);
+                if (inscripcionBuscada != null)
+                {
+                    string s_nombreCompleto;
+                    string c_nombreCompleto;
+                    foreach (Inscripcion inscripcion in inscripcionBuscada)
+                    {
+                        c_nombreCompleto = inscripcion.Cliente.Nombre + " " + inscripcion.Cliente.Apellido;
+                        s_nombreCompleto = inscripcion.Supervisor.Nombre + " " + inscripcion.Supervisor.Apellido;
+
+                        dgvInscripcion.Rows.Add(inscripcion.Id, inscripcion.FechaInicio, inscripcion.FechaFinal, inscripcion.Precio, inscripcion.Cliente.Id, c_nombreCompleto, inscripcion.Supervisor.Id, s_nombreCompleto, inscripcion.Plan.Nombre, inscripcion.IdEstado);
+                    }
+                }
+            }
+        }
+
+        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

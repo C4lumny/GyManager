@@ -85,6 +85,19 @@ namespace Logica.Clases
             }
         }
 
+        public List<Pago> GetListBySearchPG(string search)
+        {
+            try
+            {
+                return GetHistorial().FindAll(item => item.Id.ToString().StartsWith(search));
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         public Pago GetObjectById(string id)
         {
             try
